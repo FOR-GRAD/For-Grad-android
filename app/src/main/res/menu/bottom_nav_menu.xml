@@ -23,7 +23,7 @@
 
     <item
         android:id="@+id/fragment_setting"
-        android:icon="@drawable/selector_bottom_setting"
+        android:icon="@drawable/ic_setting_28"
         android:title="설정" />
 
 </menu>
