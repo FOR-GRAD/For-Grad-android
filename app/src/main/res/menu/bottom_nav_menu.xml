@@ -2,18 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:id="@+id/fragment_grad_info"
+        android:icon="@drawable/ic_grad_info_28"
+        android:title="졸업정보" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/fragment_career"
+        android:icon="@drawable/selector_bottom_career"
+        android:title="커리어" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:id="@+id/fragment_home"
+        android:icon="@drawable/selector_bottom_home"
+        android:title="홈" />
+
+    <item
+        android:id="@+id/fragment_board"
+        android:icon="@drawable/selector_bottom_board"
+        android:title="게시판" />
+
+    <item
+        android:id="@+id/fragment_setting"
+        android:icon="@drawable/ic_setting_28"
+        android:title="설정" />
 
 </menu>

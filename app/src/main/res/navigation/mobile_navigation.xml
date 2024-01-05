@@ -3,12 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/fragment_home">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/fragment_home"
         android:name="umc.com.mobile.project.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/fragment_grad_info"
+        android:name="umc.com.mobile.project.ui.gradInfo.GradInfoFragment"
+        android:label="@string/title_grad_info"
+        tools:layout="@layout/fragment_grad_info" />
+
+    <fragment
+        android:id="@+id/fragment_career"
+        android:name="umc.com.mobile.project.ui.career.CareerFragment"
+        android:label="@string/title_career"
+        tools:layout="@layout/fragment_career" />
+
+    <fragment
+        android:id="@+id/fragment_board"
+        android:name="umc.com.mobile.project.ui.board.BoardFragment"
+        android:label="@string/title_board"
+        tools:layout="@layout/fragment_board" />
+
+    <fragment
+        android:id="@+id/fragment_setting"
+        android:name="umc.com.mobile.project.ui.setting.SettingFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting" />
 
 </navigation>

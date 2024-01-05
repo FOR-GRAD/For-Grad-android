@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- main color -->
-    <color name="indigo">#2C4FA2</color>
+    <color name="skyBlue">#0D99FF</color>
     <color name="ivory">#FAF3EB</color>
 
     <!-- sub color -->
-    <color name="gray">#F5F5F5</color>
+    <color name="default_dark">#7D7D7D</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
