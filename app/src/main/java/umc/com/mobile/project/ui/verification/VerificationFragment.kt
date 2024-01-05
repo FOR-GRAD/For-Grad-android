@@ -11,7 +11,6 @@ import umc.com.mobile.project.databinding.FragmentVerificationBinding
 class VerificationFragment : Fragment() {
 
 	private var _binding: FragmentVerificationBinding? = null
-	private val viewModel: VerificationViewModel by viewModels()
 
 	private val binding get() = _binding!!
 
@@ -21,9 +20,6 @@ class VerificationFragment : Fragment() {
 	): View {
 		_binding = FragmentVerificationBinding.inflate(inflater, container, false)
 
-		viewModel.text.observe(viewLifecycleOwner) {
-			binding.tv.text = it
-		}
 		return binding.root
 	}
 
