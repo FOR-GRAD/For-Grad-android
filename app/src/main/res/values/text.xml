@@ -17,10 +17,6 @@
         <item name="fontFamily">@font/pretendard_bold</item>
     </style>
 
-    <style name="BlackFont" parent="FontCommon">
-        <item name="fontFamily">@font/pretendard_black</item>
-    </style>
-
     <!-- Bold Style -->
     <style name="BoldFont.22" parent="BoldFont">
         <item name="android:textSize">22sp</item>
@@ -106,35 +102,6 @@
     </style>
 
     <style name="SemiBoldFont.10" parent="SemiBoldFont">
-        <item name="android:textSize">10sp</item>
-    </style>
-
-    <!-- Bold Style -->
-    <style name="BlackFont.22" parent="BlackFont">
-        <item name="android:textSize">22sp</item>
-    </style>
-
-    <style name="BlackFont.20" parent="BlackFont">
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="BlackFont.18" parent="BlackFont">
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="BlackFont.16" parent="BlackFont">
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="BlackFont.14" parent="BlackFont">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="BlackFont.12" parent="BlackFont">
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="BlackFont.10" parent="BlackFont">
         <item name="android:textSize">10sp</item>
     </style>
 
