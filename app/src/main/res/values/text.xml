@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="FontCommon">
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="SemiBoldFont" parent="FontCommon">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+    </style>
+
+    <style name="MediumFont" parent="FontCommon">
+        <item name="fontFamily">@font/pretendard_medium</item>
+    </style>
+
+    <style name="BoldFont" parent="FontCommon">
+        <item name="fontFamily">@font/pretendard_bold</item>
+    </style>
+
+    <!-- Bold Style -->
+    <style name="BoldFont.22" parent="BoldFont">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="BoldFont.20" parent="BoldFont">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="BoldFont.18" parent="BoldFont">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="BoldFont.16" parent="BoldFont">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="BoldFont.14" parent="BoldFont">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="BoldFont.12" parent="BoldFont">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="BoldFont.10" parent="BoldFont">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <!-- Medium Style -->
+    <style name="MediumFont.22" parent="MediumFont">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="MediumFont.20" parent="MediumFont">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="MediumFont.18" parent="MediumFont">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="MediumFont.16" parent="MediumFont">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="MediumFont.14" parent="MediumFont">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MediumFont.12" parent="MediumFont">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="MediumFont.10" parent="MediumFont">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+
+    <!-- SemiBold Style -->
+    <style name="SemiBoldFont.22" parent="SemiBoldFont">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="SemiBoldFont.20" parent="SemiBoldFont">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="SemiBoldFont.18" parent="SemiBoldFont">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="SemiBoldFont.16" parent="SemiBoldFont">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="SemiBoldFont.14" parent="SemiBoldFont">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SemiBoldFont.12" parent="SemiBoldFont">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="SemiBoldFont.10" parent="SemiBoldFont">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+</resources>
