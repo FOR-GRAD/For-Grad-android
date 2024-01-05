@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.signUp.SignUpFragment">
+    tools:context=".ui.verification.VerificationFragment">
 
     <TextView
         android:id="@+id/tv"
-        style="@style/SemiBoldFont.20"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical|center"
-        android:text="signIn 뷰!" />
+        android:text="signUp 뷰!" />
 
 </FrameLayout>

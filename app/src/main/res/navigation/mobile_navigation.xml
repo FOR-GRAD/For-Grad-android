@@ -6,6 +6,12 @@
     app:startDestination="@+id/fragment_home">
 
     <fragment
+        android:id="@+id/fragment_login"
+        android:name="umc.com.mobile.project.ui.login.LoginActivity"
+        android:label="로그인"
+        tools:layout="@layout/activity_login" />
+
+    <fragment
         android:id="@+id/fragment_home"
         android:name="umc.com.mobile.project.ui.home.HomeFragment"
         android:label="@string/title_home"

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ivory"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.verification.VerificationFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_app_blue_logo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/BlackFont.12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="92dp"
+        android:text="HANSUNG UNIV"
+        android:textColor="@color/skyBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_content"
+        style="@style/MediumFont.10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:text="종합정보시스템의 ID/PW 를 입력하세요."
+        android:textColor="@color/text_gray" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_id"
+        style="@style/MediumFont.12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="13dp"
+        android:background="@drawable/bg_solid_white_radius_25"
+        android:hint="학번 (ID)"
+        android:paddingLeft="23dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:textColorHint="@color/text_gray" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_password"
+        style="@style/MediumFont.12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/bg_solid_white_radius_25"
+        android:hint="비밀번호 (PW)"
+        android:paddingLeft="23dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:textColorHint="@color/text_gray" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        style="@style/SemiBoldFont.14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/bg_solid_gray_radius_25"
+        android:shadowColor="@android:color/transparent"
+        android:text="로그인"
+        android:textColor="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_content2"
+        style="@style/MediumFont.10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="ID/PW 는 학교 서버에 접속할 때만 사용합니다.
+        \n어떠한 데이터도 수집하지 않습니다."
+        android:textColor="@color/text_gray" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

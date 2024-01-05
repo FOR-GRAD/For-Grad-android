@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import umc.com.mobile.project.databinding.ActivitySplash2Binding
 import umc.com.mobile.project.databinding.ActivitySplashBinding
+import umc.com.mobile.project.ui.login.LoginActivity
 
 class Splash2Activity : AppCompatActivity() {
 	private lateinit var binding: ActivitySplash2Binding
@@ -18,8 +19,8 @@ class Splash2Activity : AppCompatActivity() {
 
 		// 3초 딜레이 이후 LoginActivity로 이동
 		Handler().postDelayed({
-			startActivity(Intent(this, MainActivity::class.java))
-//			startActivity(Intent(this, LoginActivity::class.java))
+//			startActivity(Intent(this, MainActivity::class.java))
+			startActivity(Intent(this, LoginActivity::class.java))
 			finish()
 		}, delayMillis)
 	}
