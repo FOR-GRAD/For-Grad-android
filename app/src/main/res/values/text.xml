@@ -81,6 +81,10 @@
 
 
     <!-- SemiBold Style -->
+    <style name="SemiBoldFont.24" parent="SemiBoldFont">
+        <item name="android:textSize">24sp</item>
+    </style>
+
     <style name="SemiBoldFont.22" parent="SemiBoldFont">
         <item name="android:textSize">22sp</item>
     </style>
