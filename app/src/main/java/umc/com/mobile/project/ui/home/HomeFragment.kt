@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
 		_binding = FragmentHomeBinding.inflate(inflater, container, false)
 
 		viewModel.text.observe(viewLifecycleOwner) {
-			binding.textHome.text = it
+//			binding.textHome.text = it
 		}
 		return binding.root
 	}

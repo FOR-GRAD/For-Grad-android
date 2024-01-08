@@ -9,14 +9,14 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayoutCompat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="50dp"
             android:background="@drawable/bg_solid_blue_radius_70"
+            android:paddingBottom="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -63,6 +63,7 @@
 
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView3"
                 style="@style/SemiBoldFont.24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,20 +73,98 @@
                 app:layout_constraintStart_toStartOf="@+id/appCompatTextView"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView6"
+                android:layout_width="120dp"
+                android:layout_height="142dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="42dp"
+                android:src="@drawable/bg_solid_white_radius_25"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView3"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_home"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textSize="20sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name"
+                style="@style/BoldFont.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="30dp"
+                android:text="임현서"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView6"
+                app:layout_constraintTop_toTopOf="@+id/appCompatImageView6" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_stdId"
+                style="@style/BoldFont.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="30dp"
+                android:text="20200000"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/tv_name"
+                app:layout_constraintTop_toTopOf="@+id/appCompatImageView6" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_school"
+                style="@style/BoldFont.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="23dp"
+                android:text="한성대학교 부동산학과"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView6"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_semester"
+                style="@style/BoldFont.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="13dp"
+                android:text="2학년 2학기 재학중"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView6"
+                app:layout_constraintTop_toBottomOf="@+id/tv_school" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_graduate_title"
+                style="@style/MediumFont.14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="68dp"
+                android:text="졸업까지"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/appCompatImageView6"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView6" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_graduate_content"
+                style="@style/BoldFont.30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="D - 720"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/appCompatImageView6"
+                app:layout_constraintTop_toBottomOf="@+id/tv_graduate_title" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/bg_progressbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_graduate_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

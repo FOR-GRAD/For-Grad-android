@@ -22,6 +22,10 @@
     </style>
 
     <!-- Bold Style -->
+    <style name="BoldFont.30" parent="BoldFont">
+        <item name="android:textSize">30sp</item>
+    </style>
+
     <style name="BoldFont.22" parent="BoldFont">
         <item name="android:textSize">22sp</item>
     </style>
