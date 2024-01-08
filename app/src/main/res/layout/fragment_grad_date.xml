@@ -15,9 +15,8 @@
         android:layout_marginEnd="173dp"
         android:gravity="center"
         android:text="졸업예정일"
-        android:textColor="#8A000000"
-        android:textSize="20sp"
-        android:lineSpacingExtra="24sp"
+        android:textAppearance="@style/SemiBoldFont.24"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,9 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
+        android:layout_marginBottom="5dp"
         android:src="@drawable/ic_vector"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textTitle" />
+        app:layout_constraintBottom_toBottomOf="@+id/textTitle" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/backCard"
@@ -70,11 +70,10 @@
             android:layout_height="22dp"
             android:layout_marginLeft="57dp"
             android:layout_marginTop="17dp"
-            android:background="#D9D9D9"
             android:gravity="center"
-            android:text="ㄹ머어라아너렁"
-            android:textColor="#8A000000"
-            android:textSize="10sp"
+            android:text="졸업 예정일 2026년 2월"
+            android:textColor="#555555"
+            android:textAppearance="@style/MediumFont.14"
             app:layout_constraintStart_toStartOf="@+id/card1"
             app:layout_constraintTop_toTopOf="@+id/card1" />
 
@@ -84,10 +83,10 @@
             android:layout_height="22dp"
             android:layout_marginLeft="84dp"
             android:layout_marginTop="46dp"
-            android:background="#D9D9D9"
             android:gravity="center"
-            android:textColor="#8A000000"
-            android:textSize="8sp"
+            android:text="현재 2024년 1월 4일"
+            android:textColor="#555555"
+            android:textAppearance="@style/MediumFont.14"
             app:layout_constraintStart_toStartOf="@+id/card1"
             app:layout_constraintTop_toTopOf="@+id/card1" />
     </com.google.android.material.card.MaterialCardView>
@@ -110,12 +109,13 @@
         <TextView
             android:id="@+id/text_dday"
             android:layout_width="138dp"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="82dp"
-            android:layout_marginTop="59dp"
-            android:background="#D9D9D9"
+            android:layout_marginTop="50dp"
             android:gravity="center"
+            android:text="D - 650"
             android:textColor="#7D7D7D"
+            android:textAppearance="@style/SemiBoldFont.36"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </com.google.android.material.card.MaterialCardView>
@@ -141,9 +141,8 @@
             android:layout_height="38dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="11dp"
-            android:background="#D9D9D9"
-            android:gravity="center"
-            android:textColor="#8A000000"
+            android:text="응원의 한마디를 채워보세요"
+            android:textColor="#B3B3B3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </com.google.android.material.card.MaterialCardView>
