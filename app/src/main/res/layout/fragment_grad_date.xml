@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.setting.SettingFragment">
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="171dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="173dp"
+        android:gravity="center"
+        android:text="졸업예정일"
+        android:textColor="#8A000000"
+        android:textSize="20sp"
+        android:lineSpacingExtra="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:src="@drawable/ic_vector"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textTitle" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/backCard"
+        android:layout_width="324dp"
+        android:layout_height="468dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="42dp"
+        android:background="#0D99FF"
+        android:backgroundTint="#0D99FF"
+
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#D9D9D9"
+        app:strokeWidth="1dp"></com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card1"
+        android:layout_width="301dp"
+        android:layout_height="79dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="9dp"
+        android:background="#0D99FF"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="@+id/backCard"
+        app:layout_constraintTop_toTopOf="@+id/backCard"
+        app:strokeColor="#D9D9D9"
+        app:strokeWidth="1dp">
+
+        <TextView
+            android:id="@+id/text_grad_date"
+            android:layout_width="192dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="17dp"
+            android:background="#D9D9D9"
+            android:gravity="center"
+            android:text="ㄹ머어라아너렁"
+            android:textColor="#8A000000"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@+id/card1"
+            app:layout_constraintTop_toTopOf="@+id/card1" />
+
+        <TextView
+            android:id="@+id/text_today"
+            android:layout_width="139dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="84dp"
+            android:layout_marginTop="46dp"
+            android:background="#D9D9D9"
+            android:gravity="center"
+            android:textColor="#8A000000"
+            android:textSize="8sp"
+            app:layout_constraintStart_toStartOf="@+id/card1"
+            app:layout_constraintTop_toTopOf="@+id/card1" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card2"
+        android:layout_width="301dp"
+        android:layout_height="155dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="99dp"
+        android:background="#0D99FF"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="@+id/backCard"
+        app:layout_constraintTop_toTopOf="@+id/backCard"
+        app:strokeColor="#D9D9D9"
+        app:strokeWidth="1dp">
+
+        <TextView
+            android:id="@+id/text_dday"
+            android:layout_width="138dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="82dp"
+            android:layout_marginTop="59dp"
+            android:background="#D9D9D9"
+            android:gravity="center"
+            android:textColor="#7D7D7D"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card3"
+        android:layout_width="301dp"
+        android:layout_height="155dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="266dp"
+        android:background="#0D99FF"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="@+id/backCard"
+        app:layout_constraintTop_toTopOf="@+id/backCard"
+        app:strokeColor="#D9D9D9"
+        app:strokeWidth="1dp">
+
+        <TextView
+            android:id="@+id/text_memo"
+            android:layout_width="243dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="11dp"
+            android:background="#D9D9D9"
+            android:gravity="center"
+            android:textColor="#8A000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/edit"
+        android:layout_width="43dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="266dp"
+        android:layout_marginTop="440dp"
+        android:gravity="center"
+        android:text="수정하기"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/backCard"
+        app:layout_constraintTop_toTopOf="@+id/backCard"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
