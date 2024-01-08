@@ -22,7 +22,7 @@
     </style>
 
     <!-- Bold Style -->
-    <style name="BoldFont.30" parent="BoldFont">
+    <style name="BoldFont.30" parent="BlackFont">
         <item name="android:textSize">30sp</item>
     </style>
 
@@ -118,7 +118,11 @@
     </style>
 
 
-    <!-- Bold Style -->
+    <!-- Black Style -->
+    <style name="BlackFont.30" parent="BlackFont">
+        <item name="android:textSize">30sp</item>
+    </style>
+
     <style name="BlackFont.22" parent="BlackFont">
         <item name="android:textSize">22sp</item>
     </style>
