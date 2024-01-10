@@ -21,10 +21,25 @@
         android:id="@+id/tabLayout_grad_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="38dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_grad_info_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_grad_info_title"
+        app:tabBackground="@drawable/bg_grad_info_tab_radius_17"
+        app:tabGravity="fill"
+        app:tabIconTint="@android:color/transparent"
+        app:tabIndicatorHeight="0dp"
+        app:tabMinWidth="85dp"
+        app:tabMode="fixed"
+        app:tabPaddingEnd="17dp"
+        app:tabPaddingStart="17dp"
+        app:tabRippleColor="@null"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextAppearance="@style/SemiBoldFont.14"
+        app:tabTextColor="@color/text_gray"
+        app:tabUnboundedRipple="false" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager_grad_info"
