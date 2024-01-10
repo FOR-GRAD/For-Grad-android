@@ -22,9 +22,9 @@ class CareerFragment : Fragment() {
 	): View {
 		_binding = FragmentCareerBinding.inflate(inflater, container, false)
 
-		viewModel.text.observe(viewLifecycleOwner) {
+		/*viewModel.text.observe(viewLifecycleOwner) {
 			binding.textCareer.text = it
-		}
+		}*/
 		return binding.root
 	}
 
