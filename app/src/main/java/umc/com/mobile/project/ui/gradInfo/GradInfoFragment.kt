@@ -38,7 +38,7 @@ class GradInfoFragment : Fragment() {
 	}
 
 	private fun initTabLayout() {
-		val tabTitle = arrayOf("전체", "의류", "인형", "잡화")
+		val tabTitle = arrayOf("졸업 요건", "성적 사항", "개인별 이수 현황")
 
 		viewPager = binding.viewPagerGradInfo // viewPager 연결
 		tabLayout = binding.tabLayoutGradInfo // tabLayout 연결
