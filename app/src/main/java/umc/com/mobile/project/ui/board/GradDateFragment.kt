@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import umc.com.mobile.project.databinding.FragmentGradDateBinding
 import umc.com.mobile.project.databinding.FragmentGradDateBottomBinding
 
@@ -31,7 +33,7 @@ class GradDateFragment : Fragment() {
         with(binding) {
             textGradDate.setOnClickListener {
                 val bottomSheet = GradDateBottomFragment(mContext)
-               /* bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, umc.com.mobile.project.R.style.RoundCornerBottomSheetDialogTheme)*/
+                bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, umc.com.mobile.project.R.style.RoundCornerBottomSheetDialogTheme)
                 bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
             }
         }
