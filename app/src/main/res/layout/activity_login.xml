@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="92dp"
-        android:text="HANSUNG UNIV"
+        android:text="@string/login_hansung"
         android:textColor="@color/skyBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"
-        android:text="종합정보시스템의 ID/PW 를 입력하세요."
+        android:text="@string/login_content"
         android:textColor="@color/text_gray" />
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -44,8 +44,8 @@
         android:layout_marginEnd="23dp"
         android:layout_marginBottom="13dp"
         android:background="@drawable/bg_solid_white_radius_25"
-        android:hint="학번 (ID)"
-        android:paddingLeft="23dp"
+        android:hint="@string/login_id"
+        android:paddingStart="23dp"
         android:paddingTop="18dp"
         android:paddingBottom="18dp"
         android:textColorHint="@color/text_gray" />
@@ -59,8 +59,8 @@
         android:layout_marginEnd="23dp"
         android:layout_marginBottom="35dp"
         android:background="@drawable/bg_solid_white_radius_25"
-        android:hint="비밀번호 (PW)"
-        android:paddingLeft="23dp"
+        android:hint="@string/login_pw"
+        android:paddingStart="23dp"
         android:paddingTop="18dp"
         android:paddingBottom="18dp"
         android:textColorHint="@color/text_gray" />
@@ -74,8 +74,8 @@
         android:layout_marginEnd="23dp"
         android:layout_marginBottom="23dp"
         android:background="@drawable/bg_solid_gray_radius_25"
-        android:shadowColor="@android:color/transparent"
-        android:text="로그인"
+        android:stateListAnimator="@null"
+        android:text="@string/login_title"
         android:textColor="@color/white" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -84,8 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="ID/PW 는 학교 서버에 접속할 때만 사용합니다.
-        \n어떠한 데이터도 수집하지 않습니다."
+        android:text="@string/login_content_id_pw"
         android:textColor="@color/text_gray" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
