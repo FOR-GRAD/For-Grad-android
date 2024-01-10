@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.setting.SettingFragment">
 
     <TextView
@@ -26,14 +27,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
-        android:layout_marginEnd="335dp"
         android:layout_marginTop="35dp"
         android:src="@drawable/ic_vector"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <com.google.android.material.card.MaterialCardView
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--<com.google.android.material.card.MaterialCardView
         android:id="@+id/backCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,19 +53,18 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="11dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
+            android:layout_marginBottom="11dp"
+            android:layout_marginStart="11dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="380dp"
             android:background="#0D99FF"
             android:backgroundTint="#FFFFFF"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            app:layout_constraintStart_toStartOf="@+id/backCard"
-            app:layout_constraintTop_toTopOf="@+id/backCard"
             app:strokeColor="#D9D9D9"
-            app:strokeWidth="1dp">
+            app:strokeWidth="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/card1">
 
             <TextView
                 android:id="@+id/text_grad_date"
@@ -106,18 +103,17 @@
             android:id="@+id/card2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="11dp"
             android:layout_marginTop="99dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="11dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="214dp"
             android:background="#0D99FF"
             android:backgroundTint="#FFFFFF"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            app:layout_constraintStart_toStartOf="@+id/backCard"
-            app:layout_constraintTop_toTopOf="@+id/backCard"
             app:strokeColor="#D9D9D9"
-            app:strokeWidth="1dp">
+            app:strokeWidth="1dp"
+            app:layout_constraintTop_toBottomOf="@+id/card1">
 
             <TextView
                 android:id="@+id/text_dday"
@@ -139,19 +135,14 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="11dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="266dp"
+            android:layout_marginStart="11dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="47dp"
             android:background="#0D99FF"
             android:backgroundTint="#FFFFFF"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="#D9D9D9"
             app:strokeWidth="1dp">
 
@@ -168,7 +159,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/card2" />
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
@@ -183,5 +174,129 @@
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayoutCompat"
+            android:layout_width="match_parent"
+            android:layout_height="468dp"
+            android:background="@drawable/bg_solid_blue_radius_20"
+            android:layout_marginTop="90dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/card1"
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="9dp"
+                android:src="@drawable/bg_solid_white_radius_10"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_grad_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="57dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="52dp"
+                android:text="졸업 예정일 2026년 2월"
+                android:textAppearance="@style/MediumFont.14"
+                android:textColor="#555555"
+                app:layout_constraintTop_toTopOf="@+id/card1"
+                app:layout_constraintStart_toStartOf="@+id/card1"
+                app:layout_constraintEnd_toEndOf="@+id/card1"/>
+
+            <TextView
+                android:id="@+id/text_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginEnd="78dp"
+                android:text="현재 2024년 1월 4일"
+                android:textAppearance="@style/MediumFont.14"
+                android:textColor="#555555"
+                app:layout_constraintEnd_toEndOf="@+id/card1"
+                app:layout_constraintStart_toStartOf="@+id/card1"
+                app:layout_constraintTop_toBottomOf="@+id/text_grad_date"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/card2"
+                android:layout_width="match_parent"
+                android:layout_height="155dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="11dp"
+                android:src="@drawable/bg_solid_white_radius_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card1"/>
+
+            <TextView
+                android:id="@+id/text_dday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="59dp"
+                android:layout_marginBottom="60dp"
+                android:layout_marginStart="82dp"
+                android:layout_marginEnd="81dp"
+                android:text="D - 650"
+                android:textAppearance="@style/SemiBoldFont.36"
+                android:textColor="#7D7D7D"
+                app:layout_constraintTop_toTopOf="@+id/card2"
+                app:layout_constraintBottom_toBottomOf="@+id/card2"
+                app:layout_constraintStart_toStartOf="@+id/card2"
+                app:layout_constraintEnd_toEndOf="@+id/card2"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/card3"
+                android:layout_width="match_parent"
+                android:layout_height="155dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/bg_solid_white_radius_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card2" />
+
+            <TextView
+                android:id="@+id/text_memo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="106dp"
+                android:text="응원의 한마디를 채워보세요"
+                android:textColor="#B3B3B3"
+                app:layout_constraintBottom_toBottomOf="@+id/card3"
+                app:layout_constraintStart_toStartOf="@+id/card3"
+                app:layout_constraintTop_toTopOf="@+id/card3" />
+
+            <TextView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="16dp"
+                android:text="수정하기"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                app:layout_constraintTop_toBottomOf="@+id/card3"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
