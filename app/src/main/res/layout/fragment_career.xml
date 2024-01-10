@@ -21,6 +21,51 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43dp"
+                android:layout_marginStart="20dp"
+                android:text="커리어"
+                android:textAppearance="@style/SemiBoldFont.24"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:text="지금까지 내가 채워온 커리어를 확인하고\n더 추가하는 공간입니다"
+                android:textAppearance="@style/MediumFont.14"
+                android:textColor="#757575"
+                app:layout_constraintStart_toStartOf="@+id/textTitle"
+                app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+
+            <TextView
+                android:id="@+id/text_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="23dp"
+                android:text="더하기"
+                android:textAppearance="@style/BlackFont.14"
+                android:textColor="#757575"
+                app:layout_constraintTop_toBottomOf="@+id/textTitle"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_standard_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="2024.01.09 기준"
+                android:textAppearance="@style/MediumFont.12"
+                android:textColor="#7D7D7D"
+                app:layout_constraintBottom_toTopOf="@+id/point_box"
+                app:layout_constraintEnd_toEndOf="@+id/point_box" />
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/point_box"
                 android:layout_width="match_parent"
@@ -44,6 +89,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/point_box"/>
 
+            <TextView
+                android:id="@+id/text_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="60dp"
+                android:text="520pt"
+                android:textAppearance="@style/SemiBoldFont.20"
+                android:textColor="#FAF3EB"
+                app:layout_constraintStart_toStartOf="@+id/upper_point_box"
+                app:layout_constraintTop_toTopOf="@+id/upper_point_box" />
+
+            <TextView
+                android:id="@+id/text_point_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="비교과 포인트"
+                android:textAppearance="@style/MediumFont.12"
+                android:textColor="#FAF3EB"
+                app:layout_constraintTop_toBottomOf="@+id/text_point"
+                app:layout_constraintStart_toStartOf="@+id/text_point" />
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/certificate_box"
                 android:layout_width="0dp"
@@ -57,6 +125,20 @@
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
 
+            <TextView
+                android:id="@+id/text_certificate_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="자격증"
+                android:textAppearance="@style/SemiBoldFont.14"
+                android:textColor="#757575"
+                app:layout_constraintTop_toTopOf="@+id/certificate_box"
+                app:layout_constraintBottom_toBottomOf="@+id/certificate_box"
+                app:layout_constraintStart_toStartOf="@+id/certificate_box"
+                app:layout_constraintEnd_toEndOf="@+id/certificate_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.69"/>
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/contest_box"
                 android:layout_width="0dp"
@@ -68,6 +150,20 @@
                 app:layout_constraintHeight_default="percent"
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
+
+            <TextView
+                android:id="@+id/text_contest_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공모전"
+                android:textAppearance="@style/SemiBoldFont.14"
+                android:textColor="#757575"
+                app:layout_constraintTop_toTopOf="@+id/contest_box"
+                app:layout_constraintBottom_toBottomOf="@+id/contest_box"
+                app:layout_constraintStart_toStartOf="@+id/contest_box"
+                app:layout_constraintEnd_toEndOf="@+id/contest_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.69"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/volunteer_box"
@@ -82,6 +178,20 @@
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
 
+            <TextView
+                android:id="@+id/text_volunteer_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="봉사활동"
+                android:textAppearance="@style/SemiBoldFont.14"
+                android:textColor="#757575"
+                app:layout_constraintTop_toTopOf="@+id/volunteer_box"
+                app:layout_constraintBottom_toBottomOf="@+id/volunteer_box"
+                app:layout_constraintStart_toStartOf="@+id/volunteer_box"
+                app:layout_constraintEnd_toEndOf="@+id/volunteer_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.69"/>
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/activities_box"
                 android:layout_width="0dp"
@@ -93,6 +203,20 @@
                 app:layout_constraintHeight_default="percent"
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
+
+            <TextView
+                android:id="@+id/text_activities_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="교외활동"
+                android:textAppearance="@style/SemiBoldFont.14"
+                android:textColor="#757575"
+                app:layout_constraintTop_toTopOf="@+id/activities_box"
+                app:layout_constraintBottom_toBottomOf="@+id/activities_box"
+                app:layout_constraintStart_toStartOf="@+id/activities_box"
+                app:layout_constraintEnd_toEndOf="@+id/activities_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.69"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
