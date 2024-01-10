@@ -6,17 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.setting.SettingFragment">
 
-    <TextView
-        android:id="@+id/text"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_grad_info_title"
+        style="@style/SemiBoldFont.20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="43dp"
+        android:text="졸업요건"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_grad_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_marginTop="38dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_grad_info_title" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager_grad_info"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout_grad_info" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

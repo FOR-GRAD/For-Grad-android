@@ -11,49 +11,26 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import umc.com.mobile.project.databinding.FragmentCareerBinding
 import umc.com.mobile.project.databinding.FragmentGradInfoBinding
+import umc.com.mobile.project.databinding.FragmentGradeBinding
 import umc.com.mobile.project.ui.career.CareerViewModel
 import umc.com.mobile.project.ui.gradInfo.adapter.GradInfoVPAdapter
 
-class GradInfoFragment : Fragment() {
-	private var _binding: FragmentGradInfoBinding? = null
+class GradeFragment : Fragment() {
+	private var _binding: FragmentGradeBinding? = null
 	private val viewModel: GradInfoViewModel by viewModels()
 	private val binding get() = _binding!!
-
-	private lateinit var viewPager : ViewPager2
-	private lateinit var tabLayout : TabLayout
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-		_binding = FragmentGradInfoBinding.inflate(inflater, container, false)
-
-		initTabLayout()
+		_binding = FragmentGradeBinding.inflate(inflater, container, false)
 
 		viewModel.text.observe(viewLifecycleOwner) {
 //			binding.text.text = it
 		}
 		return binding.root
-	}
-
-	private fun initTabLayout() {
-		val tabTitle = arrayOf("전체", "의류", "인형", "잡화")
-
-		viewPager = binding.viewPagerGradInfo // viewPager 연결
-		tabLayout = binding.tabLayoutGradInfo // tabLayout 연결
-
-		val adapter = GradInfoVPAdapter(this)
-
-		adapter.addFragment(GradConditionFragment())
-		adapter.addFragment(GradeFragment())
-		adapter.addFragment(CompletionStateFragment())
-
-		viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-		viewPager.adapter = adapter
-
-		TabLayoutMediator(tabLayout, viewPager
-		) { tab, position -> tab.text = tabTitle[position] }.attach()
 	}
 
 	override fun onDestroyView() {
