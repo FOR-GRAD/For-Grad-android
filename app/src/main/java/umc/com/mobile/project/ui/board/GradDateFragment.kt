@@ -31,7 +31,7 @@ class GradDateFragment : Fragment() {
             binding.textBoard.text = it
         }*/
         with(binding) {
-            textGradDate.setOnClickListener {
+            tvGradDateDate.setOnClickListener {
                 val bottomSheet = GradDateBottomFragment(mContext)
                 bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, umc.com.mobile.project.R.style.RoundCornerBottomSheetDialogTheme)
                 bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
@@ -39,7 +39,7 @@ class GradDateFragment : Fragment() {
         }
         //실패 코드-값을 눌러도 text 안 바뀜
         viewModel.selectedDate.observe(viewLifecycleOwner) { selectedDate ->
-            binding.textGradDate.text = selectedDate
+            binding.tvGradDateDate.text = selectedDate
         }
 
         return binding.root
