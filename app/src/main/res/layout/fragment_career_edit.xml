@@ -17,6 +17,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="35dp"
+                android:src="@drawable/ic_back_arrow"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:src="@drawable/ic_career_plus_18"
+                app:layout_constraintTop_toTopOf="@+id/tv_career_edit_title"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_career_edit_title"
+                app:layout_constraintEnd_toStartOf="@+id/tv_career_edit_title"
+                app:layout_constraintVertical_bias="0.5"/>
+
             <TextView
                 android:id="@+id/tv_career_edit_title"
                 android:layout_width="wrap_content"
@@ -30,16 +50,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
-
-            <ImageView
-                android:id="@+id/iv_career_edit_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="35dp"
-                android:src="@drawable/ic_vector"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -123,6 +133,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_file"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_upload"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_file"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_file"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_file"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_file"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"/>
 
             <TextView
                 android:id="@+id/tv_career_edit_award"
