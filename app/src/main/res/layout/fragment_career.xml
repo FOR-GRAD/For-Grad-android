@@ -176,6 +176,17 @@
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_volunteer"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_volunteer_box"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_volunteer_box"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_volunteer_box"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_volunteer_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"/>
+
             <TextView
                 android:id="@+id/tv_career_volunteer_title"
                 android:layout_width="wrap_content"
@@ -202,6 +213,17 @@
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_activity"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_activities_box"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_activities_box"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_activities_box"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_activities_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"/>
+
             <TextView
                 android:id="@+id/tv_career_activities_title"
                 android:layout_width="wrap_content"
@@ -215,7 +237,6 @@
                 app:layout_constraintEnd_toEndOf="@+id/iv_career_activities_box"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintVertical_bias="0.69"/>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>
