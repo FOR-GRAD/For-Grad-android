@@ -20,6 +20,13 @@
     <string name="board_grad_date_dday">D - 650</string>
     <string name="board_grad_date_memo">응원의 한마디를 채워보세요</string>
     <string name="board_grad_date_edit">수정하기</string>
+    <!--커리어 메인-->
+    <string name="career_description">지금까지 내가 채워온 커리어를 확인하고\n더 추가하는 공간입니다</string>
+    <string name="career_add">더하기</string>
+    <string name="career_point_title">비교과 포인트</string>
+    <string name="career_certificate_title">자격증</string>
+    <string name="career_contest_title">공모전</string>
+    <string name="career_volunteer_title">봉사활동</string>
     <!-- 규민 -->
 
     <string name="home_to_grad">졸업까지</string>
