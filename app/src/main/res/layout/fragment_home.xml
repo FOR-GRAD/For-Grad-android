@@ -132,6 +132,31 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_school" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cheering_word"
+                style="@style/MediumFont.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:text="응원의 한 마디!"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/iv_home_profile"
+                app:layout_constraintTop_toBottomOf="@+id/iv_home_profile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_cheering_word_move"
+                style="@style/MediumFont.10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:text="자세히 보기"
+                android:drawableEnd="@drawable/ic_right"
+                android:drawablePadding="6dp"
+                android:textColor="@color/light_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_cheering_word"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_cheering_word" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_graduate_title"
                 style="@style/MediumFont.14"
                 android:layout_width="wrap_content"
@@ -226,9 +251,9 @@
                 style="@style/SemiBoldFont.20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/home_next_plan_title"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="26dp"
+                android:text="@string/home_next_plan_title"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

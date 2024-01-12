@@ -17,6 +17,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="35dp"
+                android:src="@drawable/ic_back_arrow"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:src="@drawable/ic_career_plus_18"
+                app:layout_constraintTop_toTopOf="@+id/tv_career_edit_title"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_career_edit_title"
+                app:layout_constraintEnd_toStartOf="@+id/tv_career_edit_title"
+                app:layout_constraintVertical_bias="0.5"/>
+
             <TextView
                 android:id="@+id/tv_career_edit_title"
                 android:layout_width="wrap_content"
@@ -24,22 +44,12 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginStart="137dp"
                 android:layout_marginEnd="136dp"
-                android:text="커리어 더하기"
+                android:text="@string/career_edit_title"
                 android:textAppearance="@style/SemiBoldFont.24"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
-
-            <ImageView
-                android:id="@+id/iv_career_edit_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="35dp"
-                android:src="@drawable/ic_vector"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="6dp"
-                android:text="활동"
+                android:text="@string/career_edit_activity"
                 android:textAppearance="@style/SemiBoldFont.16"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/iv_career_edit_spinner"
@@ -107,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="23dp"
                 android:layout_marginStart="6dp"
-                android:text="첨부파일"
+                android:text="@string/career_edit_file"
                 android:textAppearance="@style/SemiBoldFont.16"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/iv_career_edit_activity"
@@ -124,13 +134,39 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_career_edit_upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_upload"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_file"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_file"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_file"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_file"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"/>
+
+            <TextView
+                android:id="@+id/tv_career_edit_upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/career_edit_upload"
+                android:textColor="#7D7D7D"
+                android:textAppearance="@style/MediumFont.10"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_file"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_file"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_file"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_file"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.83"/>
+
             <TextView
                 android:id="@+id/tv_career_edit_award"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="23dp"
                 android:layout_marginStart="6dp"
-                android:text="수상명"
+                android:text="@string/career_edit_award"
                 android:textAppearance="@style/SemiBoldFont.16"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/iv_career_edit_file"
@@ -153,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="23dp"
                 android:layout_marginStart="6dp"
-                android:text="기간"
+                android:text="@string/career_edit_period"
                 android:textAppearance="@style/SemiBoldFont.16"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/iv_career_edit_award"
@@ -211,7 +247,7 @@
                 android:id="@+id/tv_career_edit_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="추가하기"
+                android:text="@string/career_edit_add"
                 android:textAppearance="@style/SemiBoldFont.16"
                 android:textColor="#D9D9D9"
                 app:layout_constraintTop_toTopOf="@+id/iv_career_edit_add_btn"

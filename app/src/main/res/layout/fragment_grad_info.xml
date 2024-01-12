@@ -19,11 +19,13 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout_grad_info"
+        style="@style/SemiBoldFont.16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="38dp"
         android:layout_marginEnd="16dp"
+        android:minHeight="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_grad_info_title"
@@ -41,10 +43,22 @@
         app:tabTextColor="@color/text_gray"
         app:tabUnboundedRipple="false" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@+id/viewPager_grad_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout_grad_info" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager_grad_info"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

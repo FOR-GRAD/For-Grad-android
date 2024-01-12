@@ -16,7 +16,7 @@
         android:paddingBottom="10dp"
         app:itemIconTint="@color/selector_selected_skyblue_else_gray"
         app:itemPaddingBottom="5dp"
-        app:itemRippleColor="@android:color/transparent"
+        app:itemRippleColor="@null"
         app:itemTextAppearanceActive="@style/MediumFont.12"
         app:itemTextColor="@color/selector_selected_skyblue_else_gray"
         app:labelVisibilityMode="labeled"
