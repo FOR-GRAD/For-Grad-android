@@ -29,6 +29,9 @@ class CareerEditFragment : Fragment() {
         _binding!!.ivCareerEditBack.setOnClickListener {
             navigate(R.id.action_fragment_career_edit_to_fragment_career)
         }
+        _binding!!.ivCareerEditDown.setOnClickListener {
+            navigate(R.id.action_fragment_career_edit_to_fragment_category_bottom)
+        }
         return binding.root
     }
 

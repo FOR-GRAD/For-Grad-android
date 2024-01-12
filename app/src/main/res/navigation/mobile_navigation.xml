@@ -39,7 +39,16 @@
         <action
             android:id="@+id/action_fragment_career_edit_to_fragment_career"
             app:destination="@+id/fragment_career"/>
+        <action
+            android:id="@+id/action_fragment_career_edit_to_fragment_category_bottom"
+            app:destination="@+id/fragment_category_bottom"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/fragment_category_bottom"
+        android:name="umc.com.mobile.project.ui.career.CategoryBottomFragment"
+        android:label="카테고리"
+        tools:layout="@layout/fragment_category_bottom"/>
 
     <fragment
         android:id="@+id/fragment_board"
