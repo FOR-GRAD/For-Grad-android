@@ -34,13 +34,13 @@ class GradDateBottomFragment(context: Context) : BottomSheetDialogFragment() {
         }
         val grad_date = gradDates.toTypedArray()
 
-        var numberPicker : NumberPicker = GradDateBottomBinding!!.yearpickerDatepicker
+        var numberPicker : NumberPicker = GradDateBottomBinding!!.npGradDateNumberPicker
         numberPicker.minValue = 0
         numberPicker.maxValue = grad_date.size - 1
         numberPicker.displayedValues = grad_date
         numberPicker.wrapSelectorWheel = false
 
-        GradDateBottomBinding!!.yearpickerDatepicker.setOnClickListener {
+        GradDateBottomBinding!!.npGradDateNumberPicker.setOnClickListener {
             /*GradDateBinding!!.textGradDate.text = grad_date[numberPicker.value]*/
             val selectedDate = grad_date[numberPicker.value]
             GradDateViewModel.selectedDate.value = selectedDate
