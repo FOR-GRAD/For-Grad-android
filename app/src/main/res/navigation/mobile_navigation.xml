@@ -35,7 +35,11 @@
         android:id="@+id/fragment_career_edit"
         android:name="umc.com.mobile.project.ui.career.CareerEditFragment"
         android:label="@string/career_add"
-        tools:layout="@layout/fragment_career_edit" />
+        tools:layout="@layout/fragment_career_edit">
+        <action
+            android:id="@+id/action_fragment_career_edit_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_board"

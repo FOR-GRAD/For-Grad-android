@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerEditBinding
+import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class CareerEditFragment : Fragment() {
 
@@ -24,6 +26,9 @@ class CareerEditFragment : Fragment() {
         /*viewModel.text.observe(viewLifecycleOwner) {
             binding.textCareer.text = it
         }*/
+        _binding!!.ivCareerEditBack.setOnClickListener {
+            navigate(R.id.action_fragment_career_edit_to_fragment_career)
+        }
         return binding.root
     }
 
