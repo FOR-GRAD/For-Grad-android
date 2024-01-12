@@ -1,5 +1,6 @@
 package umc.com.mobile.project.ui.career
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,9 +9,12 @@ import android.view.ViewGroup
 import android.widget.NumberPicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCategoryBottomBinding
+import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
-class CategoryBottomFragment : Fragment() {
+class CategoryBottomFragment(context: Context) : BottomSheetDialogFragment() {
     private var _binding: FragmentCategoryBottomBinding? = null
     private val viewModel: CategoryBottomViewModel by viewModels()
     private val binding get() = _binding!!
@@ -42,12 +46,10 @@ class CategoryBottomFragment : Fragment() {
         numberPicker.displayedValues = stringArray
         numberPicker.wrapSelectorWheel = false
 
-/*        _binding!!.ivCategoryBottomClose.setOnClickListener {
-            val dialogFragment = requireActivity().supportFragmentManager
-                .findFragmentByTag("YourDialogFragmentTag") as DialogFragment?
-
-            dialogFragment?.dismiss()
-        }*/
+        _binding!!.ivCategoryBottomClose.setOnClickListener {
+            dialog!!.dismiss()
+            dialog!!.cancel()
+        }
         return binding.root
     }
 
