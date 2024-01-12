@@ -6,16 +6,14 @@
     app:startDestination="@+id/fragment_home">
 
     <fragment
-        android:id="@+id/fragment_login"
-        android:name="umc.com.mobile.project.ui.login.LoginActivity"
-        android:label="로그인"
-        tools:layout="@layout/activity_login" />
-
-    <fragment
         android:id="@+id/fragment_home"
         android:name="umc.com.mobile.project.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_date"
+            app:destination="@id/fragment_date" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_grad_info"
@@ -40,5 +38,11 @@
         android:name="umc.com.mobile.project.ui.setting.SettingFragment"
         android:label="@string/title_setting"
         tools:layout="@layout/fragment_setting" />
+
+    <fragment
+        android:id="@+id/fragment_date"
+        android:name="umc.com.mobile.project.ui.board.GradDateFragment"
+        android:label="@string/title_date"
+        tools:layout="@layout/fragment_grad_date" />
 
 </navigation>

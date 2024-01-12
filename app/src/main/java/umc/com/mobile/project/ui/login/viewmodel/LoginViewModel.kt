@@ -5,7 +5,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class LoginViewModel: ViewModel() {
+class LoginViewModel : ViewModel() {
 	/**
 	 * 버튼 활성화 기능
 	 */
