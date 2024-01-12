@@ -27,6 +27,15 @@
     <string name="career_certificate_title">자격증</string>
     <string name="career_contest_title">공모전</string>
     <string name="career_volunteer_title">봉사활동</string>
+    <!--커리어 더하기-->
+    <string name="career_edit_title">커리어 더하기</string>
+    <string name="career_edit_activity">활동</string>
+    <string name="career_edit_file">첨부파일</string>
+    <string name="career_edit_award">수상명</string>
+    <string name="career_edit_period">기간</string>
+    <string name="career_edit_upload">사진이나 파일을 업로드해주세요</string>
+    <string name="career_edit_add">추가하기</string>
+
     <!-- 규민 -->
 
     <string name="home_to_grad">졸업까지</string>
