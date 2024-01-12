@@ -7,49 +7,61 @@
     tools:context=".ui.career.CategoryBottomFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="323dp"
         android:background="@drawable/white_round_top_border_20">
 
-    <TextView
-        android:id="@+id/tv_category_bottom_title"
-        android:layout_width="192dp"
-        android:layout_height="22dp"
-        android:layout_marginLeft="86dp"
-        android:layout_marginTop="16dp"
-        android:text="카테고리"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_grad_date_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_bottom_close_13"
+            app:layout_constraintTop_toTopOf="@+id/tv_category_bottom_title"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-    <View
-        android:id="@+id/v_category_bottom_underline"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#D9D9D9"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.16"/>
+        <TextView
+            android:id="@+id/tv_category_bottom_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카테고리"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/v_category_bottom_underline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"/>
 
-    <NumberPicker
-        android:id="@+id/np_category_bottom_numberPicker"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:selectionDividerHeight="0dp"
-        app:layout_constraintTop_toTopOf="@+id/v_category_bottom_underline"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        <View
+            android:id="@+id/v_category_bottom_underline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D9D9D9"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.16"/>
 
-    <View
-        android:id="@+id/v_category_bottom_highlight"
-        android:layout_width="360dp"
-        android:layout_height="52dp"
-        android:background="#60F0F0F0"
-        app:layout_constraintTop_toTopOf="@+id/v_category_bottom_underline"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.5"/>
+        <NumberPicker
+            android:id="@+id/np_category_bottom_numberPicker"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:selectionDividerHeight="0dp"
+            app:layout_constraintTop_toTopOf="@+id/v_category_bottom_underline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <View
+            android:id="@+id/v_category_bottom_highlight"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="#60F0F0F0"
+            app:layout_constraintTop_toTopOf="@+id/v_category_bottom_underline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.5"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
