@@ -25,7 +25,17 @@
         android:id="@+id/fragment_career"
         android:name="umc.com.mobile.project.ui.career.CareerFragment"
         android:label="@string/title_career"
-        tools:layout="@layout/fragment_career" />
+        tools:layout="@layout/fragment_career">
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_career_edit"
+            app:destination="@id/fragment_career_edit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_edit"
+        android:name="umc.com.mobile.project.ui.career.CareerEditFragment"
+        android:label="@string/career_add"
+        tools:layout="@layout/fragment_career_edit" />
 
     <fragment
         android:id="@+id/fragment_board"
