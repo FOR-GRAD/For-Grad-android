@@ -6,12 +6,14 @@
                 <shape android:shape="rectangle">
                     <solid android:color="@color/skyBlue" />
                     <corners android:radius="16.5dp" />
-                    <padding android:right="12dp" />
+                    <padding android:right="11dp" />
                 </shape>
             </item>
             <item
                 android:drawable="@drawable/ic_down_14"
-                android:gravity="center|end" />
+                android:gravity="center|end"
+                android:height="10dp"
+                android:width="14dp"/>
         </layer-list>
     </item>
 </selector>

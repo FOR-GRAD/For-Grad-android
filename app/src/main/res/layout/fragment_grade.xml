@@ -30,11 +30,11 @@
         android:paddingBottom="10dp"
         android:text="직접 작성하기"
         android:textColor="@color/skyBlue"
-        app:layout_constraintEnd_toStartOf="@+id/appCompatSpinner"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_schedule"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/appCompatSpinner"
+        android:id="@+id/spinner_schedule"
         style="@style/SemiBoldFont.10"
         android:layout_width="100dp"
         android:layout_height="0dp"
@@ -43,7 +43,7 @@
         android:maxWidth="110dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="시간표 불러오기"
+        tools:listitem="@layout/item_spinner_grad_info_schedule"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/appCompatButton"
         app:layout_constraintEnd_toEndOf="parent"
