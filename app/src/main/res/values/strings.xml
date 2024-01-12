@@ -6,6 +6,7 @@
     <string name="title_grad_info">졸업정보</string>
     <string name="title_career">커리어</string>
     <string name="title_board">게시판</string>
+    <string name="title_date">졸업 예정일</string>
     <string name="title_setting">설정</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="title_dashboard">Dashboard</string>
