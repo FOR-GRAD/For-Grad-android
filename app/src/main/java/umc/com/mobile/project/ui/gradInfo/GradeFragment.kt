@@ -1,19 +1,17 @@
 package umc.com.mobile.project.ui.gradInfo
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.SpinnerAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-import umc.com.mobile.project.databinding.FragmentCareerBinding
-import umc.com.mobile.project.databinding.FragmentGradInfoBinding
 import umc.com.mobile.project.databinding.FragmentGradeBinding
-import umc.com.mobile.project.ui.career.CareerViewModel
-import umc.com.mobile.project.ui.gradInfo.adapter.GradInfoVPAdapter
 
 class GradeFragment : Fragment() {
 	private var _binding: FragmentGradeBinding? = null
@@ -27,14 +25,37 @@ class GradeFragment : Fragment() {
 	): View {
 		_binding = FragmentGradeBinding.inflate(inflater, container, false)
 
-		viewModel.text.observe(viewLifecycleOwner) {
-//			binding.text.text = it
-		}
+		initSpinnerSchedule() // spinner 설정
+
 		return binding.root
 	}
 
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
+	}
+
+	private fun initSpinnerSchedule() {
+		binding.spinnerSchedule.onItemSelectedListener =
+			object : AdapterView.OnItemSelectedListener {
+				override fun onItemSelected(
+					parent: AdapterView<*>?,
+					view: View?,
+					position: Int,
+					id: Long
+				) {
+					if (!binding.spinnerSchedule.getItemAtPosition(position).equals("시간표 불러오기")) {
+						Toast.makeText(
+							context,
+							"Selected: ${binding.spinnerSchedule.getItemAtPosition(position)}",
+							Toast.LENGTH_LONG
+						)
+					}
+				}
+
+				override fun onNothingSelected(p0: AdapterView<*>?) {
+
+				}
+			}
 	}
 }

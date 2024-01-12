@@ -36,19 +36,30 @@
     <string name="career_edit_upload">사진이나 파일을 업로드해주세요</string>
     <string name="career_edit_add">추가하기</string>
 
-    <!-- 규민 -->
 
+
+    <!-- 규민 -->
+    <!-- HomeFragment -->
     <string name="home_to_grad">졸업까지</string>
     <string name="home_grad_condition_title">
         내 전공의 졸업요건 \n한눈에 알아보기</string>
     <string name="home_etc">더보기</string>
     <string name="home_next_plan_title">나만의 \n다음 계획</string>
 
+    <!-- LoginActivity -->
     <string name="login_title">로그인</string>
     <string name="login_content_id_pw">ID/PW는 학교 서버에 접속할 때만 사용합니다. \n어떠한 데이터도 수집하지 않습니다.</string>
     <string name="login_pw">비밀번호 (PW)</string>
     <string name="login_id">학번 (ID)</string>
     <string name="login_content">종합정보시스템의 ID/PW를 입력하세요.</string>
     <string name="login_hansung">HANSUNG UNIV</string>
+
+    <!-- GradInfoFragment-->
+    <string-array name="spinner_schedule">
+        <item>시간표 불러오기</item>
+        <item>1학년 1학기</item>
+        <item>1학년 2학기</item>
+        <item>2학년 1학기</item>
+    </string-array>
 
 </resources>
