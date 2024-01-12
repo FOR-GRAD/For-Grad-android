@@ -40,7 +40,7 @@ class GradDateBottomFragment(context: Context) : BottomSheetDialogFragment() {
         numberPicker.displayedValues = grad_date
         numberPicker.wrapSelectorWheel = false
 
-        GradDateBottomBinding!!.npGradDateNumberPicker.setOnClickListener {
+        GradDateBottomBinding!!.ivGradDateClose.setOnClickListener {
             /*GradDateBinding!!.textGradDate.text = grad_date[numberPicker.value]*/
             val selectedDate = grad_date[numberPicker.value]
             GradDateViewModel.selectedDate.value = selectedDate
