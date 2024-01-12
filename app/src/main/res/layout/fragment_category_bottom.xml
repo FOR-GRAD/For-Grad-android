@@ -12,7 +12,7 @@
         android:background="@drawable/white_round_top_border_20">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_grad_date_close"
+            android:id="@+id/iv_category_bottom_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"

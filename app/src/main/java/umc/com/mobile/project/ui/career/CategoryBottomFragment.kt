@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.databinding.FragmentCategoryBottomBinding
 
@@ -41,6 +42,12 @@ class CategoryBottomFragment : Fragment() {
         numberPicker.displayedValues = stringArray
         numberPicker.wrapSelectorWheel = false
 
+/*        _binding!!.ivCategoryBottomClose.setOnClickListener {
+            val dialogFragment = requireActivity().supportFragmentManager
+                .findFragmentByTag("YourDialogFragmentTag") as DialogFragment?
+
+            dialogFragment?.dismiss()
+        }*/
         return binding.root
     }
 
