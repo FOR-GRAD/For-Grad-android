@@ -218,6 +218,17 @@
                 app:layout_constraintEnd_toStartOf="@+id/iv_career_edit_month"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent="0.27"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_career_edit_year_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_down_13"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_year"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_year"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_year"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_year"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintVertical_bias="0.5"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_career_edit_month"
@@ -230,6 +241,17 @@
                 app:layout_constraintEnd_toStartOf="@+id/iv_career_edit_day"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent="0.27"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_career_edit_month_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_down_13"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_month"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_month"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_month"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_month"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintVertical_bias="0.5"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_career_edit_day"
@@ -242,6 +264,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent="0.27"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_career_edit_day_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_down_13"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_day"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_day"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_day"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_day"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintVertical_bias="0.5"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_career_edit_add_btn"
