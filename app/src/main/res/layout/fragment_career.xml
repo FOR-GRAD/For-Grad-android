@@ -148,6 +148,17 @@
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_certificate"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_certificate_box"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_certificate_box"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_certificate_box"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_certificate_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"/>
+
             <TextView
                 android:id="@+id/tv_career_certificate_title"
                 android:layout_width="wrap_content"
@@ -173,6 +184,17 @@
                 app:layout_constraintHeight_default="percent"
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_contest"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_contest_box"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_contest_box"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_contest_box"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_contest_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"/>
 
             <TextView
                 android:id="@+id/tv_career_contest_title"
