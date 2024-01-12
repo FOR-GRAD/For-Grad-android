@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.setting.SettingFragment">
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -41,6 +40,14 @@
                 android:textColor="#757575"
                 app:layout_constraintTop_toBottomOf="@+id/tv_career_title"
                 app:layout_constraintStart_toStartOf="@+id/tv_career_title"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:src="@drawable/ic_career_plus_16"
+                app:layout_constraintTop_toTopOf="@+id/tv_career_add"
+                app:layout_constraintEnd_toStartOf="@+id/tv_career_add"/>
 
             <TextView
                 android:id="@+id/tv_career_add"
@@ -87,6 +94,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/iv_career_point_box"/>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="11dp"
+                android:src="@drawable/ic_career_top_right_arrow"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_point_box"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_point_box"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="33dp"
+                android:layout_marginStart="14dp"
+                android:src="@drawable/ic_career_stack"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_upper_point_box"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_upper_point_box"/>
+
             <TextView
                 android:id="@+id/tv_career_point"
                 android:layout_width="wrap_content"
@@ -123,6 +148,17 @@
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_certificate"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_certificate_box"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_certificate_box"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_certificate_box"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_certificate_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"/>
+
             <TextView
                 android:id="@+id/tv_career_certificate_title"
                 android:layout_width="wrap_content"
@@ -135,7 +171,7 @@
                 app:layout_constraintStart_toStartOf="@+id/iv_career_certificate_box"
                 app:layout_constraintEnd_toEndOf="@+id/iv_career_certificate_box"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.69"/>
+                app:layout_constraintVertical_bias="0.75"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_career_contest_box"
@@ -149,6 +185,17 @@
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_contest"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_contest_box"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_contest_box"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_contest_box"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_contest_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"/>
+
             <TextView
                 android:id="@+id/tv_career_contest_title"
                 android:layout_width="wrap_content"
@@ -161,7 +208,7 @@
                 app:layout_constraintStart_toStartOf="@+id/iv_career_contest_box"
                 app:layout_constraintEnd_toEndOf="@+id/iv_career_contest_box"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.69"/>
+                app:layout_constraintVertical_bias="0.75"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_career_volunteer_box"
@@ -176,6 +223,17 @@
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_volunteer"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_volunteer_box"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_volunteer_box"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_volunteer_box"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_volunteer_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"/>
+
             <TextView
                 android:id="@+id/tv_career_volunteer_title"
                 android:layout_width="wrap_content"
@@ -188,7 +246,7 @@
                 app:layout_constraintStart_toStartOf="@+id/iv_career_volunteer_box"
                 app:layout_constraintEnd_toEndOf="@+id/iv_career_volunteer_box"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.69"/>
+                app:layout_constraintVertical_bias="0.75"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_career_activities_box"
@@ -202,6 +260,17 @@
                 app:layout_constraintWidth_percent="0.44"
                 app:layout_constraintHeight_percent="0.23375"/>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_activity"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_activities_box"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_career_activities_box"
+                app:layout_constraintStart_toStartOf="@+id/iv_career_activities_box"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_activities_box"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"/>
+
             <TextView
                 android:id="@+id/tv_career_activities_title"
                 android:layout_width="wrap_content"
@@ -214,8 +283,7 @@
                 app:layout_constraintStart_toStartOf="@+id/iv_career_activities_box"
                 app:layout_constraintEnd_toEndOf="@+id/iv_career_activities_box"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.69"/>
-
+                app:layout_constraintVertical_bias="0.75"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
