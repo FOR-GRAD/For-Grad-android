@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerBinding
-import umc.com.mobile.project.databinding.FragmentHomeBinding
-import umc.com.mobile.project.ui.board.GradDateBottomFragment
-import umc.com.mobile.project.ui.career.CareerViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class CareerFragment : Fragment() {
