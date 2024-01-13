@@ -15,9 +15,10 @@
             android:id="@+id/linearLayoutCompat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent">
             <TextView
                 android:id="@+id/tv_career_title"
                 android:layout_width="wrap_content"
@@ -275,7 +276,7 @@
                 android:id="@+id/tv_career_activities_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="교외활동"
+                android:text="@string/career_activity_title"
                 android:textAppearance="@style/SemiBoldFont.14"
                 android:textColor="#757575"
                 app:layout_constraintTop_toTopOf="@+id/iv_career_activities_box"

@@ -10,7 +10,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerEditBinding
-import umc.com.mobile.project.ui.board.GradDateBottomFragment
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class CareerEditFragment : Fragment() {
@@ -34,8 +33,20 @@ class CareerEditFragment : Fragment() {
             navigate(R.id.action_fragment_career_edit_to_fragment_career)
         }
 
-        _binding!!.ivCareerEditDown.setOnClickListener {
+        _binding!!.ivCareerEditSpinner.setOnClickListener {
             val bottomSheet = CategoryBottomFragment(mContext)
+            bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
+            bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
+        }
+
+        _binding!!.ivCareerEditFile.setOnClickListener {
+            val bottomSheet = UploadBottomFragment(mContext)
+            bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
+            bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
+        }
+
+        _binding!!.ivCareerEditYear.setOnClickListener {
+            val bottomSheet = PeriodBottomFragment(mContext)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
