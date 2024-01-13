@@ -44,6 +44,12 @@ class CareerEditFragment : Fragment() {
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
+
+        _binding!!.ivCareerEditYear.setOnClickListener {
+            val bottomSheet = PeriodBottomFragment(mContext)
+            bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
+            bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
+        }
         return binding.root
     }
 
