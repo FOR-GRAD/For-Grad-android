@@ -57,6 +57,10 @@
         android:id="@+id/fragment_date"
         android:name="umc.com.mobile.project.ui.board.GradDateFragment"
         android:label="@string/title_date"
-        tools:layout="@layout/fragment_grad_date" />
+        tools:layout="@layout/fragment_grad_date" >
+        <action
+            android:id="@+id/action_fragment_date_to_fragment_home"
+            app:destination="@id/fragment_home" />
+    </fragment>
 
 </navigation>
