@@ -41,6 +41,10 @@
     <string name="upload_bottom_title">사진/파일 업로드</string>
     <string name="upload_bottom_gallery">갤러리에서 가져오기</string>
     <string name="upload_bottom_drive">드라이브에서 가져오기</string>
+    <!--기간 bottom dialog-->
+    <string name="upload_bottom_year">년도</string>
+    <string name="upload_bottom_month">월</string>
+    <string name="upload_bottom_day">일</string>
 
     <!-- 규민 -->
     <!-- HomeFragment -->
