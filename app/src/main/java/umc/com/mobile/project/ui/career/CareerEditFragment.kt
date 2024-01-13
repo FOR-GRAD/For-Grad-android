@@ -33,7 +33,7 @@ class CareerEditFragment : Fragment() {
             navigate(R.id.action_fragment_career_edit_to_fragment_career)
         }
 
-        _binding!!.ivCareerEditDown.setOnClickListener {
+        _binding!!.ivCareerEditSpinner.setOnClickListener {
             val bottomSheet = CategoryBottomFragment(mContext)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
