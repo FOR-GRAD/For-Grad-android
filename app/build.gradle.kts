@@ -10,7 +10,7 @@ android {
 
 	defaultConfig {
 		applicationId = "umc.com.mobile.project"
-		minSdk = 23
+		minSdk = 26
 		targetSdk = 33
 		versionCode = 1
 		versionName = "1.0"
