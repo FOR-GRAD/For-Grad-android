@@ -18,7 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_account"
         android:layout_width="match_parent"
