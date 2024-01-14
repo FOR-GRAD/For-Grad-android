@@ -25,6 +25,16 @@
         tools:layout="@layout/fragment_grad_info" />
 
     <fragment
+        android:id="@+id/fragment_date"
+        android:name="umc.com.mobile.project.ui.board.GradDateFragment"
+        android:label="@string/title_date"
+        tools:layout="@layout/fragment_grad_date" >
+        <action
+            android:id="@+id/action_fragment_date_to_fragment_home"
+            app:destination="@id/fragment_home" />
+    </fragment>
+
+    <fragment
         android:id="@+id/fragment_career"
         android:name="umc.com.mobile.project.ui.career.CareerFragment"
         android:label="@string/title_career"
@@ -65,17 +75,5 @@
         android:name="umc.com.mobile.project.ui.setting.SettingNotificationFragment"
         android:label="@string/title_setting_notification"
         tools:layout="@layout/fragment_setting_notification" />
-
-
-
-    <fragment
-        android:id="@+id/fragment_date"
-        android:name="umc.com.mobile.project.ui.board.GradDateFragment"
-        android:label="@string/title_date"
-        tools:layout="@layout/fragment_grad_date" >
-        <action
-            android:id="@+id/action_fragment_date_to_fragment_home"
-            app:destination="@id/fragment_home" />
-    </fragment>
 
 </navigation>
