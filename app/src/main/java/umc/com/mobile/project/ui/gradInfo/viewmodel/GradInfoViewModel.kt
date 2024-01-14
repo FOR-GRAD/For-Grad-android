@@ -1,4 +1,4 @@
-package umc.com.mobile.project.ui.gradInfo
+package umc.com.mobile.project.ui.gradInfo.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

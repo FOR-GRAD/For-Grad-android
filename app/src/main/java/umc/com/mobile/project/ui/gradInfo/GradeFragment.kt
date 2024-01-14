@@ -1,17 +1,15 @@
 package umc.com.mobile.project.ui.gradInfo
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.SpinnerAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.databinding.FragmentGradeBinding
+import umc.com.mobile.project.ui.gradInfo.viewmodel.GradInfoViewModel
 
 class GradeFragment : Fragment() {
 	private var _binding: FragmentGradeBinding? = null
