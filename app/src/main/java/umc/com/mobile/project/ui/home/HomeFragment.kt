@@ -30,8 +30,8 @@ class HomeFragment : Fragment() {
 	): View {
 		_binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-		navigateGradDateFragment() // 졸업 예정일로 이동
-		saveCheeringMemo() // 응원의 한마디
+		navigateFragment() // 페이지 이동
+		saveCheeringMemo() // 응원의 한마디 연결
 
 		return binding.root
 	}
@@ -46,9 +46,13 @@ class HomeFragment : Fragment() {
 		_binding = null
 	}
 
-	private fun navigateGradDateFragment() {
+	private fun navigateFragment() {
 		binding.btnCheeringWordMove.setOnClickListener {
 			navigate(R.id.action_fragment_home_to_fragment_date)
+		}
+
+		binding.btnNavigateGradInfo.setOnClickListener {
+			navigate(R.id.action_fragment_home_to_fragment_grad_info)
 		}
 	}
 

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_fragment_home_to_fragment_date"
             app:destination="@id/fragment_date" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_grad_info"
+            app:destination="@id/fragment_grad_info" />
     </fragment>
 
     <fragment
