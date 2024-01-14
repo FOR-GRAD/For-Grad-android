@@ -1,4 +1,4 @@
-package umc.com.mobile.project.ui.career
+package umc.com.mobile.project.ui.career.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

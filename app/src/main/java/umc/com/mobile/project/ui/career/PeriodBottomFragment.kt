@@ -9,10 +9,10 @@ import android.widget.NumberPicker
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentPeriodBottomBinding
+import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
 
-class PeriodBottomFragment (context: Context) : BottomSheetDialogFragment() {
+class PeriodBottomFragment (context: Context, private val viewModel: CareerEditViewModel) : BottomSheetDialogFragment() {
     private var _binding: FragmentPeriodBottomBinding? = null
-    private val viewModel: PeriodBottomViewModel by viewModels()
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -62,6 +62,12 @@ class PeriodBottomFragment (context: Context) : BottomSheetDialogFragment() {
         numberPicker_day.wrapSelectorWheel = false
 
         _binding!!.ivPeriodBottomClose.setOnClickListener {
+            val selectedYear = years[numberPicker_year.value]
+            viewModel.updateSelectedYear(selectedYear)
+            val selectedMonth = months[numberPicker_month.value]
+            viewModel.updateSelectedMonth(selectedMonth)
+            val selectedDay = days[numberPicker_day.value]
+            viewModel.updateSelectedDay(selectedDay)
             dialog!!.dismiss()
             dialog!!.cancel()
         }

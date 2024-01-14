@@ -2,17 +2,17 @@ package umc.com.mobile.project.ui.career
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
-import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentCategoryBottomBinding
+import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
 
-class CategoryBottomFragment(context: Context) : BottomSheetDialogFragment() {
+class CategoryBottomFragment(context: Context, private val viewModel: CareerEditViewModel) : BottomSheetDialogFragment() {
     private var _binding: FragmentCategoryBottomBinding? = null
-    private val viewModel: CategoryBottomViewModel by viewModels()
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -43,6 +43,8 @@ class CategoryBottomFragment(context: Context) : BottomSheetDialogFragment() {
         numberPicker.wrapSelectorWheel = false
 
         _binding!!.ivCategoryBottomClose.setOnClickListener {
+            val selectedCategory = categories[numberPicker.value]
+            viewModel.updateSelectedCategory(selectedCategory)
             dialog!!.dismiss()
             dialog!!.cancel()
         }

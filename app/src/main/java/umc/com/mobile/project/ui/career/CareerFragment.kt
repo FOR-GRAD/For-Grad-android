@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerBinding
+import umc.com.mobile.project.ui.career.viewmodel.CareerViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class CareerFragment : Fragment() {
