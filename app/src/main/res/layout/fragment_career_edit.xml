@@ -9,7 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout_whole"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout_top"
             android:layout_width="match_parent"
@@ -64,39 +65,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout_top">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_spinner"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_career_edit_spinner"
+                style="@style/MediumFont.14"
                 android:layout_width="match_parent"
-                android:layout_height="33dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="23dp"
                 android:layout_marginEnd="18dp"
                 android:background="@drawable/bg_solid_gray_radius_15"
+                android:gravity="center"
+                android:hint="카테고리"
+                android:inputType="text"
+                android:focusable="false"
+                android:paddingTop="9dp"
+                android:paddingBottom="9dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
-            <TextView
-                android:id="@+id/tv_career_edit_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="카테고리"
-                android:textColor="#757575"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_spinner"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_spinner"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_spinner"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_spinner"
-                app:layout_constraintVertical_bias="0.5"
-                app:layout_constraintHorizontal_bias="0.5"/>
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_career_edit_down"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/ic_down_13"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_spinner"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_spinner"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_spinner"
+                app:layout_constraintTop_toTopOf="@+id/et_career_edit_spinner"
+                app:layout_constraintBottom_toBottomOf="@+id/et_career_edit_spinner"
+                app:layout_constraintEnd_toEndOf="@+id/et_career_edit_spinner"
                 app:layout_constraintVertical_bias="0.5"/>
+<!--            <TextView
+                android:id="@+id/tv_career_edit_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="카테고리"
+                android:textColor="#757575"
+                app:layout_constraintTop_toTopOf="@+id/et_career_edit_spinner"
+                app:layout_constraintBottom_toBottomOf="@+id/et_career_edit_spinner"
+                app:layout_constraintStart_toStartOf="@+id/et_career_edit_spinner"
+                app:layout_constraintEnd_toEndOf="@+id/et_career_edit_spinner"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.5"/> -->
 
             <TextView
                 android:id="@+id/tv_career_edit_activity"
@@ -107,16 +115,24 @@
                 android:text="@string/career_edit_activity"
                 android:textAppearance="@style/SemiBoldFont.16"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/iv_career_edit_spinner"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_spinner"/>
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_activity"
+                app:layout_constraintTop_toBottomOf="@+id/et_career_edit_spinner"
+                app:layout_constraintStart_toStartOf="@+id/et_career_edit_spinner"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_career_edit_activity"
+                style="@style/MediumFont.14"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
                 android:layout_marginStart="23dp"
                 android:layout_marginEnd="23dp"
                 android:background="@drawable/bg_solid_gray_radius_15"
+                android:gravity="top"
+                android:hint="Enter your career information"
+                android:inputType="text"
+                android:focusable="false"
+                android:paddingTop="9dp"
+                android:paddingBottom="49dp"
+                android:paddingStart="13dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_activity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -130,33 +146,40 @@
                 android:text="@string/career_edit_file"
                 android:textAppearance="@style/SemiBoldFont.16"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/iv_career_edit_activity"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_activity"/>
+                app:layout_constraintTop_toBottomOf="@+id/et_career_edit_activity"
+                app:layout_constraintStart_toStartOf="@+id/et_career_edit_activity"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_file"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_career_edit_file"
+                style="@style/MediumFont.10"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="23dp"
                 android:background="@drawable/bg_solid_gray_radius_15"
+                android:gravity="bottom|center_horizontal"
+                android:hint="@string/career_edit_upload"
+                android:inputType="text"
+                android:focusable="false"
+                android:paddingTop="18dp"
+                android:paddingBottom="16dp"
+                android:drawableTop="@drawable/ic_career_upload"
+                android:drawablePadding="11dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_file" />
-
-            <androidx.appcompat.widget.AppCompatImageView
+<!--            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_career_edit_upload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_career_upload"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_file"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_file"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_file"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_file"
+                app:layout_constraintTop_toTopOf="@+id/et_career_edit_file"
+                app:layout_constraintBottom_toBottomOf="@+id/et_career_edit_file"
+                app:layout_constraintStart_toStartOf="@+id/et_career_edit_file"
+                app:layout_constraintEnd_toEndOf="@+id/et_career_edit_file"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintVertical_bias="0.4"/>
-
             <TextView
                 android:id="@+id/tv_career_edit_upload"
                 android:layout_width="wrap_content"
@@ -164,12 +187,12 @@
                 android:text="@string/career_edit_upload"
                 android:textColor="#7D7D7D"
                 android:textAppearance="@style/MediumFont.10"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_file"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_file"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_file"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_file"
+                app:layout_constraintTop_toTopOf="@+id/et_career_edit_file"
+                app:layout_constraintBottom_toBottomOf="@+id/et_career_edit_file"
+                app:layout_constraintStart_toStartOf="@+id/et_career_edit_file"
+                app:layout_constraintEnd_toEndOf="@+id/et_career_edit_file"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.8"/>
+                app:layout_constraintVertical_bias="0.8"/>-->
 
             <TextView
                 android:id="@+id/tv_career_edit_award"
@@ -180,16 +203,24 @@
                 android:text="@string/career_edit_award"
                 android:textAppearance="@style/SemiBoldFont.16"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/iv_career_edit_file"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_file"/>
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_award"
+                app:layout_constraintTop_toBottomOf="@+id/et_career_edit_file"
+                app:layout_constraintStart_toStartOf="@+id/et_career_edit_file"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_career_edit_award"
+                style="@style/MediumFont.14"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
                 android:layout_marginStart="23dp"
                 android:layout_marginEnd="23dp"
                 android:background="@drawable/bg_solid_gray_radius_15"
+                android:gravity="top"
+                android:hint="Enter your career information"
+                android:inputType="text"
+                android:focusable="false"
+                android:paddingTop="9dp"
+                android:paddingBottom="49dp"
+                android:paddingStart="13dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_award"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -203,142 +234,121 @@
                 android:text="@string/career_edit_period"
                 android:textAppearance="@style/SemiBoldFont.16"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/iv_career_edit_award"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_award"/>
+                app:layout_constraintTop_toBottomOf="@+id/et_career_edit_award"
+                app:layout_constraintStart_toStartOf="@+id/et_career_edit_award"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_year"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_career_edit_year"
+                style="@style/MediumFont.14"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
                 android:layout_marginStart="23dp"
                 android:background="@drawable/bg_solid_gray_radius_15"
+                android:gravity="top"
+                android:hint="@string/upload_bottom_year"
+                android:inputType="text"
+                android:focusable="false"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="12dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_period"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/iv_career_edit_month"
+                app:layout_constraintEnd_toStartOf="@+id/et_career_edit_month"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent="0.27"/>
-            <TextView
-                android:id="@+id/tv_career_edit_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/upload_bottom_year"
-                android:textAppearance="@style/MediumFont.14"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_year"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_year"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_year"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_year"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintVertical_bias="0.5"/>
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_year_down"
+                android:id="@+id/et_career_edit_year_down"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_down_13"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_year"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_year"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_year"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_year"
+                app:layout_constraintTop_toTopOf="@+id/et_career_edit_year"
+                app:layout_constraintBottom_toBottomOf="@+id/et_career_edit_year"
+                app:layout_constraintStart_toStartOf="@+id/et_career_edit_year"
+                app:layout_constraintEnd_toEndOf="@+id/et_career_edit_year"
                 app:layout_constraintHorizontal_bias="0.9"
                 app:layout_constraintVertical_bias="0.5"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_month"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_career_edit_month"
+                style="@style/MediumFont.14"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
                 android:background="@drawable/bg_solid_gray_radius_15"
+                android:gravity="top"
+                android:hint="@string/upload_bottom_month"
+                android:inputType="text"
+                android:focusable="false"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="12dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_period"
-                app:layout_constraintStart_toEndOf="@+id/iv_career_edit_year"
-                app:layout_constraintEnd_toStartOf="@+id/iv_career_edit_day"
+                app:layout_constraintStart_toEndOf="@+id/et_career_edit_year"
+                app:layout_constraintEnd_toStartOf="@+id/et_career_edit_day"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent="0.27"/>
-            <TextView
-                android:id="@+id/tv_career_edit_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/upload_bottom_month"
-                android:textAppearance="@style/MediumFont.14"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_month"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_month"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_month"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_month"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintVertical_bias="0.5"/>
+
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_month_down"
+                android:id="@+id/et_career_edit_month_down"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_down_13"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_month"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_month"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_month"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_month"
+                app:layout_constraintTop_toTopOf="@+id/et_career_edit_month"
+                app:layout_constraintBottom_toBottomOf="@+id/et_career_edit_month"
+                app:layout_constraintStart_toStartOf="@+id/et_career_edit_month"
+                app:layout_constraintEnd_toEndOf="@+id/et_career_edit_month"
                 app:layout_constraintHorizontal_bias="0.9"
                 app:layout_constraintVertical_bias="0.5"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_day"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_career_edit_day"
+                style="@style/MediumFont.14"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
                 android:layout_marginEnd="23dp"
                 android:background="@drawable/bg_solid_gray_radius_15"
+                android:gravity="top"
+                android:hint="@string/upload_bottom_day"
+                android:inputType="text"
+                android:focusable="false"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="12dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_period"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent="0.27"/>
-            <TextView
-                android:id="@+id/tv_career_edit_day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/upload_bottom_day"
-                android:textAppearance="@style/MediumFont.14"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_day"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_day"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_day"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_day"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintVertical_bias="0.5"/>
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_day_down"
+                android:id="@+id/et_career_edit_day_down"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_down_13"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_day"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_day"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_day"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_day"
+                app:layout_constraintTop_toTopOf="@+id/et_career_edit_day"
+                app:layout_constraintBottom_toBottomOf="@+id/et_career_edit_day"
+                app:layout_constraintStart_toStartOf="@+id/et_career_edit_day"
+                app:layout_constraintEnd_toEndOf="@+id/et_career_edit_day"
                 app:layout_constraintHorizontal_bias="0.9"
                 app:layout_constraintVertical_bias="0.5"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_edit_add_btn"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_career_edit_add"
+                style="@style/SemiBoldFont.16"
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="38dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginStart="23dp"
                 android:layout_marginEnd="23dp"
                 android:background="@drawable/bg_solid_dark_gray_radius_23_5"
-                app:layout_constraintTop_toBottomOf="@+id/iv_career_edit_year"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-            <TextView
-                android:id="@+id/tv_career_edit_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/career_edit_add"
-                android:textAppearance="@style/SemiBoldFont.16"
-                android:textColor="#D9D9D9"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_edit_add_btn"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_edit_add_btn"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_edit_add_btn"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_edit_add_btn"
-                app:layout_constraintVertical_bias="0.5" />
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_career_edit_year" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

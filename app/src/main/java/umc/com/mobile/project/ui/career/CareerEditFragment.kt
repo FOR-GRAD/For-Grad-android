@@ -33,19 +33,19 @@ class CareerEditFragment : Fragment() {
             navigate(R.id.action_fragment_career_edit_to_fragment_career)
         }
 
-        _binding!!.ivCareerEditSpinner.setOnClickListener {
+        _binding!!.etCareerEditSpinner.setOnClickListener {
             val bottomSheet = CategoryBottomFragment(mContext)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
 
-        _binding!!.ivCareerEditFile.setOnClickListener {
+        _binding!!.etCareerEditFile.setOnClickListener {
             val bottomSheet = UploadBottomFragment(mContext)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
 
-        _binding!!.ivCareerEditYear.setOnClickListener {
+        _binding!!.etCareerEditYear.setOnClickListener {
             val bottomSheet = PeriodBottomFragment(mContext)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
