@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import umc.com.mobile.project.databinding.FragmentCareerBinding
 import umc.com.mobile.project.databinding.FragmentSettingBinding
-import umc.com.mobile.project.ui.career.CareerViewModel
 
 class SettingFragment : Fragment() {
 	private var _binding: FragmentSettingBinding? = null

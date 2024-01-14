@@ -10,7 +10,7 @@ android {
 
 	defaultConfig {
 		applicationId = "umc.com.mobile.project"
-		minSdk = 23
+		minSdk = 26
 		targetSdk = 33
 		versionCode = 1
 		versionName = "1.0"
@@ -54,6 +54,8 @@ dependencies {
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.5")
 	androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+	implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
+
 	//border radius
 	implementation ("com.google.android.material:material:1.0.0")
 	//bottom Sheet Dialog
