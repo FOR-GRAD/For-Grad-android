@@ -80,11 +80,8 @@ class GradDateFragment : Fragment() {
 	private fun saveCheeringMemo() {
 		binding.btnSave.setOnClickListener {
 			viewModel.updateMemo(binding.tvGradDateMemo.text.toString())
+
 			Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
 		}
-
-		viewModel.getData().observe(viewLifecycleOwner, Observer {
-//			binding.tvGradDateMemo.text = it
-		})
 	}
 }

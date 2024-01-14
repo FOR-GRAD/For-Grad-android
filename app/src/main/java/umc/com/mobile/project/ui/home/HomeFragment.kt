@@ -3,6 +3,7 @@ package umc.com.mobile.project.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,11 @@ class HomeFragment : Fragment() {
 		return binding.root
 	}
 
+	override fun onPause() {
+		super.onPause()
+		saveCheeringMemo()
+	}
+
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
@@ -47,9 +53,8 @@ class HomeFragment : Fragment() {
 	}
 
 	private fun saveCheeringMemo() {
-		gradDateViewModel.updateMemo(binding.tvCheeringWord.text.toString())
-
-		gradDateViewModel.getData().observe(viewLifecycleOwner, Observer {
+		gradDateViewModel.cheeringMemo.observe(viewLifecycleOwner, Observer {
+			Log.d("LiveData", "CheeringMemo updated: $it")
 			binding.tvCheeringWord.text = it
 		})
 	}

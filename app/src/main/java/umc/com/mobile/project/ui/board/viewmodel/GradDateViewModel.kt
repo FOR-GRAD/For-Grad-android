@@ -12,7 +12,6 @@ class GradDateViewModel : ViewModel() {
     val selectedDate = MutableLiveData<String>()
 	val cheeringMemo = MutableLiveData<String>()
 
-	fun getData(): MutableLiveData<String> = cheeringMemo
 	fun updateMemo(input: String) {
 		cheeringMemo.value = input
 	}

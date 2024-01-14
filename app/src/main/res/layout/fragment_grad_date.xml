@@ -131,6 +131,7 @@
                 android:background="@drawable/bg_solid_white_radius_10"
                 android:gravity="top"
                 android:hint="@string/board_grad_date_memo"
+                android:text="@{vm.cheeringMemo}"
                 android:inputType="text"
                 android:paddingStart="12dp"
                 android:paddingTop="17dp"
