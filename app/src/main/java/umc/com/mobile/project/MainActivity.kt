@@ -1,6 +1,7 @@
 package umc.com.mobile.project
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -33,8 +34,27 @@ class MainActivity : AppCompatActivity() {
 				true
 			}
 		}
+		handleNavigationBarVisibility()
 	}
 
 	override fun onNavigateUp(): Boolean =
 		navController.navigateUp() || super.onNavigateUp()
+
+
+	private fun handleNavigationBarVisibility() {
+		navController.addOnDestinationChangedListener { _, destination, _ ->
+			binding.navView.visibility =
+				when (destination.id) {
+					R.id.fragment_date -> {
+						View.GONE
+					}
+
+					R.id.fragment_career_edit -> {
+						View.GONE
+					}
+
+					else -> View.VISIBLE
+				}
+		}
+	}
 }
