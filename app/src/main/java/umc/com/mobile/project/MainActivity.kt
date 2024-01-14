@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import umc.com.mobile.project.databinding.ActivityMainBinding
 
@@ -23,7 +24,17 @@ class MainActivity : AppCompatActivity() {
 		navController = navHostFragment.navController
 
 		binding.navView.setupWithNavController(navController)
+
+		binding.navView.apply {
+			setupWithNavController(navController)
+			setOnItemSelectedListener { item ->
+				NavigationUI.onNavDestinationSelected(item, navController)
+				navController.popBackStack(item.itemId, inclusive = false)
+				true
+			}
+		}
 	}
+
 	override fun onNavigateUp(): Boolean =
 		navController.navigateUp() || super.onNavigateUp()
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.databinding.FragmentCompletionStateBinding
+import umc.com.mobile.project.ui.gradInfo.viewmodel.GradInfoViewModel
 
 class CompletionStateFragment : Fragment() {
 	private var _binding: FragmentCompletionStateBinding? = null

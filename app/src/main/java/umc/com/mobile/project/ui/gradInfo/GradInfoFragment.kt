@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import umc.com.mobile.project.databinding.FragmentGradInfoBinding
 import umc.com.mobile.project.ui.gradInfo.adapter.GradInfoVPAdapter
+import umc.com.mobile.project.ui.gradInfo.viewmodel.GradInfoViewModel
 
 class GradInfoFragment : Fragment() {
 	private var _binding: FragmentGradInfoBinding? = null
