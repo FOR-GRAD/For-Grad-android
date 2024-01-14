@@ -23,4 +23,14 @@
     <style name="RoundCornerModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/white_round_top_border_20</item>
     </style>
+
+    <!--Number Picker 색상 변경-->
+    <style name="Theme.AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorPrimaryVariant">#FFFFFF</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+    </style>
+    <style name="ThemeOverlay.NumberPicker" parent="Theme.AppTheme">
+        <item name="colorControlNormal">#FFFFFF</item>
+    </style>
 </resources>
