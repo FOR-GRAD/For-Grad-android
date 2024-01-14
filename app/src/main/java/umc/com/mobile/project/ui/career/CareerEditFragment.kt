@@ -3,7 +3,6 @@ package umc.com.mobile.project.ui.career
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class CareerEditFragment : Fragment() {
-
     private var _binding: FragmentCareerEditBinding? = null
     private val viewModel: CareerEditViewModel by viewModels()
     private lateinit var mContext: Context
@@ -28,10 +26,10 @@ class CareerEditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCareerEditBinding.inflate(inflater, container, false)
+        _binding!!.vm = viewModel
+        _binding!!.lifecycleOwner = this
         mContext = requireContext()
-        /*viewModel.text.observe(viewLifecycleOwner) {
-            binding.textCareer.text = it
-        }*/
+
         _binding!!.ivCareerEditBack.setOnClickListener {
             navigate(R.id.action_fragment_career_edit_to_fragment_career)
         }

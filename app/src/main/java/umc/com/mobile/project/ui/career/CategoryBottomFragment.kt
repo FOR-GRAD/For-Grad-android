@@ -2,7 +2,6 @@ package umc.com.mobile.project.ui.career
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,10 +20,6 @@ class CategoryBottomFragment(context: Context, private val viewModel: CareerEdit
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCategoryBottomBinding.inflate(inflater, container, false)
-
-        /*viewModel.text.observe(viewLifecycleOwner) {
-            binding.textCareer.text = it
-        }*/
 
         val categories = arrayOf(
             getString(umc.com.mobile.project.R.string.career_certificate_title),

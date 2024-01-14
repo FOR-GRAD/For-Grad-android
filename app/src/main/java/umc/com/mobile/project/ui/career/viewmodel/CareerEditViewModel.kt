@@ -1,9 +1,33 @@
 package umc.com.mobile.project.ui.career.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CareerEditViewModel : ViewModel() {
+    val category: MutableLiveData<String> = MutableLiveData()
+    val activity: MutableLiveData<String> = MutableLiveData()
+    /*val year: MutableLiveData<String> = MutableLiveData()*/
+
+    fun init() {
+        category.postValue("")
+        activity.postValue("")
+/*        year.postValue("")*/
+    }
+
+    /*버튼 활성화 기능*/
+    val isFilledAllOptions: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
+        addSource(category) { value = isBothFieldsFilled() }
+        addSource(activity) { value = isBothFieldsFilled() }
+        /*addSource(year) { value = isBothFieldsFilled() }*/
+    }
+
+    private fun isBothFieldsFilled(): Boolean {
+        return !category.value.isNullOrEmpty() && !activity.value.isNullOrEmpty()
+                /*&& !year.value.isNullOrEmpty()*/
+    }
+
     val selectedCategory = MutableLiveData<String>().apply {
         value = ""
     }

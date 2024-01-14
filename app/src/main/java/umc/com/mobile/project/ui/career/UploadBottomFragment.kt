@@ -22,9 +22,6 @@ class UploadBottomFragment (context: Context) : BottomSheetDialogFragment() {
     ): View {
         _binding = FragmentUploadBottomBinding.inflate(inflater, container, false)
 
-        /*viewModel.text.observe(viewLifecycleOwner) {
-            binding.textCareer.text = it
-        }*/
         _binding!!.ivUploadBottomClose.setOnClickListener {
             dialog!!.dismiss()
             dialog!!.cancel()
