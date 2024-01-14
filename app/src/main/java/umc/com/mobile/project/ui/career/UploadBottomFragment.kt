@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentUploadBottomBinding
+import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
 
 class UploadBottomFragment (context: Context) : BottomSheetDialogFragment() {
     private var _binding: FragmentUploadBottomBinding? = null
-    private val viewModel: UploadBottomViewModel by viewModels()
+    private val viewModel: CareerEditViewModel by viewModels()
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -21,9 +22,6 @@ class UploadBottomFragment (context: Context) : BottomSheetDialogFragment() {
     ): View {
         _binding = FragmentUploadBottomBinding.inflate(inflater, container, false)
 
-        /*viewModel.text.observe(viewLifecycleOwner) {
-            binding.textCareer.text = it
-        }*/
         _binding!!.ivUploadBottomClose.setOnClickListener {
             dialog!!.dismiss()
             dialog!!.cancel()

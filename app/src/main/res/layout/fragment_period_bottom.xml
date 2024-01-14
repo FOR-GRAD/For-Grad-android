@@ -47,9 +47,9 @@
 
         <NumberPicker
             android:id="@+id/np_period_bottom_year"
+            android:theme="@style/ThemeOverlay.NumberPicker"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:selectionDividerHeight="0dp"
             app:layout_constraintTop_toTopOf="@+id/v_period_bottom_underline"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,8 @@
             android:id="@+id/v_period_bottom_highlight_year"
             android:layout_width="0dp"
             android:layout_height="52dp"
-            android:background="#60F0F0F0"
+            android:background="@drawable/bg_solid_gray_radius_15"
+            android:backgroundTint="#80F0F0F0"
             app:layout_constraintTop_toTopOf="@+id/v_period_bottom_underline"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/np_period_bottom_year"
@@ -67,42 +68,44 @@
 
         <NumberPicker
             android:id="@+id/np_period_bottom_month"
+            android:theme="@style/ThemeOverlay.NumberPicker"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:selectionDividerHeight="0dp"
             app:layout_constraintTop_toTopOf="@+id/v_period_bottom_underline"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/np_period_bottom_year"
             app:layout_constraintWidth_percent="0.33"/>
-        <View
+<!--        <View
             android:id="@+id/v_period_bottom_highlight_month"
             android:layout_width="0dp"
             android:layout_height="52dp"
-            android:background="#60F0F0F0"
+            android:background="@drawable/bg_solid_gray_radius_15"
+            android:backgroundTint="#80F0F0F0"
             app:layout_constraintTop_toTopOf="@+id/v_period_bottom_underline"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/np_period_bottom_month"
             app:layout_constraintEnd_toEndOf="@+id/np_period_bottom_month"
-            app:layout_constraintVertical_bias="0.5"/>
+            app:layout_constraintVertical_bias="0.5"/>-->
 
         <NumberPicker
             android:id="@+id/np_period_bottom_day"
+            android:theme="@style/ThemeOverlay.NumberPicker"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:selectionDividerHeight="0dp"
             app:layout_constraintTop_toTopOf="@+id/v_period_bottom_underline"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/np_period_bottom_month"
             app:layout_constraintWidth_percent="0.34"/>
-        <View
+<!--        <View
             android:id="@+id/v_period_bottom_highlight_day"
             android:layout_width="0dp"
             android:layout_height="52dp"
-            android:background="#60F0F0F0"
+            android:background="@drawable/bg_solid_gray_radius_15"
+            android:backgroundTint="#80F0F0F0"
             app:layout_constraintTop_toTopOf="@+id/v_period_bottom_underline"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/np_period_bottom_day"
             app:layout_constraintEnd_toEndOf="@+id/np_period_bottom_day"
-            app:layout_constraintVertical_bias="0.5"/>
+            app:layout_constraintVertical_bias="0.5"/>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
