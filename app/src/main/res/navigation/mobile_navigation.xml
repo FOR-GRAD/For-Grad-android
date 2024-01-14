@@ -54,7 +54,19 @@
         android:id="@+id/fragment_setting"
         android:name="umc.com.mobile.project.ui.setting.SettingFragment"
         android:label="@string/title_setting"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_fragment_setting_to_fragment_setting_notification"
+            app:destination="@id/fragment_setting_notification" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_setting_notification"
+        android:name="umc.com.mobile.project.ui.setting.SettingNotificationFragment"
+        android:label="@string/title_setting_notification"
+        tools:layout="@layout/fragment_setting_notification" />
+
+
 
     <fragment
         android:id="@+id/fragment_date"

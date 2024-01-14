@@ -61,6 +61,7 @@
     <string name="login_id">학번 (ID)</string>
     <string name="login_content">종합정보시스템의 ID/PW를 입력하세요.</string>
     <string name="login_hansung">HANSUNG UNIV</string>
+    <string name="title_setting_notification">알림 설정</string>
 
     <!-- GradInfoFragment-->
     <string-array name="spinner_schedule">

@@ -1,4 +1,4 @@
-package umc.com.mobile.project.ui.setting
+package umc.com.mobile.project.ui.setting.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
