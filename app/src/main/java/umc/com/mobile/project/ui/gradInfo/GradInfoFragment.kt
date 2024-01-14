@@ -9,9 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import umc.com.mobile.project.databinding.FragmentCareerBinding
 import umc.com.mobile.project.databinding.FragmentGradInfoBinding
-import umc.com.mobile.project.ui.career.CareerViewModel
 import umc.com.mobile.project.ui.gradInfo.adapter.GradInfoVPAdapter
 
 class GradInfoFragment : Fragment() {
