@@ -20,20 +20,21 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_top"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_career_edit_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
-                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="5dp"
                     android:src="@drawable/ic_back_arrow"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="35dp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
@@ -49,7 +50,7 @@
                     android:id="@+id/tv_career_edit_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="52dp"
                     android:text="@string/career_edit_title"
                     android:textAppearance="@style/SemiBoldFont.24"
                     android:textColor="@color/black"
@@ -348,6 +349,7 @@
                     android:backgroundTint="@{vm.isFilledAllOptions ? @color/skyBlue : @color/gray}"
                     android:text="@string/career_edit_add"
                     android:textColor="@color/white"
+                    android:enabled="@{vm.isFilledAllOptions}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

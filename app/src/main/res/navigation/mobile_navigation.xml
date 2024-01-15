@@ -52,6 +52,19 @@
         <action
             android:id="@+id/action_fragment_career_edit_to_fragment_career"
             app:destination="@+id/fragment_career"/>
+        <action
+            android:id="@+id/action_fragment_career_edit_to_fragment_career_confirm"
+            app:destination="@+id/fragment_career_confirm"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_confirm"
+        android:name="umc.com.mobile.project.ui.career.CareerConfirmFragment"
+        android:label="@string/career_edit_add"
+        tools:layout="@layout/fragment_career_confirm">
+        <action
+            android:id="@+id/action_fragment_career_confirm_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
     </fragment>
 
     <fragment
