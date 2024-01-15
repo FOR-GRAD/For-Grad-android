@@ -23,9 +23,6 @@ class CareerFragment : Fragment() {
 	): View {
 		_binding = FragmentCareerBinding.inflate(inflater, container, false)
 
-		/*viewModel.text.observe(viewLifecycleOwner) {
-			binding.textCareer.text = it
-		}*/
 		_binding!!.tvCareerAdd.setOnClickListener {
 			navigate(R.id.action_fragment_career_to_fragment_career_edit)
 		}
