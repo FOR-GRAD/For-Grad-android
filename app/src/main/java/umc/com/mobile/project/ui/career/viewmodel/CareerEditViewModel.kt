@@ -13,6 +13,9 @@ class CareerEditViewModel : ViewModel() {
     fun init() {
         category.postValue("")
         activity.postValue("")
+        selectedYear.postValue("")
+        selectedMonth.postValue("")
+        selectedDay.postValue("")
 /*        year.postValue("")*/
     }
 

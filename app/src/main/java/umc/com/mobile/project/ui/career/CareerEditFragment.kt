@@ -60,6 +60,7 @@ class CareerEditFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.init()
         viewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
             binding.etCareerEditSpinner.text = Editable.Factory.getInstance().newEditable(selectedCategory)
         }
