@@ -101,7 +101,7 @@
                     app:layout_goneMarginStart="22dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_app_setting_nickname"
+                    android:id="@+id/tv_app_setting_notification"
                     style="@style/MediumFont.14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
