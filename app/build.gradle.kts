@@ -60,4 +60,7 @@ dependencies {
 	implementation ("com.google.android.material:material:1.0.0")
 	//bottom Sheet Dialog
 	implementation ("com.google.android.material:material:1.6.1")
+
+	//gridLayout
+	implementation ("androidx.gridlayout:gridlayout:1.0.0")
 }

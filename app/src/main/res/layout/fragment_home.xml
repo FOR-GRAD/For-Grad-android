@@ -236,33 +236,131 @@
                     android:text="@string/home_etc"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_home_grad_condition_title"
                     app:layout_constraintEnd_toEndOf="parent" />
+<!--
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout_grad_condition_track"
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginEnd="17dp"
-                    android:background="@drawable/bg_stroke_gray_radius_16_5"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="match_parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_home_grad_condition_title">
+-->
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_track_title"
-                        style="@style/BoldFont.16"
+                    <androidx.gridlayout.widget.GridLayout
+                        android:id="@+id/constraintLayout_grad_condition_track"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="트랙"
-                        android:textColor="@color/skyBlue"
-                        android:layout_marginStart="38dp"
-                        android:layout_marginTop="17dp"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginEnd="17dp"
+                        android:background="@drawable/bg_stroke_gray_radius_16_5"
+                        app:columnCount="3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_home_grad_condition_title"
+                        app:orientation="horizontal"
+                        app:rowCount="3">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_track_title"
+                            style="@style/BoldFont.16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="38dp"
+                            android:layout_marginTop="17dp"
+                            android:layout_marginEnd="35dp"
+                            android:text="트랙"
+                            android:textColor="@color/skyBlue" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_track_grad_info_title"
+                            style="@style/BoldFont.16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="38dp"
+                            android:layout_marginTop="17dp"
+                            android:text="졸업 요건"
+                            android:textColor="@color/skyBlue"
+                            app:layout_columnSpan="2"
+                            app:layout_gravity="fill" />
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/gray"
+                            app:layout_columnSpan="3"
+                            app:layout_constraintBottom_toTopOf="@+id/viewPager_grad_info"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tabLayout_grad_info"
+                            app:layout_gravity="fill" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_track_name_title_1"
+                            style="@style/BoldFont.12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="56dp"
+                            android:layout_marginEnd="27dp"
+                            android:layout_marginBottom="56dp"
+                            android:text="트랙1 이름"
+                            android:textColor="@color/skyBlue" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_track_content_1"
+                            style="@style/SemiBoldFont.12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="38dp"
+                            android:layout_marginTop="17dp"
+                            android:text="트랙1 내용"
+                            android:textColor="@color/black"
+                            app:layout_columnSpan="2"
+                            app:layout_gravity="fill" />
+
+                        <View
+                            android:id="@+id/view2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/gray"
+                            app:layout_columnSpan="3"
+                            app:layout_constraintBottom_toTopOf="@+id/viewPager_grad_info"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tabLayout_grad_info"
+                            app:layout_gravity="fill" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_track_name_title_2"
+                            style="@style/BoldFont.12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="56dp"
+                            android:layout_marginEnd="27dp"
+                            android:layout_marginBottom="56dp"
+                            android:text="트랙2 이름"
+                            android:textColor="@color/skyBlue" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_track_content_2"
+                            style="@style/SemiBoldFont.12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="38dp"
+                            android:layout_marginTop="17dp"
+                            android:text="트랙2 내용"
+                            android:textColor="@color/black" />
+
+                    </androidx.gridlayout.widget.GridLayout>
+<!--
+                </HorizontalScrollView>
+-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
