@@ -212,6 +212,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="33dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout_main">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -235,19 +237,32 @@
                     app:layout_constraintBottom_toBottomOf="@+id/tv_home_grad_condition_title"
                     app:layout_constraintEnd_toEndOf="parent" />
 
-                <androidx.constraintlayout.utils.widget.MockView
-                    android:id="@+id/mockView"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout_grad_condition_track"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_marginStart="17dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="17dp"
-                    android:background="@drawable/bg_solid_white_radius_20"
-                    android:src="@color/gray"
+                    android:background="@drawable/bg_stroke_gray_radius_16_5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_home_grad_condition_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_home_grad_condition_title">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_track_title"
+                        style="@style/BoldFont.16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="트랙"
+                        android:textColor="@color/skyBlue"
+                        android:layout_marginStart="38dp"
+                        android:layout_marginTop="17dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

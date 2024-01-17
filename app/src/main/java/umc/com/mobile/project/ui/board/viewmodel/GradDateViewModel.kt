@@ -16,4 +16,12 @@ class GradDateViewModel : ViewModel() {
 		cheeringMemo.value = input
 	}
 
+	val isFilledMemo: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
+		addSource(cheeringMemo) { value = isFieldFilled() }
+	}
+
+	private fun isFieldFilled(): Boolean {
+		return !cheeringMemo.value.isNullOrEmpty()
+	}
+
 }
