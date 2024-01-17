@@ -3,6 +3,7 @@
     <!-- main color -->
     <color name="skyBlue">#0D99FF</color>
     <color name="ivory">#FAF3EB</color>
+    <color name="light_blue">#D6EEFF</color>
 
     <!-- sub color -->
     <color name="default_dark">#7D7D7D</color>
