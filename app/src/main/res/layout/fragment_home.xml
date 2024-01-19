@@ -259,7 +259,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_home_grad_condition_title"
-                        app:orientation="horizontal"
                         app:rowCount="3">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -270,7 +269,7 @@
                             android:layout_marginStart="38dp"
                             android:layout_marginTop="17dp"
                             android:layout_marginEnd="35dp"
-                            android:text="트랙"
+                            android:text="@string/home_track"
                             android:textColor="@color/skyBlue" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -280,7 +279,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="38dp"
                             android:layout_marginTop="17dp"
-                            android:text="졸업 요건"
+                            android:text="@string/home_grad_info"
                             android:textColor="@color/skyBlue"
                             app:layout_columnSpan="2"
                             app:layout_gravity="fill" />

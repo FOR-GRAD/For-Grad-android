@@ -34,26 +34,26 @@ class GradeFragment : Fragment() {
 	}
 
 	private fun initSpinnerSchedule() {
-		binding.spinnerSchedule.onItemSelectedListener =
-			object : AdapterView.OnItemSelectedListener {
-				override fun onItemSelected(
-					parent: AdapterView<*>?,
-					view: View?,
-					position: Int,
-					id: Long
-				) {
-					if (!binding.spinnerSchedule.getItemAtPosition(position).equals("시간표 불러오기")) {
-						Toast.makeText(
-							context,
-							"Selected: ${binding.spinnerSchedule.getItemAtPosition(position)}",
-							Toast.LENGTH_LONG
-						)
-					}
-				}
-
-				override fun onNothingSelected(p0: AdapterView<*>?) {
-
-				}
-			}
+//		binding.spinnerSchedule.onItemSelectedListener =
+//			object : AdapterView.OnItemSelectedListener {
+//				override fun onItemSelected(
+//					parent: AdapterView<*>?,
+//					view: View?,
+//					position: Int,
+//					id: Long
+//				) {
+//					if (!binding.spinnerSchedule.getItemAtPosition(position).equals("시간표 불러오기")) {
+//						Toast.makeText(
+//							context,
+//							"Selected: ${binding.spinnerSchedule.getItemAtPosition(position)}",
+//							Toast.LENGTH_LONG
+//						)
+//					}
+//				}
+//
+//				override fun onNothingSelected(p0: AdapterView<*>?) {
+//
+//				}
+//			}
 	}
 }
