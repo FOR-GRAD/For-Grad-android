@@ -14,10 +14,22 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
             android:layout_marginTop="31dp"
-            android:text="@string/grade_each_semester"
+            android:text="@string/grade_each_semester_title"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_grade_sub_title"
+            style="@style/MediumFont.12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:text="@string/grade_each_semester_sub_title"
+            android:textColor="@color/default_dark"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_grade_title" />
 
         <!--<androidx.appcompat.widget.AppCompatButton
             android:id="@+id/appCompatButton"
@@ -49,97 +61,89 @@
             app:layout_constraintTop_toTopOf="@+id/tv_grade_title"
             tools:listitem="@layout/item_spinner_grad_info_schedule" />-->
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/spinner_schedule"
-            style="@style/SemiBoldFont.10"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginEnd="18dp"
-            android:background="@drawable/bg_solid_blue_radius_16_5"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_grade_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_grade_title"
-            tools:listitem="@layout/item_spinner_grad_info_schedule" />
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/appCompatTextView7"-->
+            <!--                style="@style/MediumFont.12"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginEnd="5dp"-->
+            <!--                android:layout_weight="4"-->
+            <!--                android:background="@drawable/bg_solid_gray_top_left_radius_10"-->
+            <!--                android:gravity="center"-->
+            <!--                android:paddingTop="6dp"-->
+            <!--                android:paddingBottom="6dp"-->
+            <!--                android:text="@string/grade_subject"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView8"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/constraint_title"
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/appCompatTextView8"-->
+            <!--                style="@style/MediumFont.12"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_marginEnd="5dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:background="@color/gray"-->
+            <!--                android:gravity="center"-->
+            <!--                android:text="@string/grade_major"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toStartOf="@+id/tv_grade"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/tv_grade"-->
+            <!--                style="@style/MediumFont.12"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_weight="2"-->
+            <!--                android:background="@drawable/bg_solid_gray_top_right_radius_10"-->
+            <!--                android:gravity="center"-->
+            <!--                android:text="@string/grade_grade"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_grade"
+            style="@style/MediumFont.12"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_schedule"
-            app:layout_constraintStart_toStartOf="@+id/tv_grade_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_grade_title">
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_solid_sky_blue_top_right_left_radius_10"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/grade_grade"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_grade_sub_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_grade_sub_title" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/appCompatTextView7"
-                style="@style/MediumFont.12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="4"
-                android:background="@drawable/bg_solid_gray_top_left_radius_10"
-                android:gravity="center"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:text="@string/grade_subject"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView8"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/tv_grade"
+            app:layout_constraintStart_toStartOf="@+id/tv_grade"
+            app:layout_constraintTop_toBottomOf="@+id/tv_grade"
+            tools:listitem="@layout/item_class_and_grade" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/appCompatTextView8"
-                style="@style/MediumFont.12"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:background="@color/gray"
-                android:gravity="center"
-                android:text="@string/grade_major"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_grade"
-                app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_grade_average_title"
+            style="@style/BoldFont.16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="49dp"
+            android:text="평점 평균"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_grade"
-                style="@style/MediumFont.12"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/bg_solid_gray_top_right_radius_10"
-                android:gravity="center"
-                android:text="@string/grade_grade"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_grade_average_title"
-        style="@style/BoldFont.16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="49dp"
-        android:text="평점 평균"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_class_and_grade"
-        app:layout_constraintEnd_toEndOf="@+id/constraint_title"
-        app:layout_constraintStart_toStartOf="@+id/constraint_title"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
