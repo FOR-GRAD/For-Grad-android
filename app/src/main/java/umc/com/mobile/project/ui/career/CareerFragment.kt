@@ -29,6 +29,9 @@ class CareerFragment : Fragment() {
 		_binding!!.tvCareerCertificate.setOnClickListener {
 			navigate(R.id.action_fragment_career_to_fragment_certificate)
 		}
+		_binding!!.tvCareerContest.setOnClickListener {
+			navigate(R.id.action_fragment_career_to_fragment_contest)
+		}
 		return binding.root
 	}
 

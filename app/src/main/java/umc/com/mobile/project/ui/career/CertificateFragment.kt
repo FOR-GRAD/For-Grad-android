@@ -27,10 +27,10 @@ class CertificateFragment : Fragment() {
         _binding = FragmentCareerCertificateBinding.inflate(inflater, container, false)
         val certificates = arrayListOf(
             CertificateDto("2022-01-01", "자격증1", "필기", "1급"),
-            CertificateDto("2022-02-15", "자격증2", "필기", "2급"),
-            CertificateDto("2022-03-30", "자격증3", "실기", "2급"),
-            CertificateDto("2022-02-15", "자격증4", "필기", "2급"),
-            CertificateDto("2022-03-30", "자격증5", "실기", "2급")
+            CertificateDto("2022-02-15", "자격증2", "필기", "1급"),
+            CertificateDto("2022-03-30", "자격증3", "실기", "1급"),
+            CertificateDto("2022-02-15", "자격증4", "필기", "1급"),
+            CertificateDto("2022-03-30", "자격증5", "실기", "1급")
         )
         val adapter = CertificateRVAdapter(certificates)
         binding.rvCareerCertificateList.adapter = adapter

@@ -1,6 +1,5 @@
 package umc.com.mobile.project.ui.career.adapter
 
-import android.content.Context
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
