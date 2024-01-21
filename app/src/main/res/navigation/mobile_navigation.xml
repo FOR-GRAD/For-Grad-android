@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_fragment_home_to_fragment_date"
             app:destination="@id/fragment_date" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_grad_info"
+            app:destination="@id/fragment_grad_info" />
     </fragment>
 
     <fragment
@@ -22,13 +25,26 @@
         tools:layout="@layout/fragment_grad_info" />
 
     <fragment
+        android:id="@+id/fragment_date"
+        android:name="umc.com.mobile.project.ui.board.GradDateFragment"
+        android:label="@string/title_date"
+        tools:layout="@layout/fragment_grad_date" >
+        <action
+            android:id="@+id/action_fragment_date_to_fragment_home"
+            app:destination="@id/fragment_home" />
+    </fragment>
+
+    <fragment
         android:id="@+id/fragment_career"
         android:name="umc.com.mobile.project.ui.career.CareerFragment"
         android:label="@string/title_career"
         tools:layout="@layout/fragment_career">
         <action
             android:id="@+id/action_fragment_career_to_fragment_career_edit"
-            app:destination="@id/fragment_career_edit" />
+            app:destination="@id/fragment_career_edit"/>
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_certificate"
+            app:destination="@+id/fragment_career_certificate"/>
     </fragment>
 
     <fragment
@@ -55,21 +71,36 @@
     </fragment>
 
     <fragment
+        android:id="@+id/fragment_career_certificate"
+        android:name="umc.com.mobile.project.ui.career.CertificateFragment"
+        android:label="@string/career_certificate_title"
+        tools:layout="@layout/fragment_career_certificate">
+        <action
+            android:id="@+id/action_fragment_certificate_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
+
+    <fragment
         android:id="@+id/fragment_board"
         android:name="umc.com.mobile.project.ui.board.BoardFragment"
         android:label="@string/title_board"
-        tools:layout="@layout/fragment_board" />
+        tools:layout="@layout/fragment_board">
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_setting"
         android:name="umc.com.mobile.project.ui.setting.SettingFragment"
         android:label="@string/title_setting"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_fragment_setting_to_fragment_setting_notification"
+            app:destination="@id/fragment_setting_notification" />
+    </fragment>
 
     <fragment
-        android:id="@+id/fragment_date"
-        android:name="umc.com.mobile.project.ui.board.GradDateFragment"
-        android:label="@string/title_date"
-        tools:layout="@layout/fragment_grad_date" />
+        android:id="@+id/fragment_setting_notification"
+        android:name="umc.com.mobile.project.ui.setting.SettingNotificationFragment"
+        android:label="@string/title_setting_notification"
+        tools:layout="@layout/fragment_setting_notification" />
 
 </navigation>
