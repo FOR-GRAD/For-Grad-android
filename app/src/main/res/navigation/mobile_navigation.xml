@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_fragment_career_to_fragment_contest"
             app:destination="@+id/fragment_career_contest"/>
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_activity"
+            app:destination="@+id/fragment_career_activity"/>
     </fragment>
 
     <fragment
@@ -90,6 +93,16 @@
         tools:layout="@layout/fragment_career_contest">
         <action
             android:id="@+id/action_fragment_contest_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_activity"
+        android:name="umc.com.mobile.project.ui.career.ActivityFragment"
+        android:label="@string/career_activity_title"
+        tools:layout="@layout/fragment_career_activity">
+        <action
+            android:id="@+id/action_fragment_activity_to_fragment_career"
             app:destination="@+id/fragment_career"/>
     </fragment>
 

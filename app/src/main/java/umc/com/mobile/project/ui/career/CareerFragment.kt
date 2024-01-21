@@ -32,6 +32,9 @@ class CareerFragment : Fragment() {
 		_binding!!.tvCareerContest.setOnClickListener {
 			navigate(R.id.action_fragment_career_to_fragment_contest)
 		}
+		_binding!!.tvCareerActivity.setOnClickListener {
+			navigate(R.id.action_fragment_career_to_fragment_activity)
+		}
 		return binding.root
 	}
 
