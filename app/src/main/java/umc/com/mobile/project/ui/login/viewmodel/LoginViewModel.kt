@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import umc.com.mobile.project.data.network.RetrofitClient
+import umc.com.mobile.project.data.network.api.LoginApi
 
 class LoginViewModel : ViewModel() {
 	/**
@@ -25,4 +27,7 @@ class LoginViewModel : ViewModel() {
 		id.postValue("")
 		pw.postValue("")
 	}
+
+	val apiService = RetrofitClient.createService<LoginApi>()
+
 }
