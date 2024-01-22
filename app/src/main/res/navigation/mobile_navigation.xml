@@ -41,7 +41,16 @@
         tools:layout="@layout/fragment_career">
         <action
             android:id="@+id/action_fragment_career_to_fragment_career_edit"
-            app:destination="@id/fragment_career_edit" />
+            app:destination="@id/fragment_career_edit"/>
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_certificate"
+            app:destination="@+id/fragment_career_certificate"/>
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_contest"
+            app:destination="@+id/fragment_career_contest"/>
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_activity"
+            app:destination="@+id/fragment_career_activity"/>
     </fragment>
 
     <fragment
@@ -68,10 +77,41 @@
     </fragment>
 
     <fragment
+        android:id="@+id/fragment_career_certificate"
+        android:name="umc.com.mobile.project.ui.career.CertificateFragment"
+        android:label="@string/career_certificate_title"
+        tools:layout="@layout/fragment_career_certificate">
+        <action
+            android:id="@+id/action_fragment_certificate_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_contest"
+        android:name="umc.com.mobile.project.ui.career.ContestFragment"
+        android:label="@string/career_contest_title"
+        tools:layout="@layout/fragment_career_contest">
+        <action
+            android:id="@+id/action_fragment_contest_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_activity"
+        android:name="umc.com.mobile.project.ui.career.ActivityFragment"
+        android:label="@string/career_activity_title"
+        tools:layout="@layout/fragment_career_activity">
+        <action
+            android:id="@+id/action_fragment_activity_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
+
+    <fragment
         android:id="@+id/fragment_board"
         android:name="umc.com.mobile.project.ui.board.BoardFragment"
         android:label="@string/title_board"
-        tools:layout="@layout/fragment_board" />
+        tools:layout="@layout/fragment_board">
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_setting"
