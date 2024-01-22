@@ -24,6 +24,9 @@ class CareerConfirmFragment: Fragment() {
 		savedInstanceState: Bundle?
 	): View {
 		_binding = FragmentCareerConfirmBinding.inflate(inflater, container, false)
+		_binding!!.ivCareerEditBack.setOnClickListener {
+			navigate(R.id.action_fragment_career_confirm_to_fragment_career)
+		}
 		_binding!!.btnCareerConfirm.setOnClickListener {
 			navigate(R.id.action_fragment_career_confirm_to_fragment_career)
 		}
