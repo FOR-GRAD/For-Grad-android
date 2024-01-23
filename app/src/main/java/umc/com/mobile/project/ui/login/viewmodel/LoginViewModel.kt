@@ -7,8 +7,9 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import umc.com.mobile.project.data.model.login.LoginRequest
 import umc.com.mobile.project.data.model.login.LoginResponse
-import umc.com.mobile.project.data.network.RetrofitClient
+import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.LoginApi
 
 class LoginViewModel : ViewModel() {
@@ -37,8 +38,9 @@ class LoginViewModel : ViewModel() {
 	val loginResult: LiveData<LoginResponse>
 		get() = _loginResult
 
-	// 로그인 요청 메서드
-	/*fun login() {
+	private val loginApiService = ApiClient.createService<LoginApi>()
+
+	fun login() {
 		val request = LoginRequest(id.value.orEmpty(), pw.value.orEmpty())
 
 		loginApiService.login(request.id, request.passwd).enqueue(object : Callback<LoginResponse> {
@@ -46,7 +48,6 @@ class LoginViewModel : ViewModel() {
 				if (response.isSuccessful) {
 					_loginResult.postValue(response.body())
 				} else {
-					// 실패 시 처리
 					_loginResult.postValue(
 						LoginResponse(
 							isSuccess = false,
@@ -59,7 +60,6 @@ class LoginViewModel : ViewModel() {
 			}
 
 			override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-				// 네트워크 오류 등 실패 시 처리
 				_loginResult.postValue(
 					LoginResponse(
 						isSuccess = false,
@@ -70,6 +70,5 @@ class LoginViewModel : ViewModel() {
 				)
 			}
 		})
-	}*/
-
+	}
 }

@@ -1,13 +1,19 @@
 package umc.com.mobile.project.data.network
 
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-	private val retrofit: Retrofit by lazy {
-		RetrofitClient.createRetrofit()
+	private const val BASE_URL = "http://52.79.167.79"
+
+	internal val retrofit: Retrofit by lazy {
+		Retrofit.Builder()
+			.baseUrl(BASE_URL)
+			.addConverterFactory(GsonConverterFactory.create())
+			.build()
 	}
 
-	private inline fun <reified T> createService(): T {
+	internal inline fun <reified T> createService(): T {
 		return retrofit.create(T::class.java)
 	}
 }
