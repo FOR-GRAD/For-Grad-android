@@ -16,6 +16,10 @@ android {
 		versionName = "1.0"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+//		Properties properties = new Properties()
+//		properties.load(project.rootProject.file("local.properties").newDataInputStream())
+//		buildConfigField "String", "BASE_URL", "\"${properties.getProperty("BASE_URL")}\""
 	}
 
 	buildTypes {
@@ -54,13 +58,22 @@ dependencies {
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.5")
 	androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-	implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
+	implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
 	//border radius
-	implementation ("com.google.android.material:material:1.0.0")
+	implementation("com.google.android.material:material:1.0.0")
 	//bottom Sheet Dialog
-	implementation ("com.google.android.material:material:1.6.1")
+	implementation("com.google.android.material:material:1.6.1")
 
 	//gridLayout
-	implementation ("androidx.gridlayout:gridlayout:1.0.0")
+	implementation("androidx.gridlayout:gridlayout:1.0.0")
+
+	// Retrofit 라이브러리
+	implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
+	// Gson 변환기 라이브러리
+	implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+	// Scalars 변환기 라이브러리
+	implementation ("com.squareup.retrofit2:converter-scalars:2.6.4")
 }

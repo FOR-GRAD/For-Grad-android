@@ -74,7 +74,8 @@
         <item>1학년 2학기</item>
         <item>2학년 1학기</item>
     </string-array>
-    <string name="grade_each_semester">학기별 이수 성적</string>
+    <string name="grade_each_semester_title">이수 성적</string>
+    <string name="grade_each_semester_sub_title">각 학기 버튼을 눌러 확인해보세요</string>
     <string name="grade_subject">과목명</string>
     <string name="grade_major">전공</string>
     <string name="grade_grade">학점</string>
