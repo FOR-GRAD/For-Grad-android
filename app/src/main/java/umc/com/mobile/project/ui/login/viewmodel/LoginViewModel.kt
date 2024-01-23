@@ -1,5 +1,7 @@
 package umc.com.mobile.project.ui.login.viewmodel
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +11,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.login.LoginRequest
 import umc.com.mobile.project.data.model.login.LoginResponse
+import umc.com.mobile.project.data.model.login.LoginResult
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.LoginApi
 
@@ -41,12 +44,11 @@ class LoginViewModel : ViewModel() {
 	private val loginApiService = ApiClient.createService<LoginApi>()
 
 	fun login() {
-		val request = LoginRequest(id.value.orEmpty(), pw.value.orEmpty())
-
-		loginApiService.login(request.id, request.passwd).enqueue(object : Callback<LoginResponse> {
+		loginApiService.login(id.value.orEmpty(), pw.value.orEmpty()).enqueue(object : Callback<LoginResponse> {
 			override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
 				if (response.isSuccessful) {
 					_loginResult.postValue(response.body())
+					Log.d("Login", "${response.body()}")
 				} else {
 					_loginResult.postValue(
 						LoginResponse(
@@ -56,6 +58,13 @@ class LoginViewModel : ViewModel() {
 							result = null
 						)
 					)
+					try {
+						throw response.errorBody()?.string()?.let {
+							RuntimeException(it)
+						} ?: RuntimeException("Unknown error")
+					} catch (e: Exception) {
+						Log.e("Login", "API 오류: ${e.message}")
+					}
 				}
 			}
 

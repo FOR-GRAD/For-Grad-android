@@ -22,6 +22,8 @@ class LoginActivity : AppCompatActivity() {
 		binding.lifecycleOwner = this
 
 		binding.btnLogin.setOnClickListener {
+			viewModel.login()
+
 			val intent = Intent(this@LoginActivity, MainActivity::class.java)
 			startActivity(intent)
 		}

@@ -33,6 +33,7 @@ class HomeFragment : Fragment() {
 
 		navigateFragment() // 페이지 이동
 		saveCheeringMemo() // 응원의 한마디 연결
+		viewModel.fetchUserInfo()
 
 		return binding.root
 	}
