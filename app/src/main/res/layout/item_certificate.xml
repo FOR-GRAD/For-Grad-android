@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_certificate_date"
+        style="@style/MediumFont.14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="#F5F5F5"
+        android:hint="2023.03.08"
+        android:textColorHint="@android:color/black"
+        android:focusable="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_certificate_title"
+        style="@style/MediumFont.14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="#F5F5F5"
+        android:hint="자격증 이름"
+        android:textColorHint="@android:color/black"
+        android:focusable="false"
+        app:layout_constraintTop_toBottomOf="@+id/et_certificate_date"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_certificate_type"
+        style="@style/MediumFont.12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/bg_solid_stroke_skyblue_radius_11"
+        android:focusable="false"
+        android:hint="필기"
+        android:paddingStart="10dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="3dp"
+        android:textColorHint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_certificate_title" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_certificate_rating"
+        style="@style/MediumFont.14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:background="#F5F5F5"
+        android:hint="2급"
+        android:textColorHint="@android:color/black"
+        android:focusable="false"
+        android:paddingEnd="6dp"
+        app:layout_constraintTop_toTopOf="@+id/et_certificate_type"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/v_certificate_underline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D9D9D9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
