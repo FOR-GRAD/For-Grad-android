@@ -17,6 +17,7 @@ import umc.com.mobile.project.databinding.ActivityLoginBinding
 import umc.com.mobile.project.databinding.FragmentCareerEditVolunteerBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
 import umc.com.mobile.project.ui.career.viewmodel.CareerEditVolunteerViewModel
+import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class CareerEditVolunteerFragment : Fragment() {
     private var _binding: FragmentCareerEditVolunteerBinding? = null
@@ -47,6 +48,9 @@ class CareerEditVolunteerFragment : Fragment() {
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }*/
+        _binding!!.btnCareerEditAdd.setOnClickListener {
+            navigate(R.id.action_fragment_career_edit_to_fragment_career_confirm)
+        }
         return binding.root
     }
 
