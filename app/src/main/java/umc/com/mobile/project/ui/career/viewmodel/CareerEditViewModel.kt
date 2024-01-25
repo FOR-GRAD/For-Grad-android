@@ -13,8 +13,23 @@ class CareerEditViewModel : ViewModel() {
     val selectedStartDay = MutableLiveData<String>().apply { value = "" }
     val selectedEndDay = MutableLiveData<String>().apply { value = "" }
 
+    init {
+        category.value = ""
+        selectedCategory.value = ""
+        selectedEndYear.value = ""
+        selectedStartMonth.value = ""
+        selectedEndMonth.value = ""
+        selectedStartDay.value = ""
+        selectedEndDay.value = ""
+    }
     fun init() {
-        category.postValue("")
+        category.value = ""
+        selectedCategory.value = ""
+        selectedEndYear.value = ""
+        selectedStartMonth.value = ""
+        selectedEndMonth.value = ""
+        selectedStartDay.value = ""
+        selectedEndDay.value = ""
     }
 
     fun updateSelectedCategory(category: String) {

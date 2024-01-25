@@ -3,6 +3,7 @@ package umc.com.mobile.project.ui.career
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,7 @@ class CareerEditFragment : Fragment() {
     ): View {
         _binding = FragmentCareerEditBinding.inflate(inflater, container, false)
         _binding!!.vm = viewModel
-        _binding!!.lifecycleOwner = this
+        _binding!!.lifecycleOwner = viewLifecycleOwner
         mContext = requireContext()
 
         _binding!!.ivCareerEditBack.setOnClickListener {
@@ -40,9 +41,9 @@ class CareerEditFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
 
-        viewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
+/*        viewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
             replaceFragment(selectedCategory)
-        }
+        }*/
 
         return binding.root
     }
@@ -54,9 +55,13 @@ class CareerEditFragment : Fragment() {
         for (fragment in childFragmentManager.fragments) {
             fragmentTransaction.remove(fragment)
         }
+/*        val existingFragment = childFragmentManager.findFragmentById(R.id.constraintLayout_career_edit)
+        if (existingFragment != null) {
+            fragmentTransaction.remove(existingFragment)
+        }*/
 
         when (selectedCategory) {
-            "자격증" -> fragmentTransaction.add(
+            "자격증" -> fragmentTransaction.replace(
                 R.id.constraintLayout_career_edit,
                 CareerEditCertificateFragment()
             )
@@ -64,7 +69,7 @@ class CareerEditFragment : Fragment() {
                 R.id.constraintLayout_career_edit,
                 CareerEditVolunteerFragment()
             )
-            "공모전" -> fragmentTransaction.add(
+            "공모전" -> fragmentTransaction.replace(
                 R.id.constraintLayout_career_edit,
                 CareerEditContestFragment()
             )
@@ -72,6 +77,12 @@ class CareerEditFragment : Fragment() {
                 R.id.constraintLayout_career_edit,
                 CareerEditActivityFragment()
             )
+            else -> {
+                val existingFragment = childFragmentManager.findFragmentById(R.id.constraintLayout_career_edit)
+                if (existingFragment != null) {
+                    fragmentTransaction.remove(existingFragment)
+                }
+            }
         }
         fragmentTransaction.commit()
     }
@@ -79,7 +90,9 @@ class CareerEditFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init()
         viewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
+            Log.d("tag", "Selected Category: $selectedCategory")
             binding.etCareerEditSpinner.text = Editable.Factory.getInstance().newEditable(selectedCategory)
+            replaceFragment(selectedCategory)
         }
     }
 

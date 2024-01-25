@@ -2,6 +2,8 @@ package umc.com.mobile.project.ui.career
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
