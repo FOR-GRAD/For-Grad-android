@@ -84,7 +84,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_career_edit_contest_start_date"
+            android:id="@+id/et_career_edit_contest_start_year"
             style="@style/MediumFont.14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,11 +112,11 @@
             android:text="종료일자"
             android:textAppearance="@style/SemiBoldFont.16"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_start_date"
+            app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_start_year"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_career_edit_contest_end_date"
+            android:id="@+id/et_career_edit_contest_end_year"
             style="@style/MediumFont.14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -153,6 +153,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_end_date"/>
+            app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_end_year"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -22,7 +22,6 @@ class CareerEditVolunteerViewModel : ViewModel() {
     }
 
     private fun areBothFieldsFilled(): Boolean {
-        Log.d("tag", "돌아가나?")
         return !startDate.value.isNullOrBlank() && !endDate.value.isNullOrBlank()
     }
 }
