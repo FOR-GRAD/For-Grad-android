@@ -15,6 +15,7 @@ class CareerEditContestViewModel : ViewModel() {
         startDate.postValue("")
         endDate.postValue("")
     }
+
     fun init() {
         selectedAward.postValue("")
         startDate.postValue("")
