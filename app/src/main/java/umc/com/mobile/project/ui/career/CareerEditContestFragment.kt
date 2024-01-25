@@ -3,6 +3,7 @@ package umc.com.mobile.project.ui.career
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +19,11 @@ import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class CareerEditContestFragment : Fragment() {
     private var _binding: FragmentCareerEditContestBinding? = null
-    private val viewModel: CareerEditContestViewModel by viewModels()
+    private val viewModel: CareerEditContestViewModel by activityViewModels()
     private val sharedViewModel: CareerEditViewModel by activityViewModels()
     private lateinit var mContext: Context
     private val binding get() = _binding!!
+    private var award: String? = null
     private var startYear: String? = null
     private var startMonth: String? = null
     private var startDay: String? = null
@@ -49,6 +51,11 @@ class CareerEditContestFragment : Fragment() {
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
+        _binding!!.etCareerEditContestAward.setOnClickListener {
+            val bottomSheet = AwardBottomFragment(mContext)
+            bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
+            bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
+        }
         _binding!!.btnCareerEditAdd.setOnClickListener {
             navigate(R.id.action_fragment_career_edit_to_fragment_career_confirm)
         }
@@ -57,6 +64,10 @@ class CareerEditContestFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.init()
+        viewModel.selectedAward.observe(viewLifecycleOwner) { selectedAward ->
+            binding.etCareerEditContestAward.text = Editable.Factory.getInstance().newEditable(selectedAward)
+        }
         sharedViewModel.selectedStartYear.observe(viewLifecycleOwner) { year ->
             startYear = year
             updateStartDateEditText()

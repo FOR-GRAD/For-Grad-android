@@ -49,6 +49,11 @@ class CareerEditActivityFragment : Fragment() {
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
+        _binding!!.etCareerEditActivityFile.setOnClickListener {
+            val bottomSheet = UploadBottomFragment(mContext)
+            bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
+            bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
+        }
         _binding!!.btnCareerEditAdd.setOnClickListener {
             navigate(R.id.action_fragment_career_edit_to_fragment_career_confirm)
         }
