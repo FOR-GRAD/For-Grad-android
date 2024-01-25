@@ -6,12 +6,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CareerEditContestViewModel : ViewModel() {
+    val selectedAward: MutableLiveData<String> = MutableLiveData()
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
 
     init {
+        selectedAward.postValue("")
         startDate.postValue("")
         endDate.postValue("")
+    }
+    fun init() {
+        selectedAward.postValue("")
+        startDate.postValue("")
+        endDate.postValue("")
+    }
+
+    fun updateSelectedAward(award: String) {
+        selectedAward.value = award
     }
 
     /* 버튼 활성화 기능 */
