@@ -1,17 +1,15 @@
 package umc.com.mobile.project.ui.login.viewmodel
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import okhttp3.Headers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import umc.com.mobile.project.data.model.login.LoginRequest
 import umc.com.mobile.project.data.model.login.LoginResponse
-import umc.com.mobile.project.data.model.login.LoginResult
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.LoginApi
 
@@ -47,6 +45,15 @@ class LoginViewModel : ViewModel() {
 		loginApiService.login(id.value.orEmpty(), pw.value.orEmpty()).enqueue(object : Callback<LoginResponse> {
 			override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
 				if (response.isSuccessful) {
+					// 성공적으로 로그인이 되었을 때
+					val jSessionId = extractJSessionIdFromHeaders(response.headers())
+
+					if (jSessionId != null) {
+						ApiClient.addJSessionIdCookie(jSessionId)
+					} else {
+						Log.e("Login", "API 오류: JSESSIONID가 없습니다.")
+					}
+
 					_loginResult.postValue(response.body())
 					Log.d("Login", "${response.body()}")
 				} else {
@@ -79,5 +86,9 @@ class LoginViewModel : ViewModel() {
 				)
 			}
 		})
+	}
+
+	private fun extractJSessionIdFromHeaders(headers: Headers): String? {
+		return headers["Set-Cookie"]?.split(";")?.find { it.contains("JSESSIONID") }?.substringAfter("JSESSIONID=")
 	}
 }

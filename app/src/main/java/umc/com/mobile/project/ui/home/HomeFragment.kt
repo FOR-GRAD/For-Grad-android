@@ -1,8 +1,6 @@
 package umc.com.mobile.project.ui.home
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentHomeBinding
-import umc.com.mobile.project.ui.board.GradDateFragment
 import umc.com.mobile.project.ui.board.viewmodel.GradDateViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 import umc.com.mobile.project.ui.home.viewmodel.HomeViewModel
@@ -33,7 +30,7 @@ class HomeFragment : Fragment() {
 
 		navigateFragment() // 페이지 이동
 		saveCheeringMemo() // 응원의 한마디 연결
-		viewModel.fetchUserInfo()
+		viewModel.fetchUserInfo() // 홈 화면 정보 조회 api
 
 		return binding.root
 	}

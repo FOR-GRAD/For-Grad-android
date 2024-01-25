@@ -10,12 +10,8 @@ import retrofit2.Response
 import umc.com.mobile.project.data.model.home.UserResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.HomeApi
-import umc.com.mobile.project.data.network.api.LoginApi
 
 class HomeViewModel : ViewModel() {
-	private val _text = MutableLiveData<String>()
-	val text: LiveData<String> = _text
-
 	private val userInfoApiService = ApiClient.createService<HomeApi>()
 
 	private val _userInfo: MutableLiveData<UserResponse?> = MutableLiveData()
