@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.career.AwardBottomFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="323dp"
+        android:background="@drawable/white_round_top_border_20">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_award_bottom_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_bottom_close_13"
+            app:layout_constraintTop_toTopOf="@+id/tv_award_bottom_title"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_award_bottom_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시상 구분"
+            android:textAppearance="@style/SemiBoldFont.14"
+            android:textColor="#555555"
+            app:layout_constraintBottom_toBottomOf="@+id/v_award_bottom_underline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"/>
+
+        <View
+            android:id="@+id/v_award_bottom_underline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D9D9D9"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.16"/>
+
+        <NumberPicker
+            android:id="@+id/np_award_bottom_numberPicker"
+            android:theme="@style/ThemeOverlay.NumberPicker"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/v_award_bottom_underline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <View
+            android:id="@+id/v_award_bottom_highlight"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="#80F0F0F0"
+            app:layout_constraintTop_toTopOf="@+id/v_award_bottom_underline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.5"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
