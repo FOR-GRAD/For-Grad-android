@@ -61,8 +61,7 @@
             android:layout_marginTop="60dp"
             android:layout_marginStart="17dp"
             android:layout_marginEnd="18dp"
-            android:background="@drawable/bg_solid_white_radius_16_5"
-            android:backgroundTint="#F5F5F5"
+            android:background="@drawable/bg_solid_stroke_gray_radius_16_5"
             android:gravity="center_horizontal"
             android:paddingTop="164dp"
             android:paddingBottom="77dp"
@@ -91,15 +90,17 @@
             style="@style/SemiBoldFont.16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
             android:layout_marginStart="17dp"
+            android:layout_marginTop="18dp"
             android:layout_marginEnd="18dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/bg_solid_dark_gray_radius_23_5"
             android:backgroundTint="@color/skyBlue"
             android:text="확인하러 가기"
             android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/tv_career_confirm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_career_confirm" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

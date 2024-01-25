@@ -49,6 +49,9 @@
             android:id="@+id/action_fragment_career_to_fragment_contest"
             app:destination="@+id/fragment_career_contest"/>
         <action
+            android:id="@+id/action_fragment_career_to_fragment_volunteer"
+            app:destination="@+id/fragment_career_volunteer"/>
+        <action
             android:id="@+id/action_fragment_career_to_fragment_activity"
             app:destination="@+id/fragment_career_activity"/>
     </fragment>
@@ -93,6 +96,16 @@
         tools:layout="@layout/fragment_career_contest">
         <action
             android:id="@+id/action_fragment_contest_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_volunteer"
+        android:name="umc.com.mobile.project.ui.career.VolunteerFragment"
+        android:label="@string/career_volunteer_title"
+        tools:layout="@layout/fragment_career_volunteer">
+        <action
+            android:id="@+id/action_fragment_volunteer_to_fragment_career"
             app:destination="@+id/fragment_career"/>
     </fragment>
 
