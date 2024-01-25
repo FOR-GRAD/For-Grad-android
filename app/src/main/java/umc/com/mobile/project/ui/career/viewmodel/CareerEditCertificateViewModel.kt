@@ -6,12 +6,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CareerEditCertificateViewModel : ViewModel() {
+    val selectedCertificateType: MutableLiveData<String> = MutableLiveData()
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
 
     init {
+        selectedCertificateType.postValue("")
         startDate.postValue("")
         endDate.postValue("")
+    }
+
+    fun init() {
+        selectedCertificateType.postValue("")
+        startDate.postValue("")
+        endDate.postValue("")
+    }
+
+    fun updateCertificateType(type: String) {
+        selectedCertificateType.value = type
     }
 
     /* 버튼 활성화 기능 */
