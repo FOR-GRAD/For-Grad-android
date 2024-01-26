@@ -44,37 +44,80 @@
             android:text="@string/login_content"
             android:textColor="@color/text_gray" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_id"
-            style="@style/MediumFont.12"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="23dp"
             android:layout_marginEnd="23dp"
             android:layout_marginBottom="13dp"
-            android:background="@drawable/bg_solid_white_radius_25"
-            android:hint="@string/login_id"
-            android:paddingStart="23dp"
-            android:paddingTop="18dp"
-            android:paddingBottom="18dp"
-            android:text="@={vm.id}"
-            android:textColorHint="@color/text_gray" />
+            android:background="@drawable/bg_solid_white_radius_25">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_password"
-            style="@style/MediumFont.12"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_id"
+                style="@style/MediumFont.12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="23dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                android:text="@string/login_id"
+                android:textColor="@color/text_gray" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_id"
+                style="@style/MediumFont.12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="42dp"
+                android:background="@android:color/transparent"
+                android:paddingStart="23dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                android:text="@={vm.id}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="23dp"
             android:layout_marginEnd="23dp"
             android:layout_marginBottom="35dp"
-            android:background="@drawable/bg_solid_white_radius_25"
-            android:hint="@string/login_pw"
-            android:paddingStart="23dp"
-            android:paddingTop="18dp"
-            android:paddingBottom="18dp"
-            android:text="@={vm.pw}"
-            android:textColorHint="@color/text_gray" />
+            android:background="@drawable/bg_solid_white_radius_25">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_password"
+                style="@style/MediumFont.12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="23dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                android:text="@string/login_pw"
+                android:textColor="@color/text_gray" />
+            <!--
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:passwordToggleEnabled="true">-->
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_password"
+                style="@style/MediumFont.12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:background="@android:color/transparent"
+                android:inputType="textPassword"
+                android:paddingStart="23dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                android:text="@={vm.pw}" />
+
+            <!--        </com.google.android.material.textfield.TextInputLayout>-->
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
@@ -85,9 +128,9 @@
             android:layout_marginEnd="23dp"
             android:layout_marginBottom="23dp"
             android:background="@drawable/bg_solid_gray_radius_25"
+            android:backgroundTint="@{vm.isFilledAllOptions ? @color/skyBlue : @color/gray}"
             android:stateListAnimator="@null"
             android:text="@string/login_title"
-            android:backgroundTint="@{vm.isFilledAllOptions ? @color/skyBlue : @color/gray}"
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatTextView
