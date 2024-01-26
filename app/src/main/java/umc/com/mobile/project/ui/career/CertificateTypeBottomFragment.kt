@@ -42,11 +42,13 @@ class CertificateTypeBottomFragment (context: Context) : BottomSheetDialogFragme
         numberPicker.displayedValues = stringArray
         numberPicker.wrapSelectorWheel = false
 
-        _binding!!.ivCertificateTypeBottomClose.setOnClickListener {
+        _binding!!.npCertificateTypeBottomNumberPicker.setOnClickListener {
             val selectedType = types[numberPicker.value]
             sharedViewModel.updateCertificateType(selectedType)
             dialog!!.dismiss()
-            dialog!!.cancel()
+        }
+        _binding!!.ivCertificateTypeBottomClose.setOnClickListener {
+            dialog!!.dismiss()
         }
         return binding.root
     }

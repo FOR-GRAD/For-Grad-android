@@ -37,11 +37,13 @@ class CategoryBottomFragment(context: Context, private val viewModel: CareerEdit
         numberPicker.displayedValues = stringArray
         numberPicker.wrapSelectorWheel = false
 
-        _binding!!.ivCategoryBottomClose.setOnClickListener {
+        _binding!!.npCategoryBottomNumberPicker.setOnClickListener {
             val selectedCategory = categories[numberPicker.value]
             viewModel.updateSelectedCategory(selectedCategory)
             dialog!!.dismiss()
-            dialog!!.cancel()
+        }
+        _binding!!.ivCategoryBottomClose.setOnClickListener {
+            dialog!!.dismiss()
         }
         return binding.root
     }

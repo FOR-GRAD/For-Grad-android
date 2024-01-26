@@ -33,7 +33,6 @@ class UploadBottomFragment (context: Context) : BottomSheetDialogFragment() {
 
         _binding!!.ivUploadBottomClose.setOnClickListener {
             dialog!!.dismiss()
-            dialog!!.cancel()
         }
         return binding.root
     }

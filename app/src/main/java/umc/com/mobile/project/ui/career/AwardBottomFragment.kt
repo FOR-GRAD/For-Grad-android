@@ -38,11 +38,13 @@ class AwardBottomFragment (context: Context) : BottomSheetDialogFragment() {
         numberPicker.displayedValues = stringArray
         numberPicker.wrapSelectorWheel = false
 
-        _binding!!.ivAwardBottomClose.setOnClickListener {
+        _binding!!.npAwardBottomNumberPicker.setOnClickListener {
             val selectedAward = awards[numberPicker.value]
             sharedViewModel.updateSelectedAward(selectedAward)
             dialog!!.dismiss()
-            dialog!!.cancel()
+        }
+        _binding!!.ivAwardBottomClose.setOnClickListener {
+            dialog!!.dismiss()
         }
         return binding.root
     }

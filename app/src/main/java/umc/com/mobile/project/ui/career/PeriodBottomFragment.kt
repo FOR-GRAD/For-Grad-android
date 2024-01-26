@@ -57,13 +57,22 @@ class PeriodBottomFragment (context: Context, private val viewModel: CareerEditV
         numberPicker_day.displayedValues = day
         numberPicker_day.wrapSelectorWheel = false
 
-        _binding!!.ivPeriodBottomClose.setOnClickListener {
+        _binding!!.npPeriodBottomYear.setOnClickListener {
             val selectedYear = years[numberPicker_year.value]
             viewModel.updateSelectedYear(selectedYear, isStartDate)
+            dialog!!.dismiss()
+        }
+        _binding!!.npPeriodBottomMonth.setOnClickListener {
             val selectedMonth = months[numberPicker_month.value]
             viewModel.updateSelectedMonth(selectedMonth, isStartDate)
+            dialog!!.dismiss()
+        }
+        _binding!!.npPeriodBottomDay.setOnClickListener {
             val selectedDay = days[numberPicker_day.value]
             viewModel.updateSelectedDay(selectedDay, isStartDate)
+            dialog!!.dismiss()
+        }
+        _binding!!.ivPeriodBottomClose.setOnClickListener {
             dialog!!.dismiss()
         }
         return binding.root
