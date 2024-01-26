@@ -29,10 +29,8 @@ class GradInfoFragment : Fragment() {
 		_binding = FragmentGradInfoBinding.inflate(inflater, container, false)
 
 		initTabLayout()
+		viewModel.getGradRequirementsInfo() // 사용자 졸업요건 조회
 
-		viewModel.text.observe(viewLifecycleOwner) {
-//			binding.text.text = it
-		}
 		return binding.root
 	}
 

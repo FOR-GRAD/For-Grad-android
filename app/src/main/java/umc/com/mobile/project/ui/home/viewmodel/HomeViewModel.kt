@@ -22,7 +22,7 @@ class HomeViewModel : ViewModel() {
 	val error: LiveData<String>
 		get() = _error
 
-	fun fetchUserInfo() {
+	fun getUserInfo() {
 		userInfoApiService.getUserInfo().enqueue(object : Callback<UserResponse> {
 			override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
 				if (response.isSuccessful) {

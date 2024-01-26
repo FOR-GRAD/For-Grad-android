@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
 
 		navigateFragment() // 페이지 이동
 		saveCheeringMemo() // 응원의 한마디 연결
-		viewModel.fetchUserInfo() // 홈 화면 정보 조회 api
+		viewModel.getUserInfo() // 홈 화면 정보 조회 api
 
 		return binding.root
 	}
