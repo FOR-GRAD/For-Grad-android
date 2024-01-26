@@ -1,6 +1,9 @@
 package umc.com.mobile.project.ui.login.viewmodel
 
+import android.content.Intent
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +12,7 @@ import okhttp3.Headers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import umc.com.mobile.project.MainActivity
 import umc.com.mobile.project.data.model.login.LoginResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.LoginApi
@@ -26,6 +30,18 @@ class LoginViewModel : ViewModel() {
 		addSource(pw) { value = isBothFieldsFilled() }
 	}
 
+	// 로그인 결과 LiveData
+	private val _loginResult: MutableLiveData<LoginResponse> = MutableLiveData()
+	val loginResult: LiveData<LoginResponse>
+		get() = _loginResult
+
+	private val loginApiService = ApiClient.createService<LoginApi>()
+
+	// 로그인 실패 시 textView 띄우기
+	private val _loginStatus: MutableLiveData<Boolean> = MutableLiveData()
+	val loginStatus: LiveData<Boolean>
+		get() = _loginStatus
+
 	private fun isBothFieldsFilled(): Boolean {
 		return !id.value.isNullOrEmpty() && !pw.value.isNullOrEmpty()
 	}
@@ -33,14 +49,8 @@ class LoginViewModel : ViewModel() {
 	fun init() {
 		id.postValue("")
 		pw.postValue("")
+		_loginStatus.postValue(false)
 	}
-
-	// 로그인 결과 LiveData
-	private val _loginResult: MutableLiveData<LoginResponse> = MutableLiveData()
-	val loginResult: LiveData<LoginResponse>
-		get() = _loginResult
-
-	private val loginApiService = ApiClient.createService<LoginApi>()
 
 	fun login() {
 		loginApiService.login(id.value.orEmpty(), pw.value.orEmpty()).enqueue(object : Callback<LoginResponse> {
@@ -55,6 +65,8 @@ class LoginViewModel : ViewModel() {
 					}
 
 					_loginResult.postValue(response.body())
+					_loginStatus.postValue(true)
+
 					Log.d("Login", "${response.body()}")
 				} else {
 					_loginResult.postValue(
@@ -65,13 +77,8 @@ class LoginViewModel : ViewModel() {
 							result = null
 						)
 					)
-					try {
-						throw response.errorBody()?.string()?.let {
-							RuntimeException(it)
-						} ?: RuntimeException("Unknown error")
-					} catch (e: Exception) {
-						Log.e("Login", "API 오류: ${e.message}")
-					}
+					_loginStatus.postValue(false)
+					Log.e("Login", "$loginResult")
 				}
 			}
 
@@ -84,11 +91,8 @@ class LoginViewModel : ViewModel() {
 						result = null
 					)
 				)
+				_loginStatus.postValue(false)
 			}
 		})
-	}
-
-	private fun extractJSessionIdFromHeaders(headers: Headers): String? {
-		return headers["Set-Cookie"]?.split(";")?.find { it.contains("JSESSIONID") }?.substringAfter("JSESSIONID=")
 	}
 }
