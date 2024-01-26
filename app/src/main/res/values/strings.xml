@@ -17,9 +17,9 @@
     <!-- 유진 -->
     <!--졸업 예정일-->
     <string name="board_grad_date_date">졸업 예정일 2026년 2월</string>
-    <string name="board_grad_date_today">현재 2024년 1월 4일</string>
+    <string name="board_grad_date_today">오늘 날짜</string>
     <string name="board_grad_date_dday">D - 650</string>
-    <string name="board_grad_date_memo">응원의 한마디를 채워보세요</string>
+    <string name="board_grad_date_memo">나에게 보내는 응원의 한마디 작성하기\n작성한 한마디는 홈 화면에 나타나게 됩니다!</string>
     <string name="board_grad_date_edit">수정하기</string>
     <!--커리어 메인-->
     <string name="career_description">지금까지 내가 채워온 커리어를 확인하고\n더 추가하는 공간입니다</string>
@@ -29,6 +29,11 @@
     <string name="career_contest_title">공모전</string>
     <string name="career_volunteer_title">봉사활동</string>
     <string name="career_activity_title">교외활동</string>
+    <!--비교과 포인트-->
+    <string name="career_point_this_semester">이번학기\n취득</string>
+    <string name="career_point_last_semester">지난학기\n취득</string>
+    <string name="career_cumulative_point">전체 누적</string>
+    <string name="career_recognition_graduation">졸업 인정</string>
     <!--커리어 더하기-->
     <string name="career_edit_title">커리어 더하기</string>
     <string name="career_edit_activity">활동</string>
@@ -47,14 +52,16 @@
     <string name="upload_bottom_day">일</string>
 
     <!-- 규민 -->
-    <!-- HomeFragment -->
+    <!-- Home -->
     <string name="home_to_grad">졸업까지</string>
     <string name="home_grad_condition_title">
         내 전공의 졸업요건 \n한눈에 알아보기</string>
     <string name="home_etc">더보기</string>
     <string name="home_next_plan_title">나만의 \n다음 계획</string>
+    <string name="home_grad_info">졸업 요건</string>
+    <string name="home_track">트랙</string>
 
-    <!-- LoginActivity -->
+    <!-- Login -->
     <string name="login_title">로그인</string>
     <string name="login_content_id_pw">ID/PW는 학교 서버에 접속할 때만 사용합니다. \n어떠한 데이터도 수집하지 않습니다.</string>
     <string name="login_pw">비밀번호 (PW)</string>
@@ -62,12 +69,20 @@
     <string name="login_content">종합정보시스템의 ID/PW를 입력하세요.</string>
     <string name="login_hansung">HANSUNG UNIV</string>
 
-    <!-- GradInfoFragment-->
+    <!-- Setting -->
+    <string name="title_setting_notification">알림 설정</string>
+
+    <!-- GradInfo -->
     <string-array name="spinner_schedule">
         <item>시간표 불러오기</item>
         <item>1학년 1학기</item>
         <item>1학년 2학기</item>
         <item>2학년 1학기</item>
     </string-array>
+    <string name="grade_each_semester_title">이수 성적</string>
+    <string name="grade_each_semester_sub_title">각 학기 버튼을 눌러 확인해보세요</string>
+    <string name="grade_subject">과목명</string>
+    <string name="grade_major">전공</string>
+    <string name="grade_grade">학점</string>
 
 </resources>
