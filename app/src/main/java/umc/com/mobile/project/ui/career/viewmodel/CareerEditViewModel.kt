@@ -16,6 +16,7 @@ class CareerEditViewModel : ViewModel() {
     init {
         category.value = ""
         selectedCategory.value = ""
+        selectedStartYear.value = ""
         selectedEndYear.value = ""
         selectedStartMonth.value = ""
         selectedEndMonth.value = ""
@@ -25,6 +26,7 @@ class CareerEditViewModel : ViewModel() {
     fun init() {
         category.value = ""
         selectedCategory.value = ""
+        selectedStartYear.value = ""
         selectedEndYear.value = ""
         selectedStartMonth.value = ""
         selectedEndMonth.value = ""

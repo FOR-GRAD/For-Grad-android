@@ -55,10 +55,6 @@ class CareerEditFragment : Fragment() {
         for (fragment in childFragmentManager.fragments) {
             fragmentTransaction.remove(fragment)
         }
-/*        val existingFragment = childFragmentManager.findFragmentById(R.id.constraintLayout_career_edit)
-        if (existingFragment != null) {
-            fragmentTransaction.remove(existingFragment)
-        }*/
 
         when (selectedCategory) {
             "자격증" -> fragmentTransaction.replace(
