@@ -27,16 +27,19 @@ class LoginActivity : AppCompatActivity() {
 
 		binding.btnLogin.setOnClickListener {
 			viewModel.login()
+
+			val intent = Intent(this@LoginActivity, MainActivity::class.java)
+			startActivity(intent)
 		}
 
-		viewModel.loginStatus.observe(this, Observer {
+		/*viewModel.loginStatus.observe(this, Observer {
 			if (it == true) {
 				val intent = Intent(this@LoginActivity, MainActivity::class.java)
 				startActivity(intent)
 
 				finish()
 			}
-		})
+		})*/
 	}
 
 }
