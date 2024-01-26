@@ -5,47 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
-        style="@style/SemiBoldFont.10"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/bg_stroke_blue_radius_16_5"
-        android:minHeight="0dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:text="한성대학교"
-        android:textColor="@color/skyBlue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.SearchView
-        style="@style/MediumFont.10"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="17dp"
-        android:background="@drawable/bg_stroke_gray_radius_16_5"
-        app:iconifiedByDefault="false"
-        app:layout_constraintBottom_toBottomOf="@+id/appCompatButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/appCompatButton"
-        app:layout_constraintTop_toTopOf="@+id/appCompatButton"
-        app:queryHint="트랙의 이름을 작성하세요"
-        app:searchIcon="@drawable/ic_grad_info_search_16" />
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_grad_condition_title"
         style="@style/BoldFont.20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="공통 졸업요건"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/appCompatButton"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButton" />
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="19dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

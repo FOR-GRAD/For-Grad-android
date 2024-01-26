@@ -14,13 +14,69 @@ import umc.com.mobile.project.data.network.api.HomeApi
 class HomeViewModel : ViewModel() {
 	private val userInfoApiService = ApiClient.createService<HomeApi>()
 
-	private val _userInfo: MutableLiveData<UserResponse?> = MutableLiveData()
-	val userInfo: MutableLiveData<UserResponse?>
-		get() = _userInfo
+	private val _userInfoResponse: MutableLiveData<UserResponse?> = MutableLiveData()
+	val userInfoResponse: MutableLiveData<UserResponse?>
+		get() = _userInfoResponse
 
 	private val _error: MutableLiveData<String> = MutableLiveData()
 	val error: LiveData<String>
 		get() = _error
+
+	private val _userName: MutableLiveData<String> = MutableLiveData()
+	val userName: LiveData<String>
+		get() = _userName
+
+	private val _userId: MutableLiveData<String> = MutableLiveData()
+	val userId: LiveData<String>
+		get() = _userId
+
+	private val _userDepart: MutableLiveData<String> = MutableLiveData()
+	val userDepart: LiveData<String>
+		get() = _userDepart
+
+	private val _userGrade: MutableLiveData<String> = MutableLiveData()
+	val userGrade: LiveData<String>
+		get() = _userGrade
+
+	private val _userStatus: MutableLiveData<String> = MutableLiveData()
+	val userStatus: LiveData<String>
+		get() = _userStatus
+
+	private val _cheeringMemo: MutableLiveData<String> = MutableLiveData()
+	val cheeringMemo: LiveData<String>
+		get() = _cheeringMemo
+
+	private val _track1Name: MutableLiveData<String> = MutableLiveData()
+	val track1Name: LiveData<String>
+		get() = _track1Name
+
+
+	private val _track2Name: MutableLiveData<String> = MutableLiveData()
+	val track2Name: LiveData<String>
+		get() = _track2Name
+
+
+	private val _track1Requirements: MutableLiveData<String> = MutableLiveData()
+	val track1Requirements: LiveData<String>
+		get() = _track1Requirements
+
+
+	private val _track2Requirements: MutableLiveData<String> = MutableLiveData()
+	val track2Requirements: LiveData<String>
+		get() = _track2Requirements
+
+	fun init(value: UserResponse) {
+		_userName.postValue(value.result.name)
+		_userId.postValue(value.result.id.toString())
+		_userDepart.postValue(value.result.department)
+		_userGrade.postValue(value.result.grade)
+		_userStatus.postValue(value.result.status)
+		_cheeringMemo.postValue(value.result.message)
+		_track1Name.postValue(value.result.track1)
+		_track2Name.postValue(value.result.track2)
+		_track1Requirements.postValue(value.result.trackRequirement1)
+		_track2Requirements.postValue(value.result.trackRequirement1)
+	}
 
 	fun getUserInfo() {
 		userInfoApiService.getUserInfo().enqueue(object : Callback<UserResponse> {
@@ -28,7 +84,7 @@ class HomeViewModel : ViewModel() {
 				if (response.isSuccessful) {
 					val userResponse = response.body()
 					if (userResponse != null) {
-						_userInfo.postValue(userResponse)
+						userInfoResponse.postValue(userResponse)
 						Log.d("home", "${response.body()}")
 					} else {
 						_error.postValue("서버 응답이 올바르지 않습니다.")
