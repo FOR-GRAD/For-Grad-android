@@ -29,6 +29,7 @@ class HomeViewModel : ViewModel() {
 					val userResponse = response.body()
 					if (userResponse != null) {
 						_userInfo.postValue(userResponse)
+						Log.d("home", "${response.body()}")
 					} else {
 						_error.postValue("서버 응답이 올바르지 않습니다.")
 					}

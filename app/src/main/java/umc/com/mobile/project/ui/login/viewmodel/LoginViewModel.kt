@@ -12,6 +12,7 @@ import retrofit2.Response
 import umc.com.mobile.project.data.model.login.LoginResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.LoginApi
+import java.net.HttpCookie
 
 class LoginViewModel : ViewModel() {
 	/**
@@ -45,13 +46,12 @@ class LoginViewModel : ViewModel() {
 		loginApiService.login(id.value.orEmpty(), pw.value.orEmpty()).enqueue(object : Callback<LoginResponse> {
 			override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
 				if (response.isSuccessful) {
-					// 성공적으로 로그인이 되었을 때
-					val jSessionId = extractJSessionIdFromHeaders(response.headers())
+					// 성공적으로 로그인이 되었을 때 쿠키 값 추출
+					val cookies = response.headers().values("Set-Cookie")
 
-					if (jSessionId != null) {
-						ApiClient.addJSessionIdCookie(jSessionId)
-					} else {
-						Log.e("Login", "API 오류: JSESSIONID가 없습니다.")
+					// 쿠키 값을 CookieJar에 저장
+					cookies.forEach { cookie ->
+						ApiClient.cookieManager.cookieStore.add(null, HttpCookie.parse(cookie).first())
 					}
 
 					_loginResult.postValue(response.body())

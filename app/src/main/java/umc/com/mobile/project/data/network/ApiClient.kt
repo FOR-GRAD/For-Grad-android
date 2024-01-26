@@ -11,7 +11,7 @@ import java.net.HttpCookie
 object ApiClient {
 	private const val BASE_URL = "http://52.79.167.79:8080/"
 //	private const val BASE_URL = BuildConfig.BASE_URL
-	private val cookieManager = CookieManager()
+val cookieManager = CookieManager()
 
 	private var builder = OkHttpClient().newBuilder()
 	private var okHttpClient = builder
@@ -28,11 +28,5 @@ object ApiClient {
 
 	internal inline fun <reified T> createService(): T {
 		return retrofit.create(T::class.java)
-	}
-
-	internal fun addJSessionIdCookie(jSessionId: String) {
-		val cookie = "JSESSIONID=$jSessionId"
-		Log.d("cookie", jSessionId)
-		cookieManager.cookieStore.add(null, HttpCookie.parse(cookie)[0])
 	}
 }
