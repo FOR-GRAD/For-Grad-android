@@ -29,10 +29,10 @@ class GradInfoFragment : Fragment() {
 		_binding = FragmentGradInfoBinding.inflate(inflater, container, false)
 
 		initTabLayout()
+		viewModel.getGradRequirementsInfo() // 사용자 졸업 요건 조회 api
+		viewModel.getGradeInfo() // 사용자 성적 사항 조회 api
+		viewModel.getCompletionInfo() // 사용자 개인별 이수 현황 조회 api
 
-		viewModel.text.observe(viewLifecycleOwner) {
-//			binding.text.text = it
-		}
 		return binding.root
 	}
 
