@@ -21,9 +21,6 @@ class GradConditionFragment : Fragment() {
 	): View {
 		_binding = FragmentGradConditionBinding.inflate(inflater, container, false)
 
-		viewModel.text.observe(viewLifecycleOwner) {
-//			binding.text.text = it
-		}
 		return binding.root
 	}
 
