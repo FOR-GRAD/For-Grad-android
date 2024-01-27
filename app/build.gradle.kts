@@ -79,4 +79,7 @@ dependencies {
 
 	// cookie
 	implementation ("com.squareup.okhttp3:okhttp-urlconnection:4.9.1")
+
+	//Paging 라이브러리
+	implementation ("androidx.paging:paging-runtime-ktx:3.1.0")
 }
