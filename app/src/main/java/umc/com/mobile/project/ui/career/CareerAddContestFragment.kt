@@ -2,27 +2,23 @@ package umc.com.mobile.project.ui.career
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.text.Editable
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
-import umc.com.mobile.project.databinding.FragmentCareerEditContestBinding
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditContestViewModel
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
+import umc.com.mobile.project.databinding.FragmentCareerAddContestBinding
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddContestViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
-class CareerEditContestFragment : Fragment() {
-    private var _binding: FragmentCareerEditContestBinding? = null
-    private val viewModel: CareerEditContestViewModel by activityViewModels()
-    private val sharedViewModel: CareerEditViewModel by activityViewModels()
+class CareerAddContestFragment : Fragment() {
+    private var _binding: FragmentCareerAddContestBinding? = null
+    private val viewModel: CareerAddContestViewModel by activityViewModels()
+    private val sharedViewModel: CareerAddViewModel by activityViewModels()
     private lateinit var mContext: Context
     private val binding get() = _binding!!
     private var award: String? = null
@@ -38,28 +34,28 @@ class CareerEditContestFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCareerEditContestBinding.inflate(inflater, container, false)
+        _binding = FragmentCareerAddContestBinding.inflate(inflater, container, false)
         binding.vm = viewModel
         binding.lifecycleOwner = this
         mContext = requireContext()
 
-        _binding!!.etCareerEditContestStartYear.setOnClickListener {
+        _binding!!.etCareerAddContestStartYear.setOnClickListener {
             val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, true)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.etCareerEditContestEndYear.setOnClickListener {
+        _binding!!.etCareerAddContestEndYear.setOnClickListener {
             val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, false)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.etCareerEditContestAward.setOnClickListener {
+        _binding!!.etCareerAddContestAward.setOnClickListener {
             val bottomSheet = AwardBottomFragment(mContext)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.btnCareerEditAdd.setOnClickListener {
-            navigate(R.id.action_fragment_career_edit_to_fragment_career_confirm)
+        _binding!!.btnCareerAdd.setOnClickListener {
+            navigate(R.id.action_fragment_career_add_to_fragment_career_confirm)
         }
         return binding.root
     }
@@ -68,7 +64,7 @@ class CareerEditContestFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init()
         viewModel.selectedAward.observe(viewLifecycleOwner) { selectedAward ->
-            binding.etCareerEditContestAward.text = Editable.Factory.getInstance().newEditable(selectedAward)
+            binding.etCareerAddContestAward.text = Editable.Factory.getInstance().newEditable(selectedAward)
         }
         sharedViewModel.selectedStartYear.observe(viewLifecycleOwner) { year ->
             startYear = year
@@ -100,11 +96,11 @@ class CareerEditContestFragment : Fragment() {
     }
     private fun updateStartDateEditText() {
         val formattedDate = buildFormattedDate(startYear, startMonth, startDay)
-        binding.etCareerEditContestStartYear.text = Editable.Factory.getInstance().newEditable(formattedDate)
+        binding.etCareerAddContestStartYear.text = Editable.Factory.getInstance().newEditable(formattedDate)
     }
     private fun updateEndDateEditText() {
         val formattedDate = buildFormattedDate(endYear, endMonth, endDay)
-        binding.etCareerEditContestEndYear.text = Editable.Factory.getInstance().newEditable(formattedDate)
+        binding.etCareerAddContestEndYear.text = Editable.Factory.getInstance().newEditable(formattedDate)
     }
     override fun onDestroyView() {
         super.onDestroyView()

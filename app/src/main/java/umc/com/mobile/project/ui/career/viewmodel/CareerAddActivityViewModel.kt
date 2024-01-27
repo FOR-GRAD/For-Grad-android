@@ -1,33 +1,25 @@
 package umc.com.mobile.project.ui.career.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CareerEditContestViewModel : ViewModel() {
+class CareerAddActivityViewModel : ViewModel() {
     val title: MutableLiveData<String> = MutableLiveData()
-    val selectedAward: MutableLiveData<String> = MutableLiveData()
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
 
     init {
-        title.value=""
-        selectedAward.value=""
-        startDate.value=""
-        endDate.value=""
+        title.value = ""
+        startDate.value = ""
+        endDate.value = ""
     }
 
     fun init() {
-        title.value=""
-        selectedAward.value=""
-        startDate.value=""
-        endDate.value=""
-    }
-
-    fun updateSelectedAward(award: String) {
-        selectedAward.value = award
+        title.value = ""
+        startDate.value = ""
+        endDate.value = ""
     }
 
     /* 버튼 활성화 기능 */

@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.NumberPicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentPeriodBottomBinding
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 
-class PeriodBottomFragment (context: Context, private val viewModel: CareerEditViewModel, private val isStartDate: Boolean) : BottomSheetDialogFragment() {
+class PeriodBottomFragment (context: Context, private val viewModel: CareerAddViewModel, private val isStartDate: Boolean) : BottomSheetDialogFragment() {
     private var _binding: FragmentPeriodBottomBinding? = null
     private val binding get() = _binding!!
 

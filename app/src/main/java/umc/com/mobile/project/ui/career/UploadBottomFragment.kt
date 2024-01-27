@@ -8,15 +8,14 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentUploadBottomBinding
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 
 class UploadBottomFragment (context: Context) : BottomSheetDialogFragment() {
     private var _binding: FragmentUploadBottomBinding? = null
-    private val viewModel: CareerEditViewModel by viewModels()
+    private val viewModel: CareerAddViewModel by viewModels()
     private val binding get() = _binding!!
     private val GALLERY = 1
 

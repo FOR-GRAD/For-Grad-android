@@ -1,25 +1,20 @@
 package umc.com.mobile.project.ui.career
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import umc.com.mobile.project.R
-import umc.com.mobile.project.databinding.FragmentAwardBottomBinding
 import umc.com.mobile.project.databinding.FragmentCertificateTypeBottomBinding
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditCertificateViewModel
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditContestViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddCertificateViewModel
 
 class CertificateTypeBottomFragment (context: Context) : BottomSheetDialogFragment() {
     private var _binding: FragmentCertificateTypeBottomBinding? = null
     private val binding get() = _binding!!
-    private val sharedViewModel: CareerEditCertificateViewModel by activityViewModels()
+    private val sharedViewModel: CareerAddCertificateViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

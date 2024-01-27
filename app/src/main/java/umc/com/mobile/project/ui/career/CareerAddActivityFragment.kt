@@ -11,15 +11,15 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
-import umc.com.mobile.project.databinding.FragmentCareerEditVolunteerBinding
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditVolunteerViewModel
+import umc.com.mobile.project.databinding.FragmentCareerAddActivityBinding
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddActivityViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
-class CareerEditVolunteerFragment : Fragment() {
-    private var _binding: FragmentCareerEditVolunteerBinding? = null
-    private val viewModel: CareerEditVolunteerViewModel by viewModels()
-    private val sharedViewModel: CareerEditViewModel by activityViewModels()
+class CareerAddActivityFragment : Fragment() {
+    private var _binding: FragmentCareerAddActivityBinding? = null
+    private val viewModel: CareerAddActivityViewModel by viewModels()
+    private val sharedViewModel: CareerAddViewModel by activityViewModels()
     private lateinit var mContext: Context
     private val binding get() = _binding!!
     private var startYear: String? = null
@@ -34,23 +34,28 @@ class CareerEditVolunteerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCareerEditVolunteerBinding.inflate(inflater, container, false)
+        _binding = FragmentCareerAddActivityBinding.inflate(inflater, container, false)
         binding.vm = viewModel
         binding.lifecycleOwner = this
         mContext = requireContext()
 
-        _binding!!.etCareerEditVolunteerStartYear.setOnClickListener {
+        _binding!!.etCareerAddActivityStartDate.setOnClickListener {
             val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, true)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.etCareerEditVolunteerEndYear.setOnClickListener {
+        _binding!!.etCareerAddActivityEndDate.setOnClickListener {
             val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, false)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.btnCareerEditAdd.setOnClickListener {
-            navigate(R.id.action_fragment_career_edit_to_fragment_career_confirm)
+        _binding!!.etCareerAddActivityFile.setOnClickListener {
+            val bottomSheet = UploadBottomFragment(mContext)
+            bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
+            bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
+        }
+        _binding!!.btnCareerAdd.setOnClickListener {
+            navigate(R.id.action_fragment_career_add_to_fragment_career_confirm)
         }
         return binding.root
     }
@@ -87,11 +92,11 @@ class CareerEditVolunteerFragment : Fragment() {
     }
     private fun updateStartDateEditText() {
         val formattedDate = buildFormattedDate(startYear, startMonth, startDay)
-        binding.etCareerEditVolunteerStartYear.text = Editable.Factory.getInstance().newEditable(formattedDate)
+        binding.etCareerAddActivityStartDate.text = Editable.Factory.getInstance().newEditable(formattedDate)
     }
     private fun updateEndDateEditText() {
         val formattedDate = buildFormattedDate(endYear, endMonth, endDay)
-        binding.etCareerEditVolunteerEndYear.text = Editable.Factory.getInstance().newEditable(formattedDate)
+        binding.etCareerAddActivityEndDate.text = Editable.Factory.getInstance().newEditable(formattedDate)
     }
     override fun onDestroyView() {
         super.onDestroyView()

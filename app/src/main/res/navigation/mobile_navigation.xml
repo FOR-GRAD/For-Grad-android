@@ -40,8 +40,8 @@
         android:label="@string/title_career"
         tools:layout="@layout/fragment_career">
         <action
-            android:id="@+id/action_fragment_career_to_fragment_career_edit"
-            app:destination="@id/fragment_career_edit"/>
+            android:id="@+id/action_fragment_career_to_fragment_career_add"
+            app:destination="@id/fragment_career_add"/>
         <action
             android:id="@+id/action_fragment_career_to_fragment_nonsubject"
             app:destination="@+id/fragment_career_nonsubject"/>
@@ -60,15 +60,15 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragment_career_edit"
-        android:name="umc.com.mobile.project.ui.career.CareerEditFragment"
+        android:id="@+id/fragment_career_add"
+        android:name="umc.com.mobile.project.ui.career.CareerAddFragment"
         android:label="@string/career_add"
-        tools:layout="@layout/fragment_career_edit">
+        tools:layout="@layout/fragment_career_add">
         <action
-            android:id="@+id/action_fragment_career_edit_to_fragment_career"
+            android:id="@+id/action_fragment_career_add_to_fragment_career"
             app:destination="@+id/fragment_career"/>
         <action
-            android:id="@+id/action_fragment_career_edit_to_fragment_career_confirm"
+            android:id="@+id/action_fragment_career_add_to_fragment_career_confirm"
             app:destination="@+id/fragment_career_confirm"/>
     </fragment>
 
