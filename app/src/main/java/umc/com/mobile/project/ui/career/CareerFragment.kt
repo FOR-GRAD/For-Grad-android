@@ -26,6 +26,9 @@ class CareerFragment : Fragment() {
 		_binding!!.tvCareerAdd.setOnClickListener {
 			navigate(R.id.action_fragment_career_to_fragment_career_edit)
 		}
+		_binding!!.etCareerUpperPointBox.setOnClickListener {
+			navigate(R.id.action_fragment_career_to_fragment_nonsubject)
+		}
 		_binding!!.tvCareerCertificate.setOnClickListener {
 			navigate(R.id.action_fragment_career_to_fragment_certificate)
 		}
