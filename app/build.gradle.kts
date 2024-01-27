@@ -77,6 +77,9 @@ dependencies {
 	// Scalars 변환기 라이브러리
 	implementation ("com.squareup.retrofit2:converter-scalars:2.6.4")
 
+	// cookie
+	implementation ("com.squareup.okhttp3:okhttp-urlconnection:4.9.1")
+
 	//Paging 라이브러리
 	implementation ("androidx.paging:paging-runtime-ktx:3.1.0")
 }
