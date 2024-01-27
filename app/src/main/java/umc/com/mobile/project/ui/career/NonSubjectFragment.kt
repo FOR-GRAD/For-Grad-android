@@ -5,16 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerNonsubjectBinding
 import umc.com.mobile.project.ui.career.adapter.NonSubjectRVAdapter
 import umc.com.mobile.project.ui.career.data.CertificateDto
+import umc.com.mobile.project.ui.career.viewmodel.NonSubjectViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class NonSubjectFragment : Fragment() {
     private var _binding: FragmentCareerNonsubjectBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: NonSubjectViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,13 +32,17 @@ class NonSubjectFragment : Fragment() {
             CertificateDto("2022-02-15", "자격증4", "필기", "1급"),
             CertificateDto("2022-03-30", "자격증5", "실기", "1급")
         )
-        val adapter = NonSubjectRVAdapter(certificates)
+        val adapter = NonSubjectRVAdapter()
         binding.rvCareerNonsubjectList.adapter = adapter
         binding.rvCareerNonsubjectList.layoutManager = LinearLayoutManager(requireContext())
 
         _binding!!.ivCareerNonsubjectBack.setOnClickListener {
             navigate(R.id.action_fragment_nonsubject_to_fragment_career)
         }
+
+        viewModel.certificates.observe(viewLifecycleOwner, { pagingData ->
+            adapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
+        })
         return binding.root
     }
 

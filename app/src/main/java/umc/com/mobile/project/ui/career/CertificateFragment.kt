@@ -32,13 +32,16 @@ class CertificateFragment : Fragment() {
             CertificateDto("2022-02-15", "자격증4", "필기", "1급"),
             CertificateDto("2022-03-30", "자격증5", "실기", "1급")
         )
-        val adapter = CertificateRVAdapter(certificates)
+        val adapter = CertificateRVAdapter()
         binding.rvCareerCertificateList.adapter = adapter
         binding.rvCareerCertificateList.layoutManager = LinearLayoutManager(requireContext())
 
         _binding!!.ivCareerCertificateBack.setOnClickListener {
             navigate(R.id.action_fragment_certificate_to_fragment_career)
         }
+        viewModel.certificates.observe(viewLifecycleOwner, { pagingData ->
+            adapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
+        })
         return binding.root
     }
 

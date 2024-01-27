@@ -9,7 +9,7 @@ import androidx.paging.liveData
 import umc.com.mobile.project.ui.career.data.CertificateDto
 import umc.com.mobile.project.ui.career.data.NonSubjectPagingSource
 
-class CertificateViewModel : ViewModel() {
+class NonSubjectViewModel : ViewModel() {
     private val pagingConfig = PagingConfig(
         pageSize = 20,               // Number of items to load in each page
         enablePlaceholders = false,  // Whether placeholders should be enabled (false since you don't use placeholders)
