@@ -27,7 +27,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_career_certificate"
+                    android:id="@+id/iv_career_nonsubject"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="59dp"
@@ -38,17 +38,17 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_career_certificate_back"
+                    android:id="@+id/iv_career_nonsubject_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="21dp"
                     android:src="@drawable/ic_back_arrow"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/iv_career_certificate" />
+                    app:layout_constraintTop_toTopOf="@+id/iv_career_nonsubject" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_career_certificate_title"
+                    android:id="@+id/tv_career_nonsubject_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
@@ -58,7 +58,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_career_certificate" />
+                    app:layout_constraintTop_toBottomOf="@+id/iv_career_nonsubject" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -78,7 +78,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_career_extracurricular_title1"
+                        android:id="@+id/tv_career_nonsubject_title1"
                         style="@style/BoldFont.12"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -94,7 +94,7 @@
                         app:layout_constraintWidth_percent="0.25" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_career_extracurricular_title2"
+                        android:id="@+id/tv_career_nonsubject_title2"
                         style="@style/BoldFont.12"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -104,12 +104,12 @@
                         android:paddingTop="14dp"
                         android:paddingBottom="14dp"
                         android:text="@string/career_point_last_semester"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_career_extracurricular_title3"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_career_nonsubject_title3"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.25" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_career_extracurricular_title3"
+                        android:id="@+id/tv_career_nonsubject_title3"
                         style="@style/BoldFont.12"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -121,12 +121,12 @@
                         android:paddingTop="14dp"
                         android:paddingBottom="14dp"
                         android:text="@string/career_cumulative_point"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_career_extracurricular_title4"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_career_nonsubject_title4"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.25" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_career_extracurricular_title4"
+                        android:id="@+id/tv_career_nonsubject_title4"
                         style="@style/BoldFont.12"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/LinearLayout_title">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_career_extracurricular_content1"
+                        android:id="@+id/tv_career_nonsubject_content1"
                         style="@style/BoldFont.22"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -166,7 +166,7 @@
                         app:layout_constraintWidth_percent="0.25" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_career_extracurricular_content2"
+                        android:id="@+id/tv_career_nonsubject_content2"
                         style="@style/BoldFont.22"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -176,12 +176,12 @@
                         android:paddingTop="14dp"
                         android:paddingBottom="14dp"
                         android:text="00"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_career_extracurricular_content3"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_career_nonsubject_content3"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.25" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_career_extracurricular_content3"
+                        android:id="@+id/tv_career_nonsubject_content3"
                         style="@style/BoldFont.22"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -193,12 +193,12 @@
                         android:paddingTop="14dp"
                         android:paddingBottom="14dp"
                         android:text="520"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_career_extracurricular_content4"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_career_nonsubject_content4"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.25" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_career_extracurricular_content4"
+                        android:id="@+id/tv_career_nonsubject_content4"
                         style="@style/BoldFont.22"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -229,7 +229,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout_mid">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_career_extracurricularList"
+                    android:id="@+id/rv_career_nonsubjectList"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginStart="14dp"
