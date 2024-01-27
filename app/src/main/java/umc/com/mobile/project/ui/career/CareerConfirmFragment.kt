@@ -10,13 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerConfirmBinding
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class CareerConfirmFragment: Fragment() {
 	private var _binding: FragmentCareerConfirmBinding? = null
 	private val binding get() = _binding!!
-	private val viewModel: CareerEditViewModel by activityViewModels()
+	private val viewModel: CareerAddViewModel by activityViewModels()
 
 	override fun onCreateView(
 		inflater: LayoutInflater,

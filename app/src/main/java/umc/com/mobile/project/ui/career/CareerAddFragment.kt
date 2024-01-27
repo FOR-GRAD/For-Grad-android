@@ -10,13 +10,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import umc.com.mobile.project.R
-import umc.com.mobile.project.databinding.FragmentCareerEditBinding
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
+import umc.com.mobile.project.databinding.FragmentCareerAddBinding
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
-class CareerEditFragment : Fragment() {
-    private var _binding: FragmentCareerEditBinding? = null
-    private val viewModel: CareerEditViewModel by activityViewModels()
+class CareerAddFragment : Fragment() {
+    private var _binding: FragmentCareerAddBinding? = null
+    private val viewModel: CareerAddViewModel by activityViewModels()
     private lateinit var mContext: Context
     private val binding get() = _binding!!
 
@@ -25,13 +25,13 @@ class CareerEditFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCareerEditBinding.inflate(inflater, container, false)
+        _binding = FragmentCareerAddBinding.inflate(inflater, container, false)
         _binding!!.vm = viewModel
-        _binding!!.lifecycleOwner = this
+        _binding!!.lifecycleOwner = viewLifecycleOwner
         mContext = requireContext()
 
         _binding!!.ivCareerEditBack.setOnClickListener {
-            navigate(R.id.action_fragment_career_edit_to_fragment_career)
+            navigate(R.id.action_fragment_career_add_to_fragment_career)
         }
 
         _binding!!.etCareerEditSpinner.setOnClickListener {
@@ -40,9 +40,9 @@ class CareerEditFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
 
-        viewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
+/*        viewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
             replaceFragment(selectedCategory)
-        }
+        }*/
 
         return binding.root
     }
@@ -56,22 +56,28 @@ class CareerEditFragment : Fragment() {
         }
 
         when (selectedCategory) {
-            "자격증" -> fragmentTransaction.add(
+            "자격증" -> fragmentTransaction.replace(
                 R.id.constraintLayout_career_edit,
-                CareerEditCertificateFragment()
+                CareerAddCertificateFragment()
             )
             "봉사활동" -> fragmentTransaction.replace(
                 R.id.constraintLayout_career_edit,
-                CareerEditVolunteerFragment()
+                CareerAddVolunteerFragment()
             )
-            "공모전" -> fragmentTransaction.add(
+            "공모전" -> fragmentTransaction.replace(
                 R.id.constraintLayout_career_edit,
-                CareerEditContestFragment()
+                CareerAddContestFragment()
             )
             "교외활동" -> fragmentTransaction.replace(
                 R.id.constraintLayout_career_edit,
-                CareerEditActivityFragment()
+                CareerAddActivityFragment()
             )
+            else -> {
+                val existingFragment = childFragmentManager.findFragmentById(R.id.constraintLayout_career_edit)
+                if (existingFragment != null) {
+                    fragmentTransaction.remove(existingFragment)
+                }
+            }
         }
         fragmentTransaction.commit()
     }
@@ -80,6 +86,7 @@ class CareerEditFragment : Fragment() {
         viewModel.init()
         viewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
             binding.etCareerEditSpinner.text = Editable.Factory.getInstance().newEditable(selectedCategory)
+            replaceFragment(selectedCategory)
         }
     }
 

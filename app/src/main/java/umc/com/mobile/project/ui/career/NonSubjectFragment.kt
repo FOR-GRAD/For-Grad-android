@@ -8,23 +8,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
-import umc.com.mobile.project.databinding.FragmentCareerCertificateBinding
-import umc.com.mobile.project.ui.career.adapter.CertificateRVAdapter
+import umc.com.mobile.project.databinding.FragmentCareerNonsubjectBinding
+import umc.com.mobile.project.ui.career.adapter.NonSubjectRVAdapter
 import umc.com.mobile.project.ui.career.data.CertificateDto
-import umc.com.mobile.project.ui.career.viewmodel.CertificateViewModel
+import umc.com.mobile.project.ui.career.viewmodel.NonSubjectViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
-class CertificateFragment : Fragment() {
-    private var _binding: FragmentCareerCertificateBinding? = null
-    private val viewModel: CertificateViewModel by viewModels()
+class NonSubjectFragment : Fragment() {
+    private var _binding: FragmentCareerNonsubjectBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: NonSubjectViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCareerCertificateBinding.inflate(inflater, container, false)
+        _binding = FragmentCareerNonsubjectBinding.inflate(inflater, container, false)
         val certificates = arrayListOf(
             CertificateDto("2022-01-01", "자격증1", "필기", "1급"),
             CertificateDto("2022-02-15", "자격증2", "필기", "1급"),
@@ -32,13 +32,14 @@ class CertificateFragment : Fragment() {
             CertificateDto("2022-02-15", "자격증4", "필기", "1급"),
             CertificateDto("2022-03-30", "자격증5", "실기", "1급")
         )
-        val adapter = CertificateRVAdapter()
-        binding.rvCareerCertificateList.adapter = adapter
-        binding.rvCareerCertificateList.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = NonSubjectRVAdapter()
+        binding.rvCareerNonsubjectList.adapter = adapter
+        binding.rvCareerNonsubjectList.layoutManager = LinearLayoutManager(requireContext())
 
-        _binding!!.ivCareerCertificateBack.setOnClickListener {
-            navigate(R.id.action_fragment_certificate_to_fragment_career)
+        _binding!!.ivCareerNonsubjectBack.setOnClickListener {
+            navigate(R.id.action_fragment_nonsubject_to_fragment_career)
         }
+
         viewModel.certificates.observe(viewLifecycleOwner, { pagingData ->
             adapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
         })
