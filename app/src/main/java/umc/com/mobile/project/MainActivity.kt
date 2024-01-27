@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 						View.GONE
 					}
 
-					R.id.fragment_career_add -> {
+					R.id.fragment_career_edit -> {
 						View.GONE
 					}
 
