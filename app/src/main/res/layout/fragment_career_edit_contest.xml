@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="umc.com.mobile.project.ui.career.viewmodel.CareerAddContestViewModel" />
+    </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -100,7 +104,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_contest" />
 
                 <TextView
-                    android:id="@+id/tv_career_edit_contest_hour"
+                    android:id="@+id/tv_career_edit_contest_award"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="29dp"
@@ -112,7 +116,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_career_edit_contest_hour"
+                    android:id="@+id/et_career_edit_contest_award"
                     style="@style/MediumFont.14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -120,15 +124,15 @@
                     android:layout_marginTop="13dp"
                     android:layout_marginEnd="23dp"
                     android:background="@drawable/bg_solid_gray_radius_15"
+                    android:focusable="false"
                     android:gravity="top"
                     android:hint="@string/career_choose"
                     android:paddingStart="18dp"
                     android:paddingTop="11dp"
                     android:paddingBottom="10dp"
-                    android:text="@={vm.hour}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_contest_hour" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_contest_award" />
 
                 <TextView
                     android:id="@+id/tv_career_edit_contest_startDate"
@@ -140,7 +144,7 @@
                     android:textAppearance="@style/SemiBoldFont.16"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_hour" />
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_award" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_career_edit_contest_start_year"
@@ -194,7 +198,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_contest_endDate" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <!--<androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_career_edit"
                     style="@style/SemiBoldFont.16"
                     android:layout_width="match_parent"
@@ -212,9 +216,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_end_year" />
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_end_year" />-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

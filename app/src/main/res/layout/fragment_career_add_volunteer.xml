@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="vm"
-            type="umc.com.mobile.project.ui.career.viewmodel.CareerAddVolunteerViewModel"/>
+            type="umc.com.mobile.project.ui.career.viewmodel.CareerAddVolunteerViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout_whole"
         android:layout_width="match_parent"
@@ -19,142 +21,144 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="29dp"
             android:layout_marginTop="30dp"
-            android:text="봉사활동 이름"
+            android:text="@string/career_volunteer_name"
             android:textAppearance="@style/SemiBoldFont.16"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_career_add_volunteer"
             style="@style/MediumFont.14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
             android:layout_marginStart="23dp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="23dp"
             android:background="@drawable/bg_solid_gray_radius_15"
             android:gravity="top"
-            android:hint="예)헌혈"
-            android:text="@={vm.title}"
+            android:hint="@string/career_volunteer_name_ex"
+            android:paddingStart="18dp"
             android:paddingTop="11dp"
             android:paddingBottom="10dp"
-            android:paddingStart="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer"
+            android:text="@={vm.title}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer" />
 
         <TextView
             android:id="@+id/tv_career_add_volunteer_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
             android:layout_marginStart="29dp"
-            android:text="봉사시간"
+            android:layout_marginTop="23dp"
+            android:text="@string/career_volunteer_hour"
             android:textAppearance="@style/SemiBoldFont.16"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer" />
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_career_add_volunteer_hour"
             style="@style/MediumFont.14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
             android:layout_marginStart="23dp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="23dp"
             android:background="@drawable/bg_solid_gray_radius_15"
             android:gravity="top"
             android:hint="숫자만 기입해주세요"
-            android:text="@={vm.hour}"
+            android:paddingStart="18dp"
             android:paddingTop="11dp"
             android:paddingBottom="10dp"
-            android:paddingStart="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer_hour"
+            android:text="@={vm.hour}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer_hour" />
 
         <TextView
             android:id="@+id/tv_career_add_volunteer_startDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
             android:layout_marginStart="29dp"
-            android:text="시작일자"
+            android:layout_marginTop="23dp"
+            android:text="@string/career_startDate"
             android:textAppearance="@style/SemiBoldFont.16"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer_hour"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer_hour" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_career_add_volunteer_start_year"
             style="@style/MediumFont.14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
             android:layout_marginStart="23dp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="23dp"
             android:background="@drawable/bg_solid_gray_radius_15"
-            android:gravity="top"
-            android:hint="YYMMDD"
-            android:text="@={vm.startDate}"
             android:focusable="false"
+            android:gravity="top"
+            android:hint="@string/career_date_ex"
+            android:paddingStart="18dp"
             android:paddingTop="11dp"
             android:paddingBottom="10dp"
-            android:paddingStart="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer_startDate"
+            android:text="@={vm.startDate}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer_startDate" />
 
         <TextView
             android:id="@+id/tv_career_add_volunteer_endDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
             android:layout_marginStart="29dp"
-            android:text="종료일자"
+            android:layout_marginTop="23dp"
+            android:text="@string/career_endDate"
             android:textAppearance="@style/SemiBoldFont.16"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer_start_year"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer_start_year" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_career_add_volunteer_end_year"
             style="@style/MediumFont.14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
             android:layout_marginStart="23dp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="23dp"
             android:background="@drawable/bg_solid_gray_radius_15"
-            android:gravity="top"
-            android:hint="YYMMDD"
-            android:text="@={vm.endDate}"
             android:focusable="false"
+            android:gravity="top"
+            android:hint="@string/career_date_ex"
+            android:paddingStart="18dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:paddingStart="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer_endDate"
+            android:text="@={vm.endDate}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer_endDate" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_career_add"
             style="@style/SemiBoldFont.16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginStart="23dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="23dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/bg_solid_dark_gray_radius_23_5"
-            android:stateListAnimator="@null"
             android:backgroundTint="@{vm.isFilledAllOptions ? @color/skyBlue : @color/gray}"
+            android:enabled="@{vm.isFilledAllOptions}"
+            android:stateListAnimator="@null"
             android:text="@string/career_edit_add"
             android:textColor="@color/white"
-            android:enabled="@{vm.isFilledAllOptions}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer_end_year"/>
+            app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer_end_year" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
