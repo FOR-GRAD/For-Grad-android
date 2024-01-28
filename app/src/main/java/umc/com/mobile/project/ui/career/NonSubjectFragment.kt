@@ -43,6 +43,8 @@ class NonSubjectFragment : Fragment() {
         viewModel.certificates.observe(viewLifecycleOwner, { pagingData ->
             adapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
         })
+
+        viewModel.getNonSubjectInfo() // 비교과 조회 api
         return binding.root
     }
 
