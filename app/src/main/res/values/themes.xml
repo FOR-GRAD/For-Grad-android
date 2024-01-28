@@ -33,4 +33,9 @@
     <style name="ThemeOverlay.NumberPicker" parent="Theme.AppTheme">
         <item name="colorControlNormal">#FFFFFF</item>
     </style>
+
+    <!-- 앱 전체 화면 -->
+    <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>
