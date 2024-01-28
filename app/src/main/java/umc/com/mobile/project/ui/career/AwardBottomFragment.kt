@@ -9,12 +9,12 @@ import android.widget.NumberPicker
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentAwardBottomBinding
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditContestViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddContestViewModel
 
 class AwardBottomFragment (context: Context) : BottomSheetDialogFragment() {
     private var _binding: FragmentAwardBottomBinding? = null
     private val binding get() = _binding!!
-    private val sharedViewModel: CareerEditContestViewModel by activityViewModels()
+    private val sharedViewModel: CareerAddContestViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,11 +38,13 @@ class AwardBottomFragment (context: Context) : BottomSheetDialogFragment() {
         numberPicker.displayedValues = stringArray
         numberPicker.wrapSelectorWheel = false
 
-        _binding!!.ivAwardBottomClose.setOnClickListener {
+        _binding!!.npAwardBottomNumberPicker.setOnClickListener {
             val selectedAward = awards[numberPicker.value]
             sharedViewModel.updateSelectedAward(selectedAward)
             dialog!!.dismiss()
-            dialog!!.cancel()
+        }
+        _binding!!.ivAwardBottomClose.setOnClickListener {
+            dialog!!.dismiss()
         }
         return binding.root
     }

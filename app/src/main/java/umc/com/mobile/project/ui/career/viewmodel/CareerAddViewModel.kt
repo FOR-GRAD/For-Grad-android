@@ -3,7 +3,7 @@ package umc.com.mobile.project.ui.career.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CareerEditViewModel : ViewModel() {
+class CareerAddViewModel : ViewModel() {
     val category: MutableLiveData<String> = MutableLiveData()
     val selectedCategory = MutableLiveData<String>().apply { value = "" }
     val selectedStartYear = MutableLiveData<String>().apply { value = "" }
@@ -13,8 +13,25 @@ class CareerEditViewModel : ViewModel() {
     val selectedStartDay = MutableLiveData<String>().apply { value = "" }
     val selectedEndDay = MutableLiveData<String>().apply { value = "" }
 
+    init {
+        category.value = ""
+        selectedCategory.value = ""
+        selectedStartYear.value = ""
+        selectedEndYear.value = ""
+        selectedStartMonth.value = ""
+        selectedEndMonth.value = ""
+        selectedStartDay.value = ""
+        selectedEndDay.value = ""
+    }
     fun init() {
-        category.postValue("")
+        category.value = ""
+        selectedCategory.value = ""
+        selectedStartYear.value = ""
+        selectedEndYear.value = ""
+        selectedStartMonth.value = ""
+        selectedEndMonth.value = ""
+        selectedStartDay.value = ""
+        selectedEndDay.value = ""
     }
 
     fun updateSelectedCategory(category: String) {

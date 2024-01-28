@@ -9,17 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
-import umc.com.mobile.project.databinding.FragmentCareerEditActivityBinding
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditActivityViewModel
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
+import umc.com.mobile.project.databinding.FragmentCareerAddCertificateBinding
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddCertificateViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
-class CareerEditActivityFragment : Fragment() {
-    private var _binding: FragmentCareerEditActivityBinding? = null
-    private val viewModel: CareerEditActivityViewModel by viewModels()
-    private val sharedViewModel: CareerEditViewModel by activityViewModels()
+class CareerAddCertificateFragment : Fragment() {
+    private var _binding: FragmentCareerAddCertificateBinding? = null
+    private val viewModel: CareerAddCertificateViewModel by activityViewModels()
+    private val sharedViewModel: CareerAddViewModel by activityViewModels()
     private lateinit var mContext: Context
     private val binding get() = _binding!!
     private var startYear: String? = null
@@ -34,34 +33,38 @@ class CareerEditActivityFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCareerEditActivityBinding.inflate(inflater, container, false)
+        _binding = FragmentCareerAddCertificateBinding.inflate(inflater, container, false)
         binding.vm = viewModel
         binding.lifecycleOwner = this
         mContext = requireContext()
 
-        _binding!!.etCareerEditActivityStartDate.setOnClickListener {
+        _binding!!.etCareerAddCertificateStartDate.setOnClickListener {
             val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, true)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.etCareerEditActivityEndDate.setOnClickListener {
+        _binding!!.etCareerAddCertificateEndDate.setOnClickListener {
             val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, false)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.etCareerEditActivityFile.setOnClickListener {
-            val bottomSheet = UploadBottomFragment(mContext)
+        _binding!!.etCareerAddCertificateType.setOnClickListener {
+            val bottomSheet = CertificateTypeBottomFragment(mContext)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.btnCareerEditAdd.setOnClickListener {
-            navigate(R.id.action_fragment_career_edit_to_fragment_career_confirm)
+        _binding!!.btnCareerAdd.setOnClickListener {
+            navigate(R.id.action_fragment_career_add_to_fragment_career_confirm)
         }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.init()
+        viewModel.selectedCertificateType.observe(viewLifecycleOwner) { selectedType ->
+            binding.etCareerAddCertificateType.text = Editable.Factory.getInstance().newEditable(selectedType)
+        }
         sharedViewModel.selectedStartYear.observe(viewLifecycleOwner) { year ->
             startYear = year
             updateStartDateEditText()
@@ -92,11 +95,11 @@ class CareerEditActivityFragment : Fragment() {
     }
     private fun updateStartDateEditText() {
         val formattedDate = buildFormattedDate(startYear, startMonth, startDay)
-        binding.etCareerEditActivityStartDate.text = Editable.Factory.getInstance().newEditable(formattedDate)
+        binding.etCareerAddCertificateStartDate.text = Editable.Factory.getInstance().newEditable(formattedDate)
     }
     private fun updateEndDateEditText() {
         val formattedDate = buildFormattedDate(endYear, endMonth, endDay)
-        binding.etCareerEditActivityEndDate.text = Editable.Factory.getInstance().newEditable(formattedDate)
+        binding.etCareerAddCertificateEndDate.text = Editable.Factory.getInstance().newEditable(formattedDate)
     }
     override fun onDestroyView() {
         super.onDestroyView()

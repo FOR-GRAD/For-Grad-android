@@ -29,6 +29,11 @@
     <string name="career_contest_title">공모전</string>
     <string name="career_volunteer_title">봉사활동</string>
     <string name="career_activity_title">교외활동</string>
+    <!--비교과 포인트-->
+    <string name="career_point_this_semester">이번학기\n취득</string>
+    <string name="career_point_last_semester">지난학기\n취득</string>
+    <string name="career_cumulative_point">전체 누적</string>
+    <string name="career_recognition_graduation">졸업 인정</string>
     <!--커리어 더하기-->
     <string name="career_edit_title">커리어 더하기</string>
     <string name="career_edit_activity">활동</string>
