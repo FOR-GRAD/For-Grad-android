@@ -29,7 +29,7 @@ class NonSubjectFragment : Fragment() {
         _binding!!.ivCareerNonsubjectBack.setOnClickListener {
             navigate(R.id.action_fragment_nonsubject_to_fragment_career)
         }
-        viewModel.getNonSubjectInfo()// 비교과 조회 api
+        viewModel.getNonSubjectInfo2(1)// 비교과 조회 api
         //비교과 포인트 띄우기
         viewModel.nonSubjectInfo.observe(viewLifecycleOwner, { nonSubjectResponse ->
             nonSubjectResponse?.result?.pointSummaryDto?.let { pointSummaryDto ->
