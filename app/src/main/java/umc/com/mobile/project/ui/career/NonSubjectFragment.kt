@@ -6,14 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import umc.com.mobile.project.R
-import umc.com.mobile.project.data.network.api.CareerApi
 import umc.com.mobile.project.databinding.FragmentCareerNonsubjectBinding
 import umc.com.mobile.project.ui.career.adapter.NonSubjectRVAdapter
-import umc.com.mobile.project.ui.career.data.CertificateDto
 import umc.com.mobile.project.ui.career.viewmodel.NonSubjectViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
@@ -28,14 +26,6 @@ class NonSubjectFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCareerNonsubjectBinding.inflate(inflater, container, false)
-        val certificates = arrayListOf(
-            CertificateDto("2022-01-01", "자격증1", "필기", "1급"),
-            CertificateDto("2022-02-15", "자격증2", "필기", "1급"),
-            CertificateDto("2022-03-30", "자격증3", "실기", "1급"),
-            CertificateDto("2022-02-15", "자격증4", "필기", "1급"),
-            CertificateDto("2022-03-30", "자격증5", "실기", "1급")
-        )
-
         _binding!!.ivCareerNonsubjectBack.setOnClickListener {
             navigate(R.id.action_fragment_nonsubject_to_fragment_career)
         }
@@ -54,31 +44,46 @@ class NonSubjectFragment : Fragment() {
                 binding.rvCareerNonsubjectList.layoutManager = LinearLayoutManager(requireContext())
             }
         })
+        _binding!!.ivCareerLeftArrow.setOnClickListener() {
+            if (viewModel.currentPage > 1){
+                loadPreviousPage()
+            }
+            else {
+                Toast.makeText(requireContext(), "첫 페이지입니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        _binding!!.ivCareerRightArrow.setOnClickListener() {
+            if (viewModel.currentPage < viewModel.pageSize){
+                loadNextPage()
+            }
+            else {
+                Toast.makeText(requireContext(), "마지막 페이지입니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
-/*        viewModel.certificates.observe(viewLifecycleOwner, { pagingData ->
-            adapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
-        })*/
-
-/*        _binding!!.rvCareerNonsubjectList.apply {
-            addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-                    val lastVisibleItemPosition =
-                        (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition()
-                    val itemTotalCount = recyclerView.adapter!!.itemCount
-                    if (lastVisibleItemPosition >= itemTotalCount - 1) {
-                        if (page * 10 < totalItemCount) {
-                            page++
-                            requestDTO.pages = page
-                            myFunction(requestDTO)
-                        }
-                    }
-                }
-            })
-        }*/
         return binding.root
     }
 
+    private fun loadPreviousPage() {
+        viewModel.getNonSubjectInfo2(viewModel.currentPage - 1)
+        viewModel.nonSubjectInfo.observe(viewLifecycleOwner, { nonSubjectResponse ->
+            nonSubjectResponse?.result.let { result ->
+                val adapter = NonSubjectRVAdapter(result)
+                binding.rvCareerNonsubjectList.adapter = adapter
+                binding.rvCareerNonsubjectList.layoutManager = LinearLayoutManager(requireContext())
+            }
+        })
+    }
+    private fun loadNextPage() {
+        viewModel.getNonSubjectInfo2(viewModel.currentPage + 1)
+        viewModel.nonSubjectInfo.observe(viewLifecycleOwner, { nonSubjectResponse ->
+            nonSubjectResponse?.result.let { result ->
+                val adapter = NonSubjectRVAdapter(result)
+                binding.rvCareerNonsubjectList.adapter = adapter
+                binding.rvCareerNonsubjectList.layoutManager = LinearLayoutManager(requireContext())
+            }
+        })
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
