@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="vm"
-            type="umc.com.mobile.project.ui.career.viewmodel.CareerAddActivityViewModel"/>
+            type="umc.com.mobile.project.ui.career.viewmodel.CareerAddActivityViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout_whole"
         android:layout_width="match_parent"
@@ -19,41 +21,42 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="29dp"
             android:layout_marginTop="30dp"
-            android:text="교외활동 이름"
+            android:text="@string/career_activity_name"
             android:textAppearance="@style/SemiBoldFont.16"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_career_add_activity"
             style="@style/MediumFont.14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
             android:layout_marginStart="23dp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="23dp"
             android:background="@drawable/bg_solid_gray_radius_15"
             android:gravity="top"
             android:hint="예)헌혈"
-            android:text="@={vm.title}"
+            android:paddingStart="18dp"
             android:paddingTop="11dp"
             android:paddingBottom="10dp"
-            android:paddingStart="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_activity"
+            android:text="@={vm.title}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_activity" />
 
         <TextView
             android:id="@+id/tv_career_add_activity_file"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
             android:layout_marginStart="29dp"
+            android:layout_marginTop="23dp"
             android:text="@string/career_edit_file"
             android:textAppearance="@style/SemiBoldFont.16"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/et_career_add_activity"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_career_add_activity" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_career_add_activity_file"
@@ -64,14 +67,14 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="23dp"
             android:background="@drawable/bg_solid_gray_radius_15"
+            android:drawableTop="@drawable/ic_career_upload"
+            android:drawablePadding="11dp"
+            android:focusable="false"
             android:gravity="bottom|center_horizontal"
             android:hint="@string/career_edit_upload"
             android:inputType="text"
-            android:focusable="false"
             android:paddingTop="18dp"
             android:paddingBottom="16dp"
-            android:drawableTop="@drawable/ic_career_upload"
-            android:drawablePadding="11dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_career_add_activity_file" />
@@ -80,84 +83,84 @@
             android:id="@+id/tv_career_add_activity_startDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
             android:layout_marginStart="29dp"
-            android:text="시작일자"
+            android:layout_marginTop="23dp"
+            android:text="@string/career_startDate"
             android:textAppearance="@style/SemiBoldFont.16"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/et_career_add_activity_file"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_career_add_activity_file" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_career_add_activity_start_date"
             style="@style/MediumFont.14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
             android:layout_marginStart="23dp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="23dp"
             android:background="@drawable/bg_solid_gray_radius_15"
-            android:gravity="top"
-            android:hint="YYMMDD"
-            android:text="@={vm.startDate}"
             android:focusable="false"
+            android:gravity="top"
+            android:hint="@string/career_date_ex"
+            android:paddingStart="18dp"
             android:paddingTop="11dp"
             android:paddingBottom="10dp"
-            android:paddingStart="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_activity_startDate"
+            android:text="@={vm.startDate}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_activity_startDate" />
 
         <TextView
             android:id="@+id/tv_career_add_activity_endDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
             android:layout_marginStart="29dp"
-            android:text="종료일자"
+            android:layout_marginTop="23dp"
+            android:text="@string/career_endDate"
             android:textAppearance="@style/SemiBoldFont.16"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/et_career_add_activity_start_date"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_career_add_activity_start_date" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_career_add_activity_end_date"
             style="@style/MediumFont.14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
             android:layout_marginStart="23dp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="23dp"
             android:background="@drawable/bg_solid_gray_radius_15"
-            android:gravity="top"
-            android:hint="YYMMDD"
-            android:text="@={vm.endDate}"
             android:focusable="false"
+            android:gravity="top"
+            android:hint="@string/career_date_ex"
+            android:paddingStart="18dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:paddingStart="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_activity_endDate"
+            android:text="@={vm.endDate}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_career_add_activity_endDate" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_career_add"
             style="@style/SemiBoldFont.16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginStart="23dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="23dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/bg_solid_dark_gray_radius_23_5"
-            android:stateListAnimator="@null"
             android:backgroundTint="@{vm.isFilledAllOptions ? @color/skyBlue : @color/gray}"
+            android:enabled="@{vm.isFilledAllOptions}"
+            android:stateListAnimator="@null"
             android:text="@string/career_edit_add"
             android:textColor="@color/white"
-            android:enabled="@{vm.isFilledAllOptions}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_career_add_activity_end_date"/>
+            app:layout_constraintTop_toBottomOf="@+id/et_career_add_activity_end_date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

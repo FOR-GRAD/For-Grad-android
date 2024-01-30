@@ -94,7 +94,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginEnd="116dp"
                 android:background="@drawable/bg_solid_blue_radius_16_5"
-                android:hint="520pt"
+                android:text=""
                 android:textColorHint="#FAF3EB"
                 android:focusable="false"
                 android:paddingTop="69dp"

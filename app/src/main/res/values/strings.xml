@@ -42,6 +42,21 @@
     <string name="career_edit_period">기간</string>
     <string name="career_edit_upload">사진이나 파일을 업로드해주세요</string>
     <string name="career_edit_add">추가하기</string>
+    <string name="career_edit_btn">수정하기</string>
+    <!--certificate-->
+    <string name="career_certificate_name">자격증 이름</string>
+    <string name="career_certificate_name_ex">예)컴퓨터활용능력</string>
+    <string name="career_certificate_type">유형</string>
+    <!--volunteer-->
+    <string name="career_volunteer_name">봉사활동 이름</string>
+    <string name="career_volunteer_name_ex">예)헌혈</string>
+    <string name="career_volunteer_hour">봉사시간</string>
+    <!--activity-->
+    <string name="career_activity_name">대외활동 이름</string>
+    <!--contest-->
+    <string name="career_contest_name">공모전 이름</string>
+    <string name="career_contest_name_ex">예)영상 공모전</string>
+    <string name="career_contest_award">시상 구분</string>
     <!--업로드 bottom dialog-->
     <string name="upload_bottom_title">사진/파일 업로드</string>
     <string name="upload_bottom_gallery">갤러리에서 가져오기</string>
@@ -50,6 +65,11 @@
     <string name="upload_bottom_year">년도</string>
     <string name="upload_bottom_month">월</string>
     <string name="upload_bottom_day">일</string>
+    <!--career common-->
+    <string name="career_choose">선택해주세요</string>
+    <string name="career_startDate">시작일자</string>
+    <string name="career_endDate">종료일자</string>
+    <string name="career_date_ex">YYMMDD</string>
 
     <!-- 규민 -->
     <!-- Home -->

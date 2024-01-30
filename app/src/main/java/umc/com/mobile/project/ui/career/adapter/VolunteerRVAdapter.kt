@@ -4,10 +4,10 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemCertificateBinding
-import umc.com.mobile.project.ui.career.data.VolunteerDto
 
-class VolunteerRVAdapter(private val volunteerList: ArrayList<VolunteerDto>): RecyclerView.Adapter<VolunteerRVAdapter.VolunteerViewHolder>(){
+class VolunteerRVAdapter(private val volunteerList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<VolunteerRVAdapter.VolunteerViewHolder>(){
 
     override fun getItemCount(): Int {
         return volunteerList?.size ?: 0
@@ -21,10 +21,10 @@ class VolunteerRVAdapter(private val volunteerList: ArrayList<VolunteerDto>): Re
     override fun onBindViewHolder(holder: VolunteerViewHolder, position: Int) {
         val editableFactory = Editable.Factory.getInstance()
 
-        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(volunteerList[position].date)
+        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(volunteerList[position].startDate)
         holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(volunteerList[position].title)
-        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(volunteerList[position].point)
-        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(volunteerList[position].accumulatedPoint)
+        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(volunteerList[position].volunteerHour.toString())
+        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(volunteerList[position].toString())
     }
 
     class VolunteerViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)
