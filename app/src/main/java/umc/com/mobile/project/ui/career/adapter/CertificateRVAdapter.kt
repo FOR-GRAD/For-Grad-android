@@ -3,62 +3,34 @@ package umc.com.mobile.project.ui.career.adapter
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemCertificateBinding
-import umc.com.mobile.project.ui.career.data.CertificateDto
 
-class CertificateRVAdapter: PagingDataAdapter<CertificateDto, CertificateRVAdapter.CertificateViewHolder>(
-    CertificateRVAdapter.DiffCallback()
-) {
+class CertificateRVAdapter(private val certificateList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<CertificateRVAdapter.VolunteerViewHolder>(){
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): CertificateRVAdapter.CertificateViewHolder {
-        val itemBinding =
-            ItemCertificateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CertificateRVAdapter.CertificateViewHolder(itemBinding)
-    }
-
-/*    override fun getItemCount(): Int {
+    override fun getItemCount(): Int {
         return certificateList?.size ?: 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CertificateViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VolunteerViewHolder {
         val itemBinding = ItemCertificateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CertificateViewHolder(itemBinding)
-    }*/
-
-    override fun onBindViewHolder(holder: CertificateViewHolder, position: Int) {
-        val certificate = getItem(position)
-        certificate?.let {
-            val editableFactory = Editable.Factory.getInstance()
-
-            holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(it.date)
-            holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(it.title)
-            holder.itemBinding.etCertificateType.text = editableFactory.newEditable(it.type)
-            holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(it.rating)
-        }
+        return VolunteerViewHolder(itemBinding)
     }
 
-    class CertificateViewHolder(val itemBinding: ItemCertificateBinding) :
-        RecyclerView.ViewHolder(itemBinding.root)
+    override fun onBindViewHolder(holder: VolunteerViewHolder, position: Int) {
+        val editableFactory = Editable.Factory.getInstance()
 
-    private class DiffCallback : DiffUtil.ItemCallback<CertificateDto>() {
-        override fun areItemsTheSame(
-            oldItem: CertificateDto,
-            newItem: CertificateDto
-        ): Boolean {
-            return oldItem.title == newItem.title
-        }
+        val startDate = certificateList[position].startDate ?: ""
+        val title = certificateList[position].title ?: ""
+        val certificationType = certificateList[position].certificationType?.toString() ?: ""
+        val accum = certificateList[position].accum.toString() ?: ""
 
-        override fun areContentsTheSame(
-            oldItem: CertificateDto,
-            newItem: CertificateDto
-        ): Boolean {
-            return oldItem == newItem
-        }
+        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(startDate)
+        holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
+        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(certificationType)
+        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(accum)
     }
+
+    class VolunteerViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)
 }

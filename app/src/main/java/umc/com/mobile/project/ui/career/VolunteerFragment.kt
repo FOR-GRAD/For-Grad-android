@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerVolunteerBinding
 import umc.com.mobile.project.ui.career.adapter.VolunteerRVAdapter
-import umc.com.mobile.project.ui.career.data.VolunteerDto
-import umc.com.mobile.project.ui.career.viewmodel.NonSubjectViewModel
 import umc.com.mobile.project.ui.career.viewmodel.VolunteerViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
@@ -27,36 +25,17 @@ class VolunteerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCareerVolunteerBinding.inflate(inflater, container, false)
-
+        //api 연결
+        viewModel.getVolunteerInfo()
         // Observe the volunteerInfo LiveData in ViewModel
         viewModel.volunteerInfo.observe(viewLifecycleOwner, Observer { volunteerInfo ->
-            // Handle changes in the volunteerInfo data
-            if (volunteerInfo != null) {
-                // Update your RecyclerView adapter with the data
-                val adapter = VolunteerRVAdapter(volunteerInfo.result.activityWithAccumulatedHours)
-                binding.rvCareerVolunteerList.adapter = adapter
-                binding.rvCareerVolunteerList.layoutManager = LinearLayoutManager(requireContext())
-            } else {
-                // Handle the case when volunteerInfo is null
-            }
+            val adapter = VolunteerRVAdapter(volunteerInfo?.result!!.activityWithAccumulatedHours)
+            binding.rvCareerVolunteerList.adapter = adapter
+            binding.rvCareerVolunteerList.layoutManager = LinearLayoutManager(requireContext())
         })
 
-        // Observe the error LiveData in ViewModel
         viewModel.error.observe(viewLifecycleOwner, Observer { error ->
-            // Handle errors
-            // You might want to show an error message to the user
         })
-
-/*        val volunteers = arrayListOf(
-            VolunteerDto("2022-01-01", "봉사활동1", "4h", "4h"),
-            VolunteerDto("2022-02-15", "봉사활동2", "4h", "8h"),
-            VolunteerDto("2022-03-30", "봉사활동3", "4h", "12h"),
-            VolunteerDto("2022-02-15", "봉사활동4", "4h", "16h"),
-            VolunteerDto("2022-03-30", "봉사활동5", "4h", "20h")
-        )
-        val adapter = VolunteerRVAdapter(volunteers)*/
-/*        binding.rvCareerVolunteerList.adapter = adapter
-        binding.rvCareerVolunteerList.layoutManager = LinearLayoutManager(requireContext())*/
 
         _binding!!.ivCareerVolunteerBack.setOnClickListener {
             navigate(R.id.action_fragment_volunteer_to_fragment_career)

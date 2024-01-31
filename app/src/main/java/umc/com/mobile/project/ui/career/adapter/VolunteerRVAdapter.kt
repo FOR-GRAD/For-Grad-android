@@ -21,10 +21,18 @@ class VolunteerRVAdapter(private val volunteerList: List<ActivityWithAccumulated
     override fun onBindViewHolder(holder: VolunteerViewHolder, position: Int) {
         val editableFactory = Editable.Factory.getInstance()
 
-        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(volunteerList[position].startDate)
-        holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(volunteerList[position].title)
-        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(volunteerList[position].volunteerHour.toString())
-        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(volunteerList[position].toString())
+        val startDate = volunteerList[position].startDate ?: ""
+        val title = volunteerList[position].title ?: ""
+        val volunteerHour = volunteerList[position].volunteerHour?.toString() ?: ""
+        val accumulatedHour = volunteerList[position].accum.toString() ?: ""
+
+        val volunteerHourWithUnit = "$volunteerHour h"
+        val accumulatedHourWithUnit = "$accumulatedHour h"
+
+        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(startDate)
+        holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
+        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(volunteerHourWithUnit)
+        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(accumulatedHourWithUnit)
     }
 
     class VolunteerViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)

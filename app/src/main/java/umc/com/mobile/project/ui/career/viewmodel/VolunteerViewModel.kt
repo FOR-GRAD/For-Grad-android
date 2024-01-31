@@ -10,9 +10,10 @@ import retrofit2.Response
 import umc.com.mobile.project.data.model.career.CategoryListResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
+import java.net.URLEncoder
 
 class VolunteerViewModel : ViewModel() {
-    private val VolunteerApiService = ApiClient.createService<CareerApi>()
+    private val volunteerApiService = ApiClient.createService<CareerApi>()
 
     private val _volunteerInfo: MutableLiveData<CategoryListResponse?> = MutableLiveData()
     val volunteerInfo: MutableLiveData<CategoryListResponse?>
@@ -23,7 +24,7 @@ class VolunteerViewModel : ViewModel() {
         get() = _error
 
     fun getVolunteerInfo() {
-        VolunteerApiService.getVolunteerList().enqueue(object : Callback<CategoryListResponse> {
+        volunteerApiService.getCareerList("VOLUNTEERS").enqueue(object : Callback<CategoryListResponse> {
             override fun onResponse(call: Call<CategoryListResponse>, response: Response<CategoryListResponse>) {
                 if (response.isSuccessful) {
                     val CategoryListResponse = response.body()
@@ -34,20 +35,20 @@ class VolunteerViewModel : ViewModel() {
                         _error.postValue("서버 응답이 올바르지 않습니다.")
                     }
                 } else {
-                    _error.postValue("비교과 정보를 가져오지 못했습니다.")
+                    _error.postValue("봉사 정보를 가져오지 못했습니다.")
                     try {
                         throw response.errorBody()?.string()?.let {
                             RuntimeException(it)
                         } ?: RuntimeException("Unknown error")
                     } catch (e: Exception) {
-                        Log.e("volunteerInfo", "nonSubject API 오류: ${e.message}")
+                        Log.e("volunteerInfo", "volunteerInfo API 오류: ${e.message}")
                     }
                 }
             }
 
             override fun onFailure(call: Call<CategoryListResponse>, t: Throwable) {
                 _error.postValue("네트워크 오류: ${t.message}")
-                Log.d("volunteerInfo", "nonSubject: ${t.message}")
+                Log.d("volunteerInfo", "olunteerInfo: ${t.message}")
             }
         })
     }

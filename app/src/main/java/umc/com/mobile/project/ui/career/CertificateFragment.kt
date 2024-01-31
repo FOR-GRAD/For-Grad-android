@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerCertificateBinding
 import umc.com.mobile.project.ui.career.adapter.CertificateRVAdapter
+import umc.com.mobile.project.ui.career.adapter.VolunteerRVAdapter
 import umc.com.mobile.project.ui.career.data.CertificateDto
 import umc.com.mobile.project.ui.career.viewmodel.CertificateViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
@@ -25,23 +27,16 @@ class CertificateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCareerCertificateBinding.inflate(inflater, container, false)
-        val certificates = arrayListOf(
-            CertificateDto("2022-01-01", "자격증1", "필기", "1급"),
-            CertificateDto("2022-02-15", "자격증2", "필기", "1급"),
-            CertificateDto("2022-03-30", "자격증3", "실기", "1급"),
-            CertificateDto("2022-02-15", "자격증4", "필기", "1급"),
-            CertificateDto("2022-03-30", "자격증5", "실기", "1급")
-        )
-        val adapter = CertificateRVAdapter()
-        binding.rvCareerCertificateList.adapter = adapter
-        binding.rvCareerCertificateList.layoutManager = LinearLayoutManager(requireContext())
+        viewModel.getCertificateInfo()
+        viewModel.certificateInfo.observe(viewLifecycleOwner, Observer { certificateInfo ->
+            val adapter = CertificateRVAdapter(certificateInfo?.result!!.activityWithAccumulatedHours)
+            binding.rvCareerCertificateList.adapter = adapter
+            binding.rvCareerCertificateList.layoutManager = LinearLayoutManager(requireContext())
+        })
 
         _binding!!.ivCareerCertificateBack.setOnClickListener {
             navigate(R.id.action_fragment_certificate_to_fragment_career)
         }
-        viewModel.certificates.observe(viewLifecycleOwner, { pagingData ->
-            adapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
-        })
         return binding.root
     }
 
