@@ -46,24 +46,9 @@ class HomeViewModel : ViewModel() {
 	val cheeringMemo: LiveData<String>
 		get() = _cheeringMemo
 
-	private val _track1Name: MutableLiveData<String> = MutableLiveData()
-	val track1Name: LiveData<String>
-		get() = _track1Name
-
-
-	private val _track2Name: MutableLiveData<String> = MutableLiveData()
-	val track2Name: LiveData<String>
-		get() = _track2Name
-
-
-	private val _track1Requirements: MutableLiveData<String> = MutableLiveData()
-	val track1Requirements: LiveData<String>
-		get() = _track1Requirements
-
-
-	private val _track2Requirements: MutableLiveData<String> = MutableLiveData()
-	val track2Requirements: LiveData<String>
-		get() = _track2Requirements
+	private val _userProfile: MutableLiveData<String> = MutableLiveData()
+	val userProfile: LiveData<String>
+		get() = _userProfile
 
 	fun init(value: UserResponse) {
 		_userName.postValue(value.result.name)
@@ -72,10 +57,7 @@ class HomeViewModel : ViewModel() {
 		_userGrade.postValue(value.result.grade)
 		_userStatus.postValue(value.result.status)
 		_cheeringMemo.postValue(value.result.message)
-		_track1Name.postValue(value.result.track1)
-		_track2Name.postValue(value.result.track2)
-		_track1Requirements.postValue(value.result.trackRequirement1)
-		_track2Requirements.postValue(value.result.trackRequirement1)
+		_userProfile.postValue(value.result.base64Image)
 	}
 
 	fun getUserInfo() {
