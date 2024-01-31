@@ -3,9 +3,7 @@ package umc.com.mobile.project.ui.career.adapter
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import umc.com.mobile.project.data.model.career.PointDtoList
 import umc.com.mobile.project.data.model.career.Result
