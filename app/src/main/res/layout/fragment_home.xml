@@ -93,7 +93,7 @@
                     android:layout_height="142dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="42dp"
-                    android:src="@drawable/bg_solid_white_radius_25"
+                    android:src="@{vm.userProfile}"
                     app:layout_constraintStart_toStartOf="@+id/tv_home_name"
                     app:layout_constraintTop_toBottomOf="@+id/tv_home_name" />
 
@@ -261,7 +261,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/tv_home_grad_condition_title"
                     app:layout_constraintEnd_toEndOf="parent" />
 
-                <HorizontalScrollView
+                <!--<HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -390,7 +390,7 @@
                     </androidx.gridlayout.widget.GridLayout>
 
                 </HorizontalScrollView>
-
+-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

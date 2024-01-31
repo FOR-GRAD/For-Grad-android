@@ -1,6 +1,8 @@
 package umc.com.mobile.project.ui.home
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,7 @@ import umc.com.mobile.project.databinding.FragmentHomeBinding
 import umc.com.mobile.project.ui.board.viewmodel.GradDateViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 import umc.com.mobile.project.ui.home.viewmodel.HomeViewModel
+
 
 class HomeFragment : Fragment() {
 	private var _binding: FragmentHomeBinding? = null
@@ -42,10 +45,10 @@ class HomeFragment : Fragment() {
 			binding.tvGrade.text = it?.result?.grade
 			binding.tvStatus.text = it?.result?.status
 			binding.tvCheeringWord.text = it?.result?.message
-			binding.tvTrackNameTitle1.text = it?.result?.track1
-			binding.tvTrackNameTitle2.text = it?.result?.track2
-			binding.tvTrackContent1.text = it?.result?.trackRequirement1
-			binding.tvTrackContent2.text = it?.result?.trackRequirement1
+
+			val decodedBytes: ByteArray = Base64.decode(it?.result?.base64Image, Base64.DEFAULT)
+			val decodedImage = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+			binding.ivHomeProfile.setImageBitmap(decodedImage)
 		})
 
 		return binding.root
