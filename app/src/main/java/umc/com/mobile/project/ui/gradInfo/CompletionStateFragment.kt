@@ -21,9 +21,6 @@ class CompletionStateFragment : Fragment() {
 	): View {
 		_binding = FragmentCompletionStateBinding.inflate(inflater, container, false)
 
-		viewModel.text.observe(viewLifecycleOwner) {
-//			binding.text.text = it
-		}
 		return binding.root
 	}
 

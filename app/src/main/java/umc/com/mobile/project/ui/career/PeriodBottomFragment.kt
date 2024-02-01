@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.NumberPicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentPeriodBottomBinding
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 
-class PeriodBottomFragment (context: Context, private val viewModel: CareerEditViewModel) : BottomSheetDialogFragment() {
+class PeriodBottomFragment (context: Context, private val viewModel: CareerAddViewModel, private val isStartDate: Boolean) : BottomSheetDialogFragment() {
     private var _binding: FragmentPeriodBottomBinding? = null
     private val binding get() = _binding!!
 
@@ -35,7 +35,7 @@ class PeriodBottomFragment (context: Context, private val viewModel: CareerEditV
 
         val months = ArrayList<String>()
         for (month in 1..12) {
-            months.add("$month")
+            months.add(String.format("%02d", month))
         }
         val month = months.toTypedArray()
 
@@ -47,7 +47,7 @@ class PeriodBottomFragment (context: Context, private val viewModel: CareerEditV
 
         val days = ArrayList<String>()
         for (day in 1..31) {
-            days.add("$day")
+            days.add(String.format("%02d", day))
         }
         val day = days.toTypedArray()
 
@@ -57,15 +57,23 @@ class PeriodBottomFragment (context: Context, private val viewModel: CareerEditV
         numberPicker_day.displayedValues = day
         numberPicker_day.wrapSelectorWheel = false
 
-        _binding!!.ivPeriodBottomClose.setOnClickListener {
+        _binding!!.npPeriodBottomYear.setOnClickListener {
             val selectedYear = years[numberPicker_year.value]
-            viewModel.updateSelectedYear(selectedYear)
-            val selectedMonth = months[numberPicker_month.value]
-            viewModel.updateSelectedMonth(selectedMonth)
-            val selectedDay = days[numberPicker_day.value]
-            viewModel.updateSelectedDay(selectedDay)
+            viewModel.updateSelectedYear(selectedYear, isStartDate)
             dialog!!.dismiss()
-            dialog!!.cancel()
+        }
+        _binding!!.npPeriodBottomMonth.setOnClickListener {
+            val selectedMonth = months[numberPicker_month.value]
+            viewModel.updateSelectedMonth(selectedMonth, isStartDate)
+            dialog!!.dismiss()
+        }
+        _binding!!.npPeriodBottomDay.setOnClickListener {
+            val selectedDay = days[numberPicker_day.value]
+            viewModel.updateSelectedDay(selectedDay, isStartDate)
+            dialog!!.dismiss()
+        }
+        _binding!!.ivPeriodBottomClose.setOnClickListener {
+            dialog!!.dismiss()
         }
         return binding.root
     }

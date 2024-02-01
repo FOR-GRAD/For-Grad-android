@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -29,10 +30,9 @@ class GradInfoFragment : Fragment() {
 		_binding = FragmentGradInfoBinding.inflate(inflater, container, false)
 
 		initTabLayout()
+		viewModel.getGradeInfo() // 사용자 성적 사항 조회 api
+		viewModel.getCompletionInfo() // 사용자 개인별 이수 현황 조회 api
 
-		viewModel.text.observe(viewLifecycleOwner) {
-//			binding.text.text = it
-		}
 		return binding.root
 	}
 

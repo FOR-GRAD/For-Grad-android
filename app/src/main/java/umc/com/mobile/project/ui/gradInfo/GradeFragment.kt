@@ -23,8 +23,6 @@ class GradeFragment : Fragment() {
 	): View {
 		_binding = FragmentGradeBinding.inflate(inflater, container, false)
 
-		initSpinnerSchedule() // spinner 설정
-
 		return binding.root
 	}
 
@@ -33,27 +31,4 @@ class GradeFragment : Fragment() {
 		_binding = null
 	}
 
-	private fun initSpinnerSchedule() {
-//		binding.spinnerSchedule.onItemSelectedListener =
-//			object : AdapterView.OnItemSelectedListener {
-//				override fun onItemSelected(
-//					parent: AdapterView<*>?,
-//					view: View?,
-//					position: Int,
-//					id: Long
-//				) {
-//					if (!binding.spinnerSchedule.getItemAtPosition(position).equals("시간표 불러오기")) {
-//						Toast.makeText(
-//							context,
-//							"Selected: ${binding.spinnerSchedule.getItemAtPosition(position)}",
-//							Toast.LENGTH_LONG
-//						)
-//					}
-//				}
-//
-//				override fun onNothingSelected(p0: AdapterView<*>?) {
-//
-//				}
-//			}
-	}
 }

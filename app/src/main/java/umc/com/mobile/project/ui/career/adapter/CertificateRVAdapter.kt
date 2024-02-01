@@ -4,10 +4,10 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemCertificateBinding
-import umc.com.mobile.project.ui.career.data.CertificateDto
 
-class CertificateRVAdapter(private val certificateList: ArrayList<CertificateDto>): RecyclerView.Adapter<CertificateRVAdapter.CertificateViewHolder>(){
+class CertificateRVAdapter(private val certificateList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<CertificateRVAdapter.CertificateViewHolder>(){
 
     override fun getItemCount(): Int {
         return certificateList?.size ?: 0
@@ -21,10 +21,15 @@ class CertificateRVAdapter(private val certificateList: ArrayList<CertificateDto
     override fun onBindViewHolder(holder: CertificateViewHolder, position: Int) {
         val editableFactory = Editable.Factory.getInstance()
 
-        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(certificateList[position].date)
-        holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(certificateList[position].title)
-        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(certificateList[position].type)
-        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(certificateList[position].rating)
+        val startDate = certificateList[position].startDate ?: ""
+        val title = certificateList[position].title ?: ""
+        val certificationType = certificateList[position].certificationType?.toString() ?: ""
+        val accum = certificateList[position].accum.toString() ?: ""
+
+        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(startDate)
+        holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
+        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(certificationType)
+        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(accum)
     }
 
     class CertificateViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)
