@@ -80,6 +80,12 @@ dependencies {
 	// cookie
 	implementation ("com.squareup.okhttp3:okhttp-urlconnection:4.9.1")
 
-	//Paging 라이브러리
-	implementation ("androidx.paging:paging-runtime-ktx:3.1.0")
+	//gson 라이브러리
+	implementation ("com.google.code.gson:gson:2.9.0")
+
+	//OkHttp 라이브러리
+	implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+	
+	//log intercepter
+	implementation ("com.squareup.okhttp3:logging-interceptor:3.12.1")
 }
