@@ -4,10 +4,10 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemCertificateBinding
-import umc.com.mobile.project.ui.career.data.ActivityDto
 
-class ActivityRVAdapter(private val activityList: ArrayList<ActivityDto>): RecyclerView.Adapter<ActivityRVAdapter.ActivityViewHolder>(){
+class ActivityRVAdapter(private val activityList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<ActivityRVAdapter.ActivityViewHolder>(){
 
     override fun getItemCount(): Int {
         return activityList?.size ?: 0
@@ -21,10 +21,13 @@ class ActivityRVAdapter(private val activityList: ArrayList<ActivityDto>): Recyc
     override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
         val editableFactory = Editable.Factory.getInstance()
 
-        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(activityList[position].date)
-        holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(activityList[position].title)
-        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(activityList[position].point)
-        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(activityList[position].accumulatedPoint)
+        val startDate = activityList[position].startDate ?: ""
+        val title = activityList[position].title ?: ""
+        val index = activityList[position].reindex.toString() ?: ""
+
+        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(startDate)
+        holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
+        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(index)
     }
 
     class ActivityViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)

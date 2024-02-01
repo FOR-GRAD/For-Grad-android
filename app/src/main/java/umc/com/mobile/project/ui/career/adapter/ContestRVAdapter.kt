@@ -4,10 +4,10 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemCertificateBinding
-import umc.com.mobile.project.ui.career.data.ContestDto
 
-class ContestRVAdapter(private val contestList: ArrayList<ContestDto>): RecyclerView.Adapter<ContestRVAdapter.ContestViewHolder>(){
+class ContestRVAdapter(private val contestList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<ContestRVAdapter.ContestViewHolder>(){
 
     override fun getItemCount(): Int {
         return contestList?.size ?: 0
@@ -21,10 +21,15 @@ class ContestRVAdapter(private val contestList: ArrayList<ContestDto>): Recycler
     override fun onBindViewHolder(holder: ContestViewHolder, position: Int) {
         val editableFactory = Editable.Factory.getInstance()
 
-        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(contestList[position].date)
-        holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(contestList[position].title)
-        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(contestList[position].type)
-        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(contestList[position].award)
+        val startDate = contestList[position].startDate ?: ""
+        val title = contestList[position].title ?: ""
+        val arwardType = contestList[position].award?.toString() ?: ""
+        val index = contestList[position].reindex.toString() ?: ""
+
+        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(startDate)
+        holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
+        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(arwardType)
+        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(index)
     }
 
     class ContestViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)

@@ -10,45 +10,45 @@ import retrofit2.Response
 import umc.com.mobile.project.data.model.career.CategoryListResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
-import java.net.URLEncoder
 
-class VolunteerViewModel : ViewModel() {
-    private val volunteerApiService = ApiClient.createService<CareerApi>()
+class ActivityViewModel : ViewModel() {
+    private val ActivityApiService = ApiClient.createService<CareerApi>()
 
-    private val _volunteerInfo: MutableLiveData<CategoryListResponse?> = MutableLiveData()
-    val volunteerInfo: MutableLiveData<CategoryListResponse?>
-        get() = _volunteerInfo
+    private val _activityInfo: MutableLiveData<CategoryListResponse?> = MutableLiveData()
+    val activityInfo: MutableLiveData<CategoryListResponse?>
+        get() = _activityInfo
 
     private val _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String>
         get() = _error
 
-    fun getVolunteerInfo() {
-        volunteerApiService.getCareerList("VOLUNTEERS").enqueue(object : Callback<CategoryListResponse> {
+    fun getActivityInfo() {
+        ActivityApiService.getCareerList("EXTRAS").enqueue(object :
+            Callback<CategoryListResponse> {
             override fun onResponse(call: Call<CategoryListResponse>, response: Response<CategoryListResponse>) {
                 if (response.isSuccessful) {
                     val CategoryListResponse = response.body()
                     if (CategoryListResponse != null) {
-                        _volunteerInfo.postValue(CategoryListResponse)
-                        Log.d("volunteerInfo", "${response.body()}")
+                        _activityInfo.postValue(CategoryListResponse)
+                        Log.d("activityInfo", "${response.body()}")
                     } else {
                         _error.postValue("서버 응답이 올바르지 않습니다.")
                     }
                 } else {
-                    _error.postValue("봉사 정보를 가져오지 못했습니다.")
+                    _error.postValue("교외활동 정보를 가져오지 못했습니다.")
                     try {
                         throw response.errorBody()?.string()?.let {
                             RuntimeException(it)
                         } ?: RuntimeException("Unknown error")
                     } catch (e: Exception) {
-                        Log.e("volunteerInfo", "volunteerInfo API 오류: ${e.message}")
+                        Log.e("activityInfo", "activityInfo API 오류: ${e.message}")
                     }
                 }
             }
 
             override fun onFailure(call: Call<CategoryListResponse>, t: Throwable) {
                 _error.postValue("네트워크 오류: ${t.message}")
-                Log.d("volunteerInfo", "olunteerInfo: ${t.message}")
+                Log.d("activityInfo", "activityInfo: ${t.message}")
             }
         })
     }
