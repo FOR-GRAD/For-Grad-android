@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:rowCount="4"
+    android:columnCount="3"
+    android:alignmentMode="alignMargins"
+    android:padding="16dp"
+    android:background="#FAF3EB"
+    android:layout_margin="16dp">
+
+    <!-- Column Headers -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:text="분류"
+        android:padding="4dp" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:text="교과목"
+        android:padding="4dp" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:text="학점"
+        android:padding="4dp" />
+
+    <!-- EditText Rows -->
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:hint=""
+        android:padding="4dp"
+        android:background="@drawable/edittext_bottom_line"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:hint=""
+        android:padding="4dp"
+        android:background="@drawable/edittext_bottom_line"
+
+        />
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_bottom_line"
+        android:layout_columnWeight="1"
+        android:hint=""
+        android:padding="4dp" />
+
+    <!-- 추가적인 TextView 또는 EditText 행들을 여기에 추가하면 됩니다 -->
+</GridLayout>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="umc.com.mobile.project.ui.plan.PlanViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/license_const_layout"
+            android:layout_width="322dp"
+            android:layout_height="223dp"
+            android:background="@drawable/rectangle_4257"
+            app:layout_constraintBottom_toTopOf="@id/license_button_store"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingTop="57dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="9dp"
+            android:paddingBottom="7dp"
+
+            >
+
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/my_grid_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:rowCount="5"
+                app:columnCount="2"
+                android:background="@drawable/edittext_rounded_line"
+                android:padding="16dp"
+
+                >
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="13dp"
+                    style="@style/MediumFont.16"
+                    android:text="@string/plan_license"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1"
+                    app:layout_gravity="fill"
+                    android:gravity="center"
+                    android:background="@drawable/edittext_white_line"
+
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="시험 일정"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1"
+                    app:layout_gravity="fill"
+                    android:gravity="center"
+                    android:background="@drawable/edittext_white_line"
+                    />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:hint=""
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1"
+                    app:layout_gravity="fill"
+                    android:background="@drawable/edittext_white_line"
+                    />
+
+                <EditText
+                    style="@style/Widget.AppCompat.EditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:hint=""
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1"
+                    android:background="@drawable/edittext_white_line"
+                    />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:hint=""
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1"
+                    app:layout_gravity="fill"
+                    android:background="@drawable/edittext_white_line"
+                    />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:hint=""
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1"
+                    app:layout_gravity="fill"
+                    android:background="@drawable/edittext_white_line"
+                    />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:hint=""
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1"
+                    app:layout_gravity="fill"
+                    android:background="@drawable/edittext_white_line"
+                    />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:hint=""
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1"
+                    app:layout_gravity="fill"
+                    android:background="@drawable/edittext_white_line"
+                    />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:hint=""
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1"
+                    app:layout_gravity="fill"
+                    android:background="@drawable/edittext_white_line"
+                    />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:hint=""
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1"
+                    app:layout_gravity="fill"
+                    android:background="@drawable/edittext_white_line"
+                    />
+
+
+
+
+
+            </androidx.gridlayout.widget.GridLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/license_addrow_button"
+            app:layout_constraintBottom_toTopOf="@id/license_button_store"
+            app:layout_constraintEnd_toEndOf="@id/license_button_store"
+            android:layout_marginBottom="116dp"
+            android:layout_marginLeft="287dp"
+            android:layout_marginRight="27dp"
+            android:text="칸 추가하기"
+            android:background="@android:color/transparent"
+            style="@style/MediumFont.12"
+            android:textColor="@color/gray"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/license_button_store"
+            style="@style/SemiBoldFont.14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="551dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="26dp"
+            android:background="@drawable/bg_solid_gray_radius_25"
+            android:backgroundTint="@{vm.isFilledAllOptions ? @color/skyBlue : @color/gray}"
+            android:stateListAnimator="@null"
+            android:text="@string/login_title"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
