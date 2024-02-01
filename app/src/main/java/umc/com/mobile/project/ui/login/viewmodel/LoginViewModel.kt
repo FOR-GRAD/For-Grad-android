@@ -42,6 +42,11 @@ class LoginViewModel : ViewModel() {
 	val loginStatus: LiveData<Boolean>
 		get() = _loginStatus
 
+	// 추가: 로그인 성공 여부 LiveData
+	private val _loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
+	val loginSuccess: LiveData<Boolean>
+		get() = _loginSuccess
+
 	private fun isBothFieldsFilled(): Boolean {
 		return !id.value.isNullOrEmpty() && !pw.value.isNullOrEmpty()
 	}
@@ -53,46 +58,54 @@ class LoginViewModel : ViewModel() {
 	}
 
 	fun login() {
-		loginApiService.login(id.value.orEmpty(), pw.value.orEmpty()).enqueue(object : Callback<LoginResponse> {
-			override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-				if (response.isSuccessful) {
-					// 성공적으로 로그인이 되었을 때 쿠키 값 추출
-					val cookies = response.headers().values("Set-Cookie")
+		loginApiService.login(id.value.orEmpty(), pw.value.orEmpty())
+			.enqueue(object : Callback<LoginResponse> {
+				override fun onResponse(
+					call: Call<LoginResponse>,
+					response: Response<LoginResponse>
+				) {
+					if (response.isSuccessful) {
+						// 성공적으로 로그인이 되었을 때 쿠키 값 추출
+						val cookies = response.headers().values("Set-Cookie")
 
-					// 쿠키 값을 CookieJar에 저장
-					cookies.forEach { cookie ->
-						ApiClient.cookieManager.cookieStore.add(null, HttpCookie.parse(cookie).first())
+						// 쿠키 값을 CookieJar에 저장
+						cookies.forEach { cookie ->
+							ApiClient.cookieManager.cookieStore.add(
+								null,
+								HttpCookie.parse(cookie).first()
+							)
+						}
+						_loginResult.postValue(response.body())
+						_loginStatus.postValue(true)
+
+						Log.d("Login cookie", "$cookies")
+						Log.d("Login", "${response.body()}")
+					} else {
+						_loginResult.postValue(
+							LoginResponse(
+								isSuccess = false,
+								code = "LOGIN FAIL",
+								message = "아이디 또는 비밀번호를 확인하세요",
+								result = null
+							)
+						)
+						_loginStatus.postValue(false)
+						Log.e("Login", "$loginResult")
 					}
+				}
 
-					_loginResult.postValue(response.body())
-					_loginStatus.postValue(true)
-
-					Log.d("Login", "${response.body()}")
-				} else {
+				override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
 					_loginResult.postValue(
 						LoginResponse(
 							isSuccess = false,
-							code = "LOGIN FAIL",
-							message = "아이디 또는 비밀번호를 확인하세요",
+							code = "NETWORK ERROR",
+							message = "네트워크 오류",
 							result = null
 						)
 					)
 					_loginStatus.postValue(false)
-					Log.e("Login", "$loginResult")
+					Log.e("Login", "$loginStatus")
 				}
-			}
-
-			override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-				_loginResult.postValue(
-					LoginResponse(
-						isSuccess = false,
-						code = "NETWORK ERROR",
-						message = "네트워크 오류",
-						result = null
-					)
-				)
-				_loginStatus.postValue(false)
-			}
-		})
+			})
 	}
 }

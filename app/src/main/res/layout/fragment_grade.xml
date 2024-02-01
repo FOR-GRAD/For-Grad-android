@@ -25,94 +25,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
+            android:layout_marginTop="5dp"
             android:text="@string/grade_each_semester_sub_title"
             android:textColor="@color/default_dark"
-            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_grade_title" />
 
-        <!--<androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton"
-            style="@style/SemiBoldFont.10"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/bg_stroke_blue_radius_16_5"
-            android:minHeight="0dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="직접 작성하기"
-            android:textColor="@color/skyBlue"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_schedule"
-            app:layout_constraintTop_toTopOf="parent" />
---><!--
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spinner_schedule"
-            style="@style/SemiBoldFont.10"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginEnd="18dp"
-            android:background="@drawable/bg_spinner_solid_blue_radius_16_5"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_grade_title"
-            tools:listitem="@layout/item_spinner_grad_info_schedule" />-->
-
-            <!--            <androidx.appcompat.widget.AppCompatTextView-->
-            <!--                android:id="@+id/appCompatTextView7"-->
-            <!--                style="@style/MediumFont.12"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginEnd="5dp"-->
-            <!--                android:layout_weight="4"-->
-            <!--                android:background="@drawable/bg_solid_gray_top_left_radius_10"-->
-            <!--                android:gravity="center"-->
-            <!--                android:paddingTop="6dp"-->
-            <!--                android:paddingBottom="6dp"-->
-            <!--                android:text="@string/grade_subject"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView8"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-            <!--            <androidx.appcompat.widget.AppCompatTextView-->
-            <!--                android:id="@+id/appCompatTextView8"-->
-            <!--                style="@style/MediumFont.12"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_marginEnd="5dp"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:background="@color/gray"-->
-            <!--                android:gravity="center"-->
-            <!--                android:text="@string/grade_major"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/tv_grade"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-            <!--            <androidx.appcompat.widget.AppCompatTextView-->
-            <!--                android:id="@+id/tv_grade"-->
-            <!--                style="@style/MediumFont.12"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_weight="2"-->
-            <!--                android:background="@drawable/bg_solid_gray_top_right_radius_10"-->
-            <!--                android:gravity="center"-->
-            <!--                android:text="@string/grade_grade"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_grade"
             style="@style/MediumFont.12"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="18dp"
             android:layout_marginTop="14dp"
+            android:layout_marginEnd="18dp"
             android:background="@drawable/bg_solid_sky_blue_top_right_left_radius_10"
             android:gravity="center"
             android:paddingTop="10dp"
@@ -123,13 +48,94 @@
             app:layout_constraintStart_toStartOf="@+id/tv_grade_sub_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_grade_sub_title" />
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/tv_grade"
+            app:layout_constraintStart_toStartOf="@+id/tv_grade"
+            app:layout_constraintTop_toBottomOf="@+id/tv_grade">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_kind_title"
+                style="@style/MediumFont.12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/bg_stroke_gray"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="분류"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_class_title"
+                style="@style/MediumFont.12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:background="@drawable/bg_stroke_gray"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="교과명"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_credit_title"
+                style="@style/MediumFont.12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_stroke_gray"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="학점"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_grade_title2"
+                style="@style/MediumFont.12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_stroke_gray"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="성적"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_current_track_title"
+                style="@style/MediumFont.12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/bg_stroke_gray"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="트랙"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@+id/tv_grade"
             app:layout_constraintStart_toStartOf="@+id/tv_grade"
-            app:layout_constraintTop_toBottomOf="@+id/tv_grade"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2"
             tools:listitem="@layout/item_class_and_grade" />
 
         <androidx.appcompat.widget.AppCompatTextView
