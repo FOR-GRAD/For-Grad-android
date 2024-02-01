@@ -16,6 +16,14 @@ val cookieManager = CookieManager()
 	private var builder = OkHttpClient().newBuilder()
 	private var okHttpClient = builder
 		.cookieJar(JavaNetCookieJar(CookieManager()))
+		.addInterceptor { chain ->
+			val original = chain.request()
+			val request = original.newBuilder()
+				.header("Content-Type", "multipart/form-data")
+				.method(original.method, original.body)
+				.build()
+			chain.proceed(request)
+		}
 		.build()
 
 	internal val retrofit: Retrofit by lazy {
