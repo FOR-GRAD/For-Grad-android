@@ -7,18 +7,18 @@ import androidx.recyclerview.widget.RecyclerView
 import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemCertificateBinding
 
-class CertificateRVAdapter(private val certificateList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<CertificateRVAdapter.VolunteerViewHolder>(){
+class CertificateRVAdapter(private val certificateList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<CertificateRVAdapter.CertificateViewHolder>(){
 
     override fun getItemCount(): Int {
         return certificateList?.size ?: 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VolunteerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CertificateViewHolder {
         val itemBinding = ItemCertificateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return VolunteerViewHolder(itemBinding)
+        return CertificateViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: VolunteerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CertificateViewHolder, position: Int) {
         val editableFactory = Editable.Factory.getInstance()
 
         val startDate = certificateList[position].startDate ?: ""
@@ -32,5 +32,5 @@ class CertificateRVAdapter(private val certificateList: List<ActivityWithAccumul
         holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(accum)
     }
 
-    class VolunteerViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)
+    class CertificateViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)
 }
