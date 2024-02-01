@@ -1,18 +1,13 @@
 package umc.com.mobile.project.ui.login.viewmodel
 
-import android.content.Intent
 import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import okhttp3.Headers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import umc.com.mobile.project.MainActivity
 import umc.com.mobile.project.data.model.login.LoginResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.LoginApi

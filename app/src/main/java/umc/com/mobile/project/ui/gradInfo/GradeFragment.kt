@@ -30,7 +30,7 @@ class GradeFragment : Fragment() {
 
 		viewModel.gradesInfo.observe(viewLifecycleOwner, Observer {
 //			binding.tvKindTitle.text = it?.result?.semesters[viewModel?.currentSemester]?.gradesTotalDto?.totalGrade
-
+			
 		})
 
 		return binding.root
