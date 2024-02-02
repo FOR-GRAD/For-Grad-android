@@ -10,7 +10,6 @@ import retrofit2.Response
 import umc.com.mobile.project.data.model.career.CategoryListResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
-import java.net.URLEncoder
 
 class VolunteerViewModel : ViewModel() {
     private val volunteerApiService = ApiClient.createService<CareerApi>()

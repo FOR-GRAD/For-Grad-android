@@ -22,17 +22,21 @@ class NonSubjectViewModel : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
-    var accumulatedPoints: String=""
+    var accumulatedPoints: String = ""
     var pageSize: Long = 0
     var currentPage = 1
     fun getNonSubjectInfo2(page: Int) {
         currentPage = page
         careerApiService.getNonSubjectList(page).enqueue(object : Callback<NonSubjectResponse> {
-            override fun onResponse(call: Call<NonSubjectResponse>, response: Response<NonSubjectResponse>) {
+            override fun onResponse(
+                call: Call<NonSubjectResponse>,
+                response: Response<NonSubjectResponse>
+            ) {
                 if (response.isSuccessful) {
                     val nonSubjectResponse = response.body()
                     if (nonSubjectResponse != null) {
-                        accumulatedPoints = nonSubjectResponse.result?.pointSummaryDto?.accumulatedPoints as String
+                        accumulatedPoints =
+                            nonSubjectResponse.result?.pointSummaryDto?.accumulatedPoints as String
                         pageSize = nonSubjectResponse.result?.pageSize ?: 20
                         _nonSubjectInfo.postValue(nonSubjectResponse)
                         Log.d("nonSubjectInfo", "${response.body()}")

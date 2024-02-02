@@ -50,6 +50,8 @@ class CareerAddVolunteerFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.btnCareerAdd.setOnClickListener {
+            //api 연결
+            viewModel.addCareer()
             navigate(R.id.action_fragment_career_add_to_fragment_career_confirm)
         }
         return binding.root

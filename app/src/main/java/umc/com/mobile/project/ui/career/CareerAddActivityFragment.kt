@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerAddActivityBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddActivityViewModel
@@ -18,7 +17,7 @@ import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class CareerAddActivityFragment : Fragment() {
     private var _binding: FragmentCareerAddActivityBinding? = null
-    private val viewModel: CareerAddActivityViewModel by viewModels()
+    private val viewModel: CareerAddActivityViewModel by activityViewModels()
     private val sharedViewModel: CareerAddViewModel by activityViewModels()
     private lateinit var mContext: Context
     private val binding get() = _binding!!
@@ -55,6 +54,8 @@ class CareerAddActivityFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.btnCareerAdd.setOnClickListener {
+            //api 연결
+            viewModel.addCareer()
             navigate(R.id.action_fragment_career_add_to_fragment_career_confirm)
         }
         return binding.root

@@ -1,4 +1,6 @@
 package umc.com.mobile.project.ui.career.data
 
-class CertificateDto (val date : String, var title : String, var type : String, var rating : String) {
+import java.time.LocalDate
+
+class CertificateDto (var title : String, var category : String, var startDate: LocalDate, var endDate: LocalDate, var certificationType: String) {
 }
