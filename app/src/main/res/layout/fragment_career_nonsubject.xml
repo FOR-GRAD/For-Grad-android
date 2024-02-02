@@ -216,36 +216,45 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout_main"
+                android:id="@+id/constraintLayout_main_whole"
                 android:layout_width="match_parent"
                 android:layout_height="470dp"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_solid_white_radius_16_5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout_mid">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="470dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_solid_white_radius_16_5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_career_nonsubjectList"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_career_left_arrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="235dp"
-                    android:src="@drawable/ic_career_left_vector_11"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_career_nonsubjectList"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="1"
+                    android:src="@drawable/ic_career_left_arrow_32"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -254,7 +263,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="235dp"
-                    android:src="@drawable/ic_career_right_vector_11"
+                    android:src="@drawable/ic_career_right_arrow_32"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
