@@ -71,9 +71,8 @@ class LoginViewModel : ViewModel() {
 							)
 						}
 						_loginResult.postValue(response.body())
-						_loginStatus.postValue(true)
+						_loginStatus.postValue(false)
 
-						Log.d("Login cookie", "$cookies")
 						Log.d("Login", "${response.body()}")
 					} else {
 						_loginResult.postValue(
@@ -84,8 +83,8 @@ class LoginViewModel : ViewModel() {
 								result = null
 							)
 						)
-						_loginStatus.postValue(false)
-						Log.e("Login", "$loginResult")
+						_loginStatus.postValue(true)
+						Log.e("Login", "정보 틀림: $loginResult")
 					}
 				}
 
@@ -98,8 +97,8 @@ class LoginViewModel : ViewModel() {
 							result = null
 						)
 					)
-					_loginStatus.postValue(false)
-					Log.e("Login", "$loginStatus")
+					_loginStatus.postValue(true)
+					Log.e("Login", "네트워크 오류: $loginResult / $loginStatus")
 				}
 			})
 	}

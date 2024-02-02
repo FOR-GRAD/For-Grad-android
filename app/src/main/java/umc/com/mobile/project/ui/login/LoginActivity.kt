@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
 		}
 
 		viewModel.loginStatus.observe(this, Observer { loginStatus ->
-			if (loginStatus) {
+			if (!loginStatus) {
 				val intent = Intent(this@LoginActivity, MainActivity::class.java)
 				startActivity(intent)
 				finish() // 로그인 성공시 로그인 액티비티 종료
