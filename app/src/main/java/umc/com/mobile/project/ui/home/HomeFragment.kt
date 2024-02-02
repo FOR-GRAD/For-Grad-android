@@ -68,10 +68,6 @@ class HomeFragment : Fragment() {
 		binding.btnCheeringWordMove.setOnClickListener {
 			navigate(R.id.action_fragment_home_to_fragment_date)
 		}
-
-		binding.btnNavigateGradInfo.setOnClickListener {
-			navigate(R.id.action_fragment_home_to_fragment_grad_info)
-		}
 	}
 
 	private fun saveCheeringMemo() {

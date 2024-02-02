@@ -13,7 +13,6 @@ import umc.com.mobile.project.data.model.gradInfo.RequirementsResponse
 import umc.com.mobile.project.data.model.home.UserResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.GradInfoApi
-import umc.com.mobile.project.data.network.api.HomeApi
 
 class GradInfoViewModel : ViewModel() {
 	private val gradInfoApiService = ApiClient.createService<GradInfoApi>()
@@ -26,6 +25,50 @@ class GradInfoViewModel : ViewModel() {
 	val gradesInfo: MutableLiveData<GradesResponse?>
 		get() = _gradesInfo
 
+	private val _userSemester: MutableLiveData<String> = MutableLiveData()
+	val userSemester: LiveData<String>
+		get() = _userSemester
+
+	private val _userClassification: MutableLiveData<String> = MutableLiveData()
+	val userClassification: LiveData<String>
+		get() = _userClassification
+
+	private val _userSubjectName: MutableLiveData<String> = MutableLiveData()
+	val userSubjectName: LiveData<String>
+		get() = _userSubjectName
+
+	private val _userCredits: MutableLiveData<String> = MutableLiveData()
+	val userCredits: LiveData<String>
+		get() = _userCredits
+
+	private val _userGrade: MutableLiveData<String> = MutableLiveData()
+	val userGrade: LiveData<String>
+		get() = _userGrade
+
+	private val _userTrack: MutableLiveData<String> = MutableLiveData()
+	val userTrack: LiveData<String>
+		get() = _userTrack
+
+	private val _userAppliedCredit: MutableLiveData<String> = MutableLiveData()
+	val userAppliedCredit: LiveData<String>
+		get() = _userAppliedCredit
+
+	private val _userAcquiredCredit: MutableLiveData<String> = MutableLiveData()
+	val userAcquiredCredit: LiveData<String>
+		get() = _userAcquiredCredit
+
+	private val _userAverageTotal: MutableLiveData<String> = MutableLiveData()
+	val userAverageTotal: LiveData<String>
+		get() = _userAverageTotal
+
+	private val _userAverageGrade: MutableLiveData<String> = MutableLiveData()
+	val userAverageGrade: LiveData<String>
+		get() = _userAverageGrade
+
+	private val _userPercentile: MutableLiveData<String> = MutableLiveData()
+	val userPercentile: LiveData<String>
+		get() = _userPercentile
+
 	private val _completionInfo: MutableLiveData<CompletionResponse?> = MutableLiveData()
 	val completionInfo: MutableLiveData<CompletionResponse?>
 		get() = _completionInfo
@@ -34,9 +77,20 @@ class GradInfoViewModel : ViewModel() {
 	val error: LiveData<String>
 		get() = _error
 
+	fun init(value: GradesResponse) {
+		_userAppliedCredit.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.appliedCredits)
+		_userAcquiredCredit.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.acquiredCredits)
+		_userAverageTotal.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.totalGrade)
+		_userAverageGrade.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.averageGrade)
+		_userPercentile.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.percentile)
+	}
+
 	fun getGradRequirementsInfo() {
 		gradInfoApiService.getRequirements().enqueue(object : Callback<RequirementsResponse> {
-			override fun onResponse(call: Call<RequirementsResponse>, response: Response<RequirementsResponse>) {
+			override fun onResponse(
+				call: Call<RequirementsResponse>,
+				response: Response<RequirementsResponse>
+			) {
 				if (response.isSuccessful) {
 					val userResponse = response.body()
 					if (userResponse != null) {
@@ -66,7 +120,10 @@ class GradInfoViewModel : ViewModel() {
 
 	fun getGradeInfo() {
 		gradInfoApiService.getGrades().enqueue(object : Callback<GradesResponse> {
-			override fun onResponse(call: Call<GradesResponse>, response: Response<GradesResponse>) {
+			override fun onResponse(
+				call: Call<GradesResponse>,
+				response: Response<GradesResponse>
+			) {
 				if (response.isSuccessful) {
 					val userResponse = response.body()
 					if (userResponse != null) {
@@ -96,7 +153,10 @@ class GradInfoViewModel : ViewModel() {
 
 	fun getCompletionInfo() {
 		gradInfoApiService.getCompletion().enqueue(object : Callback<CompletionResponse> {
-			override fun onResponse(call: Call<CompletionResponse>, response: Response<CompletionResponse>) {
+			override fun onResponse(
+				call: Call<CompletionResponse>,
+				response: Response<CompletionResponse>
+			) {
 				if (response.isSuccessful) {
 					if (response.body() != null) {
 						_completionInfo.postValue(response.body())
