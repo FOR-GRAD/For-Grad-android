@@ -10,16 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import umc.com.mobile.project.databinding.FragmentAllBoardBinding
 import umc.com.mobile.project.databinding.FragmentBoardBinding
-import umc.com.mobile.project.ui.board.adapter.BoardVPAdapter
 import umc.com.mobile.project.ui.board.viewmodel.BoardViewModel
 import umc.com.mobile.project.ui.gradInfo.CompletionStateFragment
 import umc.com.mobile.project.ui.gradInfo.GradConditionFragment
 import umc.com.mobile.project.ui.gradInfo.GradeFragment
 import umc.com.mobile.project.ui.gradInfo.adapter.GradInfoVPAdapter
 
-class BoardFragment : Fragment() {
-	private var _binding: FragmentBoardBinding? = null
+class Track2BoardFragment : Fragment() {
+	private var _binding: FragmentAllBoardBinding? = null
 	private val binding get() = _binding!!
 
 	private lateinit var viewPager : ViewPager2
@@ -30,31 +30,21 @@ class BoardFragment : Fragment() {
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-		_binding = FragmentBoardBinding.inflate(inflater, container, false)
+		_binding = FragmentAllBoardBinding.inflate(inflater, container, false)
 
-		initTabLayout()
+		initWebView()
 
 		return binding.root
 	}
-	private fun initTabLayout() {
-		val tabTitle = arrayOf("전체 공지", "1트랙 공지", "2트랙 공지")
 
-		viewPager = binding.viewPagerGradInfo // viewPager 연결
-		tabLayout = binding.tabLayoutGradInfo // tabLayout 연결
+	private fun initWebView() {
+		binding.webView.apply {
+			webViewClient = WebViewClient()
+			settings.javaScriptEnabled = true
+		}
 
-		val adapter = BoardVPAdapter(this)
-
-		adapter.addFragment(AllBoardFragment())
-		adapter.addFragment(Track1BoardFragment())
-		adapter.addFragment(Track2BoardFragment())
-
-		viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-		viewPager.adapter = adapter
-
-		TabLayoutMediator(tabLayout, viewPager
-		) { tab, position -> tab.text = tabTitle[position] }.attach()
+		binding.webView.loadUrl("https://www.hansung.ac.kr/hansung/8385/subview.do")
 	}
-
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
