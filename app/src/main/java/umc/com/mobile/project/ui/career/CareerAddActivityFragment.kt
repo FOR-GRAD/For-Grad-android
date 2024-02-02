@@ -55,6 +55,10 @@ class CareerAddActivityFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.btnCareerAdd.setOnClickListener {
+            //빈 이미지 채우기
+            viewModel.addEmptyImage()
+            //api 연결
+            viewModel.addCareer()
             navigate(R.id.action_fragment_career_add_to_fragment_career_confirm)
         }
         return binding.root
