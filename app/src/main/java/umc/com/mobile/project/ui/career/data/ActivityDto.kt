@@ -1,4 +1,6 @@
 package umc.com.mobile.project.ui.career.data
 
-class ActivityDto (val date : String, var title : String, var point : String, var accumulatedPoint : String) {
+import java.time.LocalDate
+
+class ActivityDto (var title : String, var category : String, var startDate: LocalDate, var endDate: LocalDate) {
 }

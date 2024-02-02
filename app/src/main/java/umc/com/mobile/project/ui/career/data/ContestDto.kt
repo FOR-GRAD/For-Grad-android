@@ -1,4 +1,6 @@
 package umc.com.mobile.project.ui.career.data
 
-class ContestDto (val date : String, var title : String, var type : String, var award : String) {
+import java.time.LocalDate
+
+class ContestDto (var title : String, var content : String, var category : String, var startDate: LocalDate, var endDate: LocalDate, var award: String) {
 }

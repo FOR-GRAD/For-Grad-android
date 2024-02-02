@@ -1,4 +1,6 @@
 package umc.com.mobile.project.ui.career.data
 
-class VolunteerDto (val date : String, var title : String, var point : String, var accumulatedPoint : String) {
+import java.time.LocalDate
+
+class VolunteerDto (var title : String, var content : String, var category : String, var startDate: LocalDate, var endDate: LocalDate, var volunteerHour: Int) {
 }
