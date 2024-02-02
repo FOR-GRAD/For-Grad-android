@@ -4,20 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.google.gson.JsonSyntaxException
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.gradInfo.CompletionResponse
 import umc.com.mobile.project.data.model.gradInfo.GradesResponse
 import umc.com.mobile.project.data.model.gradInfo.RequirementsResponse
-import umc.com.mobile.project.data.model.gradInfo.SemesterGradesDto
+import umc.com.mobile.project.data.model.home.UserResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.GradInfoApi
-import umc.com.mobile.project.data.network.api.HomeApi
 
 class GradInfoViewModel : ViewModel() {
 	private val gradInfoApiService = ApiClient.createService<GradInfoApi>()
@@ -54,6 +49,26 @@ class GradInfoViewModel : ViewModel() {
 	val userTrack: LiveData<String>
 		get() = _userTrack
 
+	private val _userAppliedCredit: MutableLiveData<String> = MutableLiveData()
+	val userAppliedCredit: LiveData<String>
+		get() = _userAppliedCredit
+
+	private val _userAcquiredCredit: MutableLiveData<String> = MutableLiveData()
+	val userAcquiredCredit: LiveData<String>
+		get() = _userAcquiredCredit
+
+	private val _userAverageTotal: MutableLiveData<String> = MutableLiveData()
+	val userAverageTotal: LiveData<String>
+		get() = _userAverageTotal
+
+	private val _userAverageGrade: MutableLiveData<String> = MutableLiveData()
+	val userAverageGrade: LiveData<String>
+		get() = _userAverageGrade
+
+	private val _userPercentile: MutableLiveData<String> = MutableLiveData()
+	val userPercentile: LiveData<String>
+		get() = _userPercentile
+
 	private val _completionInfo: MutableLiveData<CompletionResponse?> = MutableLiveData()
 	val completionInfo: MutableLiveData<CompletionResponse?>
 		get() = _completionInfo
@@ -62,7 +77,13 @@ class GradInfoViewModel : ViewModel() {
 	val error: LiveData<String>
 		get() = _error
 
-	private var dataList = mutableListOf<SemesterGradesDto>()
+	fun init(value: GradesResponse) {
+		_userAppliedCredit.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.appliedCredits)
+		_userAcquiredCredit.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.acquiredCredits)
+		_userAverageTotal.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.totalGrade)
+		_userAverageGrade.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.averageGrade)
+		_userPercentile.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.percentile)
+	}
 
 	fun getGradRequirementsInfo() {
 		gradInfoApiService.getRequirements().enqueue(object : Callback<RequirementsResponse> {
@@ -161,25 +182,4 @@ class GradInfoViewModel : ViewModel() {
 			}
 		})
 	}
-
-//	fun processApiResponse(apiResponseString: SemesterGradesDto?) {
-//		viewModelScope.launch {
-//			val gson = Gson()
-//
-//			apiResponseString?.let {
-//				try {
-//					// JSON 형식으로 파싱
-//					val gradesResponse: GradesResponse = gson.fromJson(it, GradesResponse::class.java)
-//
-//					// 학기 정보를 받아와서 dataList에 추가
-//					for ((_, semesterGradesDto) in gradesResponse.result.semesters) {
-//						dataList.add(semesterGradesDto)
-//						Log.d("Grade", dataList[0].toString())
-//					}
-//				} catch (e: JsonSyntaxException) {
-//					Log.e("Grade", "JSON 파싱 오류: ${e.message}")
-//				}
-//			}
-//		}
-//	}
 }
