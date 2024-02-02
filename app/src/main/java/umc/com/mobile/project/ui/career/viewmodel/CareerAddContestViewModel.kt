@@ -15,19 +15,11 @@ import umc.com.mobile.project.data.model.career.AddCareerResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
 import umc.com.mobile.project.ui.career.data.RequestDto
-import java.io.File
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import com.google.gson.GsonBuilder
-import com.google.gson.JsonDeserializationContext
-import com.google.gson.JsonDeserializer
-import com.google.gson.JsonElement
-import com.google.gson.JsonPrimitive
-import com.google.gson.JsonSerializationContext
-import com.google.gson.JsonSerializer
 import okhttp3.RequestBody.Companion.toRequestBody
 import umc.com.mobile.project.ui.career.adapter.LocalDateAdapter
-import java.lang.reflect.Type
 
 class CareerAddContestViewModel : ViewModel() {
     val title: MutableLiveData<String> = MutableLiveData()
@@ -66,23 +58,6 @@ class CareerAddContestViewModel : ViewModel() {
 
     private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
 
-    fun addImageFiles(files: List<File>) {
-        for (file in files) {
-            val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
-            val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-            imageList.add(body)
-        }
-    }
-    // 빈 이미지 생성
-    fun addEmptyImage() {
-        val emptyImageBytes: ByteArray = byteArrayOf()
-
-        val requestFile =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), emptyImageBytes)
-        val body = MultipartBody.Part.createFormData("image", "empty_image.jpg", requestFile)
-        imageList.add(body)
-    }
-
     // API에 전송할 데이터를 포함하는 RequestDto를 생성하는 함수
     fun createRequestDto(): RequestDto? {
         val startDateString = startDate.value
@@ -97,7 +72,7 @@ class CareerAddContestViewModel : ViewModel() {
         val temporaryStartDate = LocalDate.parse(temporaryStartDateString, formatter)
 
         return RequestDto(
-            title = "테스트12",
+            title = title.value!!,
             content = "",
             category = "COMPETITIONS",
             startDate = temporaryStartDate,
@@ -118,12 +93,6 @@ class CareerAddContestViewModel : ViewModel() {
 
     fun addCareer() {
         val requestDto = createRequestDto()
-
-        val multipartBodyBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
-
-        for (imagePart in imageList) {
-            multipartBodyBuilder.addPart(imagePart)
-        }
 
         val gson = GsonBuilder()
             .setDateFormat("yyyy-MM-dd")

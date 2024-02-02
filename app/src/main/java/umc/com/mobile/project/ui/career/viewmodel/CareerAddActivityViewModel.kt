@@ -53,7 +53,8 @@ class CareerAddActivityViewModel : ViewModel() {
     private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
 
     fun addImageFile(file: File) {
-        val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
+        Log.d("addImageFile", file.toString())
+        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         imageList.add(body)
     }
@@ -107,12 +108,6 @@ class CareerAddActivityViewModel : ViewModel() {
     fun addCareer() {
         val requestDto = createRequestDto()
 
-        val multipartBodyBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
-
-        for (imagePart in imageList) {
-            multipartBodyBuilder.addPart(imagePart)
-        }
-
         val gson = GsonBuilder()
             .setDateFormat("yyyy-MM-dd")
             .registerTypeAdapter(LocalDate::class.java, LocalDateAdapter())
@@ -123,6 +118,7 @@ class CareerAddActivityViewModel : ViewModel() {
         val requestDtoPart: RequestBody =
             requestDtoJson.toRequestBody("application/json".toMediaTypeOrNull())
 
+        Log.d("AddCareer imageList", imageList.toString())
         careerApiService.addCareer(imageList, requestDtoPart)
             .enqueue(object : Callback<AddCareerResponse> {
                 override fun onResponse(

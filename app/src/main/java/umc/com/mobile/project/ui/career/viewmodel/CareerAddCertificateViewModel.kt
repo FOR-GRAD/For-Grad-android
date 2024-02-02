@@ -18,8 +18,6 @@ import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
 import umc.com.mobile.project.ui.career.adapter.LocalDateAdapter
 import umc.com.mobile.project.ui.career.data.CertificateDto
-import umc.com.mobile.project.ui.career.data.RequestDto
-import java.io.File
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -60,16 +58,6 @@ class CareerAddCertificateViewModel : ViewModel() {
 
     private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
 
-    // 빈 이미지 생성
-    fun addEmptyImage() {
-        val emptyImageBytes: ByteArray = byteArrayOf()
-
-        val requestFile =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), emptyImageBytes)
-        val body = MultipartBody.Part.createFormData("image", "empty_image.jpg", requestFile)
-        imageList.add(body)
-    }
-
     // API에 전송할 데이터를 포함하는 RequestDto를 생성하는 함수
     fun createRequestDto(): CertificateDto? {
         val startDateString = startDate.value
@@ -80,12 +68,11 @@ class CareerAddCertificateViewModel : ViewModel() {
         }
 
         val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-        val temporaryStartDateString = "20220131"
         val formattedStartDate = LocalDate.parse(startDateString, formatter)
         val formattedEndDate = LocalDate.parse(endDateString, formatter)
 
         return CertificateDto(
-            title = "안드자격증1",
+            title = title.value!!,
             category = "CERTIFICATIONS",
             startDate = formattedStartDate,
             endDate = formattedEndDate,
@@ -105,12 +92,6 @@ class CareerAddCertificateViewModel : ViewModel() {
 
     fun addCareer() {
         val requestDto = createRequestDto()
-
-        val multipartBodyBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
-
-        for (imagePart in imageList) {
-            multipartBodyBuilder.addPart(imagePart)
-        }
 
         val gson = GsonBuilder()
             .setDateFormat("yyyy-MM-dd")

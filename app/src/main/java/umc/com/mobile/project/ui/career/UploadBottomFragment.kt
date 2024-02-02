@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentUploadBottomBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddActivityViewModel
 import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 
-class UploadBottomFragment (context: Context) : BottomSheetDialogFragment() {
+class UploadBottomFragment(context: Context) : BottomSheetDialogFragment() {
     private var _binding: FragmentUploadBottomBinding? = null
     private val viewModel: CareerAddActivityViewModel by activityViewModels()
     private val binding get() = _binding!!
@@ -57,13 +58,13 @@ class UploadBottomFragment (context: Context) : BottomSheetDialogFragment() {
                         val count = data.clipData!!.itemCount
                         for (i in 0 until count) {
                             val imageUri = data.clipData!!.getItemAt(i).uri
-                            val selectedImageFile = File(getRealPathFromURI(imageUri))
+                            val selectedImageFile = createImageFile(imageUri)
                             viewModel.addImageFile(selectedImageFile)
                         }
                     } else {
                         val imageUri = data?.data
                         if (imageUri != null) {
-                            val selectedImageFile = File(getRealPathFromURI(imageUri))
+                            val selectedImageFile = createImageFile(imageUri)
                             viewModel.addImageFile(selectedImageFile)
                         }
                     }
@@ -72,16 +73,19 @@ class UploadBottomFragment (context: Context) : BottomSheetDialogFragment() {
         }
     }
 
-    private fun getRealPathFromURI(uri: Uri): String {
-        val cursor = requireContext().contentResolver.query(uri, null, null, null, null)
-        cursor?.let {
-            it.moveToFirst()
-            val idx = it.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
-            val path = it.getString(idx)
-            it.close()
-            return path
-        }
-        return ""
+    private fun createImageFile(uri: Uri): File {
+        val fileName = "img_" + System.currentTimeMillis() + ".jpg"
+        val directory = requireContext().getExternalFilesDir(null)
+        val file = File(directory, fileName)
+
+        val inputStream = requireContext().contentResolver.openInputStream(uri)
+        val outputStream: OutputStream = FileOutputStream(file)
+        inputStream?.copyTo(outputStream)
+
+        inputStream?.close()
+        outputStream.close()
+
+        return file
     }
 
     override fun onDestroyView() {
@@ -89,16 +93,3 @@ class UploadBottomFragment (context: Context) : BottomSheetDialogFragment() {
         _binding = null
     }
 }
-    /*private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        intent.type = "image/*"
-        startActivityForResult(intent, GALLERY)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == GALLERY) {
-            val selectedImageUri = data?.data
-        }
-    }*/
-     */

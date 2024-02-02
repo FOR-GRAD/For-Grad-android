@@ -28,10 +28,10 @@ class CareerAddVolunteerViewModel : ViewModel() {
     val endDate: MutableLiveData<String> = MutableLiveData()
 
     init {
-        title.value=""
-        hour.value=""
-        startDate.value=""
-        endDate.value=""
+        title.value = ""
+        hour.value = ""
+        startDate.value = ""
+        endDate.value = ""
     }
 
     /* 버튼 활성화 기능 */
@@ -47,16 +47,6 @@ class CareerAddVolunteerViewModel : ViewModel() {
     }
 
     private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
-
-    // 빈 이미지 생성
-    fun addEmptyImage() {
-        val emptyImageBytes: ByteArray = byteArrayOf()
-
-        val requestFile =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), emptyImageBytes)
-        val body = MultipartBody.Part.createFormData("image", "empty_image.jpg", requestFile)
-        imageList.add(body)
-    }
 
     // API에 전송할 데이터를 포함하는 RequestDto를 생성하는 함수
     fun createRequestDto(): VolunteerDto? {
@@ -97,12 +87,6 @@ class CareerAddVolunteerViewModel : ViewModel() {
 
     fun addCareer() {
         val requestDto = createRequestDto()
-
-        val multipartBodyBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
-
-        for (imagePart in imageList) {
-            multipartBodyBuilder.addPart(imagePart)
-        }
 
         val gson = GsonBuilder()
             .setDateFormat("yyyy-MM-dd")
