@@ -104,5 +104,6 @@
     <string name="grade_subject">과목명</string>
     <string name="grade_major">전공</string>
     <string name="grade_semester">학기</string>
+    <string name="completion_class_title">교육과정 이수 현황 조회</string>
 
 </resources>

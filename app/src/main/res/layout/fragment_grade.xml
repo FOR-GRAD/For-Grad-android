@@ -72,7 +72,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_kind_title"
                     style="@style/MediumFont.12"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:background="@drawable/bg_stroke_gray"
@@ -87,7 +87,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_class_title"
                     style="@style/MediumFont.12"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:background="@drawable/bg_stroke_gray"
@@ -102,7 +102,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_credit_title"
                     style="@style/MediumFont.12"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray"
@@ -117,7 +117,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_grade_title2"
                     style="@style/MediumFont.12"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray"
@@ -132,7 +132,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_current_track_title"
                     style="@style/MediumFont.12"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:background="@drawable/bg_stroke_gray"
@@ -171,7 +171,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_credit_title2"
                     style="@style/MediumFont.13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -185,7 +185,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_my_credit_title"
                     style="@style/MediumFont.13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray"
@@ -200,7 +200,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_average_total_title"
                     style="@style/MediumFont.13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -214,7 +214,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_average_grade_title"
                     style="@style/MediumFont.13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray"
@@ -229,7 +229,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_percent_title"
                     style="@style/MediumFont.13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -254,7 +254,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_applied_credit"
                     style="@style/MediumFont.13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray_left_bottom_radius_15"
@@ -269,7 +269,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_acquired_credit"
                     style="@style/MediumFont.13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray"
@@ -284,7 +284,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_average_total"
                     style="@style/MediumFont.13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray"
@@ -299,7 +299,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_average_grade"
                     style="@style/MediumFont.13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray"
@@ -314,7 +314,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_percent"
                     style="@style/MediumFont.13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray_right_bottom_radius_15"
