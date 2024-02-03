@@ -2,10 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="vm"
+            type="umc.com.mobile.project.ui.gradInfo.viewmodel.CompletionStateViewModel" />
+
+    </data>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -67,7 +74,7 @@
                     android:id="@+id/tv_basic_2"
                     style="@style/MediumFont.12"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray"
                     android:gravity="center"
@@ -82,7 +89,7 @@
                     android:id="@+id/tv_basic_3"
                     style="@style/MediumFont.12"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/bg_stroke_gray"
                     android:gravity="center"
@@ -185,7 +192,7 @@
                     android:gravity="center"
                     android:paddingTop="9dp"
                     android:paddingBottom="9dp"
-                    android:text="글로벌 시민의식 및 사회봉사"
+                    android:text="삶과 꿈"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -200,7 +207,7 @@
                     android:gravity="center"
                     android:paddingTop="9dp"
                     android:paddingBottom="9dp"
-                    android:text="삶과 꿈"
+                    android:text="글로벌 시민의식 및 사회봉사"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

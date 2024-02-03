@@ -28,18 +28,28 @@ class GradeFragment : Fragment() {
 	): View {
 		_binding = FragmentGradeBinding.inflate(inflater, container, false)
 
-		viewModel.getGradRequirementsInfo() // 사용자 졸업 요건 조회 api
+		viewModel.getGradeInfo() // 사용자 성적 사항 조회 api
 		initRecyclerView() // 성적 사항 recycleView 연결
 
-		viewModel.gradesInfo.observe(viewLifecycleOwner, Observer {
-			// 임시 코드
-			binding.tvAppliedCredit.text = it?.result?.semesters?.get("2022 학년도 1학기")?.gradesTotalDto?.appliedCredits
-			binding.tvAcquiredCredit.text = it?.result?.semesters?.get("1학기")?.gradesTotalDto?.acquiredCredits
-			binding.tvAverageTotal.text = it?.result?.semesters?.get("1학기")?.gradesTotalDto?.totalGrade
-			binding.tvAverageGrade.text = it?.result?.semesters?.get("1학기")?.gradesTotalDto?.averageGrade
-			binding.tvPercent.text = it?.result?.semesters?.get("1학기")?.gradesTotalDto?.percentile
+		// 성적 정보 갱신 관찰
+		viewModel.userAppliedCredit.observe(viewLifecycleOwner, Observer { appliedCredit ->
+			binding.tvAppliedCredit.text = appliedCredit
+		})
 
-			Log.d("gradsInfo", "${binding.tvPercent}")
+		viewModel.userAcquiredCredit.observe(viewLifecycleOwner, Observer { acquiredCredit ->
+			binding.tvAcquiredCredit.text = acquiredCredit
+		})
+
+		viewModel.userAverageTotal.observe(viewLifecycleOwner, Observer { averageTotal ->
+			binding.tvAverageTotal.text = averageTotal
+		})
+
+		viewModel.userAverageGrade.observe(viewLifecycleOwner, Observer { averageGrade ->
+			binding.tvAverageGrade.text = averageGrade
+		})
+
+		viewModel.userPercentile.observe(viewLifecycleOwner, Observer { percentile ->
+			binding.tvPercent.text = percentile
 		})
 
 		return binding.root
