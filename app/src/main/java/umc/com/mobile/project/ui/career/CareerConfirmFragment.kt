@@ -28,7 +28,14 @@ class CareerConfirmFragment: Fragment() {
 			navigate(R.id.action_fragment_career_confirm_to_fragment_career)
 		}
 		_binding!!.btnCareerConfirm.setOnClickListener {
-			navigate(R.id.action_fragment_career_confirm_to_fragment_career)
+			if (viewModel.category.equals("자격증"))
+				navigate(R.id.action_fragment_career_confirm_to_fragment_career_certificate)
+			else if (viewModel.category.equals("공모전"))
+				navigate(R.id.action_fragment_career_confirm_to_fragment_career_contest)
+			else if (viewModel.category.equals("봉사활동"))
+				navigate(R.id.action_fragment_career_confirm_to_fragment_career_volunteer)
+			else if (viewModel.category.equals("교외활동"))
+				navigate(R.id.action_fragment_career_confirm_to_fragment_career_contest)
 		}
 		return binding.root
 	}

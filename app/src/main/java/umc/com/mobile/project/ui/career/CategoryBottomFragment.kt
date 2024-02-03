@@ -10,7 +10,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentCategoryBottomBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 
-class CategoryBottomFragment(context: Context, private val viewModel: CareerAddViewModel) : BottomSheetDialogFragment() {
+class CategoryBottomFragment(context: Context, private val viewModel: CareerAddViewModel) :
+    BottomSheetDialogFragment() {
     private var _binding: FragmentCategoryBottomBinding? = null
     private val binding get() = _binding!!
 
@@ -25,8 +26,7 @@ class CategoryBottomFragment(context: Context, private val viewModel: CareerAddV
             getString(umc.com.mobile.project.R.string.career_certificate_title),
             getString(umc.com.mobile.project.R.string.career_contest_title),
             getString(umc.com.mobile.project.R.string.career_volunteer_title),
-            "교외활동",
-            "기타"
+            "교외활동"
         )
 
         var numberPicker: NumberPicker = _binding!!.npCategoryBottomNumberPicker
