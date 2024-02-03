@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_certificate_date"
+        android:id="@+id/et_activity_date"
         style="@style/MediumFont.14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,53 +18,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_certificate_title"
+        android:id="@+id/et_activity_title"
         style="@style/MediumFont.14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="#F5F5F5"
         android:focusable="false"
-        android:hint="자격증 이름"
+        android:hint="활동 이름"
         android:textColorHint="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_certificate_date" />
+        app:layout_constraintTop_toBottomOf="@+id/et_activity_date" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_certificate_type"
-        style="@style/MediumFont.12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="6dp"
-        android:background="@drawable/bg_solid_stroke_skyblue_radius_11"
-        android:focusable="false"
-        android:hint="필기"
-        android:paddingStart="10dp"
-        android:paddingTop="3dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="3dp"
-        android:textColorHint="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_certificate_title" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_certificate_rating"
+        android:id="@+id/et_activity_index"
         style="@style/MediumFont.14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="6dp"
         android:background="#F5F5F5"
         android:focusable="false"
-        android:hint="2급"
+        android:hint="누적 개수"
         android:paddingEnd="6dp"
         android:textColorHint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_certificate_type" />
+        app:layout_constraintTop_toBottomOf="@+id/et_activity_title" />
 
     <View
-        android:id="@+id/v_certificate_underline"
+        android:id="@+id/v_activity_underline"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#D9D9D9"

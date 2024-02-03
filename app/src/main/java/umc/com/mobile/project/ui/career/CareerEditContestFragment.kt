@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerEditContestBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerEditContestViewModel
+import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class CareerEditContestFragment : Fragment() {
     private var _binding: FragmentCareerEditContestBinding? = null
@@ -21,6 +23,9 @@ class CareerEditContestFragment : Fragment() {
     ): View {
         _binding = FragmentCareerEditContestBinding.inflate(inflater, container, false)
         binding.vm = viewModel
+        _binding!!.ivCareerContestBack.setOnClickListener {
+            navigate(R.id.action_fragment_edit_contest_to_fragment_career_contest)
+        }
         return binding.root
     }
 

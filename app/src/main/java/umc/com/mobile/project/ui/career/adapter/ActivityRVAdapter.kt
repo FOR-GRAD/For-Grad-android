@@ -5,16 +5,26 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
-import umc.com.mobile.project.databinding.ItemCertificateBinding
+import umc.com.mobile.project.databinding.ItemActivityBinding
 
 class ActivityRVAdapter(private val activityList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<ActivityRVAdapter.ActivityViewHolder>(){
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    private lateinit var mItemClickListener: OnItemClickListener
+
+    fun setOnItemClickListener(itemClickListener: OnItemClickListener){
+        mItemClickListener = itemClickListener
+    }
 
     override fun getItemCount(): Int {
         return activityList?.size ?: 0
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActivityViewHolder {
-        val itemBinding = ItemCertificateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding = ItemActivityBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ActivityViewHolder(itemBinding)
     }
 
@@ -25,10 +35,10 @@ class ActivityRVAdapter(private val activityList: List<ActivityWithAccumulatedHo
         val title = activityList[position].title ?: ""
         val index = activityList[position].reindex.toString() ?: ""
 
-        holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(startDate)
-        holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
-        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(index)
+        holder.itemBinding.etActivityDate.text = editableFactory.newEditable(startDate)
+        holder.itemBinding.etActivityTitle.text = editableFactory.newEditable(title)
+        holder.itemBinding.etActivityIndex.text = editableFactory.newEditable(index)
     }
 
-    class ActivityViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)
+    class ActivityViewHolder(val itemBinding: ItemActivityBinding) : RecyclerView.ViewHolder(itemBinding.root)
 }
