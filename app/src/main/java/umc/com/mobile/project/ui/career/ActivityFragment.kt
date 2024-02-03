@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerActivityBinding
-import umc.com.mobile.project.ui.career.adapter.CertificateRVAdapter
+import umc.com.mobile.project.ui.career.adapter.ActivityRVAdapter
 import umc.com.mobile.project.ui.career.viewmodel.ActivityViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
@@ -27,7 +27,7 @@ class ActivityFragment : Fragment() {
         _binding = FragmentCareerActivityBinding.inflate(inflater, container, false)
         viewModel.getActivityInfo()
         viewModel.activityInfo.observe(viewLifecycleOwner, Observer { activityInfo ->
-            val adapter = CertificateRVAdapter(activityInfo?.result!!.activityWithAccumulatedHours)
+            val adapter = ActivityRVAdapter(activityInfo?.result!!.activityWithAccumulatedHours)
             binding.rvCareerActivityList.adapter = adapter
             binding.rvCareerActivityList.layoutManager = LinearLayoutManager(requireContext())
         })

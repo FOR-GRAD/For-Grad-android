@@ -53,7 +53,11 @@ class CareerAddContestViewModel : ViewModel() {
     }
 
     private fun areBothFieldsFilled(): Boolean {
-        return !title.value.isNullOrBlank() && !startDate.value.isNullOrBlank() && !endDate.value.isNullOrBlank()
+        return !title.value.isNullOrBlank() && isDateValid(startDate.value) && isDateValid(endDate.value)
+    }
+
+    private fun isDateValid(date: String?): Boolean {
+        return !date.isNullOrBlank() && date.length == 8
     }
 
     private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
@@ -62,21 +66,17 @@ class CareerAddContestViewModel : ViewModel() {
     fun createRequestDto(): RequestDto? {
         val startDateString = startDate.value
         val endDateString = endDate.value
-        // 날짜가 입력되지 않은 경우
-        if (startDateString.isNullOrBlank() || endDateString.isNullOrBlank()) {
-            return null
-        }
 
         val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-        val temporaryStartDateString = "20220131"
-        val temporaryStartDate = LocalDate.parse(temporaryStartDateString, formatter)
+        val formattedStartDate = LocalDate.parse(startDateString, formatter)
+        val formattedEndDate = LocalDate.parse(endDateString, formatter)
 
         return RequestDto(
             title = title.value!!,
             content = "",
             category = "COMPETITIONS",
-            startDate = temporaryStartDate,
-            endDate = temporaryStartDate,
+            startDate = formattedStartDate,
+            endDate = formattedEndDate,
             award = "GRAND_PRIZE"
         )
     }

@@ -11,6 +11,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerAddActivityBinding
+import umc.com.mobile.project.ui.career.PeriodBottomFragment
+import umc.com.mobile.project.ui.career.UploadBottomFragment
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddActivityViewModel
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
