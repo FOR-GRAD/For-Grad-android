@@ -4,18 +4,15 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 import umc.com.mobile.project.data.model.career.AddCareerResponse
+import umc.com.mobile.project.data.model.career.CareerDetailResponse
 import umc.com.mobile.project.data.model.career.CategoryListResponse
 import umc.com.mobile.project.data.model.career.NonSubjectResponse
-import umc.com.mobile.project.ui.career.data.RequestDto
-import java.util.UUID
 
 interface CareerApi {
     @GET("/careers/point?page=1")
@@ -34,4 +31,6 @@ interface CareerApi {
         @Part("requestDto") requestDto: RequestBody
     ): Call<AddCareerResponse>
 
+    @GET("/career-detail")
+    fun getVolunteerDetail(@Query("activityId") activityId: Long): Call<CareerDetailResponse>
 }

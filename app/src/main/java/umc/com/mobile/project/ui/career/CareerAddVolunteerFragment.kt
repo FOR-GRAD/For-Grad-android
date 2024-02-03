@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerAddVolunteerBinding
+import umc.com.mobile.project.ui.career.PeriodBottomFragment
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddVolunteerViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
