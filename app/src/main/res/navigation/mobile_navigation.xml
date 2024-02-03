@@ -80,6 +80,18 @@
         <action
             android:id="@+id/action_fragment_career_confirm_to_fragment_career"
             app:destination="@+id/fragment_career"/>
+        <action
+            android:id="@+id/action_fragment_career_confirm_to_fragment_career_certificate"
+            app:destination="@+id/fragment_career_certificate"/>
+        <action
+            android:id="@+id/action_fragment_career_confirm_to_fragment_career_contest"
+            app:destination="@+id/fragment_career_contest"/>
+        <action
+            android:id="@+id/action_fragment_career_confirm_to_fragment_career_volunteer"
+            app:destination="@+id/fragment_career_volunteer"/>
+        <action
+            android:id="@+id/action_fragment_career_confirm_to_fragment_career_activity"
+            app:destination="@+id/fragment_career_activity"/>
     </fragment>
 
     <fragment
