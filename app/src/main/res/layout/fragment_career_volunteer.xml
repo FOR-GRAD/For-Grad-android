@@ -72,7 +72,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_main"
                 android:layout_width="match_parent"
-                android:layout_height="470dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="17dp"
@@ -85,11 +85,12 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_career_volunteerList"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_default="percent"
                     app:layout_constraintHeight_percent="1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
