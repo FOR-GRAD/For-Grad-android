@@ -71,6 +71,12 @@
     <string name="career_endDate">종료일자</string>
     <string name="career_date_ex">YYMMDD</string>
 
+    <!--커리어 수정하기-->
+    <string name="career_edit_volunteer">봉사활동 수정하기</string>
+    <string name="career_edit_activity_2">대외활동 수정하기</string>
+    <string name="career_edit_contest">공모전 수정하기</string>
+    <string name="career_edit_certificate">자격증 수정하기</string>
+
     <!-- 규민 -->
     <!-- Home -->
     <string name="home_to_grad">졸업까지</string>
