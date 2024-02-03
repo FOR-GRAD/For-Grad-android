@@ -42,6 +42,9 @@ class CertificateRVAdapter(private val certificateList: List<ActivityWithAccumul
         holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
         holder.itemBinding.etCertificateType.text = editableFactory.newEditable(certificationType)
         holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(accum)
+        holder.itemView.setOnClickListener {
+            mItemClickListener.onItemClick(position)
+        }
     }
 
     class CertificateViewHolder(val itemBinding: ItemCertificateBinding) :

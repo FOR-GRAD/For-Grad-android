@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemActivityBinding
 
-class ActivityRVAdapter(private val activityList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<ActivityRVAdapter.ActivityViewHolder>(){
+class ActivityRVAdapter(private val activityList: List<ActivityWithAccumulatedHour>) :
+    RecyclerView.Adapter<ActivityRVAdapter.ActivityViewHolder>() {
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -15,7 +16,7 @@ class ActivityRVAdapter(private val activityList: List<ActivityWithAccumulatedHo
 
     private lateinit var mItemClickListener: OnItemClickListener
 
-    fun setOnItemClickListener(itemClickListener: OnItemClickListener){
+    fun setOnItemClickListener(itemClickListener: OnItemClickListener) {
         mItemClickListener = itemClickListener
     }
 
@@ -24,7 +25,8 @@ class ActivityRVAdapter(private val activityList: List<ActivityWithAccumulatedHo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActivityViewHolder {
-        val itemBinding = ItemActivityBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding =
+            ItemActivityBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ActivityViewHolder(itemBinding)
     }
 
@@ -38,7 +40,11 @@ class ActivityRVAdapter(private val activityList: List<ActivityWithAccumulatedHo
         holder.itemBinding.etActivityDate.text = editableFactory.newEditable(startDate)
         holder.itemBinding.etActivityTitle.text = editableFactory.newEditable(title)
         holder.itemBinding.etActivityIndex.text = editableFactory.newEditable(index)
+        holder.itemView.setOnClickListener {
+            mItemClickListener.onItemClick(position)
+        }
     }
 
-    class ActivityViewHolder(val itemBinding: ItemActivityBinding) : RecyclerView.ViewHolder(itemBinding.root)
+    class ActivityViewHolder(val itemBinding: ItemActivityBinding) :
+        RecyclerView.ViewHolder(itemBinding.root)
 }

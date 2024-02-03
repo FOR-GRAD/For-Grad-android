@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerCertificateBinding
 import umc.com.mobile.project.ui.career.adapter.CertificateRVAdapter
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditVolunteerViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerEditCertificateViewModel
 import umc.com.mobile.project.ui.career.viewmodel.CertificateViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
@@ -20,7 +20,7 @@ class CertificateFragment : Fragment() {
     private var _binding: FragmentCareerCertificateBinding? = null
     private val binding get() = _binding!!
     private val viewModel: CertificateViewModel by viewModels()
-    private val sharedViewModel: CareerEditVolunteerViewModel by activityViewModels()
+    private val sharedViewModel: CareerEditCertificateViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
