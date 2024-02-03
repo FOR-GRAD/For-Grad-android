@@ -1,7 +1,9 @@
 package umc.com.mobile.project.ui.career
 
 import android.os.Bundle
+import android.os.Debug
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,16 +29,6 @@ class CareerConfirmFragment: Fragment() {
 		_binding!!.ivCareerEditBack.setOnClickListener {
 			navigate(R.id.action_fragment_career_confirm_to_fragment_career)
 		}
-		_binding!!.btnCareerConfirm.setOnClickListener {
-			if (viewModel.category.equals("자격증"))
-				navigate(R.id.action_fragment_career_confirm_to_fragment_career_certificate)
-			else if (viewModel.category.equals("공모전"))
-				navigate(R.id.action_fragment_career_confirm_to_fragment_career_contest)
-			else if (viewModel.category.equals("봉사활동"))
-				navigate(R.id.action_fragment_career_confirm_to_fragment_career_volunteer)
-			else if (viewModel.category.equals("교외활동"))
-				navigate(R.id.action_fragment_career_confirm_to_fragment_career_contest)
-		}
 		return binding.root
 	}
 
@@ -50,6 +42,15 @@ class CareerConfirmFragment: Fragment() {
 		requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 		viewModel.category.observe(viewLifecycleOwner) {category ->
 			binding.tvCareerConfirm.text = Editable.Factory.getInstance().newEditable("$category 카테고리에\n저장되었습니다!")
+		}
+		binding.btnCareerConfirm.setOnClickListener {
+			Log.d("careerConfirm", viewModel.category.value.toString())
+			when (viewModel.category.value) {
+				"자격증" -> navigate(R.id.action_fragment_career_confirm_to_fragment_career_certificate)
+				"공모전" -> navigate(R.id.action_fragment_career_confirm_to_fragment_career_contest)
+				"봉사활동" -> navigate(R.id.action_fragment_career_confirm_to_fragment_career_volunteer)
+				"교외활동" -> navigate(R.id.action_fragment_career_confirm_to_fragment_career_contest)
+			}
 		}
 	}
 
