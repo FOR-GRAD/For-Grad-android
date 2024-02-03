@@ -21,10 +21,54 @@ class GradInfoViewModel : ViewModel() {
 	val requirementsInfo: MutableLiveData<RequirementsResponse?>
 		get() = _requirementsInfo
 
-	private val _gradesInfo: MutableLiveData<GradesResponse?> = MutableLiveData()
-	val gradesInfo: MutableLiveData<GradesResponse?>
-		get() = _gradesInfo
+	private val _error: MutableLiveData<String> = MutableLiveData()
+	val error: LiveData<String>
+		get() = _error
 
+	fun init(value: GradesResponse) {
+		_userAppliedCredit.postValue(value.result.semesters["20"]?.gradesTotalDto?.appliedCredits)
+		_userAcquiredCredit.postValue(value.result.semesters["20"]?.gradesTotalDto?.acquiredCredits)
+		_userAverageTotal.postValue(value.result.semesters["20"]?.gradesTotalDto?.totalGrade)
+		_userAverageGrade.postValue(value.result.semesters["20"]?.gradesTotalDto?.averageGrade)
+		_userPercentile.postValue(value.result.semesters["20"]?.gradesTotalDto?.percentile)
+	}
+
+	fun getGradRequirementsInfo() {
+		gradInfoApiService.getRequirements().enqueue(object : Callback<RequirementsResponse> {
+			override fun onResponse(
+				call: Call<RequirementsResponse>,
+				response: Response<RequirementsResponse>
+			) {
+				if (response.isSuccessful) {
+					val userResponse = response.body()
+					if (userResponse != null) {
+						_requirementsInfo.postValue(userResponse)
+						Log.d("gradInfo", "${response.body()}")
+					} else {
+						_error.postValue("서버 응답이 올바르지 않습니다.")
+					}
+				} else {
+					_error.postValue("사용자 정보를 가져오지 못했습니다.")
+					try {
+						throw response.errorBody()?.string()?.let {
+							RuntimeException(it)
+						} ?: RuntimeException("Unknown error")
+					} catch (e: Exception) {
+						Log.e("gradInfo", "requirements API 오류: ${e.message}")
+					}
+				}
+			}
+
+			override fun onFailure(call: Call<RequirementsResponse>, t: Throwable) {
+				_error.postValue("네트워크 오류: ${t.message}")
+				Log.d("gradInfo", "requirements: ${t.message}")
+			}
+		})
+	}
+
+	/**
+	 * 성적 조회
+	 */
 	private val _userSemester: MutableLiveData<String> = MutableLiveData()
 	val userSemester: LiveData<String>
 		get() = _userSemester
@@ -69,54 +113,9 @@ class GradInfoViewModel : ViewModel() {
 	val userPercentile: LiveData<String>
 		get() = _userPercentile
 
-	private val _completionInfo: MutableLiveData<CompletionResponse?> = MutableLiveData()
-	val completionInfo: MutableLiveData<CompletionResponse?>
-		get() = _completionInfo
-
-	private val _error: MutableLiveData<String> = MutableLiveData()
-	val error: LiveData<String>
-		get() = _error
-
-	fun init(value: GradesResponse) {
-		_userAppliedCredit.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.appliedCredits)
-		_userAcquiredCredit.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.acquiredCredits)
-		_userAverageTotal.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.totalGrade)
-		_userAverageGrade.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.averageGrade)
-		_userPercentile.postValue(value.result.semesters["2021 학년도 1학기"]?.gradesTotalDto?.percentile)
-	}
-
-	fun getGradRequirementsInfo() {
-		gradInfoApiService.getRequirements().enqueue(object : Callback<RequirementsResponse> {
-			override fun onResponse(
-				call: Call<RequirementsResponse>,
-				response: Response<RequirementsResponse>
-			) {
-				if (response.isSuccessful) {
-					val userResponse = response.body()
-					if (userResponse != null) {
-						_requirementsInfo.postValue(userResponse)
-						Log.d("gradInfo", "${response.body()}")
-					} else {
-						_error.postValue("서버 응답이 올바르지 않습니다.")
-					}
-				} else {
-					_error.postValue("사용자 정보를 가져오지 못했습니다.")
-					try {
-						throw response.errorBody()?.string()?.let {
-							RuntimeException(it)
-						} ?: RuntimeException("Unknown error")
-					} catch (e: Exception) {
-						Log.e("gradInfo", "requirements API 오류: ${e.message}")
-					}
-				}
-			}
-
-			override fun onFailure(call: Call<RequirementsResponse>, t: Throwable) {
-				_error.postValue("네트워크 오류: ${t.message}")
-				Log.d("gradInfo", "requirements: ${t.message}")
-			}
-		})
-	}
+	private val _gradesInfo: MutableLiveData<GradesResponse?> = MutableLiveData()
+	val gradesInfo: MutableLiveData<GradesResponse?>
+		get() = _gradesInfo
 
 	fun getGradeInfo() {
 		gradInfoApiService.getGrades().enqueue(object : Callback<GradesResponse> {
@@ -151,6 +150,31 @@ class GradInfoViewModel : ViewModel() {
 		})
 	}
 
+	/**
+	 *
+	 * 개인별 이수 현황
+	 *
+	 */
+
+
+	private val _completionInfo: MutableLiveData<CompletionResponse?> = MutableLiveData()
+	val completionInfo: MutableLiveData<CompletionResponse?>
+		get() = _completionInfo
+
+	private val _foundationElectiveCourse1: MutableLiveData<Map<String, String>> = MutableLiveData()
+	val foundationElectiveCourse1: LiveData<Map<String, String>>
+		get() = _foundationElectiveCourse1
+
+	private val _foundationElectiveCourse2: MutableLiveData<Map<String, String>> = MutableLiveData()
+	val foundationElectiveCourse2: LiveData<Map<String, String>>
+		get() = _foundationElectiveCourse2
+
+	// 동적 데이터를 설정
+	fun setFoundationElectiveCourse(data: Map<String, String>) {
+		_foundationElectiveCourse1.postValue(data)
+		_foundationElectiveCourse2.postValue(data)
+	}
+
 	fun getCompletionInfo() {
 		gradInfoApiService.getCompletion().enqueue(object : Callback<CompletionResponse> {
 			override fun onResponse(
@@ -182,4 +206,5 @@ class GradInfoViewModel : ViewModel() {
 			}
 		})
 	}
+
 }
