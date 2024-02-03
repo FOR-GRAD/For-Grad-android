@@ -9,6 +9,16 @@ import umc.com.mobile.project.databinding.ItemCertificateBinding
 
 class ContestRVAdapter(private val contestList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<ContestRVAdapter.ContestViewHolder>(){
 
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    private lateinit var mItemClickListener: OnItemClickListener
+
+    fun setOnItemClickListener(itemClickListener: OnItemClickListener){
+        mItemClickListener = itemClickListener
+    }
+
     override fun getItemCount(): Int {
         return contestList?.size ?: 0
     }

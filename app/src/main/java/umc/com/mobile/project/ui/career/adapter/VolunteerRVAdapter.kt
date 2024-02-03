@@ -2,15 +2,25 @@ package umc.com.mobile.project.ui.career.adapter
 
 import android.text.Editable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemCertificateBinding
 
 class VolunteerRVAdapter(
-    private val volunteerList: List<ActivityWithAccumulatedHour>,
-    private val itemClickListener: OnItemClickListener
+    private val volunteerList: List<ActivityWithAccumulatedHour>
 ) : RecyclerView.Adapter<VolunteerRVAdapter.VolunteerViewHolder>(){
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    private lateinit var mItemClickListener: OnItemClickListener
+
+    fun setOnItemClickListener(itemClickListener: OnItemClickListener){
+        mItemClickListener = itemClickListener
+    }
 
     override fun getItemCount(): Int {
         return volunteerList?.size ?: 0
@@ -36,10 +46,10 @@ class VolunteerRVAdapter(
         holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
         holder.itemBinding.etCertificateType.text = editableFactory.newEditable(volunteerHourWithUnit)
         holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(accumulatedHourWithUnit)
+        holder.itemView.setOnClickListener {
+            mItemClickListener.onItemClick(position)
+        }
     }
 
     class VolunteerViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)
-}
-interface OnItemClickListener {
-    fun onItemClick(itemId: Long)
 }

@@ -122,6 +122,9 @@
         <action
             android:id="@+id/action_fragment_contest_to_fragment_career"
             app:destination="@+id/fragment_career"/>
+        <action
+            android:id="@+id/action_fragment_contest_to_fragment_career_edit_contest"
+            app:destination="@+id/fragment_career_edit_contest"/>
     </fragment>
 
     <fragment
@@ -152,6 +155,13 @@
         android:name="umc.com.mobile.project.ui.career.CareerEditVolunteerFragment"
         android:label="@string/career_edit_volunteer"
         tools:layout="@layout/fragment_career_edit_volunteer">
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_edit_contest"
+        android:name="umc.com.mobile.project.ui.career.CareerEditContestFragment"
+        android:label="@string/career_edit_contest"
+        tools:layout="@layout/fragment_career_edit_contest">
     </fragment>
 
     <fragment

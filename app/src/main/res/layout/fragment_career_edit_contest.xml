@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="umc.com.mobile.project.ui.career.viewmodel.CareerAddContestViewModel" />
+            type="umc.com.mobile.project.ui.career.viewmodel.CareerEditContestViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -65,7 +65,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_main"
                 android:layout_width="match_parent"
-                android:layout_height="470dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="42dp"
                 android:layout_marginEnd="18dp"
@@ -198,7 +198,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_contest_endDate" />
 
-                <!--<androidx.appcompat.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_career_edit"
                     style="@style/SemiBoldFont.16"
                     android:layout_width="match_parent"
@@ -208,15 +208,15 @@
                     android:layout_marginEnd="23dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/bg_solid_dark_gray_radius_23_5"
-                    android:backgroundTint="@{vm.isFilledAllOptions ? @color/skyBlue : @color/gray}"
-                    android:enabled="@{vm.isFilledAllOptions}"
+                    android:backgroundTint="@color/skyBlue"
+                    android:enabled="true"
                     android:stateListAnimator="@null"
                     android:text="@string/career_edit_btn"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_end_year" />-->
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_end_year" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
