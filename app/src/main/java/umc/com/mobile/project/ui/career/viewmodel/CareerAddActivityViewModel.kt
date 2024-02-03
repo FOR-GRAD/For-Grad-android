@@ -47,7 +47,11 @@ class CareerAddActivityViewModel : ViewModel() {
     }
 
     private fun areBothFieldsFilled(): Boolean {
-        return !title.value.isNullOrBlank() && !startDate.value.isNullOrBlank() && !endDate.value.isNullOrBlank()
+        return !title.value.isNullOrBlank() && isDateValid(startDate.value) && isDateValid(endDate.value)
+    }
+
+    private fun isDateValid(date: String?): Boolean {
+        return !date.isNullOrBlank() && date.length == 8
     }
 
     private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
@@ -57,14 +61,6 @@ class CareerAddActivityViewModel : ViewModel() {
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         imageList.add(body)
-    }
-
-    fun addImageFiles(files: List<File>) {
-        for (file in files) {
-            val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
-            val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-            imageList.add(body)
-        }
     }
 
     // 빈 이미지 생성
