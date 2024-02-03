@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemCertificateBinding
 
-class VolunteerRVAdapter(private val volunteerList: List<ActivityWithAccumulatedHour>): RecyclerView.Adapter<VolunteerRVAdapter.VolunteerViewHolder>(){
+class VolunteerRVAdapter(
+    private val volunteerList: List<ActivityWithAccumulatedHour>,
+    private val itemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<VolunteerRVAdapter.VolunteerViewHolder>(){
 
     override fun getItemCount(): Int {
         return volunteerList?.size ?: 0
@@ -36,4 +39,7 @@ class VolunteerRVAdapter(private val volunteerList: List<ActivityWithAccumulated
     }
 
     class VolunteerViewHolder(val itemBinding: ItemCertificateBinding) : RecyclerView.ViewHolder(itemBinding.root)
+}
+interface OnItemClickListener {
+    fun onItemClick(itemId: Long)
 }

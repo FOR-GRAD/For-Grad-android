@@ -11,6 +11,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerAddCertificateBinding
+import umc.com.mobile.project.ui.career.CertificateTypeBottomFragment
+import umc.com.mobile.project.ui.career.PeriodBottomFragment
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddCertificateViewModel
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate

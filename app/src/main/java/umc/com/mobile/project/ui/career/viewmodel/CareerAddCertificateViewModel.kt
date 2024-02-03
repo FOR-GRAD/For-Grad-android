@@ -53,7 +53,11 @@ class CareerAddCertificateViewModel : ViewModel() {
     }
 
     private fun areBothFieldsFilled(): Boolean {
-        return !title.value.isNullOrBlank() && !startDate.value.isNullOrBlank() && !endDate.value.isNullOrBlank()
+        return !title.value.isNullOrBlank() && isDateValid(startDate.value) && isDateValid(endDate.value)
+    }
+
+    private fun isDateValid(date: String?): Boolean {
+        return !date.isNullOrBlank() && date.length == 8
     }
 
     private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
