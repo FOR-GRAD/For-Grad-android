@@ -70,7 +70,33 @@
                 android:background="@drawable/bg_solid_white_radius_16_5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout_top"></androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout_top">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_career_certificate_search_bar"
+                    style="@style/MediumFont.14"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_solid_white_radius_16_5"
+                    android:gravity="top"
+                    android:hint="@string/career_edit_search_hint"
+                    android:paddingStart="18dp"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_career_certificate_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/ic_career_search_14"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_career_certificate_search_bar" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_main"
