@@ -77,6 +77,7 @@
                     style="@style/MediumFont.14"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="40dp"
                     android:background="@drawable/bg_solid_white_radius_16_5"
                     android:gravity="top"
                     android:hint="@string/career_edit_search_hint"

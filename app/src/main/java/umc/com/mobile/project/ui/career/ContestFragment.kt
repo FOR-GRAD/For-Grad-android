@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerContestBinding
+import umc.com.mobile.project.ui.career.adapter.CertificateRVAdapter
 import umc.com.mobile.project.ui.career.adapter.ContestRVAdapter
 import umc.com.mobile.project.ui.career.viewmodel.CareerEditContestViewModel
 import umc.com.mobile.project.ui.career.viewmodel.ContestViewModel
@@ -29,13 +30,15 @@ class ContestFragment : Fragment() {
     ): View {
         _binding = FragmentCareerContestBinding.inflate(inflater, container, false)
 
-        //api 연결
+        // adapter 초기화
+        val adapter = ContestRVAdapter(emptyList())
+        binding.rvCareerContestList.adapter = adapter
+        binding.rvCareerContestList.layoutManager = LinearLayoutManager(requireContext())
+
         viewModel.getContestInfo()
-        //adapter
         viewModel.contestInfo.observe(viewLifecycleOwner, Observer { contestInfo ->
-            val adapter = ContestRVAdapter(
-                contestInfo?.result!!.activityWithAccumulatedHours
-            )
+            adapter.updateItems(contestInfo?.result!!.activityWithAccumulatedHours)
+
             adapter.setOnItemClickListener(object : ContestRVAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
                     sharedViewModel.studentId.value =
@@ -43,9 +46,23 @@ class ContestFragment : Fragment() {
                     navigate(R.id.action_fragment_contest_to_fragment_career_edit_contest)
                 }
             })
-            binding.rvCareerContestList.adapter = adapter
-            binding.rvCareerContestList.layoutManager = LinearLayoutManager(requireContext())
+            adapter.notifyDataSetChanged()
         })
+
+        _binding!!.ivCareerContestSearch.setOnClickListener {
+            viewModel.searchContestInfo(_binding!!.etCareerContestSearchBar.text.toString())
+            viewModel.searchInfo.observe(viewLifecycleOwner, Observer { searchInfo ->
+                adapter.updateItems(searchInfo?.result!!.activityWithAccumulatedHours)
+                adapter.setOnItemClickListener(object : ContestRVAdapter.OnItemClickListener {
+                    override fun onItemClick(position: Int) {
+                        sharedViewModel.studentId.value =
+                            searchInfo?.result!!.activityWithAccumulatedHours[position].id
+                        navigate(R.id.action_fragment_contest_to_fragment_career_edit_contest)
+                    }
+                })
+                adapter.notifyDataSetChanged()
+            })
+        }
 
         _binding!!.ivCareerContestBack.setOnClickListener {
             navigate(R.id.action_fragment_contest_to_fragment_career)

@@ -7,8 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemCertificateBinding
 
-class ContestRVAdapter(private val contestList: List<ActivityWithAccumulatedHour>) :
+class ContestRVAdapter(private var contestList: List<ActivityWithAccumulatedHour>) :
     RecyclerView.Adapter<ContestRVAdapter.ContestViewHolder>() {
+
+    fun updateItems(newItems: List<ActivityWithAccumulatedHour>) {
+        contestList = newItems
+        notifyDataSetChanged()
+    }
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)

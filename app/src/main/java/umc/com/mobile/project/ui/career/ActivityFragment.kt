@@ -12,10 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerActivityBinding
 import umc.com.mobile.project.ui.career.adapter.ActivityRVAdapter
-import umc.com.mobile.project.ui.career.adapter.VolunteerRVAdapter
+import umc.com.mobile.project.ui.career.adapter.CertificateRVAdapter
 import umc.com.mobile.project.ui.career.viewmodel.ActivityViewModel
 import umc.com.mobile.project.ui.career.viewmodel.CareerEditActivityViewModel
-import umc.com.mobile.project.ui.career.viewmodel.CareerEditVolunteerViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
 class ActivityFragment : Fragment() {
@@ -30,21 +29,37 @@ class ActivityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCareerActivityBinding.inflate(inflater, container, false)
+        // adapter 초기화
+        val adapter = ActivityRVAdapter(emptyList())
+        binding.rvCareerActivityList.adapter = adapter
+        binding.rvCareerActivityList.layoutManager = LinearLayoutManager(requireContext())
+
         viewModel.getActivityInfo()
-        //adapter
         viewModel.activityInfo.observe(viewLifecycleOwner, Observer { activityInfo ->
-            val adapter = ActivityRVAdapter(
-                activityInfo?.result!!.activityWithAccumulatedHours
-            )
+            adapter.updateItems(activityInfo?.result!!.activityWithAccumulatedHours)
             adapter.setOnItemClickListener(object : ActivityRVAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
-                    sharedViewModel.studentId.value = activityInfo?.result!!.activityWithAccumulatedHours[position].id
+                    sharedViewModel.studentId.value =
+                        activityInfo?.result!!.activityWithAccumulatedHours[position].id
                     navigate(R.id.action_fragment_activity_to_fragment_career_edit_activity)
                 }
             })
-            binding.rvCareerActivityList.adapter = adapter
-            binding.rvCareerActivityList.layoutManager = LinearLayoutManager(requireContext())
+            adapter.notifyDataSetChanged()
         })
+        _binding!!.ivCareerActivitySearch.setOnClickListener {
+            viewModel.searchActivityInfo(_binding!!.etCareerActivitySearchBar.text.toString())
+            viewModel.searchInfo.observe(viewLifecycleOwner, Observer { searchInfo ->
+                adapter.updateItems(searchInfo?.result!!.activityWithAccumulatedHours)
+                adapter.setOnItemClickListener(object : ActivityRVAdapter.OnItemClickListener {
+                    override fun onItemClick(position: Int) {
+                        sharedViewModel.studentId.value =
+                            searchInfo?.result!!.activityWithAccumulatedHours[position].id
+                        navigate(R.id.action_fragment_activity_to_fragment_career_edit_activity)
+                    }
+                })
+                adapter.notifyDataSetChanged()
+            })
+        }
 
         _binding!!.ivCareerActivityBack.setOnClickListener {
             navigate(R.id.action_fragment_activity_to_fragment_career)
