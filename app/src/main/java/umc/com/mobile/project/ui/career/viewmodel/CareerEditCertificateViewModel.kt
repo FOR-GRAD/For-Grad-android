@@ -10,6 +10,9 @@ import retrofit2.Response
 import umc.com.mobile.project.data.model.career.CareerDetailResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
+import umc.com.mobile.project.ui.career.data.CertificateDto
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class CareerEditCertificateViewModel : ViewModel() {
     val studentId: MutableLiveData<Long> = MutableLiveData()
@@ -78,5 +81,28 @@ class CareerEditCertificateViewModel : ViewModel() {
                     Log.d("getCertificateDetailInfo", "getCertificateInfo 네트워크 오류: ${t.message}")
                 }
             })
+    }
+
+    fun updateCertificateDetails() {
+        val updatedTitle = title.value ?: ""
+        val updatedType = type.value ?: ""
+        val updatedStartDate = startDate.value ?: ""
+        val updatedEndDate = endDate.value ?: ""
+
+        val currentCertificateDetail = certificateDetailInfo.value
+
+        val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+        val formattedStartDate = if (updatedStartDate.isNotEmpty()) LocalDate.parse(updatedStartDate, formatter) else null
+        val formattedEndDate = if (updatedEndDate.isNotEmpty()) LocalDate.parse(updatedEndDate, formatter) else null
+
+        currentCertificateDetail?.let { currentDetail ->
+            val updatedDetail = CertificateDto(
+                title = if (updatedTitle.isNotEmpty()) updatedTitle else currentDetail.result.title,
+                category = "CERTIFICATIONS",
+                certificationType = if (updatedType.isNotEmpty()) updatedType else currentDetail.result.certificationType,
+                startDate = formattedStartDate ?: LocalDate.parse(currentDetail.result.startDate, formatter),
+                endDate = formattedEndDate ?: LocalDate.parse(currentDetail.result.endDate, formatter)
+            )
+        }
     }
 }

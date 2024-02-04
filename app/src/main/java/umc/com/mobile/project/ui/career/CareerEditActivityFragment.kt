@@ -38,7 +38,7 @@ class CareerEditActivityFragment : Fragment() {
             _activityInfo?.let {
                 _binding?.etCareerEditActivity?.hint = it.result.title ?: ""
                 _binding?.etCareerEditActivityFile?.hint =
-                    it.result.award?.toString() ?: ""
+                    it.result.fileUrls?.toString() ?: ""
                 _binding?.etCareerEditActivityStartYear?.hint = it.result.startDate ?: ""
                 _binding?.etCareerEditActivityEndYear?.hint = it.result.endDate ?: ""
             }

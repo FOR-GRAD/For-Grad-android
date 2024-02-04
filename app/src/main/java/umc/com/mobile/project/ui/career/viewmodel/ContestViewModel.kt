@@ -22,6 +22,44 @@ class ContestViewModel : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
+    private val _searchInfo: MutableLiveData<CategoryListResponse?> = MutableLiveData()
+    val searchInfo: MutableLiveData<CategoryListResponse?>
+        get() = _searchInfo
+
+    fun searchContestInfo(searchWord: String) {
+        contestApiService.getSearchCareer("COMPETITIONS", searchWord).enqueue(object :
+            Callback<CategoryListResponse> {
+            override fun onResponse(
+                call: Call<CategoryListResponse>,
+                response: Response<CategoryListResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val CategoryListResponse = response.body()
+                    if (CategoryListResponse != null) {
+                        _searchInfo.postValue(CategoryListResponse)
+                        Log.d("searchContestInfo", "${response.body()}")
+                    } else {
+                        _error.postValue("서버 응답이 올바르지 않습니다.")
+                    }
+                } else {
+                    _error.postValue("검색한 공모전 정보를 가져오지 못했습니다.")
+                    try {
+                        throw response.errorBody()?.string()?.let {
+                            RuntimeException(it)
+                        } ?: RuntimeException("Unknown error")
+                    } catch (e: Exception) {
+                        Log.e("searchContestInfo", "searchContestInfo API 오류: ${e.message}")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<CategoryListResponse>, t: Throwable) {
+                _error.postValue("네트워크 오류: ${t.message}")
+                Log.d("searchContestInfo", "searchContestInfo: ${t.message}")
+            }
+        })
+    }
+
     fun getContestInfo() {
         contestApiService.getCareerList("COMPETITIONS").enqueue(object :
             Callback<CategoryListResponse> {

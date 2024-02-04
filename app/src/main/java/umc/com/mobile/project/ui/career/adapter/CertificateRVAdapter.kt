@@ -7,8 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import umc.com.mobile.project.data.model.career.ActivityWithAccumulatedHour
 import umc.com.mobile.project.databinding.ItemCertificateBinding
 
-class CertificateRVAdapter(private val certificateList: List<ActivityWithAccumulatedHour>) :
+class CertificateRVAdapter(private var certificateList: List<ActivityWithAccumulatedHour>) :
     RecyclerView.Adapter<CertificateRVAdapter.CertificateViewHolder>() {
+
+    fun updateItems(newItems: List<ActivityWithAccumulatedHour>) {
+        certificateList = newItems
+        notifyDataSetChanged()
+    }
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -42,6 +47,9 @@ class CertificateRVAdapter(private val certificateList: List<ActivityWithAccumul
         holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
         holder.itemBinding.etCertificateType.text = editableFactory.newEditable(certificationType)
         holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(accum)
+        holder.itemView.setOnClickListener {
+            mItemClickListener.onItemClick(position)
+        }
     }
 
     class CertificateViewHolder(val itemBinding: ItemCertificateBinding) :

@@ -1,7 +1,6 @@
 package umc.com.mobile.project.ui.career
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,25 +28,40 @@ class VolunteerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCareerVolunteerBinding.inflate(inflater, container, false)
-        //api 연결
+
+        // adapter 초기화
+        val adapter = VolunteerRVAdapter(emptyList())
+        binding.rvCareerVolunteerList.adapter = adapter
+        binding.rvCareerVolunteerList.layoutManager = LinearLayoutManager(requireContext())
+
         viewModel.getVolunteerInfo()
-        //adapter
         viewModel.volunteerInfo.observe(viewLifecycleOwner, Observer { volunteerInfo ->
-            val adapter = VolunteerRVAdapter(
-                volunteerInfo?.result!!.activityWithAccumulatedHours
-            )
+            adapter.updateItems(volunteerInfo?.result!!.activityWithAccumulatedHours)
+
             adapter.setOnItemClickListener(object : VolunteerRVAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
-                    sharedViewModel.studentId.value = volunteerInfo?.result!!.activityWithAccumulatedHours[position].id
+                    sharedViewModel.studentId.value =
+                        volunteerInfo?.result!!.activityWithAccumulatedHours[position].id
                     navigate(R.id.action_fragment_volunteer_to_fragment_career_edit_volunteer)
                 }
             })
-            binding.rvCareerVolunteerList.adapter = adapter
-            binding.rvCareerVolunteerList.layoutManager = LinearLayoutManager(requireContext())
+            adapter.notifyDataSetChanged()
         })
 
-        viewModel.error.observe(viewLifecycleOwner, Observer { error ->
-        })
+        _binding!!.ivCareerVolunteerSearch.setOnClickListener {
+            viewModel.searchVolunteerInfo(_binding!!.etCareerVolunteerSearchBar.text.toString())
+            viewModel.searchInfo.observe(viewLifecycleOwner, Observer { searchInfo ->
+                adapter.updateItems(searchInfo?.result!!.activityWithAccumulatedHours)
+                adapter.setOnItemClickListener(object : VolunteerRVAdapter.OnItemClickListener {
+                    override fun onItemClick(position: Int) {
+                        sharedViewModel.studentId.value =
+                            searchInfo?.result!!.activityWithAccumulatedHours[position].id
+                        navigate(R.id.action_fragment_volunteer_to_fragment_career_edit_volunteer)
+                    }
+                })
+                adapter.notifyDataSetChanged()
+            })
+        }
 
         _binding!!.ivCareerVolunteerBack.setOnClickListener {
             navigate(R.id.action_fragment_volunteer_to_fragment_career)
