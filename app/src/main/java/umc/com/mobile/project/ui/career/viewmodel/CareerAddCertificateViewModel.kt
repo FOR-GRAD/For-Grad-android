@@ -75,12 +75,18 @@ class CareerAddCertificateViewModel : ViewModel() {
         val formattedStartDate = LocalDate.parse(startDateString, formatter)
         val formattedEndDate = LocalDate.parse(endDateString, formatter)
 
+        val certificationType = when (selectedCertificateType.value) {
+            "실기" -> "PRACTICAL_EXAM"
+            "필기" -> "WRITTEN_EXAM"
+            else -> "INTERVIEW"
+        }
+
         return CertificateDto(
             title = title.value!!,
             category = "CERTIFICATIONS",
             startDate = formattedStartDate,
             endDate = formattedEndDate,
-            certificationType = "INTERVIEW"
+            certificationType = certificationType
         )
     }
 

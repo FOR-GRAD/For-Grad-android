@@ -71,13 +71,20 @@ class CareerAddContestViewModel : ViewModel() {
         val formattedStartDate = LocalDate.parse(startDateString, formatter)
         val formattedEndDate = LocalDate.parse(endDateString, formatter)
 
+        val certificationType = when (selectedAward.value) {
+            "대상" -> "GRAND_PRIZE"
+            "최우수상" -> "EXCELLENT_PRIZE"
+            "우수상" -> "GOOD_PRIZE"
+            else -> "ENCOURAGEMENT_PRIZE"
+        }
+
         return RequestDto(
             title = title.value!!,
             content = "",
             category = "COMPETITIONS",
             startDate = formattedStartDate,
             endDate = formattedEndDate,
-            award = "GRAND_PRIZE"
+            award = certificationType
         )
     }
 
