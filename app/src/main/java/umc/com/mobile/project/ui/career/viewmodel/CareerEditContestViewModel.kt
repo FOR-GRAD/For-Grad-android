@@ -33,6 +33,10 @@ class CareerEditContestViewModel : ViewModel() {
         endDate.value = ""
     }
 
+    fun updateSelectedAward(selectedAward: String) {
+        award.value = selectedAward
+    }
+
     private val careerApiService = ApiClient.createService<CareerApi>()
 
     private val _contestDetailInfo: MutableLiveData<CareerDetailResponse?> = MutableLiveData()

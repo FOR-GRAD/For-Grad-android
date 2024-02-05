@@ -8,6 +8,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.career.CareerDetailResponse
+import umc.com.mobile.project.data.model.career.UpdateCareerResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
 import umc.com.mobile.project.ui.career.data.CertificateDto
@@ -34,6 +35,10 @@ class CareerEditCertificateViewModel : ViewModel() {
         type.value = ""
         startDate.value = ""
         endDate.value = ""
+    }
+
+    fun updateCertificateType(selectedType: String) {
+        type.value = selectedType
     }
 
     private val careerApiService = ApiClient.createService<CareerApi>()
@@ -104,5 +109,39 @@ class CareerEditCertificateViewModel : ViewModel() {
                 endDate = formattedEndDate ?: LocalDate.parse(currentDetail.result.endDate, formatter)
             )
         }
+
+        /*careerApiService.updateCareer(studentId.value!!, )
+            .enqueue(object : Callback<UpdateCareerResponse> {
+                override fun onResponse(
+                    call: Call<UpdateCareerResponse>,
+                    response: Response<UpdateCareerResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val CareerDetailResponse = response.body()
+                        if (CareerDetailResponse != null) {
+                            Log.d("updateCertificateInfo 성공", "${response.body()}")
+                        } else {
+                            _error.postValue("서버 응답이 올바르지 않습니다.")
+                        }
+                    } else {
+                        _error.postValue("자격증 정보 수정을 못했습니다.")
+                        try {
+                            throw response.errorBody()?.string()?.let {
+                                RuntimeException(it)
+                            } ?: RuntimeException("Unknown error")
+                        } catch (e: Exception) {
+                            Log.e(
+                                "updateCertificateDetailInfo",
+                                "updateCertificateInfo API 오류: ${e.message}"
+                            )
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<CareerDetailResponse>, t: Throwable) {
+                    _error.postValue("네트워크 오류: ${t.message}")
+                    Log.d("updateCertificateDetailInfo", "updateCertificateInfo 네트워크 오류: ${t.message}")
+                }
+            })*/
     }
 }

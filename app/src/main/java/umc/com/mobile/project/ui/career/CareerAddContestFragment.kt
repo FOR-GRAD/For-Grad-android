@@ -50,7 +50,7 @@ class CareerAddContestFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.etCareerAddContestAward.setOnClickListener {
-            val bottomSheet = AwardBottomFragment(mContext)
+            val bottomSheet = AwardBottomFragment(mContext, 1)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
