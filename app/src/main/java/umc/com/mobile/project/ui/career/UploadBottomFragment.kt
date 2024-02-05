@@ -17,7 +17,8 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 
-class UploadBottomFragment(context: Context, private val viewModelType: Int) : BottomSheetDialogFragment() {
+class UploadBottomFragment(context: Context, private val viewModelType: Int) :
+    BottomSheetDialogFragment() {
     private var _binding: FragmentUploadBottomBinding? = null
     private val addViewModel: CareerAddActivityViewModel by activityViewModels()
     private val editViewModel: CareerEditActivityViewModel by activityViewModels()
@@ -61,13 +62,21 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) : B
                         for (i in 0 until count) {
                             val imageUri = data.clipData!!.getItemAt(i).uri
                             val selectedImageFile = createImageFile(imageUri)
-                            addViewModel.addImageFile(selectedImageFile)
+                            if (viewModelType == 1) {
+                                addViewModel.addImageFile(selectedImageFile)
+                            } else {
+                                editViewModel.addImageFile(selectedImageFile)
+                            }
                         }
                     } else {
                         val imageUri = data?.data
                         if (imageUri != null) {
                             val selectedImageFile = createImageFile(imageUri)
-                            addViewModel.addImageFile(selectedImageFile)
+                            if (viewModelType == 1) {
+                                addViewModel.addImageFile(selectedImageFile)
+                            } else {
+                                editViewModel.addImageFile(selectedImageFile)
+                            }
                         }
                     }
                 }

@@ -33,6 +33,7 @@ class CareerEditCertificateFragment : Fragment() {
         }
         _binding!!.btnCareerEdit.setOnClickListener {
             viewModel.updateCertificate()
+            navigate(R.id.action_fragment_edit_certificate_to_fragment_career)
         }
         return binding.root
     }

@@ -1,6 +1,7 @@
 package umc.com.mobile.project.ui.career
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,10 @@ class CareerEditVolunteerFragment : Fragment() {
         _binding!!.ivCareerVolunteerBack.setOnClickListener {
             navigate(R.id.action_fragment_edit_volunteer_to_fragment_career_volunteer)
         }
+        _binding!!.btnCareerEdit.setOnClickListener {
+            viewModel.updateVolunteer()
+            navigate(R.id.action_fragment_edit_volunteer_to_fragment_career)
+        }
         return binding.root
     }
 
@@ -43,6 +48,7 @@ class CareerEditVolunteerFragment : Fragment() {
                 _binding?.etCareerEditVolunteerEndYear?.hint = it.result.endDate ?: ""
             }
         }
+        viewModel.init()
     }
 
     override fun onDestroyView() {

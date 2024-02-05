@@ -5,11 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.GsonBuilder
-import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +17,6 @@ import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
 import umc.com.mobile.project.ui.career.adapter.LocalDateAdapter
 import umc.com.mobile.project.ui.career.data.CertificateDto
-import umc.com.mobile.project.ui.career.data.UpdateDto
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
@@ -106,6 +102,14 @@ class CareerEditCertificateViewModel : ViewModel() {
 
         val currentCertificateDetail = certificateDetailInfo.value
 
+        fun mapType(updatedType: String): String {
+            return when (updatedType) {
+                "실기" -> "PRACTICAL_EXAM"
+                "필기" -> "WRITTEN_EXAM"
+                else -> "INTERVIEW"
+            }
+        }
+
         fun parseDate(dateString: String, vararg formatters: DateTimeFormatter): LocalDate? {
             for (formatter in formatters) {
                 try {
@@ -120,31 +124,34 @@ class CareerEditCertificateViewModel : ViewModel() {
         val formatter1 = DateTimeFormatter.ofPattern("yyyyMMdd")
         val formatter2 = DateTimeFormatter.ISO_LOCAL_DATE
 
-        val formattedStartDate = parseDate(updatedStartDate, formatter1, formatter2)
-        val formattedEndDate = parseDate(updatedEndDate, formatter1, formatter2)
+        val formattedStartDate = if (updatedStartDate.isNotEmpty()) {
+            parseDate(updatedStartDate, formatter1, formatter2) ?: LocalDate.parse(
+                updatedStartDate,
+                formatter
+            )
+        } else {
+            LocalDate.parse(
+                currentCertificateDetail?.result?.startDate?.replace("-", ""),
+                formatter
+            )
+        }
 
-
-        /*        val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-                val formattedStartDate = if (updatedStartDate.isNotEmpty()) LocalDate.parse(
-                    updatedStartDate,
-                    formatter
-                ) else null
-                val formattedEndDate =
-                    if (updatedEndDate.isNotEmpty()) LocalDate.parse(updatedEndDate, formatter) else null*/
+        val formattedEndDate = if (updatedEndDate.isNotEmpty()) {
+            parseDate(updatedEndDate, formatter1, formatter2) ?: LocalDate.parse(
+                updatedEndDate,
+                formatter
+            )
+        } else {
+            LocalDate.parse(currentCertificateDetail?.result?.endDate?.replace("-", ""), formatter)
+        }
 
         val updatedDetail = currentCertificateDetail?.let { currentDetail ->
-            UpdateDto(
+            CertificateDto(
                 title = if (updatedTitle.isNotEmpty()) updatedTitle else currentDetail.result.title,
                 category = "CERTIFICATIONS",
-                startDate = formattedStartDate ?: LocalDate.parse(
-                    currentDetail.result.startDate,
-                    formatter
-                ),
-                endDate = formattedEndDate ?: LocalDate.parse(
-                    currentDetail.result.endDate,
-                    formatter
-                ),
-                certificationType = if (updatedType.isNotEmpty()) updatedType else currentDetail.result.certificationType
+                startDate = formattedStartDate,
+                endDate = formattedEndDate,
+                certificationType = if (updatedType.isNotEmpty()) mapType(updatedType) else currentDetail.result.certificationType
             )
         }
 
@@ -153,16 +160,16 @@ class CareerEditCertificateViewModel : ViewModel() {
             .registerTypeAdapter(LocalDate::class.java, LocalDateAdapter())
             .create()
 
-        val activityIdPart = _certificateDetailInfo.value!!.result.id.toString()
-            .toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val activityIdPart = studentId.value!!.toString()
+            .toRequestBody("application/json".toMediaTypeOrNull())
         val updateDtoPart =
-            gson.toJson(updatedDetail).toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            gson.toJson(updatedDetail).toRequestBody("application/json".toMediaTypeOrNull())
 
         val emptyRequestBody = "".toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val temporaryFilePart =
             MultipartBody.Part.createFormData("files", "your_temporary_file_name", emptyRequestBody)
 
-        careerApiService.updateCertificate(activityIdPart, updateDtoPart, listOf(temporaryFilePart))
+        careerApiService.updateCareer(activityIdPart, updateDtoPart, listOf(temporaryFilePart))
             .enqueue(object : Callback<UpdateCareerResponse> {
                 override fun onResponse(
                     call: Call<UpdateCareerResponse>,

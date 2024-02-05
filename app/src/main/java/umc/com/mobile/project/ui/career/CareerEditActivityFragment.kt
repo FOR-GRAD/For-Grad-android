@@ -39,6 +39,10 @@ class CareerEditActivityFragment : Fragment() {
             )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
+        _binding!!.btnCareerEdit.setOnClickListener {
+            viewModel.updateActivity()
+            navigate(R.id.action_fragment_edit_activity_to_fragment_career)
+        }
         return binding.root
     }
 
@@ -56,6 +60,7 @@ class CareerEditActivityFragment : Fragment() {
                 _binding?.etCareerEditActivityEndYear?.hint = it.result.endDate ?: ""
             }
         }
+        viewModel.init()
     }
 
     override fun onDestroyView() {
