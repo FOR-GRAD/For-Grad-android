@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="umc.com.mobile.project.ui.gradInfo.viewmodel.GradInfoViewModel" />
+            type="umc.com.mobile.project.ui.gradInfo.viewmodel.GradeViewModel" />
 
     </data>
 

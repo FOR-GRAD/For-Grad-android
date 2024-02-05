@@ -12,16 +12,11 @@ class GradeRVAdapter : RecyclerView.Adapter<GradeRVAdapter.MyViewHolder>() {
 	inner class MyViewHolder(private val binding: ItemClassAndGradeBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 		fun bind(gradesResponse: GradesResponse) {
-			binding.tvKindTitle.text =
-				gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(0)?.toString()
-			binding.tvClassTitle.text =
-				gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(1)?.toString()
-			binding.tvCreditTitle.text =
-				gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(2)?.toString()
-			binding.tvGradeTitle.text =
-				gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(3)?.toString()
-			binding.tvCurrentTrackTitle.text =
-				gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(4)?.toString()
+			binding.tvKindTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(0)?.classification
+			binding.tvClassTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(1)?.subjectName
+			binding.tvCreditTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(2)?.credits
+			binding.tvGradeTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(3)?.grade
+			binding.tvCurrentTrackTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(4)?.track
 		}
 	}
 
