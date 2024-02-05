@@ -70,12 +70,12 @@
     <string name="career_startDate">시작일자</string>
     <string name="career_endDate">종료일자</string>
     <string name="career_date_ex">YYMMDD</string>
-
     <!--커리어 수정하기-->
     <string name="career_edit_volunteer">봉사활동 수정하기</string>
     <string name="career_edit_activity_2">대외활동 수정하기</string>
     <string name="career_edit_contest">공모전 수정하기</string>
     <string name="career_edit_certificate">자격증 수정하기</string>
+    <string name="career_edit_search_hint">활동이름을 입력해서 검색해보세요</string>
 
     <!-- 규민 -->
     <!-- Home -->

@@ -32,5 +32,11 @@ interface CareerApi {
     ): Call<AddCareerResponse>
 
     @GET("/career-detail")
-    fun getVolunteerDetail(@Query("activityId") activityId: Long): Call<CareerDetailResponse>
+    fun getCareerDetail(@Query("activityId") activityId: Long): Call<CareerDetailResponse>
+
+    @GET("/career-list-search/{category}")
+    fun getSearchCareer(
+        @Path("category") category: String,
+        @Query("searchWord") searchWord: String
+    ): Call<CategoryListResponse>
 }
