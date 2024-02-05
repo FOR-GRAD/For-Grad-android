@@ -57,7 +57,7 @@ class CareerAddCertificateFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.etCareerAddCertificateType.setOnClickListener {
-            val bottomSheet = CertificateTypeBottomFragment(mContext)
+            val bottomSheet = CertificateTypeBottomFragment(mContext, 1)
             bottomSheet.setStyle(
                 DialogFragment.STYLE_NORMAL,
                 R.style.RoundCornerBottomSheetDialogTheme
