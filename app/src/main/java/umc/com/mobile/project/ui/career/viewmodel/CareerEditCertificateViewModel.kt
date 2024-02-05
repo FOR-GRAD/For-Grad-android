@@ -4,6 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.GsonBuilder
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -11,9 +18,12 @@ import umc.com.mobile.project.data.model.career.CareerDetailResponse
 import umc.com.mobile.project.data.model.career.UpdateCareerResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
+import umc.com.mobile.project.ui.career.adapter.LocalDateAdapter
 import umc.com.mobile.project.ui.career.data.CertificateDto
+import umc.com.mobile.project.ui.career.data.UpdateDto
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
 class CareerEditCertificateViewModel : ViewModel() {
     val studentId: MutableLiveData<Long> = MutableLiveData()
@@ -88,7 +98,7 @@ class CareerEditCertificateViewModel : ViewModel() {
             })
     }
 
-    fun updateCertificateDetails() {
+    fun updateCertificate() {
         val updatedTitle = title.value ?: ""
         val updatedType = type.value ?: ""
         val updatedStartDate = startDate.value ?: ""
@@ -96,21 +106,63 @@ class CareerEditCertificateViewModel : ViewModel() {
 
         val currentCertificateDetail = certificateDetailInfo.value
 
-        val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-        val formattedStartDate = if (updatedStartDate.isNotEmpty()) LocalDate.parse(updatedStartDate, formatter) else null
-        val formattedEndDate = if (updatedEndDate.isNotEmpty()) LocalDate.parse(updatedEndDate, formatter) else null
+        fun parseDate(dateString: String, vararg formatters: DateTimeFormatter): LocalDate? {
+            for (formatter in formatters) {
+                try {
+                    return LocalDate.parse(dateString, formatter)
+                } catch (e: DateTimeParseException) {
+                }
+            }
+            return null
+        }
 
-        currentCertificateDetail?.let { currentDetail ->
-            val updatedDetail = CertificateDto(
+        val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+        val formatter1 = DateTimeFormatter.ofPattern("yyyyMMdd")
+        val formatter2 = DateTimeFormatter.ISO_LOCAL_DATE
+
+        val formattedStartDate = parseDate(updatedStartDate, formatter1, formatter2)
+        val formattedEndDate = parseDate(updatedEndDate, formatter1, formatter2)
+
+
+        /*        val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+                val formattedStartDate = if (updatedStartDate.isNotEmpty()) LocalDate.parse(
+                    updatedStartDate,
+                    formatter
+                ) else null
+                val formattedEndDate =
+                    if (updatedEndDate.isNotEmpty()) LocalDate.parse(updatedEndDate, formatter) else null*/
+
+        val updatedDetail = currentCertificateDetail?.let { currentDetail ->
+            UpdateDto(
                 title = if (updatedTitle.isNotEmpty()) updatedTitle else currentDetail.result.title,
                 category = "CERTIFICATIONS",
-                certificationType = if (updatedType.isNotEmpty()) updatedType else currentDetail.result.certificationType,
-                startDate = formattedStartDate ?: LocalDate.parse(currentDetail.result.startDate, formatter),
-                endDate = formattedEndDate ?: LocalDate.parse(currentDetail.result.endDate, formatter)
+                startDate = formattedStartDate ?: LocalDate.parse(
+                    currentDetail.result.startDate,
+                    formatter
+                ),
+                endDate = formattedEndDate ?: LocalDate.parse(
+                    currentDetail.result.endDate,
+                    formatter
+                ),
+                certificationType = if (updatedType.isNotEmpty()) updatedType else currentDetail.result.certificationType
             )
         }
 
-        /*careerApiService.updateCareer(studentId.value!!, )
+        val gson = GsonBuilder()
+            .setDateFormat("yyyy-MM-dd")
+            .registerTypeAdapter(LocalDate::class.java, LocalDateAdapter())
+            .create()
+
+        val activityIdPart = _certificateDetailInfo.value!!.result.id.toString()
+            .toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val updateDtoPart =
+            gson.toJson(updatedDetail).toRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+        val emptyRequestBody = "".toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val temporaryFilePart =
+            MultipartBody.Part.createFormData("files", "your_temporary_file_name", emptyRequestBody)
+
+        careerApiService.updateCertificate(activityIdPart, updateDtoPart, listOf(temporaryFilePart))
             .enqueue(object : Callback<UpdateCareerResponse> {
                 override fun onResponse(
                     call: Call<UpdateCareerResponse>,
@@ -131,17 +183,17 @@ class CareerEditCertificateViewModel : ViewModel() {
                             } ?: RuntimeException("Unknown error")
                         } catch (e: Exception) {
                             Log.e(
-                                "updateCertificateDetailInfo",
+                                "updateCertificateInfo",
                                 "updateCertificateInfo API 오류: ${e.message}"
                             )
                         }
                     }
                 }
 
-                override fun onFailure(call: Call<CareerDetailResponse>, t: Throwable) {
+                override fun onFailure(call: Call<UpdateCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
-                    Log.d("updateCertificateDetailInfo", "updateCertificateInfo 네트워크 오류: ${t.message}")
+                    Log.d("updateCertificateInfo", "updateCertificateInfo 네트워크 오류: ${t.message}")
                 }
-            })*/
+            })
     }
 }

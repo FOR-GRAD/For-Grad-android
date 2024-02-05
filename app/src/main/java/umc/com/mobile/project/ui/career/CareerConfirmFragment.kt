@@ -49,7 +49,7 @@ class CareerConfirmFragment: Fragment() {
 				"자격증" -> navigate(R.id.action_fragment_career_confirm_to_fragment_career_certificate)
 				"공모전" -> navigate(R.id.action_fragment_career_confirm_to_fragment_career_contest)
 				"봉사활동" -> navigate(R.id.action_fragment_career_confirm_to_fragment_career_volunteer)
-				"교외활동" -> navigate(R.id.action_fragment_career_confirm_to_fragment_career_contest)
+				"교외활동" -> navigate(R.id.action_fragment_career_confirm_to_fragment_career_activity)
 			}
 		}
 	}
