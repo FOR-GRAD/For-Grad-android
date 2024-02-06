@@ -10,12 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import umc.com.mobile.project.databinding.FragmentUploadBottomBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddActivityViewModel
 import umc.com.mobile.project.ui.career.viewmodel.CareerEditActivityViewModel
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class UploadBottomFragment(context: Context, private val viewModelType: Int) :
     BottomSheetDialogFragment() {
@@ -35,13 +39,16 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
             openGallery()
         }
 
+        _binding!!.ivUploadBottomDriveBox.setOnClickListener {
+            openFilePicker()
+        }
+
         _binding!!.ivUploadBottomClose.setOnClickListener {
             dialog!!.dismiss()
         }
         return binding.root
     }
 
-    private val GALLERY = 1
     private val PICK_IMAGE_MULTIPLE = 2
 
     private fun openGallery() {
@@ -49,6 +56,26 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTIPLE)
+    }
+
+    private val PICK_FILE = 3
+
+    private fun openFilePicker() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "*/*"
+        }
+        startActivityForResult(intent, PICK_FILE)
+    }
+
+    private fun createFile(uri: Uri): MultipartBody.Part {
+        val inputStream = requireContext().contentResolver.openInputStream(uri)
+        val bytes = inputStream?.readBytes()
+            ?: throw IllegalArgumentException("Could not create RequestBody: InputStream was null")
+
+        val requestFile: RequestBody = bytes.toRequestBody("application/*".toMediaTypeOrNull())
+        val body = MultipartBody.Part.createFormData("file", "filename", requestFile)
+        return body
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -79,6 +106,20 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
                             }
                         }
                     }
+                    dismiss()
+                }
+
+                PICK_FILE -> {
+                    val fileUri = data?.data
+                    if (fileUri != null) {
+                        val selectedFile = createFile(fileUri)
+                        if (viewModelType == 1) {
+                            addViewModel.addFile(selectedFile)
+                        } else {
+                            //editViewModel.addFile(selectedFile)
+                        }
+                    }
+                    dismiss()
                 }
             }
         }
