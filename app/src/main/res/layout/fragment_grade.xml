@@ -45,7 +45,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_grade_title" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_grade"
+                android:id="@+id/tv_semester"
                 style="@style/MediumFont.13"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="@string/grade_semester"
+                android:text="@{vm.userSemester}"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_grade_sub_title"
@@ -65,9 +65,9 @@
                 android:id="@+id/linearLayoutCompat2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/tv_grade"
-                app:layout_constraintStart_toStartOf="@+id/tv_grade"
-                app:layout_constraintTop_toBottomOf="@+id/tv_grade">
+                app:layout_constraintEnd_toEndOf="@+id/tv_semester"
+                app:layout_constraintStart_toStartOf="@+id/tv_semester"
+                app:layout_constraintTop_toBottomOf="@+id/tv_semester">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_kind_title"
@@ -150,8 +150,8 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/tv_grade"
-                app:layout_constraintStart_toStartOf="@+id/tv_grade"
+                app:layout_constraintEnd_toEndOf="@+id/tv_semester"
+                app:layout_constraintStart_toStartOf="@+id/tv_semester"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2"
                 tools:listitem="@layout/item_class_and_grade" />
 
@@ -246,9 +246,9 @@
                 android:id="@+id/tv_title_content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/tv_grade"
+                app:layout_constraintEnd_toEndOf="@+id/tv_semester"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_grade"
+                app:layout_constraintStart_toStartOf="@+id/tv_semester"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -564,12 +564,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/bg_stroke_gray_radius_16_5"
                 android:paddingStart="27dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="27dp"
                 android:paddingBottom="20dp"
-                android:layout_marginBottom="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_grade_average_title"
                 app:layout_constraintTop_toBottomOf="@+id/layout_3_1">
@@ -617,7 +617,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4-2"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -628,7 +628,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
                     android:text="0.0"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_4_2_content" />
 

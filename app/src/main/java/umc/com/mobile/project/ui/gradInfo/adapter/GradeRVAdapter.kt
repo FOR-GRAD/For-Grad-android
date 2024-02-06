@@ -1,5 +1,6 @@
 package umc.com.mobile.project.ui.gradInfo.adapter
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ class GradeRVAdapter : RecyclerView.Adapter<GradeRVAdapter.MyViewHolder>() {
 	inner class MyViewHolder(private val binding: ItemClassAndGradeBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 		fun bind(gradesResponse: GradesResponse) {
-			binding.tvKindTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(0)?.classification
+			binding.tvKindTitle.text = gradesResponse.result.semesters["1학기"]?.gradesDtoList?.get(0)?.classification
 			binding.tvClassTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(1)?.subjectName
 			binding.tvCreditTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(2)?.credits
 			binding.tvGradeTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(3)?.grade

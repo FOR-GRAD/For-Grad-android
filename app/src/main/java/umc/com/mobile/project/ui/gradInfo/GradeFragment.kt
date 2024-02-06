@@ -33,10 +33,10 @@ class GradeFragment : Fragment() {
 		viewModel.getGradeInfo() // 사용자 성적 사항 조회 api
 		initRecyclerView() // 성적 사항 recycleView 연결
 
-		// 성적 정보 갱신 관찰
-//		viewModel.gradesInfo.observe(viewLifecycleOwner, Observer {
-//			//
-//		})
+		viewModel.semesters?.observe(viewLifecycleOwner, Observer {semesters ->
+			binding.tvSemester.text = (semesters.keys ?: "null").toString()
+		})
+
 
 		return binding.root
 	}
@@ -52,5 +52,11 @@ class GradeFragment : Fragment() {
 		binding.recyclerView.adapter = adapter
 		binding.recyclerView.layoutManager =
 			LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+	}
+
+	private fun getGrade() {
+		binding.layout11.setOnClickListener {
+
+		}
 	}
 }

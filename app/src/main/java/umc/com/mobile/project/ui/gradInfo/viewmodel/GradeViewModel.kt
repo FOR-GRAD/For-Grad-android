@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import umc.com.mobile.project.data.model.gradInfo.GradesDto
 import umc.com.mobile.project.data.model.gradInfo.GradesResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.GradInfoApi
@@ -66,26 +67,33 @@ class GradeViewModel : ViewModel() {
 	val gradesInfo: MutableLiveData<GradesResponse?>
 		get() = _gradesInfo
 
-	private val _semester: MutableLiveData<Map<String, String>>? = MutableLiveData()
-	val semester: LiveData<Map<String, String>>?
-		get() = _semester
-/*
+	private val _semesters: MutableLiveData<Map<String, List<GradesDto>>>? = MutableLiveData()
+	val semesters: LiveData<Map<String, List<GradesDto>>>?
+		get() = _semesters
+
 
 		private fun processRequiredBasicCourses(gradesResponse: GradesResponse) {
-			val semestersMap = mutableMapOf<String, String>()
+			val semestersMap = mutableMapOf<String, List<GradesDto>>()
+			val semesterList = mutableListOf<String>()
+			val semestersDto = gradesResponse.result.semesters
+			var count = 1
 
-			val semesters = gradesResponse.result.semesters.
+			semestersDto.let {
+				for ((semester, semesterClasses) in it) {
+					for (i in 0 until semesterClasses.gradesDtoList.size) {
+						val newKey = "$count 학기"
+						semestersMap[newKey] = listOf(semesterClasses.gradesDtoList[i])
 
-			semesters.let {
-				for ((courseName, courseStatus) in it) {
-					semestersMap[courseName] = courseStatus
-					Log.d("Completion: requiredBasicCoursesMap ", "$courseName : $courseStatus")
+						semesterList.add(i, semestersMap[newKey]!!.toString())
+						count++
+					}
 				}
+				Log.d("Grade: semestersMap ", "$semestersMap")
+				count = 0
 			}
 			_semesters?.postValue(semestersMap)
 		}
 
-*/
 	fun getGradeInfo() {
 		gradInfoApiService.getGrades().enqueue(object : Callback<GradesResponse> {
 			override fun onResponse(
@@ -96,6 +104,7 @@ class GradeViewModel : ViewModel() {
 					val userResponse = response.body()
 					if (userResponse != null) {
 						_gradesInfo.postValue(userResponse)
+						processRequiredBasicCourses(userResponse)
 						Log.d("gradInfo", "${response.body()}")
 					} else {
 						_error.postValue("서버 응답이 올바르지 않습니다.")

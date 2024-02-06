@@ -44,11 +44,14 @@ class HomeFragment : Fragment() {
 			binding.tvSchool.text = it?.result?.department
 			binding.tvGrade.text = it?.result?.grade
 			binding.tvStatus.text = it?.result?.status
+			binding.tvGraduateDday.text = it?.result?.dday.toString()
 			binding.tvCheeringWord.text = it?.result?.message
 
 			val decodedBytes: ByteArray = Base64.decode(it?.result?.base64Image, Base64.DEFAULT)
 			val decodedImage = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
 			binding.ivHomeProfile.setImageBitmap(decodedImage)
+
+			binding.tvGradeSemester.text = it?.result?.futureTimeTableDto?.keys?.joinToString(separator = ", ")
 		})
 
 		return binding.root
@@ -71,8 +74,7 @@ class HomeFragment : Fragment() {
 	}
 
 	private fun saveCheeringMemo() {
-		gradDateViewModel.cheeringMemo.observe(viewLifecycleOwner, Observer {
-			Log.d("LiveData", "CheeringMemo updated: $it")
+		gradDateViewModel.cheeringMessage.observe(viewLifecycleOwner, Observer {
 			binding.tvCheeringWord.text = it
 		})
 	}

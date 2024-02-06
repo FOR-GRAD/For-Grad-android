@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import umc.com.mobile.project.data.model.home.GradDateResponse
 import umc.com.mobile.project.data.model.home.UserResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.HomeApi
@@ -17,6 +18,10 @@ class HomeViewModel : ViewModel() {
 	private val _userInfoResponse: MutableLiveData<UserResponse?> = MutableLiveData()
 	val userInfoResponse: MutableLiveData<UserResponse?>
 		get() = _userInfoResponse
+
+	private val _dateResponse: MutableLiveData<GradDateResponse?> = MutableLiveData()
+	val dateResponse: MutableLiveData<GradDateResponse?>
+		get() = _dateResponse
 
 	private val _error: MutableLiveData<String> = MutableLiveData()
 	val error: LiveData<String>
@@ -46,6 +51,10 @@ class HomeViewModel : ViewModel() {
 	val cheeringMemo: LiveData<String>
 		get() = _cheeringMemo
 
+	private val _dday: MutableLiveData<Int> = MutableLiveData()
+	val dday: LiveData<Int>
+		get() = _dday
+
 	private val _userProfile: MutableLiveData<String> = MutableLiveData()
 	val userProfile: LiveData<String>
 		get() = _userProfile
@@ -57,6 +66,7 @@ class HomeViewModel : ViewModel() {
 		_userGrade.postValue(value.result.grade)
 		_userStatus.postValue(value.result.status)
 		_cheeringMemo.postValue(value.result.message)
+		_dday.postValue(value.result.dday)
 		_userProfile.postValue(value.result.base64Image)
 	}
 
@@ -89,5 +99,6 @@ class HomeViewModel : ViewModel() {
 			}
 		})
 	}
+
 
 }
