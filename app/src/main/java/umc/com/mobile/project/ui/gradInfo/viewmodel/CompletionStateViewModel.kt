@@ -25,30 +25,6 @@ class CompletionStateViewModel : ViewModel() {
 	val completionInfo: MutableLiveData<CompletionResponse?>
 		get() = _completionInfo
 
-	private val _track11: MutableLiveData<String> = MutableLiveData()
-	val track11: LiveData<String>
-		get() = _track11
-
-	private val _track12: MutableLiveData<String> = MutableLiveData()
-	val track12: LiveData<String>
-		get() = _track12
-
-	private val _track13: MutableLiveData<String> = MutableLiveData()
-	val track13: LiveData<String>
-		get() = _track13
-
-	private val _track21: MutableLiveData<String> = MutableLiveData()
-	val track21: LiveData<String>
-		get() = _track21
-
-	private val _track22: MutableLiveData<String> = MutableLiveData()
-	val track22: LiveData<String>
-		get() = _track22
-
-	private val _track23: MutableLiveData<String> = MutableLiveData()
-	val track23: LiveData<String>
-		get() = _track23
-
 	private val _requiredBasicCourses: MutableLiveData<Map<String, String>>? = MutableLiveData()
 	val requiredBasicCourses: LiveData<Map<String, String>>?
 		get() = _requiredBasicCourses
@@ -56,11 +32,6 @@ class CompletionStateViewModel : ViewModel() {
 	private val _foundationElectiveCourses: MutableLiveData<Map<String, String>>? = MutableLiveData()
 	val foundationElectiveCourses: LiveData<Map<String, String>>?
 		get() = _foundationElectiveCourses
-
-	fun processCourses(courses: Map<String, String>) {
-		_requiredBasicCourses?.postValue(courses)
-		_foundationElectiveCourses?.postValue(courses)
-	}
 
 	private fun processRequiredBasicCourses(completionResponse: CompletionResponse) {
 		val requiredBasicCoursesMap = mutableMapOf<String, String>()
@@ -85,14 +56,7 @@ class CompletionStateViewModel : ViewModel() {
 		_requiredBasicCourses?.postValue(requiredBasicCoursesMap)
 		_foundationElectiveCourses?.postValue(foundationElectiveCoursesMap)
 	}
-	fun init(value: CompletionResponse) {
-		_track11.postValue(value.result.majorCompletionDto.majorMap.track1[0])
-		_track12.postValue(value.result.majorCompletionDto.majorMap.track1[1])
-		_track13.postValue(value.result.majorCompletionDto.majorMap.track1[2])
-		_track21.postValue(value.result.majorCompletionDto.majorMap.track2[0])
-		_track22.postValue(value.result.majorCompletionDto.majorMap.track2[1])
-		_track23.postValue(value.result.majorCompletionDto.majorMap.track2[2])
-	}
+
 	fun getCompletionInfo() {
 		gradInfoApiService.getCompletion().enqueue(object : Callback<CompletionResponse> {
 			override fun onResponse(

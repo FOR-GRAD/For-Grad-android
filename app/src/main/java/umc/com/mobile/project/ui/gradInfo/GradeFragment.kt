@@ -10,15 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import okhttp3.internal.notify
 import umc.com.mobile.project.data.model.gradInfo.GradesResponse
 import umc.com.mobile.project.data.model.home.TimeTableDto
 import umc.com.mobile.project.databinding.FragmentGradeBinding
 import umc.com.mobile.project.ui.gradInfo.adapter.GradeRVAdapter
 import umc.com.mobile.project.ui.gradInfo.viewmodel.GradInfoViewModel
+import umc.com.mobile.project.ui.gradInfo.viewmodel.GradeViewModel
 
 class GradeFragment : Fragment() {
 	private var _binding: FragmentGradeBinding? = null
-	private val viewModel: GradInfoViewModel by viewModels()
+	private val viewModel: GradeViewModel by viewModels()
 	private val binding get() = _binding!!
 
 	override fun onCreateView(
@@ -31,26 +33,10 @@ class GradeFragment : Fragment() {
 		viewModel.getGradeInfo() // 사용자 성적 사항 조회 api
 		initRecyclerView() // 성적 사항 recycleView 연결
 
-		// 성적 정보 갱신 관찰
-		viewModel.userAppliedCredit.observe(viewLifecycleOwner, Observer { appliedCredit ->
-			binding.tvAppliedCredit.text = appliedCredit
+		viewModel.semesters?.observe(viewLifecycleOwner, Observer {semesters ->
+			binding.tvSemester.text = (semesters.keys ?: "null").toString()
 		})
 
-		viewModel.userAcquiredCredit.observe(viewLifecycleOwner, Observer { acquiredCredit ->
-			binding.tvAcquiredCredit.text = acquiredCredit
-		})
-
-		viewModel.userAverageTotal.observe(viewLifecycleOwner, Observer { averageTotal ->
-			binding.tvAverageTotal.text = averageTotal
-		})
-
-		viewModel.userAverageGrade.observe(viewLifecycleOwner, Observer { averageGrade ->
-			binding.tvAverageGrade.text = averageGrade
-		})
-
-		viewModel.userPercentile.observe(viewLifecycleOwner, Observer { percentile ->
-			binding.tvPercent.text = percentile
-		})
 
 		return binding.root
 	}
@@ -65,6 +51,7 @@ class GradeFragment : Fragment() {
 
 		binding.recyclerView.adapter = adapter
 		binding.recyclerView.layoutManager =
-			LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false) //레이아웃 매니저 연결
+			LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 	}
+
 }
