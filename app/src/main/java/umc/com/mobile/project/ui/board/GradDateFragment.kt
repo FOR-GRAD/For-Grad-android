@@ -82,7 +82,7 @@ class GradDateFragment : Fragment() {
 
 	private fun saveCheeringMemo() {
 		binding.btnSave.setOnClickListener {
-//			viewModel.updateDateInfo(binding.tvGradDateDate.text.toString())
+			viewModel.updateDateInfo(binding.tvGradDateToday.text.toString())
 
 			Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
 		}

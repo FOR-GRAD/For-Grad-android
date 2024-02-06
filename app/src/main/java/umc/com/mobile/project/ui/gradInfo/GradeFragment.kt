@@ -54,9 +54,4 @@ class GradeFragment : Fragment() {
 			LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 	}
 
-	private fun getGrade() {
-		binding.layout11.setOnClickListener {
-
-		}
-	}
 }
