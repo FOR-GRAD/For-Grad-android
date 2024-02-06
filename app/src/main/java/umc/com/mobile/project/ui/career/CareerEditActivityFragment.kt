@@ -6,6 +6,7 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -48,7 +49,7 @@ class CareerEditActivityFragment : Fragment() {
             )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.etCareerEditActivityStartYear.setOnClickListener {
+        _binding!!.etCareerEditActivityEndYear.setOnClickListener {
             val bottomSheet = PeriodBottomFragment(mContext, false, 2)
             bottomSheet.setStyle(
                 DialogFragment.STYLE_NORMAL,
@@ -75,6 +76,15 @@ class CareerEditActivityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init()
         sharedViewModel.init()
+        //버튼 활성화
+        viewModel.isFilledAllOptions.observe(viewLifecycleOwner) { isEnabled ->
+            binding?.btnCareerEdit?.isEnabled = isEnabled
+            binding?.btnCareerEdit?.backgroundTintList =
+                ContextCompat.getColorStateList(
+                    requireContext(),
+                    if (isEnabled) R.color.skyBlue else R.color.gray
+                )
+        }
         //교외활동 세부 내용 api 연결
         viewModel.getActivityDetail()
         //불러온 값 hint에 넣기
