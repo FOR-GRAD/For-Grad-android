@@ -1,4 +1,4 @@
-package umc.com.mobile.project.data.model.gradInfo
+	package umc.com.mobile.project.data.model.gradInfo
 
 data class CommonRequirementsDto(
 	val registration: String,

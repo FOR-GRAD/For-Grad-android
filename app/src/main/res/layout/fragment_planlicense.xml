@@ -64,6 +64,7 @@
                     />
 
                 <EditText
+                    android:id="@+id/plan_license_name"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:hint=""
@@ -74,6 +75,7 @@
                     />
 
                 <EditText
+                    android:id="@+id/plan_license_date"
                     style="@style/Widget.AppCompat.EditText"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
