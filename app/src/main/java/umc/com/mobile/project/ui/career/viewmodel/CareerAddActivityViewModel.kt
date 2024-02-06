@@ -26,6 +26,7 @@ class CareerAddActivityViewModel : ViewModel() {
     val title: MutableLiveData<String> = MutableLiveData()
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
+    val fileAddedEvent: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         title.value = ""
@@ -57,10 +58,15 @@ class CareerAddActivityViewModel : ViewModel() {
     private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
 
     fun addImageFile(file: File) {
-        Log.d("addImageFile", file.toString())
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         imageList.add(body)
+        fileAddedEvent.value = true
+    }
+
+    fun addFile(filePart: MultipartBody.Part) {
+        imageList.add(filePart)
+        fileAddedEvent.value = true
     }
 
     // 빈 이미지 생성
@@ -73,13 +79,12 @@ class CareerAddActivityViewModel : ViewModel() {
         imageList.add(body)
     }
 
-    // API에 전송할 데이터를 포함하는 RequestDto를 생성하는 함수
+    //API에 전송할 데이터를 포함하는 RequestDto를 생성하는 함수
     fun createRequestDto(): ActivityDto? {
         val startDateString = startDate.value
         val endDateString = endDate.value
 
         val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-        val temporaryStartDateString = "20220131"
         val formattedStartDate = LocalDate.parse(startDateString, formatter)
         val formattedEndDate = LocalDate.parse(endDateString, formatter)
 
@@ -114,7 +119,6 @@ class CareerAddActivityViewModel : ViewModel() {
         val requestDtoPart: RequestBody =
             requestDtoJson.toRequestBody("application/json".toMediaTypeOrNull())
 
-        Log.d("AddCareer imageList", imageList.toString())
         careerApiService.addCareer(imageList, requestDtoPart)
             .enqueue(object : Callback<AddCareerResponse> {
                 override fun onResponse(

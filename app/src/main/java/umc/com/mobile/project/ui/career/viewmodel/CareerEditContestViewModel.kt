@@ -2,6 +2,7 @@ package umc.com.mobile.project.ui.career.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.GsonBuilder
@@ -41,6 +42,22 @@ class CareerEditContestViewModel : ViewModel() {
         award.value = ""
         startDate.value = ""
         endDate.value = ""
+    }
+
+    val isFilledAllOptions: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
+        value = areBothFieldsFilled()
+        addSource(startDate) { value = areBothFieldsFilled() }
+        addSource(endDate) { value = areBothFieldsFilled() }
+    }
+
+    private fun areBothFieldsFilled(): Boolean {
+        return (startDate.value.isNullOrBlank() && endDate.value.isNullOrBlank()) || (isDateValid(
+            startDate.value
+        ) && isDateValid(endDate.value))
+    }
+
+    private fun isDateValid(date: String?): Boolean {
+        return date.isNullOrBlank() || date.length == 8
     }
 
     fun updateSelectedAward(selectedAward: String) {

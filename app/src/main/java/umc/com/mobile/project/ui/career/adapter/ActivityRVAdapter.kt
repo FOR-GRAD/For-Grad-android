@@ -15,7 +15,6 @@ class ActivityRVAdapter(private var activityList: List<ActivityWithAccumulatedHo
         notifyDataSetChanged()
     }
 
-
     interface OnItemClickListener {
         fun onItemClick(position: Int)
     }

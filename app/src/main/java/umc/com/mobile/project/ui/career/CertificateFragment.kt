@@ -1,7 +1,8 @@
 package umc.com.mobile.project.ui.career
 
 import android.os.Bundle
-import android.text.Editable
+import android.view.KeyEvent
+import android.view.KeyEvent.KEYCODE_ENTER
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ class CertificateFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: CertificateViewModel by viewModels()
     private val sharedViewModel: CareerEditCertificateViewModel by activityViewModels()
+    val adapter = CertificateRVAdapter(emptyList())
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,12 +31,12 @@ class CertificateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCareerCertificateBinding.inflate(inflater, container, false)
-        // adapter 초기화
-        val adapter = CertificateRVAdapter(emptyList())
+        //adapter 초기화
         binding.rvCareerCertificateList.adapter = adapter
         binding.rvCareerCertificateList.layoutManager = LinearLayoutManager(requireContext())
-
+        //자격증 목록 api 연결
         viewModel.getCertificateInfo()
+        //자격증 세부 내용 api 연결
         viewModel.certificateInfo.observe(viewLifecycleOwner, Observer { certificateInfo ->
             adapter.updateItems(certificateInfo?.result!!.activityWithAccumulatedHours)
             adapter.setOnItemClickListener(object : CertificateRVAdapter.OnItemClickListener {
@@ -46,8 +48,31 @@ class CertificateFragment : Fragment() {
             })
             adapter.notifyDataSetChanged()
         })
+        //돋보기 눌렀을 때 검색
         _binding!!.ivCareerCertificateSearch.setOnClickListener {
-            viewModel.searchCertificateInfo(_binding!!.etCareerCertificateSearchBar.text.toString())
+            performSearch()
+        }
+        //엔터 키로 검색
+        _binding!!.etCareerCertificateSearchBar.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KEYCODE_ENTER) {
+                performSearch()
+                true  // 엔터 키를 눌렀을 때 이벤트 소비
+            } else {
+                false  // 그 외의 경우 이벤트 소비하지 않음
+            }
+        }
+
+        _binding!!.ivCareerCertificateBack.setOnClickListener {
+            navigate(R.id.action_fragment_certificate_to_fragment_career)
+        }
+        return binding.root
+    }
+
+    private fun performSearch() {
+        val searchText = _binding!!.etCareerCertificateSearchBar.text.toString()
+
+        if (searchText.isNotEmpty()) {
+            viewModel.searchCertificateInfo(searchText)
             viewModel.searchInfo.observe(viewLifecycleOwner, Observer { searchInfo ->
                 adapter.updateItems(searchInfo?.result!!.activityWithAccumulatedHours)
                 adapter.setOnItemClickListener(object : CertificateRVAdapter.OnItemClickListener {
@@ -58,12 +83,9 @@ class CertificateFragment : Fragment() {
                     }
                 })
                 adapter.notifyDataSetChanged()
+                _binding!!.etCareerCertificateSearchBar.text?.clear()
             })
         }
-        _binding!!.ivCareerCertificateBack.setOnClickListener {
-            navigate(R.id.action_fragment_certificate_to_fragment_career)
-        }
-        return binding.root
     }
 
     override fun onDestroyView() {

@@ -40,12 +40,12 @@ class CareerAddContestFragment : Fragment() {
         mContext = requireContext()
 
         _binding!!.etCareerAddContestStartYear.setOnClickListener {
-            val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, true)
+            val bottomSheet = PeriodBottomFragment(mContext, true, 1)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.etCareerAddContestEndYear.setOnClickListener {
-            val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, false)
+            val bottomSheet = PeriodBottomFragment(mContext, false, 1)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
