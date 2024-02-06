@@ -27,6 +27,10 @@ class HomeViewModel : ViewModel() {
 	val error: LiveData<String>
 		get() = _error
 
+	private val _planStatus: MutableLiveData<Boolean> = MutableLiveData()
+	val planStatus: LiveData<Boolean>
+		get() = _planStatus
+
 	private val _userName: MutableLiveData<String> = MutableLiveData()
 	val userName: LiveData<String>
 		get() = _userName
@@ -68,6 +72,7 @@ class HomeViewModel : ViewModel() {
 		_cheeringMemo.postValue(value.result.message)
 		_dday.postValue(value.result.dday)
 		_userProfile.postValue(value.result.base64Image)
+		_planStatus.postValue(true)
 	}
 
 	fun getUserInfo() {
@@ -77,7 +82,12 @@ class HomeViewModel : ViewModel() {
 					val userResponse = response.body()
 					if (userResponse != null) {
 						userInfoResponse.postValue(userResponse)
-						Log.d("home", "${response.body()}")
+
+						if (userResponse.result.futureTimeTableDto.isEmpty()) {
+							_planStatus.postValue(false)
+						}
+//						Log.d("home", "${response.body()}")
+						Log.d("home", "${userResponse.result.futureTimeTableDto}")
 					} else {
 						_error.postValue("서버 응답이 올바르지 않습니다.")
 					}
