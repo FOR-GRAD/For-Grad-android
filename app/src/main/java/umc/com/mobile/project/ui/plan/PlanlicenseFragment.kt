@@ -69,7 +69,7 @@ class PlanlicenseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.isFilledAllOptions.observe(viewLifecycleOwner, Observer { isFilled ->
-            // 여기에서 `isFilled` 값에 따라 UI를 업데이트합니다.
+            // 여기에서 `isFilled` 값에 따라 UI를 업데이트
             val colorResId = if (isFilled) R.color.skyBlue else R.color.gray
             val color = ContextCompat.getColor(requireContext(), colorResId)
             binding.licenseButtonStore.backgroundTintList = ColorStateList.valueOf(color)
@@ -77,6 +77,22 @@ class PlanlicenseFragment : Fragment() {
 
         binding.licenseButtonStore.setOnClickListener {
             submitData() // 사용자 입력을 기반으로 API 호출
+        }
+
+
+        // bringLicenseInfo
+        viewModel.bringLicenseInfo.observe(viewLifecycleOwner) { response ->
+            response?.result?.firstOrNull()?.let { license ->
+                // 첫 번째 자격증 정보를 EditText에 표시
+                //firstofnull-> 안전하게 사용? 리스트가 비어있을 때 null 값 반환
+                binding.planLicenseName.setText(license.name)
+                binding.planLicenseDate.setText(license.date)
+            }
+        }
+
+        binding.licenseButtonStore.setOnClickListener {
+            //api 호출 디테일하게?
+            submitData()
         }
     }
 
