@@ -41,12 +41,12 @@ class CertificateRVAdapter(private var certificateList: List<ActivityWithAccumul
         val startDate = certificateList[position].startDate ?: ""
         val title = certificateList[position].title ?: ""
         val certificationType = certificateList[position].certificationType?.toString() ?: ""
-        val accum = certificateList[position].accum.toString() ?: ""
+        val reindex = certificateList[position].reindex.toString() ?: ""
 
         holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(startDate)
         holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
         holder.itemBinding.etCertificateType.text = editableFactory.newEditable(certificationType)
-        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(accum)
+        holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(reindex)
         holder.itemView.setOnClickListener {
             mItemClickListener.onItemClick(position)
         }
