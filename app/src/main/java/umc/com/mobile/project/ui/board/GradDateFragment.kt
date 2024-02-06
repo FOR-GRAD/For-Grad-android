@@ -3,6 +3,7 @@ package umc.com.mobile.project.ui.board
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -56,6 +57,7 @@ class GradDateFragment : Fragment() {
 		navigateBack() // 뒤로 가기 버튼 클릭 시
 		initTodayDate() // 오늘 날짜 설정
 		saveCheeringMemo()
+		viewModel.getDateInfo()
 
 		return binding.root
 	}
@@ -80,7 +82,7 @@ class GradDateFragment : Fragment() {
 
 	private fun saveCheeringMemo() {
 		binding.btnSave.setOnClickListener {
-			viewModel.updateMemo(binding.tvGradDateMemo.text.toString())
+//			viewModel.updateDateInfo(binding.tvGradDateDate.text.toString())
 
 			Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
 		}
