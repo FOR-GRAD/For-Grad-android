@@ -15,7 +15,7 @@ interface PlanApi {
 
 
     @POST("/plans/certifications")
-    fun getSavelicense(request: SavelicenseRequest): Call<SavelicenseRequest>
+    fun saveLicense(request: SavelicenseRequest): Call<SavelicenseRequest>
 
     @POST("/plans/certifications")
     fun getBringlicense(@Body request:SavelicenseRequest):Call<BringlicenseResponse>
