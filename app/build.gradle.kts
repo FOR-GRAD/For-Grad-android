@@ -1,6 +1,7 @@
 plugins {
 	id("com.android.application")
 	id("org.jetbrains.kotlin.android")
+	id("kotlin-kapt")
 }
 
 android {
@@ -9,12 +10,16 @@ android {
 
 	defaultConfig {
 		applicationId = "umc.com.mobile.project"
-		minSdk = 23
+		minSdk = 26
 		targetSdk = 33
 		versionCode = 1
 		versionName = "1.0"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+//		Properties properties = new Properties()
+//		properties.load(project.rootProject.file("local.properties").newDataInputStream())
+//		buildConfigField "String", "BASE_URL", "\"${properties.getProperty("BASE_URL")}\""
 	}
 
 	buildTypes {
@@ -35,6 +40,7 @@ android {
 	}
 	buildFeatures {
 		viewBinding = true
+		dataBinding = true
 	}
 }
 
@@ -52,8 +58,36 @@ dependencies {
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.5")
 	androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+	implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+	implementation ("com.google.code.gson:gson:2.8.8")
+
+
 	//border radius
-	implementation ("com.google.android.material:material:1.0.0")
+	implementation("com.google.android.material:material:1.0.0")
 	//bottom Sheet Dialog
-	implementation ("com.google.android.material:material:1.6.1")
+	implementation("com.google.android.material:material:1.6.1")
+
+	//gridLayout
+	implementation("androidx.gridlayout:gridlayout:1.0.0")
+
+	// Retrofit 라이브러리
+	implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
+	// Gson 변환기 라이브러리
+	implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+	// Scalars 변환기 라이브러리
+	implementation ("com.squareup.retrofit2:converter-scalars:2.6.4")
+
+	// cookie
+	implementation ("com.squareup.okhttp3:okhttp-urlconnection:4.9.1")
+
+	//gson 라이브러리
+	implementation ("com.google.code.gson:gson:2.9.0")
+
+	//OkHttp 라이브러리
+	implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+	
+	//log intercepter
+	implementation ("com.squareup.okhttp3:logging-interceptor:3.12.1")
 }

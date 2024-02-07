@@ -6,6 +6,7 @@
     <string name="title_grad_info">졸업정보</string>
     <string name="title_career">커리어</string>
     <string name="title_board">게시판</string>
+    <string name="title_date">졸업 예정일</string>
     <string name="title_setting">설정</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="title_dashboard">Dashboard</string>
@@ -14,13 +15,101 @@
     <!-- 나단 -->
 
     <!-- 유진 -->
+    <!--졸업 예정일-->
+    <string name="board_grad_date_date">졸업 예정일 2026년 2월</string>
+    <string name="board_grad_date_today">오늘 날짜</string>
+    <string name="board_grad_date_dday">D - 650</string>
+    <string name="board_grad_date_memo">나에게 보내는 응원의 한마디 작성하기\n작성한 한마디는 홈 화면에 나타나게 됩니다!</string>
+    <string name="board_grad_date_edit">수정하기</string>
+    <!--커리어 메인-->
+    <string name="career_description">지금까지 내가 채워온 커리어를 확인하고\n더 추가하는 공간입니다</string>
+    <string name="career_add">더하기</string>
+    <string name="career_point_title">비교과 포인트</string>
+    <string name="career_certificate_title">자격증</string>
+    <string name="career_contest_title">공모전</string>
+    <string name="career_volunteer_title">봉사활동</string>
+    <string name="career_activity_title">교외활동</string>
+    <!--비교과 포인트-->
+    <string name="career_point_this_semester">이번학기</string>
+    <string name="career_point_last_semester">지난학기</string>
+    <string name="career_cumulative_point">전체 누적</string>
+    <string name="career_recognition_graduation">졸업 인정</string>
+    <!--커리어 더하기-->
+    <string name="career_edit_title">커리어 더하기</string>
+    <string name="career_edit_activity">활동</string>
+    <string name="career_edit_file">첨부파일</string>
+    <string name="career_edit_award">수상명</string>
+    <string name="career_edit_period">기간</string>
+    <string name="career_edit_upload">사진이나 파일을 업로드해주세요</string>
+    <string name="career_edit_add">추가하기</string>
+    <string name="career_edit_btn">수정하기</string>
+    <!--certificate-->
+    <string name="career_certificate_name">자격증 이름</string>
+    <string name="career_certificate_name_ex">예)컴퓨터활용능력(공백 없이 입력해주세요.)</string>
+    <string name="career_certificate_type">유형</string>
+    <!--volunteer-->
+    <string name="career_volunteer_name">봉사활동 이름</string>
+    <string name="career_volunteer_name_ex">예)헌혈(공백 없이 입력해주세요.)</string>
+    <string name="career_volunteer_hour">봉사시간</string>
+    <!--activity-->
+    <string name="career_activity_name">대외활동 이름</string>
+    <!--contest-->
+    <string name="career_contest_name">공모전 이름</string>
+    <string name="career_contest_name_ex">예)영상 공모전(공백 없이 입력해주세요.)</string>
+    <string name="career_contest_award">시상 구분</string>
+    <!--업로드 bottom dialog-->
+    <string name="upload_bottom_title">사진/파일 업로드</string>
+    <string name="upload_bottom_gallery">갤러리에서 가져오기</string>
+    <string name="upload_bottom_drive">드라이브에서 가져오기</string>
+    <!--기간 bottom dialog-->
+    <string name="upload_bottom_year">년도</string>
+    <string name="upload_bottom_month">월</string>
+    <string name="upload_bottom_day">일</string>
+    <!--career common-->
+    <string name="career_choose">선택해주세요</string>
+    <string name="career_startDate">시작일자</string>
+    <string name="career_endDate">종료일자</string>
+    <string name="career_date_ex">YYMMDD</string>
+    <!--커리어 수정하기-->
+    <string name="career_edit_volunteer">봉사활동 수정하기</string>
+    <string name="career_edit_activity_2">대외활동 수정하기</string>
+    <string name="career_edit_contest">공모전 수정하기</string>
+    <string name="career_edit_certificate">자격증 수정하기</string>
+    <string name="career_edit_search_hint">활동이름을 입력해서 검색해보세요</string>
 
     <!-- 규민 -->
-
+    <!-- Home -->
     <string name="home_to_grad">졸업까지</string>
     <string name="home_grad_condition_title">
         내 전공의 졸업요건 \n한눈에 알아보기</string>
     <string name="home_etc">더보기</string>
     <string name="home_next_plan_title">나만의 \n다음 계획</string>
+    <string name="home_grad_info">졸업 요건</string>
+    <string name="home_track">트랙</string>
+
+    <!-- Login -->
+    <string name="login_title">로그인</string>
+    <string name="login_content_id_pw">ID/PW는 학교 서버에 접속할 때만 사용합니다. \n어떠한 데이터도 수집하지 않습니다.</string>
+    <string name="login_pw">비밀번호 (PW)</string>
+    <string name="login_id">학번 (ID)</string>
+    <string name="login_content">종합정보시스템의 ID/PW를 입력하세요.</string>
+    <string name="login_hansung">HANSUNG UNIV</string>
+
+    <!-- Setting -->
+    <string name="title_setting_notification">알림 설정</string>
+
+    <!-- GradInfo -->
+    <string-array name="spinner_schedule">
+        <item>시간표 불러오기</item>
+        <item>1학년 1학기</item>
+        <item>1학년 2학기</item>
+        <item>2학년 1학기</item>
+    </string-array>
+    <string name="grade_each_semester_title">이수 성적</string>
+    <string name="grade_each_semester_sub_title">각 학기 버튼을 눌러 확인해보세요</string>
+    <string name="grade_subject">과목명</string>
+    <string name="grade_major">전공</string>
+    <string name="grade_semester">학기</string>
+    <string name="completion_class_title">교육과정 이수 현황 조회</string>
 
 </resources>

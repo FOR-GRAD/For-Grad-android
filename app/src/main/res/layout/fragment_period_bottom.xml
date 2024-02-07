@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.career.PeriodBottomFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="323dp"
+        android:background="@drawable/white_round_top_border_20">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_period_bottom_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_bottom_close_13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_period_bottom_title" />
+
+        <TextView
+            android:id="@+id/tv_period_bottom_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/career_edit_period"
+            android:textAppearance="@style/SemiBoldFont.14"
+            android:textColor="#555555"
+            app:layout_constraintBottom_toBottomOf="@+id/v_period_bottom_underline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <View
+            android:id="@+id/v_period_bottom_underline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D9D9D9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16" />
+
+        <NumberPicker
+            android:id="@+id/np_period_bottom_year"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:theme="@style/ThemeOverlay.NumberPicker"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/v_period_bottom_underline"
+            app:layout_constraintWidth_percent="0.33" />
+
+        <NumberPicker
+            android:id="@+id/np_period_bottom_month"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:theme="@style/ThemeOverlay.NumberPicker"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/np_period_bottom_year"
+            app:layout_constraintTop_toTopOf="@+id/v_period_bottom_underline"
+            app:layout_constraintWidth_percent="0.33" />
+
+        <NumberPicker
+            android:id="@+id/np_period_bottom_day"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:theme="@style/ThemeOverlay.NumberPicker"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/np_period_bottom_month"
+            app:layout_constraintTop_toTopOf="@+id/v_period_bottom_underline"
+            app:layout_constraintWidth_percent="0.34" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

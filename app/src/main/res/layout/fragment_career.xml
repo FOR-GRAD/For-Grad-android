@@ -1,221 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.setting.SettingFragment">
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="-155dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayoutCompat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <TextView
                 android:id="@+id/tv_career_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="43dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="43dp"
                 android:text="커리어"
                 android:textAppearance="@style/SemiBoldFont.24"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_career_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="21dp"
-                android:text="지금까지 내가 채워온 커리어를 확인하고\n더 추가하는 공간입니다"
+                android:text="@string/career_description"
                 android:textAppearance="@style/MediumFont.14"
                 android:textColor="#757575"
-                app:layout_constraintTop_toBottomOf="@+id/tv_career_title"
-                app:layout_constraintStart_toStartOf="@+id/tv_career_title"/>
+                app:layout_constraintStart_toStartOf="@+id/tv_career_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_career_title" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:src="@drawable/ic_career_plus_16"
+                app:layout_constraintEnd_toStartOf="@+id/tv_career_add"
+                app:layout_constraintTop_toTopOf="@+id/tv_career_add" />
 
             <TextView
                 android:id="@+id/tv_career_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="23dp"
-                android:text="더하기"
+                android:text="@string/career_add"
                 android:textAppearance="@style/BlackFont.14"
                 android:textColor="#757575"
-                app:layout_constraintTop_toBottomOf="@+id/tv_career_title"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_career_title" />
 
-            <TextView
-                android:id="@+id/tv_career_standard_date"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_career_standard_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:focusable="false"
                 android:text="2024.01.09 기준"
                 android:textAppearance="@style/MediumFont.12"
                 android:textColor="#7D7D7D"
+                app:backgroundTint="@android:color/transparent"
                 app:layout_constraintBottom_toTopOf="@+id/iv_career_point_box"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_point_box"/>
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_point_box" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_career_point_box"
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="159dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_solid_light_blue_radius_16_5"
+                app:layout_constraintBottom_toBottomOf="@+id/et_career_upper_point_box"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_upper_point_box"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_career_upper_point_box"
+                style="@style/SemiBoldFont.20"
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginEnd="116dp"
                 android:background="@drawable/bg_solid_blue_radius_16_5"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_point_box"
+                android:focusable="false"
+                android:paddingStart="14dp"
+                android:paddingTop="69dp"
+                android:paddingBottom="33dp"
+                android:text=""
+                android:textColor="#FAF3EB"
+                android:textColorHint="#FAF3EB"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_point_box"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_point_box"/>
+                app:layout_constraintTop_toTopOf="@+id/iv_career_point_box" />
 
-            <TextView
-                android:id="@+id/tv_career_point"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="11dp"
+                android:src="@drawable/ic_career_top_right_arrow"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_point_box"
+                app:layout_constraintTop_toTopOf="@+id/iv_career_point_box" />
+
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
-                android:layout_marginTop="60dp"
-                android:text="520pt"
-                android:textAppearance="@style/SemiBoldFont.20"
-                android:textColor="#FAF3EB"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_upper_point_box"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_upper_point_box"/>
+                android:layout_marginTop="33dp"
+                android:src="@drawable/ic_career_stack"
+                app:layout_constraintStart_toStartOf="@+id/et_career_upper_point_box"
+                app:layout_constraintTop_toTopOf="@+id/et_career_upper_point_box" />
 
             <TextView
                 android:id="@+id/tv_career_point_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="비교과 포인트"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/career_point_title"
                 android:textAppearance="@style/MediumFont.12"
                 android:textColor="#FAF3EB"
-                app:layout_constraintTop_toBottomOf="@+id/tv_career_point"
-                app:layout_constraintStart_toStartOf="@+id/tv_career_point"/>
+                app:layout_constraintBottom_toBottomOf="@+id/et_career_upper_point_box"
+                app:layout_constraintStart_toStartOf="@+id/et_career_upper_point_box" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_certificate_box"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_career_certificate"
+                style="@style/SemiBoldFont.14"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/bg_light_yellow_radius_16_5"
-                app:layout_constraintTop_toBottomOf="@+id/iv_career_upper_point_box"
+                android:gravity="center_horizontal"
+                android:hint="@string/career_certificate_title"
+                android:paddingTop="130dp"
+                android:paddingBottom="42dp"
+                android:textColorHint="#757575"
                 app:layout_constraintStart_toStartOf="@+id/iv_career_point_box"
+                app:layout_constraintTop_toBottomOf="@+id/et_career_upper_point_box"
                 app:layout_constraintWidth_default="percent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintWidth_percent="0.44"
-                app:layout_constraintHeight_percent="0.23375"/>
-
-            <TextView
-                android:id="@+id/tv_career_certificate_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="자격증"
-                android:textAppearance="@style/SemiBoldFont.14"
-                android:textColor="#757575"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_certificate_box"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_certificate_box"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_certificate_box"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_certificate_box"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.69"/>
+                app:layout_constraintWidth_percent="0.44" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_contest_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_certificate"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_career_certificate"
+                app:layout_constraintEnd_toEndOf="@+id/tv_career_certificate"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/tv_career_certificate"
+                app:layout_constraintTop_toTopOf="@+id/tv_career_certificate"
+                app:layout_constraintVertical_bias="0.4" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_career_contest"
+                style="@style/SemiBoldFont.14"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/bg_light_yellow_radius_16_5"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_certificate_box"
+                android:gravity="center_horizontal"
+                android:hint="@string/career_contest_title"
+                android:paddingTop="130dp"
+                android:paddingBottom="42dp"
+                android:textColorHint="#757575"
                 app:layout_constraintEnd_toEndOf="@+id/iv_career_point_box"
+                app:layout_constraintTop_toTopOf="@+id/tv_career_certificate"
                 app:layout_constraintWidth_default="percent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintWidth_percent="0.44"
-                app:layout_constraintHeight_percent="0.23375"/>
-
-            <TextView
-                android:id="@+id/tv_career_contest_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="공모전"
-                android:textAppearance="@style/SemiBoldFont.14"
-                android:textColor="#757575"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_contest_box"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_contest_box"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_contest_box"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_contest_box"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.69"/>
+                app:layout_constraintWidth_percent="0.44" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_volunteer_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_contest"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_career_contest"
+                app:layout_constraintEnd_toEndOf="@+id/tv_career_contest"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/tv_career_contest"
+                app:layout_constraintTop_toTopOf="@+id/tv_career_contest"
+                app:layout_constraintVertical_bias="0.4" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_career_volunteer"
+                style="@style/SemiBoldFont.14"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="14dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/bg_light_yellow_radius_16_5"
-                app:layout_constraintTop_toBottomOf="@+id/iv_career_certificate_box"
+                android:gravity="center_horizontal"
+                android:hint="@string/career_volunteer_title"
+                android:paddingTop="130dp"
+                android:paddingBottom="42dp"
+                android:textColorHint="#757575"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/iv_career_point_box"
+                app:layout_constraintTop_toBottomOf="@+id/tv_career_certificate"
                 app:layout_constraintWidth_default="percent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintWidth_percent="0.44"
-                app:layout_constraintHeight_percent="0.23375"/>
-
-            <TextView
-                android:id="@+id/tv_career_volunteer_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="봉사활동"
-                android:textAppearance="@style/SemiBoldFont.14"
-                android:textColor="#757575"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_volunteer_box"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_volunteer_box"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_volunteer_box"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_volunteer_box"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.69"/>
+                app:layout_constraintWidth_percent="0.44" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_career_activities_box"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/bg_light_yellow_radius_16_5"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_volunteer_box"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_point_box"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintWidth_percent="0.44"
-                app:layout_constraintHeight_percent="0.23375"/>
-
-            <TextView
-                android:id="@+id/tv_career_activities_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="교외활동"
-                android:textAppearance="@style/SemiBoldFont.14"
-                android:textColor="#757575"
-                app:layout_constraintTop_toTopOf="@+id/iv_career_activities_box"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_career_activities_box"
-                app:layout_constraintStart_toStartOf="@+id/iv_career_activities_box"
-                app:layout_constraintEnd_toEndOf="@+id/iv_career_activities_box"
+                android:src="@drawable/ic_career_volunteer"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_career_volunteer"
+                app:layout_constraintEnd_toEndOf="@+id/tv_career_volunteer"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.69"/>
+                app:layout_constraintStart_toStartOf="@+id/tv_career_volunteer"
+                app:layout_constraintTop_toTopOf="@+id/tv_career_volunteer"
+                app:layout_constraintVertical_bias="0.4" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_career_activity"
+                style="@style/SemiBoldFont.14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_light_yellow_radius_16_5"
+                android:gravity="center_horizontal"
+                android:hint="@string/career_activity_title"
+                android:paddingTop="130dp"
+                android:paddingBottom="42dp"
+                android:textColorHint="#757575"
+                app:layout_constraintEnd_toEndOf="@+id/iv_career_point_box"
+                app:layout_constraintTop_toTopOf="@+id/tv_career_volunteer"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.44" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career_activity"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_career_activity"
+                app:layout_constraintEnd_toEndOf="@+id/tv_career_activity"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/tv_career_activity"
+                app:layout_constraintTop_toTopOf="@+id/tv_career_activity"
+                app:layout_constraintVertical_bias="0.4" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

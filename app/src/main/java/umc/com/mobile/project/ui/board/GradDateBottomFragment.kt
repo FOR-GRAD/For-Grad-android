@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentGradDateBinding
 import umc.com.mobile.project.databinding.FragmentGradDateBottomBinding
+import umc.com.mobile.project.ui.board.viewmodel.GradDateViewModel
 
 class GradDateBottomFragment(context: Context) : BottomSheetDialogFragment() {
 

@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import umc.com.mobile.project.databinding.FragmentCareerBinding
+import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentSettingBinding
-import umc.com.mobile.project.ui.career.CareerViewModel
+import umc.com.mobile.project.ui.common.NavigationUtil.navigate
+import umc.com.mobile.project.ui.setting.viewmodel.SettingViewModel
 
 class SettingFragment : Fragment() {
 	private var _binding: FragmentSettingBinding? = null
@@ -22,14 +23,19 @@ class SettingFragment : Fragment() {
 	): View {
 		_binding = FragmentSettingBinding.inflate(inflater, container, false)
 
-		viewModel.text.observe(viewLifecycleOwner) {
-			binding.textCareer.text = it
-		}
+		navigateFragment()
+
 		return binding.root
 	}
 
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
+	}
+
+	private fun navigateFragment() {
+		binding.tvAppSettingNotification.setOnClickListener {
+			navigate(R.id.action_fragment_setting_to_fragment_setting_notification)
+		}
 	}
 }

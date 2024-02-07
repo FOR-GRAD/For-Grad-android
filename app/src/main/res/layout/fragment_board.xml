@@ -6,17 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".ui.setting.SettingFragment">
 
-    <TextView
-        android:id="@+id/text_board"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_grad_info_title"
+        style="@style/SemiBoldFont.20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="43dp"
+        android:textColor="@color/black"
+        android:text="게시판"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_grad_info"
+        style="@style/SemiBoldFont.16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="16dp"
+        android:minHeight="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_grad_info_title"
+        app:tabBackground="@drawable/bg_grad_info_tab_radius_17"
+        app:tabGravity="fill"
+        app:tabIconTint="@android:color/transparent"
+        app:tabIndicatorHeight="0dp"
+        app:tabMinWidth="85dp"
+        app:tabMode="fixed"
+        app:tabPaddingEnd="17dp"
+        app:tabPaddingStart="17dp"
+        app:tabRippleColor="@null"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextAppearance="@style/SemiBoldFont.14"
+        app:tabTextColor="@color/text_gray"
+        app:tabUnboundedRipple="false" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@+id/viewPager_grad_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout_grad_info" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager_grad_info"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout_grad_info" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

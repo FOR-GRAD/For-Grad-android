@@ -6,16 +6,17 @@
     app:startDestination="@+id/fragment_home">
 
     <fragment
-        android:id="@+id/fragment_login"
-        android:name="umc.com.mobile.project.ui.login.LoginActivity"
-        android:label="로그인"
-        tools:layout="@layout/activity_login" />
-
-    <fragment
         android:id="@+id/fragment_home"
         android:name="umc.com.mobile.project.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_date"
+            app:destination="@id/fragment_date" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_grad_info"
+            app:destination="@id/fragment_grad_info" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_grad_info"
@@ -24,21 +25,210 @@
         tools:layout="@layout/fragment_grad_info" />
 
     <fragment
+        android:id="@+id/fragment_date"
+        android:name="umc.com.mobile.project.ui.board.GradDateFragment"
+        android:label="@string/title_date"
+        tools:layout="@layout/fragment_grad_date" >
+        <action
+            android:id="@+id/action_fragment_date_to_fragment_home"
+            app:destination="@id/fragment_home" />
+    </fragment>
+
+    <fragment
         android:id="@+id/fragment_career"
         android:name="umc.com.mobile.project.ui.career.CareerFragment"
         android:label="@string/title_career"
-        tools:layout="@layout/fragment_career" />
+        tools:layout="@layout/fragment_career">
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_career_add"
+            app:destination="@id/fragment_career_add"/>
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_nonsubject"
+            app:destination="@+id/fragment_career_nonsubject"/>
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_certificate"
+            app:destination="@+id/fragment_career_certificate"/>
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_contest"
+            app:destination="@+id/fragment_career_contest"/>
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_volunteer"
+            app:destination="@+id/fragment_career_volunteer"/>
+        <action
+            android:id="@+id/action_fragment_career_to_fragment_activity"
+            app:destination="@+id/fragment_career_activity"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_add"
+        android:name="umc.com.mobile.project.ui.career.CareerAddFragment"
+        android:label="@string/career_add"
+        tools:layout="@layout/fragment_career_add">
+        <action
+            android:id="@+id/action_fragment_career_add_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+        <action
+            android:id="@+id/action_fragment_career_add_to_fragment_career_confirm"
+            app:destination="@+id/fragment_career_confirm"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_confirm"
+        android:name="umc.com.mobile.project.ui.career.CareerConfirmFragment"
+        android:label="@string/career_edit_add"
+        tools:layout="@layout/fragment_career_confirm">
+        <action
+            android:id="@+id/action_fragment_career_confirm_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+        <action
+            android:id="@+id/action_fragment_career_confirm_to_fragment_career_certificate"
+            app:destination="@+id/fragment_career_certificate"/>
+        <action
+            android:id="@+id/action_fragment_career_confirm_to_fragment_career_contest"
+            app:destination="@+id/fragment_career_contest"/>
+        <action
+            android:id="@+id/action_fragment_career_confirm_to_fragment_career_volunteer"
+            app:destination="@+id/fragment_career_volunteer"/>
+        <action
+            android:id="@+id/action_fragment_career_confirm_to_fragment_career_activity"
+            app:destination="@+id/fragment_career_activity"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_nonsubject"
+        android:name="umc.com.mobile.project.ui.career.NonSubjectFragment"
+        android:label="@string/career_point_title"
+        tools:layout="@layout/fragment_career_nonsubject">
+        <action
+            android:id="@+id/action_fragment_nonsubject_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_certificate"
+        android:name="umc.com.mobile.project.ui.career.CertificateFragment"
+        android:label="@string/career_certificate_title"
+        tools:layout="@layout/fragment_career_certificate">
+        <action
+            android:id="@+id/action_fragment_certificate_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+        <action
+            android:id="@+id/action_fragment_certificate_to_fragment_career_edit_certificate"
+            app:destination="@+id/fragment_career_edit_certificate"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_contest"
+        android:name="umc.com.mobile.project.ui.career.ContestFragment"
+        android:label="@string/career_contest_title"
+        tools:layout="@layout/fragment_career_contest">
+        <action
+            android:id="@+id/action_fragment_contest_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+        <action
+            android:id="@+id/action_fragment_contest_to_fragment_career_edit_contest"
+            app:destination="@+id/fragment_career_edit_contest"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_volunteer"
+        android:name="umc.com.mobile.project.ui.career.VolunteerFragment"
+        android:label="@string/career_volunteer_title"
+        tools:layout="@layout/fragment_career_volunteer">
+        <action
+            android:id="@+id/action_fragment_volunteer_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+        <action
+            android:id="@+id/action_fragment_volunteer_to_fragment_career_edit_volunteer"
+            app:destination="@+id/fragment_career_edit_volunteer"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_activity"
+        android:name="umc.com.mobile.project.ui.career.ActivityFragment"
+        android:label="@string/career_activity_title"
+        tools:layout="@layout/fragment_career_activity">
+        <action
+            android:id="@+id/action_fragment_activity_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+        <action
+            android:id="@+id/action_fragment_activity_to_fragment_career_edit_activity"
+            app:destination="@+id/fragment_career_edit_activity"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_edit_volunteer"
+        android:name="umc.com.mobile.project.ui.career.CareerEditVolunteerFragment"
+        android:label="@string/career_edit_volunteer"
+        tools:layout="@layout/fragment_career_edit_volunteer">
+        <action
+            android:id="@+id/action_fragment_edit_volunteer_to_fragment_career_volunteer"
+            app:destination="@+id/fragment_career_volunteer"/>
+        <action
+            android:id="@+id/action_fragment_edit_volunteer_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_edit_contest"
+        android:name="umc.com.mobile.project.ui.career.CareerEditContestFragment"
+        android:label="@string/career_edit_contest"
+        tools:layout="@layout/fragment_career_edit_contest">
+        <action
+            android:id="@+id/action_fragment_edit_contest_to_fragment_career_contest"
+            app:destination="@+id/fragment_career_contest"/>
+        <action
+            android:id="@+id/action_fragment_edit_contest_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_edit_activity"
+        android:name="umc.com.mobile.project.ui.career.CareerEditActivityFragment"
+        android:label="@string/career_edit_activity_2"
+        tools:layout="@layout/fragment_career_edit_activity">
+        <action
+            android:id="@+id/action_fragment_edit_activity_to_fragment_career_activity"
+            app:destination="@+id/fragment_career_activity"/>
+        <action
+            android:id="@+id/action_fragment_edit_activity_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_career_edit_certificate"
+        android:name="umc.com.mobile.project.ui.career.CareerEditCertificateFragment"
+        android:label="@string/career_edit_certificate"
+        tools:layout="@layout/fragment_career_edit_certificate">
+        <action
+            android:id="@+id/action_fragment_edit_certificate_to_fragment_career_certificate"
+            app:destination="@+id/fragment_career_certificate"/>
+        <action
+            android:id="@+id/action_fragment_edit_certificate_to_fragment_career"
+            app:destination="@+id/fragment_career"/>
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_board"
         android:name="umc.com.mobile.project.ui.board.BoardFragment"
         android:label="@string/title_board"
-        tools:layout="@layout/fragment_board" />
+        tools:layout="@layout/fragment_board">
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_setting"
         android:name="umc.com.mobile.project.ui.setting.SettingFragment"
         android:label="@string/title_setting"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_fragment_setting_to_fragment_setting_notification"
+            app:destination="@id/fragment_setting_notification" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_setting_notification"
+        android:name="umc.com.mobile.project.ui.setting.SettingNotificationFragment"
+        android:label="@string/title_setting_notification"
+        tools:layout="@layout/fragment_setting_notification" />
 
 </navigation>

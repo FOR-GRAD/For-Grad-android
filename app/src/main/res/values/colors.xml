@@ -3,12 +3,17 @@
     <!-- main color -->
     <color name="skyBlue">#0D99FF</color>
     <color name="ivory">#FAF3EB</color>
+    <color name="light_blue">#D6EEFF</color>
 
     <!-- sub color -->
     <color name="default_dark">#7D7D7D</color>
     <color name="gray">#D9D9D9</color>
     <color name="text_gray">#B6B6B6</color>
+    <color name="light_gray">#B3B3B3</color>
+    <color name="more_light_gray">#F5F5F5</color>
     <color name="pink">#FFB9B9</color>
+    <color name="light_skyBlue">#98D4FF</color>
+
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="umc.com.mobile.project.ui.career.viewmodel.CareerEditContestViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_career_contest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="59dp"
+                    android:src="@drawable/ic_career_contest_26"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_career_contest_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="21dp"
+                    android:src="@drawable/ic_back_arrow"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_career_contest" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_career_contest_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="@string/career_contest_title"
+                    android:textAppearance="@style/SemiBoldFont.24"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_career_contest" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_solid_white_radius_16_5">
+
+                <TextView
+                    android:id="@+id/tv_career_edit_contest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/career_contest_name"
+                    android:textAppearance="@style/SemiBoldFont.16"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_career_edit_contest"
+                    style="@style/MediumFont.14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="23dp"
+                    android:background="@drawable/bg_solid_gray_radius_15"
+                    android:gravity="top"
+                    android:hint=""
+                    android:paddingStart="18dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="10dp"
+                    android:text="@={vm.title}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_contest" />
+
+                <TextView
+                    android:id="@+id/tv_career_edit_contest_award"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="23dp"
+                    android:text="@string/career_contest_award"
+                    android:textAppearance="@style/SemiBoldFont.16"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_career_edit_contest_award"
+                    style="@style/MediumFont.14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="23dp"
+                    android:background="@drawable/bg_solid_gray_radius_15"
+                    android:focusable="false"
+                    android:gravity="top"
+                    android:hint=""
+                    android:paddingStart="18dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_contest_award" />
+
+                <TextView
+                    android:id="@+id/tv_career_edit_contest_startDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="23dp"
+                    android:text="@string/career_startDate"
+                    android:textAppearance="@style/SemiBoldFont.16"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_award" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_career_edit_contest_start_year"
+                    style="@style/MediumFont.14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="23dp"
+                    android:background="@drawable/bg_solid_gray_radius_15"
+                    android:focusable="false"
+                    android:gravity="top"
+                    android:hint=""
+                    android:paddingStart="18dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="10dp"
+                    android:text="@={vm.startDate}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_contest_startDate" />
+
+                <TextView
+                    android:id="@+id/tv_career_edit_contest_endDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="23dp"
+                    android:text="@string/career_endDate"
+                    android:textAppearance="@style/SemiBoldFont.16"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_start_year" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_career_edit_contest_end_year"
+                    style="@style/MediumFont.14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="23dp"
+                    android:background="@drawable/bg_solid_gray_radius_15"
+                    android:focusable="false"
+                    android:gravity="top"
+                    android:hint=""
+                    android:paddingStart="18dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="@={vm.endDate}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_contest_endDate" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_career_edit"
+                    style="@style/SemiBoldFont.16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="23dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/bg_solid_dark_gray_radius_23_5"
+                    android:backgroundTint="@color/skyBlue"
+                    android:enabled="true"
+                    android:stateListAnimator="@null"
+                    android:text="@string/career_edit_btn"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_contest_end_year" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
