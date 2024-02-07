@@ -30,6 +30,7 @@ class CareerEditActivityViewModel : ViewModel() {
     val file: MutableLiveData<String> = MutableLiveData()
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
+    val fileAddedEvent: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         studentId.value = 0
@@ -62,13 +63,43 @@ class CareerEditActivityViewModel : ViewModel() {
         return date.isNullOrBlank() || date.length == 8
     }
 
-    private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
+    private val addFiles: MutableList<MultipartBody.Part> = mutableListOf()
 
     fun addImageFile(file: File) {
-        Log.d("addImageFile", file.toString())
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-        imageList.add(body)
+        addFiles.add(body)
+        fileAddedEvent.value = true
+    }
+
+    //파일 확장자에 따른 MIME 타입 반환
+    fun getMimeType(file: File): String {
+        val extension = file.extension
+
+        return when (extension.toLowerCase()) {
+            "jpg", "jpeg" -> "image/jpeg"
+            "png" -> "image/png"
+            "gif" -> "image/gif"
+            "pdf" -> "application/pdf"
+            "doc" -> "application/msword"
+            "docx" -> "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            "xls" -> "application/vnd.ms-excel"
+            "xlsx" -> "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            "ppt" -> "application/vnd.ms-powerpoint"
+            "pptx" -> "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+            else -> "application/octet-stream" //알 수 없는 파일 형식
+        }
+    }
+
+    fun addFile(file: File) {
+        val fileName = file.name
+        Log.d("editFileName", fileName)
+        val mimeType = getMimeType(file) //파일 확장자에 따른 MIME 타입 결정
+        val requestFile: RequestBody = RequestBody.create(mimeType?.toMediaTypeOrNull(), file)
+        val filePart = MultipartBody.Part.createFormData("image", fileName, requestFile)
+        Log.d("editFileName", requestFile.toString())
+        addFiles.add(filePart)
+        fileAddedEvent.value = true
     }
 
     private val careerApiService = ApiClient.createService<CareerApi>()
@@ -176,11 +207,11 @@ class CareerEditActivityViewModel : ViewModel() {
         val updateDtoPart =
             gson.toJson(updatedDetail).toRequestBody("application/json".toMediaTypeOrNull())
 
-        val emptyRequestBody = "".toRequestBody("multipart/form-data".toMediaTypeOrNull())
+/*        val emptyRequestBody = "".toRequestBody("multipart/form-data".toMediaTypeOrNull())
         val temporaryFilePart =
-            MultipartBody.Part.createFormData("files", "your_temporary_file_name", emptyRequestBody)
-
-        careerApiService.updateCareer(activityIdPart, updateDtoPart, listOf(temporaryFilePart))
+            MultipartBody.Part.createFormData("files", "your_temporary_file_name", emptyRequestBody)*/
+        Log.d("editFileName", addFiles.toString())
+        careerApiService.updateCareer(activityIdPart, updateDtoPart, addFiles)
             .enqueue(object : Callback<UpdateCareerResponse> {
                 override fun onResponse(
                     call: Call<UpdateCareerResponse>,

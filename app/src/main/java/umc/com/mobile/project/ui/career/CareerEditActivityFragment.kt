@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerEditActivityBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerEditActivityViewModel
@@ -76,6 +77,12 @@ class CareerEditActivityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init()
         sharedViewModel.init()
+        viewModel.fileAddedEvent.observe(viewLifecycleOwner, Observer { isFileAdded ->
+            if (isFileAdded) {
+                binding.etCareerEditActivityFile.setText("파일이 추가되었습니다")
+                viewModel.fileAddedEvent.value = false // 이벤트를 처리했으므로 다시 false로 설정
+            }
+        })
         //버튼 활성화
         viewModel.isFilledAllOptions.observe(viewLifecycleOwner) { isEnabled ->
             binding?.btnCareerEdit?.isEnabled = isEnabled
@@ -91,8 +98,8 @@ class CareerEditActivityFragment : Fragment() {
         viewModel.activityDetailInfo.observe(viewLifecycleOwner) { _activityInfo ->
             _activityInfo?.let {
                 _binding?.etCareerEditActivity?.hint = it.result.title ?: ""
-                _binding?.etCareerEditActivityFile?.hint =
-                    it.result.fileUrls?.toString() ?: ""
+                val urls = _activityInfo.result.fileUrls.map { it.url }.joinToString("\n")
+                _binding?.etCareerEditActivityFile?.hint = urls
                 _binding?.etCareerEditActivityStartYear?.hint = it.result.startDate ?: ""
                 _binding?.etCareerEditActivityEndYear?.hint = it.result.endDate ?: ""
             }

@@ -5,21 +5,19 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import umc.com.mobile.project.databinding.FragmentUploadBottomBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddActivityViewModel
 import umc.com.mobile.project.ui.career.viewmodel.CareerEditActivityViewModel
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 
 class UploadBottomFragment(context: Context, private val viewModelType: Int) :
     BottomSheetDialogFragment() {
@@ -68,63 +66,6 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
         startActivityForResult(intent, PICK_FILE)
     }
 
-    private fun createFile(uri: Uri): MultipartBody.Part {
-        val inputStream = requireContext().contentResolver.openInputStream(uri)
-        val bytes = inputStream?.readBytes()
-            ?: throw IllegalArgumentException("Could not create RequestBody: InputStream was null")
-
-        val requestFile: RequestBody = bytes.toRequestBody("application/*".toMediaTypeOrNull())
-        val body = MultipartBody.Part.createFormData("file", "filename", requestFile)
-        return body
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                PICK_IMAGE_MULTIPLE -> {
-                    if (data?.clipData != null) {
-                        val count = data.clipData!!.itemCount
-                        for (i in 0 until count) {
-                            val imageUri = data.clipData!!.getItemAt(i).uri
-                            val selectedImageFile = createImageFile(imageUri)
-                            if (viewModelType == 1) {
-                                addViewModel.addImageFile(selectedImageFile)
-                            } else {
-                                editViewModel.addImageFile(selectedImageFile)
-                            }
-                        }
-                    } else {
-                        val imageUri = data?.data
-                        if (imageUri != null) {
-                            val selectedImageFile = createImageFile(imageUri)
-                            if (viewModelType == 1) {
-                                addViewModel.addImageFile(selectedImageFile)
-                            } else {
-                                editViewModel.addImageFile(selectedImageFile)
-                            }
-                        }
-                    }
-                    dismiss()
-                }
-
-                PICK_FILE -> {
-                    val fileUri = data?.data
-                    if (fileUri != null) {
-                        val selectedFile = createFile(fileUri)
-                        if (viewModelType == 1) {
-                            addViewModel.addFile(selectedFile)
-                        } else {
-                            //editViewModel.addFile(selectedFile)
-                        }
-                    }
-                    dismiss()
-                }
-            }
-        }
-    }
-
     private fun createImageFile(uri: Uri): File {
         val fileName = "img_" + System.currentTimeMillis() + ".jpg"
         val directory = requireContext().getExternalFilesDir(null)
@@ -138,6 +79,120 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
         outputStream.close()
 
         return file
+    }
+
+    /*private fun createFile(uri: Uri): MultipartBody.Part {
+        Log.d("fileUri", uri.toString())
+        val inputStream = requireContext().contentResolver.openInputStream(uri)
+        val bytes = inputStream?.readBytes()
+            ?: throw IllegalArgumentException("Could not create RequestBody: InputStream was null")
+
+        // 파일의 원래 이름 가져오기
+        val fileName = getFileName(uri)
+
+        // 파일의 MIME 타입 가져오기
+        val mimeType = requireContext().contentResolver.getType(uri)
+
+        val requestFile: RequestBody = bytes.toRequestBody(mimeType?.toMediaTypeOrNull())
+        val body = MultipartBody.Part.createFormData("file", fileName, requestFile)
+        return body
+    }*/
+    private fun createFile(uri: Uri): File {
+        Log.d("fileUri", uri.toString())
+
+        //파일의 원래 이름 가져오기
+        val fileName = getFileName(uri)
+
+        //임시 파일 생성
+        val directory = requireContext().getExternalFilesDir(null)
+        val file = File(directory, fileName)
+
+        val inputStream = requireContext().contentResolver.openInputStream(uri)
+        val outputStream: OutputStream = FileOutputStream(file)
+        inputStream?.copyTo(outputStream)
+
+        inputStream?.close()
+        outputStream.close()
+
+        return file
+    }
+
+    //Uri에서 파일 이름을 가져오는 함수
+    fun getFileName(uri: Uri): String {
+        var result: String? = null
+        if (uri.scheme == "content") {
+            val cursor = requireContext().contentResolver.query(uri, null, null, null, null)
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    val columnIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                    // 컬럼 인덱스가 -1이 아닌 경우에만 값 불러옴
+                    if (columnIndex != -1) {
+                        result = cursor.getString(columnIndex)
+                    }
+                }
+            } finally {
+                cursor?.close()
+            }
+        }
+        if (result == null) {
+            result = uri.path
+            val cut = result?.lastIndexOf('/')
+            if (cut != null && cut != -1) {
+                result = result?.substring(cut + 1)
+            }
+        }
+        return result ?: "unknown_file"
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d("editFile: " ,data?.data.toString())
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                PICK_IMAGE_MULTIPLE -> {
+                    if (data?.clipData != null) {
+                        val count = data.clipData!!.itemCount
+                        for (i in 0 until count) {
+                            val imageUri = data.clipData!!.getItemAt(i).uri
+                            val selectedImageFile = createImageFile(imageUri)
+                            if (viewModelType == 1) {
+                                addViewModel.addImageFile(selectedImageFile)
+                                Log.d("addFile: " ,"이미지 여러장")
+                            } else {
+                                editViewModel.addImageFile(selectedImageFile)
+                                Log.d("editFile: " ,"이미지 여러장")
+                            }
+                        }
+                    } else {
+                        val imageUri = data?.data
+                        if (imageUri != null) {
+                            val selectedImageFile = createImageFile(imageUri)
+                            if (viewModelType == 1) {
+                                addViewModel.addImageFile(selectedImageFile)
+                                Log.d("addFile: " ,"이미지 한장")
+                            } else {
+                                editViewModel.addImageFile(selectedImageFile)
+                                Log.d("editFile: " ,"이미지 한장")
+                            }
+                        }
+                    }
+                    dismiss()
+                }
+
+                PICK_FILE -> {
+                    val fileUri = data?.data
+                    if (fileUri != null) {
+                        val selectedFile = createFile(fileUri)
+                        if (viewModelType == 1) {
+                            addViewModel.addFile(selectedFile)
+                        } else {
+                            editViewModel.addFile(selectedFile)
+                        }
+                    }
+                    dismiss()
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
