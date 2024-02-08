@@ -31,8 +31,8 @@
     <string name="career_volunteer_title">봉사활동</string>
     <string name="career_activity_title">교외활동</string>
     <!--비교과 포인트-->
-    <string name="career_point_this_semester">이번학기\n취득</string>
-    <string name="career_point_last_semester">지난학기\n취득</string>
+    <string name="career_point_this_semester">이번학기</string>
+    <string name="career_point_last_semester">지난학기</string>
     <string name="career_cumulative_point">전체 누적</string>
     <string name="career_recognition_graduation">졸업 인정</string>
     <!--커리어 더하기-->
@@ -46,17 +46,17 @@
     <string name="career_edit_btn">수정하기</string>
     <!--certificate-->
     <string name="career_certificate_name">자격증 이름</string>
-    <string name="career_certificate_name_ex">예)컴퓨터활용능력</string>
+    <string name="career_certificate_name_ex">예)컴퓨터활용능력(공백 없이 입력해주세요.)</string>
     <string name="career_certificate_type">유형</string>
     <!--volunteer-->
     <string name="career_volunteer_name">봉사활동 이름</string>
-    <string name="career_volunteer_name_ex">예)헌혈</string>
+    <string name="career_volunteer_name_ex">예)헌혈(공백 없이 입력해주세요.)</string>
     <string name="career_volunteer_hour">봉사시간</string>
     <!--activity-->
     <string name="career_activity_name">대외활동 이름</string>
     <!--contest-->
     <string name="career_contest_name">공모전 이름</string>
-    <string name="career_contest_name_ex">예)영상 공모전</string>
+    <string name="career_contest_name_ex">예)영상 공모전(공백 없이 입력해주세요.)</string>
     <string name="career_contest_award">시상 구분</string>
     <!--업로드 bottom dialog-->
     <string name="upload_bottom_title">사진/파일 업로드</string>
@@ -71,6 +71,12 @@
     <string name="career_startDate">시작일자</string>
     <string name="career_endDate">종료일자</string>
     <string name="career_date_ex">YYMMDD</string>
+    <!--커리어 수정하기-->
+    <string name="career_edit_volunteer">봉사활동 수정하기</string>
+    <string name="career_edit_activity_2">대외활동 수정하기</string>
+    <string name="career_edit_contest">공모전 수정하기</string>
+    <string name="career_edit_certificate">자격증 수정하기</string>
+    <string name="career_edit_search_hint">활동이름을 입력해서 검색해보세요</string>
 
     <!-- 규민 -->
     <!-- Home -->
@@ -104,6 +110,7 @@
     <string name="grade_each_semester_sub_title">각 학기 버튼을 눌러 확인해보세요</string>
     <string name="grade_subject">과목명</string>
     <string name="grade_major">전공</string>
-    <string name="grade_grade">학점</string>
+    <string name="grade_semester">학기</string>
+    <string name="completion_class_title">교육과정 이수 현황 조회</string>
 
 </resources>

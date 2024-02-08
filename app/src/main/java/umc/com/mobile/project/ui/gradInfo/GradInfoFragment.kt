@@ -30,8 +30,6 @@ class GradInfoFragment : Fragment() {
 		_binding = FragmentGradInfoBinding.inflate(inflater, container, false)
 
 		initTabLayout()
-		viewModel.getGradeInfo() // 사용자 성적 사항 조회 api
-		viewModel.getCompletionInfo() // 사용자 개인별 이수 현황 조회 api
 
 		return binding.root
 	}

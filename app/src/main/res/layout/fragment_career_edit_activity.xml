@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="umc.com.mobile.project.ui.career.viewmodel.CareerAddActivityViewModel" />
+            type="umc.com.mobile.project.ui.career.viewmodel.CareerEditActivityViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -65,7 +65,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_main"
                 android:layout_width="match_parent"
-                android:layout_height="470dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="42dp"
                 android:layout_marginEnd="18dp"
@@ -94,7 +94,7 @@
                     android:layout_marginEnd="23dp"
                     android:background="@drawable/bg_solid_gray_radius_15"
                     android:gravity="top"
-                    android:hint="예)헌혈"
+                    android:hint=""
                     android:paddingStart="18dp"
                     android:paddingTop="11dp"
                     android:paddingBottom="10dp"
@@ -104,7 +104,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_activity" />
 
                 <TextView
-                    android:id="@+id/tv_career_add_activity_file"
+                    android:id="@+id/tv_career_edit_activity_file"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="29dp"
@@ -116,7 +116,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/et_career_edit_activity" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_career_add_activity_file"
+                    android:id="@+id/et_career_edit_activity_file"
                     style="@style/MediumFont.10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,13 +128,13 @@
                     android:drawablePadding="11dp"
                     android:focusable="false"
                     android:gravity="bottom|center_horizontal"
-                    android:hint="@string/career_edit_upload"
+                    android:hint=""
                     android:inputType="text"
                     android:paddingTop="18dp"
                     android:paddingBottom="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_career_add_activity_file" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_activity_file" />
 
                 <TextView
                     android:id="@+id/tv_career_edit_activity_startDate"
@@ -146,7 +146,7 @@
                     android:textAppearance="@style/SemiBoldFont.16"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_career_add_activity_file" />
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_activity_file" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_career_edit_activity_start_year"
@@ -159,7 +159,7 @@
                     android:background="@drawable/bg_solid_gray_radius_15"
                     android:focusable="false"
                     android:gravity="top"
-                    android:hint="@string/career_date_ex"
+                    android:hint=""
                     android:paddingStart="18dp"
                     android:paddingTop="11dp"
                     android:paddingBottom="10dp"
@@ -191,7 +191,7 @@
                     android:background="@drawable/bg_solid_gray_radius_15"
                     android:focusable="false"
                     android:gravity="top"
-                    android:hint="@string/career_date_ex"
+                    android:hint=""
                     android:paddingStart="18dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
@@ -200,7 +200,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_activity_endDate" />
 
-                <!--<androidx.appcompat.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_career_edit"
                     style="@style/SemiBoldFont.16"
                     android:layout_width="match_parent"
@@ -210,15 +210,15 @@
                     android:layout_marginEnd="23dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/bg_solid_dark_gray_radius_23_5"
-                    android:backgroundTint="@{vm.isFilledAllOptions ? @color/skyBlue : @color/gray}"
-                    android:enabled="@{vm.isFilledAllOptions}"
+                    android:backgroundTint="@color/skyBlue"
+                    android:enabled="true"
                     android:stateListAnimator="@null"
                     android:text="@string/career_edit_btn"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_activity_end_year" />-->
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_activity_end_year" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

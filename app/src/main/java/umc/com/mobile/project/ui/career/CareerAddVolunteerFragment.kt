@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerAddVolunteerBinding
+import umc.com.mobile.project.ui.career.PeriodBottomFragment
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddVolunteerViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
@@ -40,16 +41,18 @@ class CareerAddVolunteerFragment : Fragment() {
         mContext = requireContext()
 
         _binding!!.etCareerAddVolunteerStartYear.setOnClickListener {
-            val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, true)
+            val bottomSheet = PeriodBottomFragment(mContext, true, 1)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.etCareerAddVolunteerEndYear.setOnClickListener {
-            val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, false)
+            val bottomSheet = PeriodBottomFragment(mContext, false, 1)
             bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.btnCareerAdd.setOnClickListener {
+            //api 연결
+            viewModel.addCareer()
             navigate(R.id.action_fragment_career_add_to_fragment_career_confirm)
         }
         return binding.root

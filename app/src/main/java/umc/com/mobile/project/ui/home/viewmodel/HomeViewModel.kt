@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import umc.com.mobile.project.data.model.home.GradDateResponse
 import umc.com.mobile.project.data.model.home.UserResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.HomeApi
@@ -18,9 +19,17 @@ class HomeViewModel : ViewModel() {
 	val userInfoResponse: MutableLiveData<UserResponse?>
 		get() = _userInfoResponse
 
+	private val _dateResponse: MutableLiveData<GradDateResponse?> = MutableLiveData()
+	val dateResponse: MutableLiveData<GradDateResponse?>
+		get() = _dateResponse
+
 	private val _error: MutableLiveData<String> = MutableLiveData()
 	val error: LiveData<String>
 		get() = _error
+
+	private val _planStatus: MutableLiveData<Boolean> = MutableLiveData()
+	val planStatus: LiveData<Boolean>
+		get() = _planStatus
 
 	private val _userName: MutableLiveData<String> = MutableLiveData()
 	val userName: LiveData<String>
@@ -46,6 +55,10 @@ class HomeViewModel : ViewModel() {
 	val cheeringMemo: LiveData<String>
 		get() = _cheeringMemo
 
+	private val _dday: MutableLiveData<Int> = MutableLiveData()
+	val dday: LiveData<Int>
+		get() = _dday
+
 	private val _userProfile: MutableLiveData<String> = MutableLiveData()
 	val userProfile: LiveData<String>
 		get() = _userProfile
@@ -57,7 +70,9 @@ class HomeViewModel : ViewModel() {
 		_userGrade.postValue(value.result.grade)
 		_userStatus.postValue(value.result.status)
 		_cheeringMemo.postValue(value.result.message)
+		_dday.postValue(value.result.dday)
 		_userProfile.postValue(value.result.base64Image)
+		_planStatus.postValue(true)
 	}
 
 	fun getUserInfo() {
@@ -67,7 +82,12 @@ class HomeViewModel : ViewModel() {
 					val userResponse = response.body()
 					if (userResponse != null) {
 						userInfoResponse.postValue(userResponse)
-						Log.d("home", "${response.body()}")
+
+						if (userResponse.result.futureTimeTableDto.isEmpty()) {
+							_planStatus.postValue(false)
+						}
+//						Log.d("home", "${response.body()}")
+						Log.d("home", "${userResponse.result.futureTimeTableDto}")
 					} else {
 						_error.postValue("서버 응답이 올바르지 않습니다.")
 					}
@@ -89,5 +109,6 @@ class HomeViewModel : ViewModel() {
 			}
 		})
 	}
+
 
 }

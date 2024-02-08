@@ -10,11 +10,17 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentCertificateTypeBottomBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddCertificateViewModel
+import umc.com.mobile.project.ui.career.viewmodel.CareerEditCertificateViewModel
 
-class CertificateTypeBottomFragment (context: Context) : BottomSheetDialogFragment() {
+class CertificateTypeBottomFragment(
+    context: Context,
+    private val viewModelType: Int
+) : BottomSheetDialogFragment() {
     private var _binding: FragmentCertificateTypeBottomBinding? = null
     private val binding get() = _binding!!
-    private val sharedViewModel: CareerAddCertificateViewModel by activityViewModels()
+
+    val addViewModel: CareerAddCertificateViewModel by activityViewModels()
+    val editViewModel: CareerEditCertificateViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,9 +43,18 @@ class CertificateTypeBottomFragment (context: Context) : BottomSheetDialogFragme
         numberPicker.displayedValues = stringArray
         numberPicker.wrapSelectorWheel = false
 
-        _binding!!.npCertificateTypeBottomNumberPicker.setOnClickListener {
+        numberPicker.setOnClickListener {
             val selectedType = types[numberPicker.value]
-            sharedViewModel.updateCertificateType(selectedType)
+
+            when (viewModelType) {
+                1 -> {
+                    addViewModel.updateCertificateType(selectedType)
+                }
+                2 -> {
+                    editViewModel.updateCertificateType(selectedType)
+                }
+            }
+
             dialog!!.dismiss()
         }
         _binding!!.ivCertificateTypeBottomClose.setOnClickListener {

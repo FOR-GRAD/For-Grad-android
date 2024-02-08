@@ -39,21 +39,32 @@ class CareerAddCertificateFragment : Fragment() {
         mContext = requireContext()
 
         _binding!!.etCareerAddCertificateStartDate.setOnClickListener {
-            val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, true)
-            bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
+            val bottomSheet = PeriodBottomFragment(mContext, true, 1)
+            bottomSheet.setStyle(
+                DialogFragment.STYLE_NORMAL,
+                R.style.RoundCornerBottomSheetDialogTheme
+            )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.etCareerAddCertificateEndDate.setOnClickListener {
-            val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, false)
-            bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
+            val bottomSheet = PeriodBottomFragment(mContext, false, 1)
+            bottomSheet.setStyle(
+                DialogFragment.STYLE_NORMAL,
+                R.style.RoundCornerBottomSheetDialogTheme
+            )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.etCareerAddCertificateType.setOnClickListener {
-            val bottomSheet = CertificateTypeBottomFragment(mContext)
-            bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
+            val bottomSheet = CertificateTypeBottomFragment(mContext, 1)
+            bottomSheet.setStyle(
+                DialogFragment.STYLE_NORMAL,
+                R.style.RoundCornerBottomSheetDialogTheme
+            )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.btnCareerAdd.setOnClickListener {
+            //api 연결
+            viewModel.addCareer()
             navigate(R.id.action_fragment_career_add_to_fragment_career_confirm)
         }
         return binding.root
@@ -63,7 +74,8 @@ class CareerAddCertificateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init()
         viewModel.selectedCertificateType.observe(viewLifecycleOwner) { selectedType ->
-            binding.etCareerAddCertificateType.text = Editable.Factory.getInstance().newEditable(selectedType)
+            binding.etCareerAddCertificateType.text =
+                Editable.Factory.getInstance().newEditable(selectedType)
         }
         sharedViewModel.selectedStartYear.observe(viewLifecycleOwner) { year ->
             startYear = year
@@ -90,17 +102,23 @@ class CareerAddCertificateFragment : Fragment() {
             updateEndDateEditText()
         }
     }
+
     private fun buildFormattedDate(year: String?, month: String?, day: String?): String {
         return "$year$month$day"
     }
+
     private fun updateStartDateEditText() {
         val formattedDate = buildFormattedDate(startYear, startMonth, startDay)
-        binding.etCareerAddCertificateStartDate.text = Editable.Factory.getInstance().newEditable(formattedDate)
+        binding.etCareerAddCertificateStartDate.text =
+            Editable.Factory.getInstance().newEditable(formattedDate)
     }
+
     private fun updateEndDateEditText() {
         val formattedDate = buildFormattedDate(endYear, endMonth, endDay)
-        binding.etCareerAddCertificateEndDate.text = Editable.Factory.getInstance().newEditable(formattedDate)
+        binding.etCareerAddCertificateEndDate.text =
+            Editable.Factory.getInstance().newEditable(formattedDate)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
     }
