@@ -169,6 +169,7 @@ class CareerAddActivityViewModel : ViewModel() {
                         if (addCareerResponse != null) {
                             _addedCareerInfo.postValue(addCareerResponse)
                             Log.d("addCareer:Extras 성공", "${response.body()}")
+                            Log.d("addSuccessFileName", imageList.toString())
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
                         }
