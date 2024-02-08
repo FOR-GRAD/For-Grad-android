@@ -94,6 +94,9 @@ class HomeFragment : Fragment() {
 
 	private fun setupHomeInfoRetrofit() {
 		viewModel.userInfoResponse.observe(viewLifecycleOwner, Observer {
+			/**
+			 * 기본 정보
+			 */
 			binding.tvName.text = it?.result?.name
 			binding.tvStdId.text = it?.result?.id.toString()
 			binding.tvSchool.text = it?.result?.department
@@ -106,8 +109,15 @@ class HomeFragment : Fragment() {
 			val decodedImage = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
 			binding.ivHomeProfile.setImageBitmap(decodedImage)
 
+
+			/**
+			 * 나만의 계획
+			 */
 			binding.tvGradeSemester.text =
 				it?.result?.futureTimeTableDto?.keys?.joinToString(separator = ", ")
+
+			binding.tvTotalCredit.text =
+				(it?.result?.futureTimeTableDto?.get(it.result.futureTimeTableDto.keys.joinToString(separator = ", "))?.semester?.sumCredits ?: "총 학점 0").toString()
 
 			val dDay = it?.result?.dday ?: 0
 //			binding.progressbarToGrad.progress = 1460 - dDay
