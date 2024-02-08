@@ -33,8 +33,6 @@ class ActivityFragment : Fragment() {
         //adapter 초기화
         binding.rvCareerActivityList.adapter = adapter
         binding.rvCareerActivityList.layoutManager = LinearLayoutManager(requireContext())
-        //대외 활동 api 연결
-        viewModel.getActivityInfo()
         //대외 활동 세부 내용 api 연결
         viewModel.activityInfo.observe(viewLifecycleOwner, Observer { activityInfo ->
             adapter.updateItems(activityInfo?.result!!.activityWithAccumulatedHours)
@@ -68,6 +66,17 @@ class ActivityFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //대외 활동 api 연결
+        viewModel.getActivityInfo()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun performSearch() {
         val searchText = _binding!!.etCareerActivitySearchBar.text.toString()
 
@@ -86,10 +95,5 @@ class ActivityFragment : Fragment() {
                 _binding!!.etCareerActivitySearchBar.text?.clear()
             })
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

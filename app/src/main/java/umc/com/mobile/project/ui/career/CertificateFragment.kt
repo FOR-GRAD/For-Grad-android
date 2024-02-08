@@ -34,8 +34,7 @@ class CertificateFragment : Fragment() {
         //adapter 초기화
         binding.rvCareerCertificateList.adapter = adapter
         binding.rvCareerCertificateList.layoutManager = LinearLayoutManager(requireContext())
-        //자격증 목록 api 연결
-        viewModel.getCertificateInfo()
+
         //자격증 세부 내용 api 연결
         viewModel.certificateInfo.observe(viewLifecycleOwner, Observer { certificateInfo ->
             adapter.updateItems(certificateInfo?.result!!.activityWithAccumulatedHours)
@@ -68,6 +67,17 @@ class CertificateFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //자격증 목록 api 연결
+        viewModel.getCertificateInfo()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun performSearch() {
         val searchText = _binding!!.etCareerCertificateSearchBar.text.toString()
 
@@ -86,10 +96,5 @@ class CertificateFragment : Fragment() {
                 _binding!!.etCareerCertificateSearchBar.text?.clear()
             })
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

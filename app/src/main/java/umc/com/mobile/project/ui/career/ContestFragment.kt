@@ -31,25 +31,6 @@ class ContestFragment : Fragment() {
     ): View {
         _binding = FragmentCareerContestBinding.inflate(inflater, container, false)
 
-        // adapter 초기화
-        binding.rvCareerContestList.adapter = adapter
-        binding.rvCareerContestList.layoutManager = LinearLayoutManager(requireContext())
-        //공모전 목록 api 연결
-        viewModel.getContestInfo()
-        //공모전 세부내용 api 연결
-        viewModel.contestInfo.observe(viewLifecycleOwner, Observer { contestInfo ->
-            adapter.updateItems(contestInfo?.result!!.activityWithAccumulatedHours)
-
-            adapter.setOnItemClickListener(object : ContestRVAdapter.OnItemClickListener {
-                override fun onItemClick(position: Int) {
-                    sharedViewModel.studentId.value =
-                        contestInfo?.result!!.activityWithAccumulatedHours[position].id
-                    navigate(R.id.action_fragment_contest_to_fragment_career_edit_contest)
-                }
-            })
-            adapter.notifyDataSetChanged()
-        })
-
         //돋보기 눌렀을 때 검색
         _binding!!.ivCareerContestSearch.setOnClickListener {
             performSearch()
@@ -70,6 +51,34 @@ class ContestFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //공모전 목록 api 연결
+        viewModel.getContestInfo()
+        // adapter 초기화
+        binding.rvCareerContestList.adapter = adapter
+        binding.rvCareerContestList.layoutManager = LinearLayoutManager(requireContext())
+
+        //공모전 세부내용 api 연결
+        viewModel.contestInfo.observe(viewLifecycleOwner, Observer { contestInfo ->
+            adapter.updateItems(contestInfo?.result!!.activityWithAccumulatedHours)
+
+            adapter.setOnItemClickListener(object : ContestRVAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    sharedViewModel.studentId.value =
+                        contestInfo?.result!!.activityWithAccumulatedHours[position].id
+                    navigate(R.id.action_fragment_contest_to_fragment_career_edit_contest)
+                }
+            })
+            adapter.notifyDataSetChanged()
+        })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun performSearch() {
         val searchText = _binding!!.etCareerContestSearchBar.text.toString()
 
@@ -88,10 +97,5 @@ class ContestFragment : Fragment() {
                 _binding!!.etCareerContestSearchBar.text?.clear()
             })
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

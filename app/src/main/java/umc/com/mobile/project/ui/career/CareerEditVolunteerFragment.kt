@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerEditVolunteerBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerEditViewModel
@@ -57,12 +58,22 @@ class CareerEditVolunteerFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.tvCareerVolunteerDelete.setOnClickListener {
-            viewModel.deleteVolunteer()
-            navigate(R.id.action_fragment_edit_volunteer_to_fragment_career)
+            val deleteResult = viewModel.deleteVolunteer()
+            deleteResult.observe(viewLifecycleOwner, Observer { isDeleted ->
+                if (isDeleted) {
+                    //삭제 작업이 완료되면 목록 업데이트
+                    navigate(R.id.action_fragment_edit_volunteer_to_fragment_career_volunteer)
+                }
+            })
         }
         _binding!!.btnCareerEdit.setOnClickListener {
-            viewModel.updateVolunteer()
-            navigate(R.id.action_fragment_edit_volunteer_to_fragment_career)
+            val updateResult = viewModel.updateVolunteer()
+            updateResult.observe(viewLifecycleOwner, Observer { isUpdated ->
+                if (isUpdated) {
+                    //수정 작업이 완료되면 목록 업데이트
+                    navigate(R.id.action_fragment_edit_volunteer_to_fragment_career_volunteer)
+                }
+            })
         }
         return binding.root
     }

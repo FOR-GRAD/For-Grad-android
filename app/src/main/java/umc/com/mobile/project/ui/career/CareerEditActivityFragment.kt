@@ -68,12 +68,22 @@ class CareerEditActivityFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.tvCareerActivityDelete.setOnClickListener {
-            viewModel.deleteActivity()
-            navigate(R.id.action_fragment_edit_activity_to_fragment_career)
+            val deleteResult = viewModel.deleteActivity()
+            deleteResult.observe(viewLifecycleOwner, Observer { isDeleted ->
+                if (isDeleted) {
+                    //삭제 작업이 완료되면 목록 업데이트
+                    navigate(R.id.action_fragment_edit_activity_to_fragment_career_activity)
+                }
+            })
         }
         _binding!!.btnCareerEdit.setOnClickListener {
-            viewModel.updateActivity()
-            navigate(R.id.action_fragment_edit_activity_to_fragment_career)
+            val updateResult = viewModel.updateActivity()
+            updateResult.observe(viewLifecycleOwner, Observer { isUpdated ->
+                if (isUpdated) {
+                    //수정 작업이 완료되면 목록 업데이트
+                    navigate(R.id.action_fragment_edit_activity_to_fragment_career_activity)
+                }
+            })
         }
         return binding.root
     }
