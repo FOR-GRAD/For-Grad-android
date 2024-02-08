@@ -89,8 +89,8 @@ class PlanViewModel : ViewModel() {
     }
 
 
-    fun getSavelicense(request: SavelicenseRequest) {
-        planApiService.getSavelicense(request).enqueue(object : Callback<SavelicenseRequest> {
+    fun saveLicense(request: SavelicenseRequest) {
+        planApiService.saveLicense(request).enqueue(object : Callback<SavelicenseRequest> {
             override fun onResponse(call: Call<SavelicenseRequest>, response: Response<SavelicenseRequest>) {
                 if (response.isSuccessful) {
                     _savelicenseInfo.postValue(response.body())

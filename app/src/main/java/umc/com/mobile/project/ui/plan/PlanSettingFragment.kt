@@ -6,54 +6,65 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import umc.com.mobile.project.databinding.ActivityPlanChooseBinding
 import umc.com.mobile.project.databinding.FragmentSettingBinding
+import umc.com.mobile.project.databinding.PlanTimeTabMainBinding
+import umc.com.mobile.project.ui.gradInfo.adapter.GradInfoVPAdapter
+import umc.com.mobile.project.ui.gradInfo.viewmodel.GradInfoViewModel
 
 class PlanSettingFragment : Fragment() {
-    private var _binding: ActivityPlanChooseBinding? = null
-    private val viewModel: PlanViewModel by viewModels() // Adjusted to PlanViewModel
+    private var _binding:PlanTimeTabMainBinding? = null
+    private val viewModel: PlanViewModel by viewModels()
     private val binding get() = _binding!!
 
-    private lateinit var viewPager: ViewPager2
-    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager : ViewPager2
+    private lateinit var tabLayout : TabLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = ActivityPlanChooseBinding.inflate(inflater, container, false)
+        _binding = PlanTimeTabMainBinding.inflate(inflater, container, false)
+
+        initTabLayout()
+        initViewPager()
+
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun initTabLayout() {
+        // 타이틀 오빠 거에 맞춰서 넣으면 됨
+        val tabTitle = arrayOf("시간표", "자격증", "저장")
 
-        initViewPagerAndTabs()
-    }
+        // 뷰페이저/탭레이아웃 뷰바인딩 오빠 거에 맞춰서 넣으면 됨
+        viewPager = binding.viewPagerTimeTabMain // viewPager 연결
+        tabLayout = binding.tabLayoutPlanTime // tabLayout 연결
 
-    private fun initViewPagerAndTabs() {
-        val tabTitles = arrayOf("시간표", "자격증", "자유")
+        // 어댑터 오빠 거에 맞춰서 넣으면 됨
+        val adapter = PlanVPAdapter(this)
 
-        viewPager = binding.viewPagerPlan // Adjusted to the correct ID
-        tabLayout = binding.tabLayoutPlan // Adjusted to the correct ID
-
-        val adapter = PlanVPAdapter(this) // Corrected adapter reference
-
-        adapter.addFragment(PlanTimeFragment(), tabTitles[0])
-        adapter.addFragment(PlanlicenseFragment(), tabTitles[1]) // Corrected class name
-        adapter.addFragment(PlanFreeFragment(), tabTitles[2])
+        // 프래그먼트 오빠 거에 맞춰서 넣으면 됨
+        adapter.addFragment(PlanlicenseFragment())
+        adapter.addFragment(PlanTimeFragment())
+        adapter.addFragment(PlanFreeFragment())
 
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         viewPager.adapter = adapter
 
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = tabTitles[position]
-        }.attach()
+        TabLayoutMediator(tabLayout, viewPager
+        ) { tab, position -> tab.text = tabTitle[position] }.attach()
     }
+
+    private fun initViewPager() {
+        // viewPager 간 스와이프 방지
+        binding.viewPagerTimeTabMain.isUserInputEnabled = false
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

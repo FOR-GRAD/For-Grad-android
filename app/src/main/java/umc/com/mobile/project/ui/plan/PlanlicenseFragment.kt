@@ -62,7 +62,7 @@ class PlanlicenseFragment : Fragment() {
         val request = SavelicenseRequest(info = saveInfoList)
 
         // API 호출
-        viewModel.getSavelicense(request)
+        viewModel.saveLicense(request)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
