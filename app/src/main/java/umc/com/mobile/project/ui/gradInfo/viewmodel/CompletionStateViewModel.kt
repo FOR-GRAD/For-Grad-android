@@ -25,36 +25,37 @@ class CompletionStateViewModel : ViewModel() {
 	val completionInfo: MutableLiveData<CompletionResponse?>
 		get() = _completionInfo
 
-	private val _requiredBasicCourses: MutableLiveData<Map<String, String>>? = MutableLiveData()
-	val requiredBasicCourses: LiveData<Map<String, String>>?
+	private val _requiredBasicCourses: MutableLiveData<Map<String, String>> = MutableLiveData()
+	val requiredBasicCourses: LiveData<Map<String, String>>
 		get() = _requiredBasicCourses
 
-	private val _foundationElectiveCourses: MutableLiveData<Map<String, String>>? = MutableLiveData()
-	val foundationElectiveCourses: LiveData<Map<String, String>>?
+	private val _foundationElectiveCourses: MutableLiveData<Map<String, String>> = MutableLiveData()
+	val foundationElectiveCourses: MutableLiveData<Map<String, String>>
 		get() = _foundationElectiveCourses
 
 	private fun processRequiredBasicCourses(completionResponse: CompletionResponse) {
 		val requiredBasicCoursesMap = mutableMapOf<String, String>()
 		val foundationElectiveCoursesMap = mutableMapOf<String, String>()
 
-		val requiredBasicCourses = completionResponse.result.generalCompletionDto.generalMap.requiredBasicCourses
-		val foundationElectiveCourses = completionResponse.result.generalCompletionDto.generalMap.foundationElectiveCourses
+		val requiredBasicCourses = completionResponse?.result?.generalCompletionDto?.generalMap?.requiredBasicCourses
+		val foundationElectiveCourses = completionResponse?.result?.generalCompletionDto?.generalMap?.foundationElectiveCourses
 
-		requiredBasicCourses.let {
+		requiredBasicCourses?.let {
 			for ((courseName, courseStatus) in it) {
 				requiredBasicCoursesMap[courseName] = courseStatus
 				Log.d("Completion: requiredBasicCoursesMap ", "$courseName : $courseStatus")
 			}
 		}
 
-		foundationElectiveCourses.let {
+		foundationElectiveCourses?.let {
 			for ((courseName, courseStatus) in it) {
 				foundationElectiveCoursesMap[courseName] = courseStatus
 				Log.d("Completion: foundationElectiveCoursesMap ", "$courseName : $courseStatus")
 			}
 		}
-		_requiredBasicCourses?.postValue(requiredBasicCoursesMap)
-		_foundationElectiveCourses?.postValue(foundationElectiveCoursesMap)
+
+		_requiredBasicCourses.postValue(requiredBasicCoursesMap)
+		_foundationElectiveCourses.postValue(foundationElectiveCoursesMap)
 	}
 
 	fun getCompletionInfo() {
