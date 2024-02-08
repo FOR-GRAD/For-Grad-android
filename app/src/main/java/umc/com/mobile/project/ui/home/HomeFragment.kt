@@ -80,10 +80,10 @@ class HomeFragment : Fragment() {
 					val timeTableDtoList = futureSemesterInfo.semester.timeTableDtoList
 					adapter.setData(timeTableDtoList)
 				} else {
-					Log.e("HomeFragment", "No future semester information available")
+					Log.e("HomeFragment", "정보 없음")
 				}
 			} else {
-				Log.e("HomeFragment", "No future time table information available")
+				Log.e("HomeFragment", "정보 없음")
 			}
 		})
 
@@ -113,11 +113,11 @@ class HomeFragment : Fragment() {
 			/**
 			 * 나만의 계획
 			 */
-			binding.tvGradeSemester.text =
-				it?.result?.futureTimeTableDto?.keys?.joinToString(separator = ", ")
+			val planKey = it?.result?.futureTimeTableDto?.keys?.joinToString(separator = ", ")
+			binding.tvGradeSemester.text = planKey
 
 			binding.tvTotalCredit.text =
-				(it?.result?.futureTimeTableDto?.get(it.result.futureTimeTableDto.keys.joinToString(separator = ", "))?.semester?.sumCredits ?: "총 학점 0").toString()
+				(it?.result?.futureTimeTableDto?.get(planKey)?.semester?.sumCredits ?: "총 학점 0").toString()
 
 			val dDay = it?.result?.dday ?: 0
 //			binding.progressbarToGrad.progress = 1460 - dDay
