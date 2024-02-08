@@ -35,4 +35,6 @@ class PlanVPAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     fun getTabTitle(position: Int): String {
         return fragmentTitleList[position]
     }
+
+
 }

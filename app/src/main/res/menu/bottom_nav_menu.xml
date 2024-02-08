@@ -17,7 +17,7 @@
         android:title="홈" />
 
     <item
-        android:id="@+id/fragment_board"
+        android:id="@+id/planlicenseFragment"
         android:icon="@drawable/selector_bottom_board"
         android:title="게시판" />
 
