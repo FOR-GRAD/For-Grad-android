@@ -26,8 +26,8 @@ class GradConditionFragment : Fragment() {
 		viewModel.requirementsInfo.observe(viewLifecycleOwner, Observer {
 			binding.tvTrackNameTitle1.text = it?.result?.trackRequirmentsDto?.track1
 			binding.tvTrackNameTitle2.text = it?.result?.trackRequirmentsDto?.track2
-			binding.tvTrackContent1.text = it?.result?.trackRequirmentsDto?.trackRequirement1
-			binding.tvTrackContent2.text = it?.result?.trackRequirmentsDto?.trackRequirement2
+			binding.tvTrackContent1.text = it?.result?.trackRequirmentsDto?.trackRequirement1?.replace(Regex("\\s(\\d+)(\\.\\s)"), "\n$1$2")
+			binding.tvTrackContent2.text = it?.result?.trackRequirmentsDto?.trackRequirement2?.replace(Regex("\\s(\\d+)(\\.\\s)"), "\n$1$2")
 		})
 
 		return binding.root
