@@ -65,6 +65,37 @@ class PeriodBottomFragment(
         numberPicker_day.displayedValues = day
         numberPicker_day.wrapSelectorWheel = false
 
+        //선택된 년도, 월, 일 가져오기
+        val selectedYear = if (viewModelType == 1) {
+            if (isStartDate) addViewModel.selectedStartYear.value else addViewModel.selectedEndYear.value
+        } else {
+            if (isStartDate) editViewModel.selectedStartYear.value else editViewModel.selectedEndYear.value
+        }
+
+        val selectedMonth = if (viewModelType == 1) {
+            if (isStartDate) addViewModel.selectedStartMonth.value else addViewModel.selectedEndMonth.value
+        } else {
+            if (isStartDate) editViewModel.selectedStartMonth.value else editViewModel.selectedEndMonth.value
+        }
+
+        val selectedDay = if (viewModelType == 1) {
+            if (isStartDate) addViewModel.selectedStartDay.value else addViewModel.selectedEndDay.value
+        } else {
+            if (isStartDate) editViewModel.selectedStartDay.value else editViewModel.selectedEndDay.value
+        }
+
+        //년도 설정
+        val selectedYearIndex = years.indexOf(selectedYear.toString())
+        numberPicker_year.value = if (selectedYearIndex != -1) selectedYearIndex else 0
+
+        //월 설정
+        val selectedMonthIndex = months.indexOf(selectedMonth.toString())
+        numberPicker_month.value = if (selectedMonthIndex != -1) selectedMonthIndex else 0
+
+        //일 설정
+        val selectedDayIndex = days.indexOf(selectedDay.toString())
+        numberPicker_day.value = if (selectedDayIndex != -1) selectedDayIndex else 0
+
         _binding!!.npPeriodBottomYear.setOnClickListener {
             val selectedYear = years[numberPicker_year.value]
             if (viewModelType == 1) {
