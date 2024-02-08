@@ -47,3 +47,30 @@ data class CompletionResponse(
 	val result: Results
 )
 
+/*data class CompletionResponse(
+	@SerializedName("completionDtoMap") val completionDtoMap: CompletionDtoMap
+)
+
+data class CompletionDtoMap(
+	@SerializedName("교양 - 이수한 학점 (필수이수학점)") val liberalArts: LiberalArts,
+	@SerializedName("전공 - 이수한 학점 (필수이수학점)") val major: Major
+)
+
+data class LiberalArts(
+	@SerializedName("필수(기초)교양") val requiredBasic: List<Course>,
+	@SerializedName("토대교양") val fundamental: List<Course>,
+	@SerializedName("소 계") val subtotal: List<Course>,
+	@SerializedName("thead") val thead: List<String>
+)
+
+data class Major(
+	@SerializedName("제1트랙") val firstTrack: List<String>,
+	@SerializedName("제2트랙") val secondTrack: List<String>,
+	@SerializedName("부전공 부전공 - micro college") val minor: List<String>,
+	@SerializedName("thead") val thead: List<String>
+)
+
+data class Course(
+	@SerializedName("교과목") val courseName: String,
+	@SerializedName("학점") val credit: String
+)*/

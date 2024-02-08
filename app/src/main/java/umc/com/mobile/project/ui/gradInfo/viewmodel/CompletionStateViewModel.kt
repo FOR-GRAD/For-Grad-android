@@ -33,30 +33,53 @@ class CompletionStateViewModel : ViewModel() {
 	val foundationElectiveCourses: MutableLiveData<Map<String, String>>
 		get() = _foundationElectiveCourses
 
-	private fun processRequiredBasicCourses(completionResponse: CompletionResponse) {
-		val requiredBasicCoursesMap = mutableMapOf<String, String>()
-		val foundationElectiveCoursesMap = mutableMapOf<String, String>()
+		private fun processRequiredBasicCourses(completionResponse: CompletionResponse) {
+			val requiredBasicCoursesMap = mutableMapOf<String, String>()
+			val foundationElectiveCoursesMap = mutableMapOf<String, String>()
 
-		val requiredBasicCourses = completionResponse?.result?.generalCompletionDto?.generalMap?.requiredBasicCourses
-		val foundationElectiveCourses = completionResponse?.result?.generalCompletionDto?.generalMap?.foundationElectiveCourses
+			val requiredBasicCourses = completionResponse?.result?.generalCompletionDto?.generalMap?.requiredBasicCourses
+			val foundationElectiveCourses = completionResponse?.result?.generalCompletionDto?.generalMap?.foundationElectiveCourses
 
-		requiredBasicCourses?.let {
-			for ((courseName, courseStatus) in it) {
-				requiredBasicCoursesMap[courseName] = courseStatus
-				Log.d("Completion: requiredBasicCoursesMap ", "$courseName : $courseStatus")
+			requiredBasicCourses?.let {
+				for ((courseName, courseStatus) in it) {
+					requiredBasicCoursesMap[courseName] = courseStatus
+					Log.d("Completion: requiredBasicCoursesMap ", "$courseName : $courseStatus")
+				}
 			}
-		}
 
-		foundationElectiveCourses?.let {
-			for ((courseName, courseStatus) in it) {
-				foundationElectiveCoursesMap[courseName] = courseStatus
-				Log.d("Completion: foundationElectiveCoursesMap ", "$courseName : $courseStatus")
+			foundationElectiveCourses?.let {
+				for ((courseName, courseStatus) in it) {
+					foundationElectiveCoursesMap[courseName] = courseStatus
+					Log.d("Completion: foundationElectiveCoursesMap ", "$courseName : $courseStatus")
+				}
 			}
-		}
 
-		_requiredBasicCourses.postValue(requiredBasicCoursesMap)
-		_foundationElectiveCourses.postValue(foundationElectiveCoursesMap)
-	}
+			_requiredBasicCourses.postValue(requiredBasicCoursesMap)
+			_foundationElectiveCourses.postValue(foundationElectiveCoursesMap)
+		}
+//	private fun processRequiredBasicCourses(completionResponse: CompletionResponse) {
+//		val requiredBasicCoursesMap = mutableMapOf<String, String>()
+//		val foundationElectiveCoursesMap = mutableMapOf<String, String>()
+//
+//		completionResponse.completionDtoMap.liberalArts.requiredBasic.forEachIndexed { index, course ->
+//			requiredBasicCoursesMap[course.courseName] = course.credit
+//			Log.d(
+//				"Completion: requiredBasicCoursesMap ",
+//				"$index: ${course.courseName} : ${course.credit}"
+//			)
+//		}
+//
+//		completionResponse.completionDtoMap.liberalArts.fundamental.forEachIndexed { index, course ->
+//			foundationElectiveCoursesMap[course.courseName] = course.credit
+//			Log.d(
+//				"Completion: foundationElectiveCoursesMap ",
+//				"$index: ${course.courseName} : ${course.credit}"
+//			)
+//		}
+//
+//		_requiredBasicCourses.postValue(requiredBasicCoursesMap)
+//		_foundationElectiveCourses.postValue(foundationElectiveCoursesMap)
+//	}
 
 	fun getCompletionInfo() {
 		gradInfoApiService.getCompletion().enqueue(object : Callback<CompletionResponse> {
