@@ -13,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.career.CareerDetailResponse
+import umc.com.mobile.project.data.model.career.DeleteCareerResponse
 import umc.com.mobile.project.data.model.career.UpdateCareerResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
@@ -216,6 +217,42 @@ class CareerEditContestViewModel : ViewModel() {
                 override fun onFailure(call: Call<UpdateCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
                     Log.d("updateContestInfo", "updateContestInfo 네트워크 오류: ${t.message}")
+                }
+            })
+    }
+
+    fun deleteContest() {
+        careerApiService.deleteCareer(studentId.value!!)
+            .enqueue(object : Callback<DeleteCareerResponse> {
+                override fun onResponse(
+                    call: Call<DeleteCareerResponse>,
+                    response: Response<DeleteCareerResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val deleteCareerResponse = response.body()
+                        if (deleteCareerResponse != null) {
+                            Log.d("deleteContestInfo 성공", "${response.body()}")
+                        } else {
+                            _error.postValue("서버 응답이 올바르지 않습니다.")
+                        }
+                    } else {
+                        _error.postValue("공모전을 삭제하지 못했습니다.")
+                        try {
+                            throw response.errorBody()?.string()?.let {
+                                RuntimeException(it)
+                            } ?: RuntimeException("Unknown error")
+                        } catch (e: Exception) {
+                            Log.e(
+                                "deleteContestInfo",
+                                "deleteContestInfo API 오류: ${e.message}"
+                            )
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<DeleteCareerResponse>, t: Throwable) {
+                    _error.postValue("네트워크 오류: ${t.message}")
+                    Log.d("deleteContestInfo", "deleteContestInfo 네트워크 오류: ${t.message}")
                 }
             })
     }

@@ -73,6 +73,7 @@ class CareerAddActivityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.init()
         viewModel.fileAddedEvent.observe(viewLifecycleOwner, Observer { isFileAdded ->
             if (isFileAdded) {
                 binding.etCareerAddActivityFile.setText("파일이 추가되었습니다")
