@@ -40,7 +40,7 @@
         android:layout_marginBottom="6dp"
         android:background="#F5F5F5"
         android:focusable="false"
-        android:hint="누적 개수"
+        android:hint="8"
         android:paddingEnd="6dp"
         android:textColorHint="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"

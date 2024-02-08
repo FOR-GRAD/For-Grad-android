@@ -11,8 +11,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerAddCertificateBinding
-import umc.com.mobile.project.ui.career.CertificateTypeBottomFragment
-import umc.com.mobile.project.ui.career.PeriodBottomFragment
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddCertificateViewModel
 import umc.com.mobile.project.ui.career.viewmodel.CareerAddViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
@@ -41,7 +39,7 @@ class CareerAddCertificateFragment : Fragment() {
         mContext = requireContext()
 
         _binding!!.etCareerAddCertificateStartDate.setOnClickListener {
-            val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, true)
+            val bottomSheet = PeriodBottomFragment(mContext, true, 1)
             bottomSheet.setStyle(
                 DialogFragment.STYLE_NORMAL,
                 R.style.RoundCornerBottomSheetDialogTheme
@@ -49,7 +47,7 @@ class CareerAddCertificateFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.etCareerAddCertificateEndDate.setOnClickListener {
-            val bottomSheet = PeriodBottomFragment(mContext, sharedViewModel, false)
+            val bottomSheet = PeriodBottomFragment(mContext, false, 1)
             bottomSheet.setStyle(
                 DialogFragment.STYLE_NORMAL,
                 R.style.RoundCornerBottomSheetDialogTheme
