@@ -53,80 +53,85 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_grad_date_title">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/iv_grad_date_card1"
                 android:layout_width="match_parent"
-                android:layout_height="79dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="11dp"
                 android:layout_marginTop="9dp"
                 android:layout_marginEnd="12dp"
-                android:src="@drawable/bg_solid_white_radius_10"
+                android:background="@drawable/bg_solid_white_radius_10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_grad_date_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="57dp"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="52dp"
-                android:text="@string/board_grad_date_date"
-                android:textAppearance="@style/MediumFont.14"
-                android:textColor="#555555"
-                app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card1"
-                app:layout_constraintStart_toStartOf="@+id/iv_grad_date_card1"
-                app:layout_constraintTop_toTopOf="@+id/iv_grad_date_card1" />
+                <TextView
+                    android:id="@+id/tv_grad_date_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="57dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="52dp"
+                    android:text="@string/board_grad_date_date"
+                    android:textAppearance="@style/MediumFont.14"
+                    android:textColor="#555555"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card1"
+                    app:layout_constraintStart_toStartOf="@+id/iv_grad_date_card1"
+                    app:layout_constraintTop_toTopOf="@+id/iv_grad_date_card1" />
 
-            <TextView
-                android:id="@+id/tv_grad_date_today"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="84dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginEnd="78dp"
-                android:text="@string/board_grad_date_today"
-                android:textAppearance="@style/MediumFont.14"
-                android:textColor="#555555"
-                app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card1"
-                app:layout_constraintStart_toStartOf="@+id/iv_grad_date_card1"
-                app:layout_constraintTop_toBottomOf="@+id/tv_grad_date_date" />
+                <TextView
+                    android:id="@+id/tv_grad_date_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="84dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="78dp"
+                    android:layout_marginBottom="17dp"
+                    android:text="@string/board_grad_date_today"
+                    android:textAppearance="@style/MediumFont.14"
+                    android:textColor="#555555"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card1"
+                    app:layout_constraintStart_toStartOf="@+id/iv_grad_date_card1"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_grad_date_date" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/iv_grad_date_card2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="155dp"
-                android:layout_marginStart="11dp"
                 android:layout_marginTop="11dp"
-                android:layout_marginEnd="12dp"
-                android:src="@drawable/bg_solid_white_radius_10"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_grad_date_card1" />
+                android:background="@drawable/bg_solid_white_radius_10"
+                app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card1"
+                app:layout_constraintStart_toStartOf="@+id/iv_grad_date_card1"
+                app:layout_constraintTop_toBottomOf="@+id/iv_grad_date_card1">
 
-            <TextView
-                android:id="@+id/tv_grad_date_dday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="82dp"
-                android:layout_marginTop="59dp"
-                android:layout_marginEnd="81dp"
-                android:layout_marginBottom="60dp"
-                android:textAppearance="@style/SemiBoldFont.36"
-                android:textColor="#7D7D7D"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_grad_date_card2"
-                app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card2"
-                app:layout_constraintStart_toStartOf="@+id/iv_grad_date_card2"
-                app:layout_constraintTop_toTopOf="@+id/iv_grad_date_card2" />
+                <TextView
+                    android:id="@+id/tv_grad_date_dday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="82dp"
+                    android:layout_marginTop="59dp"
+                    android:layout_marginEnd="81dp"
+                    android:layout_marginBottom="60dp"
+                    android:textAppearance="@style/SemiBoldFont.36"
+                    android:textColor="#7D7D7D"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_grad_date_card2"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card2"
+                    app:layout_constraintStart_toStartOf="@+id/iv_grad_date_card2"
+                    app:layout_constraintTop_toTopOf="@+id/iv_grad_date_card2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/tv_grad_date_memo"
                 style="@style/MediumFont.14"
-                android:layout_width="match_parent"
-                android:layout_height="155dp"
-                android:layout_marginStart="11dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:paddingBottom="106dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="58dp"
                 android:background="@drawable/bg_solid_white_radius_10"
                 android:gravity="top"
                 android:hint="@string/board_grad_date_memo"
@@ -134,9 +139,10 @@
                 android:paddingStart="12dp"
                 android:paddingTop="17dp"
                 android:textColorHint="#B3B3B3"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btn_save"
+                app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card2"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/iv_grad_date_card2"
                 app:layout_constraintTop_toBottomOf="@+id/iv_grad_date_card2" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -144,7 +150,6 @@
                 style="@style/SemiBoldFont.14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="58dp"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/bg_solid_gray_radius_25"
                 android:backgroundTint="@{vm.isFilledMemo ? @color/white: @color/gray}"
@@ -156,8 +161,7 @@
                 android:textColor="@{vm.isFilledMemo ? @color/skyBlue : @color/white}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_grad_date_memo"
-                app:layout_constraintStart_toStartOf="@+id/tv_grad_date_memo"
-                app:layout_constraintTop_toBottomOf="@+id/tv_grad_date_memo" />
+                app:layout_constraintStart_toStartOf="@+id/tv_grad_date_memo" />
 
             <!--<TextView
                 android:id="@+id/tv_grad_date_edit"

@@ -16,9 +16,9 @@
 
     <!-- 유진 -->
     <!--졸업 예정일-->
-    <string name="board_grad_date_date">졸업 예정일 2026년 2월</string>
+    <string name="board_grad_date_date">졸업 예정일 0000년 00월 00일</string>
     <string name="board_grad_date_today">오늘 날짜</string>
-    <string name="board_grad_date_dday">D - 650</string>
+    <string name="board_grad_date_dday">D - xxx</string>
     <string name="board_grad_date_memo">나에게 보내는 응원의 한마디 작성하기\n작성한 한마디는 홈 화면에 나타나게 됩니다!</string>
     <string name="board_grad_date_edit">수정하기</string>
     <!--커리어 메인-->
