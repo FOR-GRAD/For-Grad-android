@@ -65,6 +65,10 @@ class CareerEditContestFragment : Fragment() {
             )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
+        _binding!!.tvCareerContestDelete.setOnClickListener {
+            viewModel.deleteContest()
+            navigate(R.id.action_fragment_edit_contest_to_fragment_career)
+        }
         _binding!!.btnCareerEdit.setOnClickListener {
             viewModel.updateContest()
             navigate(R.id.action_fragment_edit_contest_to_fragment_career)

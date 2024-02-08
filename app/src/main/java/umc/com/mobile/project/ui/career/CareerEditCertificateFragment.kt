@@ -56,6 +56,12 @@ class CareerEditCertificateFragment : Fragment() {
             )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
+
+        _binding!!.tvCareerCertificateDelete.setOnClickListener {
+            viewModel.deleteCertificate()
+            navigate(R.id.action_fragment_edit_certificate_to_fragment_career)
+        }
+
         _binding!!.btnCareerEdit.setOnClickListener {
             viewModel.updateCertificate()
             navigate(R.id.action_fragment_edit_certificate_to_fragment_career)

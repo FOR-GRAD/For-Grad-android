@@ -3,6 +3,7 @@ package umc.com.mobile.project.data.network.api
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.PATCH
@@ -14,6 +15,7 @@ import umc.com.mobile.project.data.model.career.AddCareerResponse
 import umc.com.mobile.project.data.model.career.CareerDetailResponse
 import umc.com.mobile.project.data.model.career.UpdateCareerResponse
 import umc.com.mobile.project.data.model.career.CategoryListResponse
+import umc.com.mobile.project.data.model.career.DeleteCareerResponse
 import umc.com.mobile.project.data.model.career.NonSubjectResponse
 
 interface CareerApi {
@@ -49,4 +51,7 @@ interface CareerApi {
         @Part("updateDto") updateDto: RequestBody,
         @Part addFiles: List<MultipartBody.Part>
     ): Call<UpdateCareerResponse>
+
+    @DELETE("/career-delete")
+    fun deleteCareer(@Query("activityId") activityId: Long): Call<DeleteCareerResponse>
 }

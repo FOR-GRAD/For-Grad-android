@@ -123,12 +123,13 @@
                     android:layout_marginStart="23dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="23dp"
+                    android:autoLink="web"
                     android:background="@drawable/bg_solid_gray_radius_15"
                     android:drawableTop="@drawable/ic_career_upload"
                     android:drawablePadding="11dp"
                     android:focusable="false"
                     android:gravity="bottom|center_horizontal"
-                    android:hint=""
+                    android:hint="기존 파일은 모두 삭제됩니다.\n새로 첨부해 주세요."
                     android:inputType="text"
                     android:paddingTop="18dp"
                     android:paddingBottom="16dp"
@@ -199,6 +200,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_career_edit_activity_endDate" />
+
+                <TextView
+                    android:id="@+id/tv_career_activity_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="29dp"
+                    android:text="삭제하기"
+                    android:textAppearance="@style/MediumFont.12"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_activity_end_year" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_career_edit"

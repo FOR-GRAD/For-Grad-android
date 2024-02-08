@@ -14,6 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.career.CareerDetailResponse
+import umc.com.mobile.project.data.model.career.DeleteCareerResponse
 import umc.com.mobile.project.data.model.career.UpdateCareerResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
@@ -30,6 +31,7 @@ class CareerEditActivityViewModel : ViewModel() {
     val file: MutableLiveData<String> = MutableLiveData()
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
+    val fileAddedEvent: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         studentId.value = 0
@@ -62,13 +64,52 @@ class CareerEditActivityViewModel : ViewModel() {
         return date.isNullOrBlank() || date.length == 8
     }
 
-    private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
+    private val addFiles: MutableList<MultipartBody.Part> = mutableListOf()
 
     fun addImageFile(file: File) {
-        Log.d("addImageFile", file.toString())
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-        imageList.add(body)
+        addFiles.add(body)
+        fileAddedEvent.value = true
+    }
+
+    //파일 확장자에 따른 MIME 타입 반환
+    fun getMimeType(file: File): String {
+        val extension = file.extension
+
+        return when (extension.toLowerCase()) {
+            "jpg", "jpeg" -> "image/jpeg"
+            "png" -> "image/png"
+            "gif" -> "image/gif"
+            "pdf" -> "application/pdf"
+            "doc" -> "application/msword"
+            "docx" -> "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            "xls" -> "application/vnd.ms-excel"
+            "xlsx" -> "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            "ppt" -> "application/vnd.ms-powerpoint"
+            "pptx" -> "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+            else -> "application/octet-stream" //알 수 없는 파일 형식
+        }
+    }
+
+    fun addFile(file: File) {
+        val fileName = file.name
+        Log.d("editFileName", fileName)
+        val mimeType = getMimeType(file) //파일 확장자에 따른 MIME 타입 결정
+        val requestFile: RequestBody = RequestBody.create(mimeType?.toMediaTypeOrNull(), file)
+        val filePart = MultipartBody.Part.createFormData("files", fileName, requestFile)
+        Log.d("editFileName", requestFile.toString())
+        addFiles.add(filePart)
+        fileAddedEvent.value = true
+    }
+
+    fun calculateTotalFileSize(): Long {
+        var totalSize: Long = 0
+        for (filePart in addFiles) {
+            val file = filePart.body
+            totalSize += file?.contentLength() ?: 0
+        }
+        return totalSize
     }
 
     private val careerApiService = ApiClient.createService<CareerApi>()
@@ -180,7 +221,15 @@ class CareerEditActivityViewModel : ViewModel() {
         val temporaryFilePart =
             MultipartBody.Part.createFormData("files", "your_temporary_file_name", emptyRequestBody)
 
-        careerApiService.updateCareer(activityIdPart, updateDtoPart, listOf(temporaryFilePart))
+        val totalFileSize = calculateTotalFileSize()
+        Log.d("EditFile Size", "Total File Size: $totalFileSize bytes")
+
+        Log.d("editFileName11", addFiles.toString())
+        if (addFiles.isEmpty()) {
+            Log.e("EditFile Error", "No files to upload.")
+            return
+        }
+        careerApiService.updateCareer(activityIdPart, updateDtoPart, addFiles)
             .enqueue(object : Callback<UpdateCareerResponse> {
                 override fun onResponse(
                     call: Call<UpdateCareerResponse>,
@@ -190,6 +239,7 @@ class CareerEditActivityViewModel : ViewModel() {
                         val CareerDetailResponse = response.body()
                         if (CareerDetailResponse != null) {
                             Log.d("updateActivityInfo 성공", "${response.body()}")
+                            Log.d("editSuccessFileName", addFiles.toString())
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
                         }
@@ -211,6 +261,39 @@ class CareerEditActivityViewModel : ViewModel() {
                 override fun onFailure(call: Call<UpdateCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
                     Log.d("updateActivityInfo", "updateActivityInfo 네트워크 오류: ${t.message}")
+                }
+            })
+    }
+
+    fun deleteActivity() {
+        careerApiService.deleteCareer(studentId.value!!)
+            .enqueue(object : Callback<DeleteCareerResponse> {
+                override fun onResponse(
+                    call: Call<DeleteCareerResponse>,
+                    response: Response<DeleteCareerResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val deleteCareerResponse = response.body()
+                        if (deleteCareerResponse != null) {
+                            Log.d("deleteActivityInfo 성공", "${response.body()}")
+                        } else {
+                            _error.postValue("서버 응답이 올바르지 않습니다.")
+                        }
+                    } else {
+                        _error.postValue("교외활동을 삭제하지 못했습니다.")
+                        try {
+                            throw response.errorBody()?.string()?.let {
+                                RuntimeException(it)
+                            } ?: RuntimeException("Unknown error")
+                        } catch (e: Exception) {
+                            Log.e("deleteActivityInfo", "deleteActivityInfo API 오류: ${e.message}")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<DeleteCareerResponse>, t: Throwable) {
+                    _error.postValue("네트워크 오류: ${t.message}")
+                    Log.d("deleteActivityInfo", "deleteActivityInfo 네트워크 오류: ${t.message}")
                 }
             })
     }

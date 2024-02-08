@@ -56,6 +56,10 @@ class CareerEditVolunteerFragment : Fragment() {
             )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
+        _binding!!.tvCareerVolunteerDelete.setOnClickListener {
+            viewModel.deleteVolunteer()
+            navigate(R.id.action_fragment_edit_volunteer_to_fragment_career)
+        }
         _binding!!.btnCareerEdit.setOnClickListener {
             viewModel.updateVolunteer()
             navigate(R.id.action_fragment_edit_volunteer_to_fragment_career)
