@@ -19,6 +19,7 @@ import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.NoticeApi
 import umc.com.mobile.project.databinding.FragmentAllBoardBinding
 import umc.com.mobile.project.databinding.FragmentBoardBinding
+import umc.com.mobile.project.databinding.FragmentTrack2BoardBinding
 import umc.com.mobile.project.ui.board.viewmodel.BoardViewModel
 import umc.com.mobile.project.ui.gradInfo.CompletionStateFragment
 import umc.com.mobile.project.ui.gradInfo.GradConditionFragment
@@ -26,7 +27,7 @@ import umc.com.mobile.project.ui.gradInfo.GradeFragment
 import umc.com.mobile.project.ui.gradInfo.adapter.GradInfoVPAdapter
 
 class Track2BoardFragment : Fragment() {
-	private var _binding: FragmentAllBoardBinding? = null
+	private var _binding: FragmentTrack2BoardBinding? = null
 	private val binding get() = _binding!!
 
 	override fun onCreateView(
@@ -34,7 +35,7 @@ class Track2BoardFragment : Fragment() {
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-		_binding = FragmentAllBoardBinding.inflate(inflater, container, false)
+		_binding = FragmentTrack2BoardBinding.inflate(inflater, container, false)
 
 		initWebView()
 
@@ -53,6 +54,7 @@ class Track2BoardFragment : Fragment() {
 			override fun onResponse(call: Call<NoticeResponse>, response: Response<NoticeResponse>) {
 				val noticeResponse = response.body()
 				val errorBody = response.errorBody()
+
 				if (noticeResponse != null) {
 					val url = noticeResponse.result
 					binding.webView.loadUrl(url)
