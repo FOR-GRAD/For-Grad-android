@@ -73,6 +73,7 @@ class LoginViewModel : ViewModel() {
 						_loginResult.postValue(response.body())
 						_loginStatus.postValue(false)
 
+						Log.d("cookies", "$cookies")
 						Log.d("Login", "${response.body()}")
 					} else {
 						_loginResult.postValue(

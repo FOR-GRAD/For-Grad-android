@@ -36,12 +36,12 @@ class HomeFragment : Fragment() {
 		binding.lifecycleOwner = viewLifecycleOwner
 		binding.vm = viewModel
 
-		navigateFragment() // 페이지 이동
-		saveCheeringMemo() // 응원의 한마디 연결
 		viewModel.getUserInfo() // 홈 화면 정보 조회 api
+
+		navigateFragment()
+		saveCheeringMemo() // 응원의 한마디 연결
 		setupRecyclerView() // recyclerView 연결
 		setupHomeInfoRetrofit() // 홈 화면 ui 연결
-
 
 		return binding.root
 	}
@@ -56,6 +56,7 @@ class HomeFragment : Fragment() {
 		_binding = null
 	}
 
+	// 페이지 이동
 	private fun navigateFragment() {
 		binding.btnCheeringWordMove.setOnClickListener {
 			navigate(R.id.action_fragment_home_to_fragment_date)
@@ -107,6 +108,10 @@ class HomeFragment : Fragment() {
 
 			binding.tvGradeSemester.text =
 				it?.result?.futureTimeTableDto?.keys?.joinToString(separator = ", ")
+
+			val dDay = it?.result?.dday ?: 0
+//			binding.progressbarToGrad.progress = 1460 - dDay
+			binding.progressbarToGrad.progress = 1095 // 임의값
 		})
 	}
 }
