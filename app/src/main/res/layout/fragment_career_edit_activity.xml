@@ -130,7 +130,7 @@
                     android:focusable="false"
                     android:gravity="bottom|center_horizontal"
                     android:hint="기존 파일은 모두 삭제됩니다.\n새로 첨부해 주세요."
-                    android:inputType="text"
+                    android:inputType="textMultiLine"
                     android:paddingTop="18dp"
                     android:paddingBottom="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
