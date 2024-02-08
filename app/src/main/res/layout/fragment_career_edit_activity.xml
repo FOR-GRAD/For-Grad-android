@@ -123,6 +123,7 @@
                     android:layout_marginStart="23dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="23dp"
+                    android:autoLink="web"
                     android:background="@drawable/bg_solid_gray_radius_15"
                     android:drawableTop="@drawable/ic_career_upload"
                     android:drawablePadding="11dp"
