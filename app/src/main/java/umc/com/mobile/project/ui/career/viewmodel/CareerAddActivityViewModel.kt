@@ -1,8 +1,6 @@
 package umc.com.mobile.project.ui.career.viewmodel
 
 import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -29,17 +27,20 @@ class CareerAddActivityViewModel : ViewModel() {
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
     val fileAddedEvent: MutableLiveData<Boolean> = MutableLiveData()
+    val imageList: MutableList<MultipartBody.Part> = mutableListOf()
 
     init {
         title.value = ""
         startDate.value = ""
         endDate.value = ""
+        imageList.clear()
     }
 
     fun init() {
         title.value = ""
         startDate.value = ""
         endDate.value = ""
+        imageList.clear()
     }
 
     /* 버튼 활성화 기능 */
@@ -57,12 +58,9 @@ class CareerAddActivityViewModel : ViewModel() {
         return !date.isNullOrBlank() && date.length == 8
     }
 
-    private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
-
     fun addImageFile(file: File) {
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-        Log.d("imageName", file.name.toString())
         imageList.add(body)
         fileAddedEvent.value = true
     }
@@ -94,16 +92,6 @@ class CareerAddActivityViewModel : ViewModel() {
 
         imageList.add(filePart)
         fileAddedEvent.value = true
-    }
-
-    // 빈 이미지 생성
-    fun addEmptyImage() {
-        val emptyImageBytes: ByteArray = byteArrayOf()
-
-        val requestFile =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), emptyImageBytes)
-        val body = MultipartBody.Part.createFormData("image", "empty_image.jpg", requestFile)
-        imageList.add(body)
     }
 
     fun calculateTotalFileSize(): Long {
@@ -155,7 +143,6 @@ class CareerAddActivityViewModel : ViewModel() {
         val requestDtoPart: RequestBody =
             requestDtoJson.toRequestBody("application/json".toMediaTypeOrNull())
 
-        Log.d("fileList", imageList.toString())
         val totalFileSize = calculateTotalFileSize()
         Log.d("File Size", "Total File Size: $totalFileSize bytes")
         careerApiService.addCareer(imageList, requestDtoPart)

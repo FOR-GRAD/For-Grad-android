@@ -34,8 +34,7 @@ class VolunteerFragment : Fragment() {
         //adapter 초기화
         binding.rvCareerVolunteerList.adapter = adapter
         binding.rvCareerVolunteerList.layoutManager = LinearLayoutManager(requireContext())
-        //봉사 활동 목록 api 연결
-        viewModel.getVolunteerInfo()
+
         //봉사 활동 세부 내용 api 연결
         viewModel.volunteerInfo.observe(viewLifecycleOwner, Observer { volunteerInfo ->
             adapter.updateItems(volunteerInfo?.result!!.activityWithAccumulatedHours)
@@ -70,6 +69,17 @@ class VolunteerFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //봉사 활동 목록 api 연결
+        viewModel.getVolunteerInfo()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun performSearch() {
         val searchText = _binding!!.etCareerVolunteerSearchBar.text.toString()
 
@@ -88,10 +98,5 @@ class VolunteerFragment : Fragment() {
                 _binding!!.etCareerVolunteerSearchBar.text?.clear()
             })
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

@@ -32,6 +32,7 @@ class CareerEditActivityViewModel : ViewModel() {
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
     val fileAddedEvent: MutableLiveData<Boolean> = MutableLiveData()
+    val addFiles: MutableList<MultipartBody.Part> = mutableListOf()
 
     init {
         studentId.value = 0
@@ -39,6 +40,7 @@ class CareerEditActivityViewModel : ViewModel() {
         file.value = ""
         startDate.value = ""
         endDate.value = ""
+        addFiles.clear()
     }
 
     fun init() {
@@ -46,6 +48,7 @@ class CareerEditActivityViewModel : ViewModel() {
         file.value = ""
         startDate.value = ""
         endDate.value = ""
+        addFiles.clear()
     }
 
     val isFilledAllOptions: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
@@ -64,11 +67,9 @@ class CareerEditActivityViewModel : ViewModel() {
         return date.isNullOrBlank() || date.length == 8
     }
 
-    private val addFiles: MutableList<MultipartBody.Part> = mutableListOf()
-
     fun addImageFile(file: File) {
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+        val body = MultipartBody.Part.createFormData("addFiles", file.name, requestFile)
         addFiles.add(body)
         fileAddedEvent.value = true
     }
@@ -97,7 +98,7 @@ class CareerEditActivityViewModel : ViewModel() {
         Log.d("editFileName", fileName)
         val mimeType = getMimeType(file) //파일 확장자에 따른 MIME 타입 결정
         val requestFile: RequestBody = RequestBody.create(mimeType?.toMediaTypeOrNull(), file)
-        val filePart = MultipartBody.Part.createFormData("files", fileName, requestFile)
+        val filePart = MultipartBody.Part.createFormData("addFiles", fileName, requestFile)
         Log.d("editFileName", requestFile.toString())
         addFiles.add(filePart)
         fileAddedEvent.value = true
@@ -156,7 +157,9 @@ class CareerEditActivityViewModel : ViewModel() {
             })
     }
 
-    fun updateActivity() {
+    fun updateActivity(): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+
         val updatedTitle = title.value ?: ""
         val updatedStartDate = startDate.value ?: ""
         val updatedEndDate = endDate.value ?: ""
@@ -227,7 +230,6 @@ class CareerEditActivityViewModel : ViewModel() {
         Log.d("editFileName11", addFiles.toString())
         if (addFiles.isEmpty()) {
             Log.e("EditFile Error", "No files to upload.")
-            return
         }
         careerApiService.updateCareer(activityIdPart, updateDtoPart, addFiles)
             .enqueue(object : Callback<UpdateCareerResponse> {
@@ -240,11 +242,14 @@ class CareerEditActivityViewModel : ViewModel() {
                         if (CareerDetailResponse != null) {
                             Log.d("updateActivityInfo 성공", "${response.body()}")
                             Log.d("editSuccessFileName", addFiles.toString())
+                            result.postValue(true)
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
+                            result.postValue(false)
                         }
                     } else {
                         _error.postValue("교외활동 정보 수정을 못했습니다.")
+                        result.postValue(false)
                         try {
                             throw response.errorBody()?.string()?.let {
                                 RuntimeException(it)
@@ -261,11 +266,15 @@ class CareerEditActivityViewModel : ViewModel() {
                 override fun onFailure(call: Call<UpdateCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
                     Log.d("updateActivityInfo", "updateActivityInfo 네트워크 오류: ${t.message}")
+                    result.postValue(false)
                 }
             })
+        return result
     }
 
-    fun deleteActivity() {
+    fun deleteActivity(): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+
         careerApiService.deleteCareer(studentId.value!!)
             .enqueue(object : Callback<DeleteCareerResponse> {
                 override fun onResponse(
@@ -276,11 +285,14 @@ class CareerEditActivityViewModel : ViewModel() {
                         val deleteCareerResponse = response.body()
                         if (deleteCareerResponse != null) {
                             Log.d("deleteActivityInfo 성공", "${response.body()}")
+                            result.postValue(true)
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
+                            result.postValue(false)
                         }
                     } else {
                         _error.postValue("교외활동을 삭제하지 못했습니다.")
+                        result.postValue(false)
                         try {
                             throw response.errorBody()?.string()?.let {
                                 RuntimeException(it)
@@ -294,7 +306,9 @@ class CareerEditActivityViewModel : ViewModel() {
                 override fun onFailure(call: Call<DeleteCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
                     Log.d("deleteActivityInfo", "deleteActivityInfo 네트워크 오류: ${t.message}")
+                    result.postValue(false)
                 }
             })
+        return result
     }
 }

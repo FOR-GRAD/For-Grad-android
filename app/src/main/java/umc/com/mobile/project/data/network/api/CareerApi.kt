@@ -45,7 +45,7 @@ interface CareerApi {
     ): Call<CategoryListResponse>
 
     @Multipart
-    @PATCH("/career-update")
+    @POST("/career-update")
     fun updateCareer(
         @Part("activityId") activityId: RequestBody,
         @Part("updateDto") updateDto: RequestBody,

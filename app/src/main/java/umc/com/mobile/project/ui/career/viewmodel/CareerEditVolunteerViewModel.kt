@@ -105,7 +105,9 @@ class CareerEditVolunteerViewModel : ViewModel() {
             })
     }
 
-    fun updateVolunteer() {
+    fun updateVolunteer(): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+
         val updatedTitle = title.value ?: ""
         val updatedHour = hour.value ?: ""
         val updatedStartDate = startDate.value ?: ""
@@ -188,11 +190,14 @@ class CareerEditVolunteerViewModel : ViewModel() {
                         val CareerDetailResponse = response.body()
                         if (CareerDetailResponse != null) {
                             Log.d("updateVolunteerInfo 성공", "${response.body()}")
+                            result.postValue(true)
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
+                            result.postValue(false)
                         }
                     } else {
                         _error.postValue("봉사 정보 수정을 못했습니다.")
+                        result.postValue(false)
                         try {
                             throw response.errorBody()?.string()?.let {
                                 RuntimeException(it)
@@ -209,11 +214,15 @@ class CareerEditVolunteerViewModel : ViewModel() {
                 override fun onFailure(call: Call<UpdateCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
                     Log.d("updateVolunteerInfo", "updateVolunteerInfo 네트워크 오류: ${t.message}")
+                    result.postValue(false)
                 }
             })
+        return result
     }
 
-    fun deleteVolunteer() {
+    fun deleteVolunteer(): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+
         careerApiService.deleteCareer(studentId.value!!)
             .enqueue(object : Callback<DeleteCareerResponse> {
                 override fun onResponse(
@@ -224,11 +233,14 @@ class CareerEditVolunteerViewModel : ViewModel() {
                         val deleteCareerResponse = response.body()
                         if (deleteCareerResponse != null) {
                             Log.d("deleteVolunteerInfo 성공", "${response.body()}")
+                            result.postValue(true)
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
+                            result.postValue(false)
                         }
                     } else {
                         _error.postValue("봉사활동을 삭제하지 못했습니다.")
+                        result.postValue(false)
                         try {
                             throw response.errorBody()?.string()?.let {
                                 RuntimeException(it)
@@ -245,7 +257,9 @@ class CareerEditVolunteerViewModel : ViewModel() {
                 override fun onFailure(call: Call<DeleteCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
                     Log.d("deleteVolunteerInfo", "deleteVolunteerInfo 네트워크 오류: ${t.message}")
+                    result.postValue(false)
                 }
             })
+        return result
     }
 }
