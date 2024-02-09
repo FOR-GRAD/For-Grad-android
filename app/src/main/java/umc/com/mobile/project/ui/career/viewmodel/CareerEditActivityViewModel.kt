@@ -95,22 +95,11 @@ class CareerEditActivityViewModel : ViewModel() {
 
     fun addFile(file: File) {
         val fileName = file.name
-        Log.d("editFileName", fileName)
         val mimeType = getMimeType(file) //파일 확장자에 따른 MIME 타입 결정
         val requestFile: RequestBody = RequestBody.create(mimeType?.toMediaTypeOrNull(), file)
         val filePart = MultipartBody.Part.createFormData("addFiles", fileName, requestFile)
-        Log.d("editFileName", requestFile.toString())
         addFiles.add(filePart)
         fileAddedEvent.value = true
-    }
-
-    fun calculateTotalFileSize(): Long {
-        var totalSize: Long = 0
-        for (filePart in addFiles) {
-            val file = filePart.body
-            totalSize += file?.contentLength() ?: 0
-        }
-        return totalSize
     }
 
     private val careerApiService = ApiClient.createService<CareerApi>()
@@ -209,6 +198,17 @@ class CareerEditActivityViewModel : ViewModel() {
                 endDate = formattedEndDate
             )
         }
+        //파일 사이즈 확인
+        fun calculateTotalFileSize(): Long {
+            var totalSize: Long = 0
+            for (filePart in addFiles) {
+                val file = filePart.body
+                totalSize += file?.contentLength() ?: 0
+            }
+            return totalSize
+        }
+        val totalFileSize = calculateTotalFileSize()
+        Log.d("EditFile Size", "Total File Size: $totalFileSize bytes")
 
         val gson = GsonBuilder()
             .setDateFormat("yyyy-MM-dd")
@@ -220,17 +220,6 @@ class CareerEditActivityViewModel : ViewModel() {
         val updateDtoPart =
             gson.toJson(updatedDetail).toRequestBody("application/json".toMediaTypeOrNull())
 
-        val emptyRequestBody = "".toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        val temporaryFilePart =
-            MultipartBody.Part.createFormData("files", "your_temporary_file_name", emptyRequestBody)
-
-        val totalFileSize = calculateTotalFileSize()
-        Log.d("EditFile Size", "Total File Size: $totalFileSize bytes")
-
-        Log.d("editFileName11", addFiles.toString())
-        if (addFiles.isEmpty()) {
-            Log.e("EditFile Error", "No files to upload.")
-        }
         careerApiService.updateCareer(activityIdPart, updateDtoPart, addFiles)
             .enqueue(object : Callback<UpdateCareerResponse> {
                 override fun onResponse(

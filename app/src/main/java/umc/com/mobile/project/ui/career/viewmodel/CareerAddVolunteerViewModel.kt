@@ -52,7 +52,7 @@ class CareerAddVolunteerViewModel : ViewModel() {
 
     private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
 
-    // API에 전송할 데이터를 포함하는 RequestDto를 생성하는 함수
+    //API에 전송할 데이터를 포함하는 RequestDto 생성 함수
     fun createRequestDto(): VolunteerDto? {
         val startDateString = startDate.value
         val endDateString = endDate.value
@@ -98,7 +98,6 @@ class CareerAddVolunteerViewModel : ViewModel() {
             .create()
 
         val requestDtoJson = gson.toJson(requestDto)
-        println(requestDtoJson)
         val requestDtoPart: RequestBody =
             requestDtoJson.toRequestBody("application/json".toMediaTypeOrNull())
 
