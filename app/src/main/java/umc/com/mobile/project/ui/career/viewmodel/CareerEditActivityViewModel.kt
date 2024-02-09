@@ -32,6 +32,7 @@ class CareerEditActivityViewModel : ViewModel() {
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
     val fileAddedEvent: MutableLiveData<Boolean> = MutableLiveData()
+    val addFiles: MutableList<MultipartBody.Part> = mutableListOf()
 
     init {
         studentId.value = 0
@@ -39,6 +40,7 @@ class CareerEditActivityViewModel : ViewModel() {
         file.value = ""
         startDate.value = ""
         endDate.value = ""
+        addFiles.clear()
     }
 
     fun init() {
@@ -46,6 +48,7 @@ class CareerEditActivityViewModel : ViewModel() {
         file.value = ""
         startDate.value = ""
         endDate.value = ""
+        addFiles.clear()
     }
 
     val isFilledAllOptions: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
@@ -64,11 +67,9 @@ class CareerEditActivityViewModel : ViewModel() {
         return date.isNullOrBlank() || date.length == 8
     }
 
-    private val addFiles: MutableList<MultipartBody.Part> = mutableListOf()
-
     fun addImageFile(file: File) {
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+        val body = MultipartBody.Part.createFormData("addFiles", file.name, requestFile)
         addFiles.add(body)
         fileAddedEvent.value = true
     }
@@ -97,7 +98,7 @@ class CareerEditActivityViewModel : ViewModel() {
         Log.d("editFileName", fileName)
         val mimeType = getMimeType(file) //파일 확장자에 따른 MIME 타입 결정
         val requestFile: RequestBody = RequestBody.create(mimeType?.toMediaTypeOrNull(), file)
-        val filePart = MultipartBody.Part.createFormData("files", fileName, requestFile)
+        val filePart = MultipartBody.Part.createFormData("addFiles", fileName, requestFile)
         Log.d("editFileName", requestFile.toString())
         addFiles.add(filePart)
         fileAddedEvent.value = true

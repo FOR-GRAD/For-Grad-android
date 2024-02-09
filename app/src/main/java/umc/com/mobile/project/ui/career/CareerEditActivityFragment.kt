@@ -7,6 +7,7 @@ import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -59,15 +60,8 @@ class CareerEditActivityFragment : Fragment() {
             )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-/*        _binding!!.etCareerEditActivityFile.setOnClickListener {
-            val bottomSheet = UploadBottomFragment(mContext, 2)
-            bottomSheet.setStyle(
-                DialogFragment.STYLE_NORMAL,
-                R.style.RoundCornerBottomSheetDialogTheme
-            )
-            bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
-        }*/
-        _binding!!.tvCareerEditActivity.setOnClickListener {
+        _binding!!.tvCareerActivityUpdateFile.setOnClickListener {
+            Toast.makeText(mContext, "기존 파일은 모두 삭제됩니다.", Toast.LENGTH_SHORT).show()
             val bottomSheet = UploadBottomFragment(mContext, 2)
             bottomSheet.setStyle(
                 DialogFragment.STYLE_NORMAL,

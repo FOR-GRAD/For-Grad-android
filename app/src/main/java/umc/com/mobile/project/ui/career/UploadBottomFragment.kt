@@ -83,8 +83,6 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
     }
 
     private fun createFile(uri: Uri): File {
-        Log.d("fileUri", uri.toString())
-
         //파일의 원래 이름 가져오기
         val fileName = getFileName(uri)
 
@@ -142,10 +140,8 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
                             val selectedImageFile = createImageFile(imageUri)
                             if (viewModelType == 1) {
                                 addViewModel.addImageFile(selectedImageFile)
-                                Log.d("addFile: ", "이미지 여러장")
                             } else {
                                 editViewModel.addImageFile(selectedImageFile)
-                                Log.d("editFile: ", "이미지 여러장")
                             }
                         }
                     } else {
@@ -154,10 +150,8 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
                             val selectedImageFile = createImageFile(imageUri)
                             if (viewModelType == 1) {
                                 addViewModel.addImageFile(selectedImageFile)
-                                Log.d("addFile: ", "이미지 한장")
                             } else {
                                 editViewModel.addImageFile(selectedImageFile)
-                                Log.d("editFile: ", "이미지 한장")
                             }
                         }
                     }
@@ -172,10 +166,8 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
                             val selectedFile = createFile(fileUri)
                             if (viewModelType == 1) {
                                 addViewModel.addFile(selectedFile)
-                                Log.d("addFile: ", "파일 여러 개")
                             } else {
                                 editViewModel.addFile(selectedFile)
-                                Log.d("editFile: ", "파일 여러 개")
                             }
                         }
                     } else {
@@ -184,10 +176,8 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
                             val selectedFile = createFile(fileUri)
                             if (viewModelType == 1) {
                                 addViewModel.addFile(selectedFile)
-                                Log.d("addFile: ", "파일 한 개")
                             } else {
                                 editViewModel.addFile(selectedFile)
-                                Log.d("editFile: ", "파일 한 개")
                             }
                         }
                     }
