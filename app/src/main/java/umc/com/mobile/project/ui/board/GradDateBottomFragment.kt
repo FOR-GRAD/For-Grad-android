@@ -93,7 +93,7 @@ class GradDateBottomFragment(context: Context) : BottomSheetDialogFragment() {
 		monthPicker.displayedValues = months
 		monthPicker.wrapSelectorWheel = false
 
-		// 일 설정 (기본적으로 31일까지)
+		// 일 설정
 		val days = (1..31).map { it.toString() }.toTypedArray()
 		dayPicker.minValue = 0
 		dayPicker.maxValue = days.size - 1
