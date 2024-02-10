@@ -96,33 +96,55 @@ class PeriodBottomFragment(
         val selectedDayIndex = days.indexOf(selectedDay.toString())
         numberPicker_day.value = if (selectedDayIndex != -1) selectedDayIndex else 0
 
+        //년, 월, 일 중 아무거나 눌러도 저장되게
         _binding!!.npPeriodBottomYear.setOnClickListener {
             val selectedYear = years[numberPicker_year.value]
-            if (viewModelType == 1) {
-                addViewModel.updateSelectedYear(selectedYear, isStartDate)
-            } else {
-                editViewModel.updateSelectedYear(selectedYear, isStartDate)
-            }
-            dialog!!.dismiss()
-        }
-        _binding!!.npPeriodBottomMonth.setOnClickListener {
             val selectedMonth = months[numberPicker_month.value]
-            if (viewModelType == 1) {
-                addViewModel.updateSelectedMonth(selectedMonth, isStartDate)
-            } else {
-                editViewModel.updateSelectedMonth(selectedMonth, isStartDate)
-            }
-            dialog!!.dismiss()
-        }
-        _binding!!.npPeriodBottomDay.setOnClickListener {
             val selectedDay = days[numberPicker_day.value]
             if (viewModelType == 1) {
+                addViewModel.updateSelectedYear(selectedYear, isStartDate)
+                addViewModel.updateSelectedMonth(selectedMonth, isStartDate)
                 addViewModel.updateSelectedDay(selectedDay, isStartDate)
             } else {
+                editViewModel.updateSelectedYear(selectedYear, isStartDate)
+                editViewModel.updateSelectedMonth(selectedMonth, isStartDate)
                 editViewModel.updateSelectedDay(selectedDay, isStartDate)
             }
             dialog!!.dismiss()
         }
+
+        _binding!!.npPeriodBottomMonth.setOnClickListener {
+            val selectedYear = years[numberPicker_year.value]
+            val selectedMonth = months[numberPicker_month.value]
+            val selectedDay = days[numberPicker_day.value]
+            if (viewModelType == 1) {
+                addViewModel.updateSelectedYear(selectedYear, isStartDate)
+                addViewModel.updateSelectedMonth(selectedMonth, isStartDate)
+                addViewModel.updateSelectedDay(selectedDay, isStartDate)
+            } else {
+                editViewModel.updateSelectedYear(selectedYear, isStartDate)
+                editViewModel.updateSelectedMonth(selectedMonth, isStartDate)
+                editViewModel.updateSelectedDay(selectedDay, isStartDate)
+            }
+            dialog!!.dismiss()
+        }
+
+        _binding!!.npPeriodBottomDay.setOnClickListener {
+            val selectedYear = years[numberPicker_year.value]
+            val selectedMonth = months[numberPicker_month.value]
+            val selectedDay = days[numberPicker_day.value]
+            if (viewModelType == 1) {
+                addViewModel.updateSelectedYear(selectedYear, isStartDate)
+                addViewModel.updateSelectedMonth(selectedMonth, isStartDate)
+                addViewModel.updateSelectedDay(selectedDay, isStartDate)
+            } else {
+                editViewModel.updateSelectedYear(selectedYear, isStartDate)
+                editViewModel.updateSelectedMonth(selectedMonth, isStartDate)
+                editViewModel.updateSelectedDay(selectedDay, isStartDate)
+            }
+            dialog!!.dismiss()
+        }
+
         _binding!!.ivPeriodBottomClose.setOnClickListener {
             dialog!!.dismiss()
         }
