@@ -60,6 +60,10 @@ class GradDateBottomFragment(context: Context) : BottomSheetDialogFragment() {
 //
 //			gradDateViewModel.selectedDate.value = selectedDate
 
+			dialog!!.dismiss()
+		}
+
+		binding.npGradDateYear.setOnClickListener {
 			val selectedYear = years[yearPicker.value]
 			val selectedMonth = months[monthPicker.value]
 			val selectedDay = days[dayPicker.value]
@@ -67,7 +71,26 @@ class GradDateBottomFragment(context: Context) : BottomSheetDialogFragment() {
 			gradDateViewModel.updateSelectedDate(selectedYear, selectedMonth, selectedDay)
 
 			dialog!!.dismiss()
-			dialog!!.cancel()
+		}
+
+		binding.npGradDateMonth.setOnClickListener {
+			val selectedYear = years[yearPicker.value]
+			val selectedMonth = months[monthPicker.value]
+			val selectedDay = days[dayPicker.value]
+
+			gradDateViewModel.updateSelectedDate(selectedYear, selectedMonth, selectedDay)
+
+			dialog!!.dismiss()
+		}
+
+		binding.npGradDateDay.setOnClickListener {
+			val selectedYear = years[yearPicker.value]
+			val selectedMonth = months[monthPicker.value]
+			val selectedDay = days[dayPicker.value]
+
+			gradDateViewModel.updateSelectedDate(selectedYear, selectedMonth, selectedDay)
+
+			dialog!!.dismiss()
 		}
 
 		binding.npGradDateYear.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
