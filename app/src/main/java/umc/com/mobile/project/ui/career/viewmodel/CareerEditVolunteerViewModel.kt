@@ -107,12 +107,10 @@ class CareerEditVolunteerViewModel : ViewModel() {
 
     fun updateVolunteer(): LiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
-
         val updatedTitle = title.value ?: ""
         val updatedHour = hour.value ?: ""
         val updatedStartDate = startDate.value ?: ""
         val updatedEndDate = endDate.value ?: ""
-
         val currentVolunteerDetail = volunteerDetailInfo.value
 
 

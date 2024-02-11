@@ -51,7 +51,9 @@ class CareerAddActivityViewModel : ViewModel() {
     }
 
     private fun areBothFieldsFilled(): Boolean {
-        return !title.value.isNullOrBlank() && isDateValid(startDate.value) && isDateValid(endDate.value)
+        return !(title.value.isNullOrEmpty() || title.value!!.contains(" ") || title.value!!.length > 20) && isDateValid(
+            startDate.value
+        ) && isDateValid(endDate.value)
     }
 
     private fun isDateValid(date: String?): Boolean {
@@ -86,7 +88,7 @@ class CareerAddActivityViewModel : ViewModel() {
 
     fun addFile(file: File) {
         val fileName = file.name
-        val mimeType = getMimeType(file) // 파일 확장자에 따른 MIME 타입 결정
+        val mimeType = getMimeType(file) //파일 확장자에 따른 MIME 타입 결정
         val requestFile: RequestBody = RequestBody.create(mimeType?.toMediaTypeOrNull(), file)
         val filePart = MultipartBody.Part.createFormData("image", fileName, requestFile)
 
@@ -94,16 +96,7 @@ class CareerAddActivityViewModel : ViewModel() {
         fileAddedEvent.value = true
     }
 
-    fun calculateTotalFileSize(): Long {
-        var totalSize: Long = 0
-        for (filePart in imageList) {
-            val file = filePart.body
-            totalSize += file?.contentLength() ?: 0
-        }
-        return totalSize
-    }
-
-    //API에 전송할 데이터를 포함하는 RequestDto를 생성하는 함수
+    //API에 전송할 데이터를 포함하는 RequestDto 생성 함수
     fun createRequestDto(): ActivityDto? {
         val startDateString = startDate.value
         val endDateString = endDate.value
@@ -139,9 +132,18 @@ class CareerAddActivityViewModel : ViewModel() {
             .create()
 
         val requestDtoJson = gson.toJson(requestDto)
-        println(requestDtoJson)
         val requestDtoPart: RequestBody =
             requestDtoJson.toRequestBody("application/json".toMediaTypeOrNull())
+
+        //파일 사이즈 측정
+        fun calculateTotalFileSize(): Long {
+            var totalSize: Long = 0
+            for (filePart in imageList) {
+                val file = filePart.body
+                totalSize += file?.contentLength() ?: 0
+            }
+            return totalSize
+        }
 
         val totalFileSize = calculateTotalFileSize()
         Log.d("File Size", "Total File Size: $totalFileSize bytes")

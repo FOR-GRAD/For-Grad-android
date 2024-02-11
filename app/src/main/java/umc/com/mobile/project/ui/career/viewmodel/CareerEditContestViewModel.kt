@@ -111,12 +111,10 @@ class CareerEditContestViewModel : ViewModel() {
 
     fun updateContest(): LiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
-
         val updatedTitle = title.value ?: ""
         val updatedAward = award.value ?: ""
         val updatedStartDate = startDate.value ?: ""
         val updatedEndDate = endDate.value ?: ""
-
         val currentContestDetail = contestDetailInfo.value
 
         fun mapType(updatedType: String): String {
@@ -198,14 +196,14 @@ class CareerEditContestViewModel : ViewModel() {
                         val CareerDetailResponse = response.body()
                         if (CareerDetailResponse != null) {
                             Log.d("updateContestInfo 성공", "${response.body()}")
-                            result.postValue(true) // 성공적으로 삭제되었음을 나타냅니다.
+                            result.postValue(true)
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
-                            result.postValue(false) // 성공적으로 삭제되었음을 나타냅니다.
+                            result.postValue(false)
                         }
                     } else {
                         _error.postValue("공모전 정보 수정을 못했습니다.")
-                        result.postValue(true) // 성공적으로 삭제되었음을 나타냅니다.
+                        result.postValue(true)
                         try {
                             throw response.errorBody()?.string()?.let {
                                 RuntimeException(it)
@@ -222,7 +220,7 @@ class CareerEditContestViewModel : ViewModel() {
                 override fun onFailure(call: Call<UpdateCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
                     Log.d("updateContestInfo", "updateContestInfo 네트워크 오류: ${t.message}")
-                    result.postValue(true) // 성공적으로 삭제되었음을 나타냅니다.
+                    result.postValue(true)
                 }
             })
         return result
@@ -241,14 +239,14 @@ class CareerEditContestViewModel : ViewModel() {
                         val deleteCareerResponse = response.body()
                         if (deleteCareerResponse != null) {
                             Log.d("deleteContestInfo 성공", "${response.body()}")
-                            result.postValue(true) // 성공적으로 삭제되었음을 나타냅니다.
+                            result.postValue(true)
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
-                            result.postValue(false) // 삭제에 실패했음을 나타냅니다.
+                            result.postValue(false)
                         }
                     } else {
                         _error.postValue("공모전을 삭제하지 못했습니다.")
-                        result.postValue(false) // 삭제에 실패했음을 나타냅니다.
+                        result.postValue(false)
                         try {
                             throw response.errorBody()?.string()?.let {
                                 RuntimeException(it)
@@ -268,7 +266,6 @@ class CareerEditContestViewModel : ViewModel() {
                     result.postValue(false)
                 }
             })
-
         return result
     }
 }

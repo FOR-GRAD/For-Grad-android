@@ -45,17 +45,18 @@
     <string name="career_edit_btn">수정하기</string>
     <!--certificate-->
     <string name="career_certificate_name">자격증 이름</string>
-    <string name="career_certificate_name_ex">예)컴퓨터활용능력(공백 없이 입력해주세요.)</string>
+    <string name="career_certificate_name_ex">예)컴퓨터활용능력(공백 없이 20자 이내)</string>
     <string name="career_certificate_type">유형</string>
     <!--volunteer-->
     <string name="career_volunteer_name">봉사활동 이름</string>
-    <string name="career_volunteer_name_ex">예)헌혈(공백 없이 입력해주세요.)</string>
+    <string name="career_volunteer_name_ex">예)헌혈(공백 없이 20자 이내)</string>
     <string name="career_volunteer_hour">봉사시간</string>
     <!--activity-->
     <string name="career_activity_name">대외활동 이름</string>
+    <string name="career_activity_name_ex">예)상상캠프2기(공백 없이 20자 이내)</string>
     <!--contest-->
     <string name="career_contest_name">공모전 이름</string>
-    <string name="career_contest_name_ex">예)영상 공모전(공백 없이 입력해주세요.)</string>
+    <string name="career_contest_name_ex">예)영상 공모전(공백 없이 20자 이내)</string>
     <string name="career_contest_award">시상 구분</string>
     <!--업로드 bottom dialog-->
     <string name="upload_bottom_title">사진/파일 업로드</string>
