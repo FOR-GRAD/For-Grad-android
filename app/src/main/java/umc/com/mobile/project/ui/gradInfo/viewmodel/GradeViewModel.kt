@@ -72,27 +72,26 @@ class GradeViewModel : ViewModel() {
 		get() = _semesters
 
 
-		private fun processRequiredBasicCourses(gradesResponse: GradesResponse) {
-			val semestersMap = mutableMapOf<String, List<GradesDto>>()
-			val semesterList = mutableListOf<String>()
-			val semestersDto = gradesResponse.result.semesters
-			var count = 1
+	private fun processRequiredBasicCourses(gradesResponse: GradesResponse) {
+		val semestersMap = mutableMapOf<String, MutableList<GradesDto>>()
+		val semestersDto = gradesResponse.result.semesters
+		var count = 0
 
-			semestersDto.let {
-				for ((semester, semesterClasses) in it) {
-					for (i in 0 until semesterClasses.gradesDtoList.size) {
-						val newKey = "$count 학기"
-						semestersMap[newKey] = listOf(semesterClasses.gradesDtoList[i])
+		semestersDto.let {
+			for ((semester, semesterClasses) in it) {
+				val gradesDtoList = semesterClasses.gradesDtoList
+				val semesterNum = semesterClasses.gradesDtoList.size - count
+				val newKey = "$semesterNum 학기"
+				val semesterList = semestersMap.getOrPut(newKey) { mutableListOf() }
+				semesterList.addAll(gradesDtoList)
 
-						semesterList.add(i, semestersMap[newKey]!!.toString())
-						count++
-					}
-				}
-				Log.d("Grade: semestersMap ", "$semestersMap")
-				count = 0
+				count++
 			}
-			_semesters?.postValue(semestersMap)
+			Log.d("Grade: semestersMap ", "$semestersMap")
+			count = 0
 		}
+		_semesters?.postValue(semestersMap)
+	}
 
 	fun getGradeInfo() {
 		gradInfoApiService.getGrades().enqueue(object : Callback<GradesResponse> {

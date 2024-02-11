@@ -16,7 +16,6 @@ class GradeRVAdapter : RecyclerView.Adapter<GradeRVAdapter.MyViewHolder>() {
 			binding.tvClassTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(1)?.subjectName
 			binding.tvCreditTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(2)?.credits
 			binding.tvGradeTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(3)?.grade
-			binding.tvCurrentTrackTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(4)?.track
 		}
 	}
 
