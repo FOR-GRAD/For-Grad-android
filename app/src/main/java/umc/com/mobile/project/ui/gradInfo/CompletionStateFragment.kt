@@ -29,7 +29,7 @@ class CompletionStateFragment : Fragment() {
 
 		viewModel.completionInfo.observe(viewLifecycleOwner, Observer {
 			// general
-			binding.tvTotalScore.text = it?.result?.generalCompletionDto?.generalMap?.subtotal?.get("소 계").toString()
+			binding.tvTotalScore.text = it?.result?.generalCompletionDto?.generalMap?.subtotal?.get("소 계") ?: "누적 / (총계)"
 
 			// major
 			binding.tvTotalScore2.text = it?.result?.majorCompletionDto?.majorMap?.total?.get(0).toString()
@@ -39,7 +39,24 @@ class CompletionStateFragment : Fragment() {
 			binding.tvTrack21Content.text = it?.result?.majorCompletionDto?.majorMap?.track2?.get(0).toString()
 			binding.tvTrack22Content.text = it?.result?.majorCompletionDto?.majorMap?.track2?.get(1).toString()
 			binding.tvTrack23Content.text = it?.result?.majorCompletionDto?.majorMap?.track2?.get(2).toString()
+
 		})
+//
+//		viewModel.completionInfo.observe(viewLifecycleOwner, Observer { completionResponse ->
+//			completionResponse?.let {
+//				// general
+//				binding.tvTotalScore.text = it.completionDtoMap.liberalArts.subtotal.firstOrNull()?.credit ?: ""
+//
+//				// major
+//				binding.tvTrack11Content.text = it.completionDtoMap.major.firstTrack.getOrNull(0) ?: ""
+//				binding.tvTrack12Content.text = it.completionDtoMap.major.firstTrack.getOrNull(1) ?: ""
+//				binding.tvTrack13Content.text = it.completionDtoMap.major.firstTrack.getOrNull(2) ?: ""
+//				binding.tvTrack21Content.text = it.completionDtoMap.major.secondTrack.getOrNull(0) ?: ""
+//				binding.tvTrack22Content.text = it.completionDtoMap.major.secondTrack.getOrNull(1) ?: ""
+//				binding.tvTrack23Content.text = it.completionDtoMap.major.secondTrack.getOrNull(2) ?: ""
+//			}
+//		})
+
 
 		viewModel.foundationElectiveCourses?.observe(viewLifecycleOwner, Observer { courses ->
 			val coursesList = courses.entries.toList()

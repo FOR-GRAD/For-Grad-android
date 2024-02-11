@@ -14,6 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.career.CareerDetailResponse
+import umc.com.mobile.project.data.model.career.DeleteCareerResponse
 import umc.com.mobile.project.data.model.career.UpdateCareerResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
@@ -30,6 +31,8 @@ class CareerEditActivityViewModel : ViewModel() {
     val file: MutableLiveData<String> = MutableLiveData()
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
+    val fileAddedEvent: MutableLiveData<Boolean> = MutableLiveData()
+    val addFiles: MutableList<MultipartBody.Part> = mutableListOf()
 
     init {
         studentId.value = 0
@@ -37,6 +40,7 @@ class CareerEditActivityViewModel : ViewModel() {
         file.value = ""
         startDate.value = ""
         endDate.value = ""
+        addFiles.clear()
     }
 
     fun init() {
@@ -44,6 +48,7 @@ class CareerEditActivityViewModel : ViewModel() {
         file.value = ""
         startDate.value = ""
         endDate.value = ""
+        addFiles.clear()
     }
 
     val isFilledAllOptions: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
@@ -62,13 +67,39 @@ class CareerEditActivityViewModel : ViewModel() {
         return date.isNullOrBlank() || date.length == 8
     }
 
-    private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
-
     fun addImageFile(file: File) {
-        Log.d("addImageFile", file.toString())
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-        imageList.add(body)
+        val body = MultipartBody.Part.createFormData("addFiles", file.name, requestFile)
+        addFiles.add(body)
+        fileAddedEvent.value = true
+    }
+
+    //파일 확장자에 따른 MIME 타입 반환
+    fun getMimeType(file: File): String {
+        val extension = file.extension
+
+        return when (extension.toLowerCase()) {
+            "jpg", "jpeg" -> "image/jpeg"
+            "png" -> "image/png"
+            "gif" -> "image/gif"
+            "pdf" -> "application/pdf"
+            "doc" -> "application/msword"
+            "docx" -> "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            "xls" -> "application/vnd.ms-excel"
+            "xlsx" -> "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            "ppt" -> "application/vnd.ms-powerpoint"
+            "pptx" -> "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+            else -> "application/octet-stream" //알 수 없는 파일 형식
+        }
+    }
+
+    fun addFile(file: File) {
+        val fileName = file.name
+        val mimeType = getMimeType(file) //파일 확장자에 따른 MIME 타입 결정
+        val requestFile: RequestBody = RequestBody.create(mimeType?.toMediaTypeOrNull(), file)
+        val filePart = MultipartBody.Part.createFormData("addFiles", fileName, requestFile)
+        addFiles.add(filePart)
+        fileAddedEvent.value = true
     }
 
     private val careerApiService = ApiClient.createService<CareerApi>()
@@ -115,7 +146,9 @@ class CareerEditActivityViewModel : ViewModel() {
             })
     }
 
-    fun updateActivity() {
+    fun updateActivity(): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+
         val updatedTitle = title.value ?: ""
         val updatedStartDate = startDate.value ?: ""
         val updatedEndDate = endDate.value ?: ""
@@ -165,6 +198,17 @@ class CareerEditActivityViewModel : ViewModel() {
                 endDate = formattedEndDate
             )
         }
+        //파일 사이즈 확인
+        fun calculateTotalFileSize(): Long {
+            var totalSize: Long = 0
+            for (filePart in addFiles) {
+                val file = filePart.body
+                totalSize += file?.contentLength() ?: 0
+            }
+            return totalSize
+        }
+        val totalFileSize = calculateTotalFileSize()
+        Log.d("EditFile Size", "Total File Size: $totalFileSize bytes")
 
         val gson = GsonBuilder()
             .setDateFormat("yyyy-MM-dd")
@@ -176,11 +220,7 @@ class CareerEditActivityViewModel : ViewModel() {
         val updateDtoPart =
             gson.toJson(updatedDetail).toRequestBody("application/json".toMediaTypeOrNull())
 
-        val emptyRequestBody = "".toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        val temporaryFilePart =
-            MultipartBody.Part.createFormData("files", "your_temporary_file_name", emptyRequestBody)
-
-        careerApiService.updateCareer(activityIdPart, updateDtoPart, listOf(temporaryFilePart))
+        careerApiService.updateCareer(activityIdPart, updateDtoPart, addFiles)
             .enqueue(object : Callback<UpdateCareerResponse> {
                 override fun onResponse(
                     call: Call<UpdateCareerResponse>,
@@ -190,11 +230,15 @@ class CareerEditActivityViewModel : ViewModel() {
                         val CareerDetailResponse = response.body()
                         if (CareerDetailResponse != null) {
                             Log.d("updateActivityInfo 성공", "${response.body()}")
+                            Log.d("editSuccessFileName", addFiles.toString())
+                            result.postValue(true)
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
+                            result.postValue(false)
                         }
                     } else {
                         _error.postValue("교외활동 정보 수정을 못했습니다.")
+                        result.postValue(false)
                         try {
                             throw response.errorBody()?.string()?.let {
                                 RuntimeException(it)
@@ -211,7 +255,49 @@ class CareerEditActivityViewModel : ViewModel() {
                 override fun onFailure(call: Call<UpdateCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
                     Log.d("updateActivityInfo", "updateActivityInfo 네트워크 오류: ${t.message}")
+                    result.postValue(false)
                 }
             })
+        return result
+    }
+
+    fun deleteActivity(): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+
+        careerApiService.deleteCareer(studentId.value!!)
+            .enqueue(object : Callback<DeleteCareerResponse> {
+                override fun onResponse(
+                    call: Call<DeleteCareerResponse>,
+                    response: Response<DeleteCareerResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val deleteCareerResponse = response.body()
+                        if (deleteCareerResponse != null) {
+                            Log.d("deleteActivityInfo 성공", "${response.body()}")
+                            result.postValue(true)
+                        } else {
+                            _error.postValue("서버 응답이 올바르지 않습니다.")
+                            result.postValue(false)
+                        }
+                    } else {
+                        _error.postValue("교외활동을 삭제하지 못했습니다.")
+                        result.postValue(false)
+                        try {
+                            throw response.errorBody()?.string()?.let {
+                                RuntimeException(it)
+                            } ?: RuntimeException("Unknown error")
+                        } catch (e: Exception) {
+                            Log.e("deleteActivityInfo", "deleteActivityInfo API 오류: ${e.message}")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<DeleteCareerResponse>, t: Throwable) {
+                    _error.postValue("네트워크 오류: ${t.message}")
+                    Log.d("deleteActivityInfo", "deleteActivityInfo 네트워크 오류: ${t.message}")
+                    result.postValue(false)
+                }
+            })
+        return result
     }
 }

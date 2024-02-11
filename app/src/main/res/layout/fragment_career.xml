@@ -57,12 +57,13 @@
                 android:id="@+id/tv_career_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="23dp"
                 android:text="@string/career_add"
                 android:textAppearance="@style/BlackFont.14"
                 android:textColor="#757575"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_career_title" />
+                app:layout_constraintTop_toTopOf="@+id/tv_career_title" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_career_standard_date"
@@ -81,13 +82,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="14dp"
-                android:layout_marginTop="159dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_solid_light_blue_radius_16_5"
                 app:layout_constraintBottom_toBottomOf="@+id/et_career_upper_point_box"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_career_description" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_career_upper_point_box"

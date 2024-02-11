@@ -13,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.career.CareerDetailResponse
+import umc.com.mobile.project.data.model.career.DeleteCareerResponse
 import umc.com.mobile.project.data.model.career.UpdateCareerResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
@@ -104,12 +105,12 @@ class CareerEditVolunteerViewModel : ViewModel() {
             })
     }
 
-    fun updateVolunteer() {
+    fun updateVolunteer(): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
         val updatedTitle = title.value ?: ""
         val updatedHour = hour.value ?: ""
         val updatedStartDate = startDate.value ?: ""
         val updatedEndDate = endDate.value ?: ""
-
         val currentVolunteerDetail = volunteerDetailInfo.value
 
 
@@ -187,11 +188,14 @@ class CareerEditVolunteerViewModel : ViewModel() {
                         val CareerDetailResponse = response.body()
                         if (CareerDetailResponse != null) {
                             Log.d("updateVolunteerInfo 성공", "${response.body()}")
+                            result.postValue(true)
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
+                            result.postValue(false)
                         }
                     } else {
                         _error.postValue("봉사 정보 수정을 못했습니다.")
+                        result.postValue(false)
                         try {
                             throw response.errorBody()?.string()?.let {
                                 RuntimeException(it)
@@ -208,7 +212,52 @@ class CareerEditVolunteerViewModel : ViewModel() {
                 override fun onFailure(call: Call<UpdateCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
                     Log.d("updateVolunteerInfo", "updateVolunteerInfo 네트워크 오류: ${t.message}")
+                    result.postValue(false)
                 }
             })
+        return result
+    }
+
+    fun deleteVolunteer(): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+
+        careerApiService.deleteCareer(studentId.value!!)
+            .enqueue(object : Callback<DeleteCareerResponse> {
+                override fun onResponse(
+                    call: Call<DeleteCareerResponse>,
+                    response: Response<DeleteCareerResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val deleteCareerResponse = response.body()
+                        if (deleteCareerResponse != null) {
+                            Log.d("deleteVolunteerInfo 성공", "${response.body()}")
+                            result.postValue(true)
+                        } else {
+                            _error.postValue("서버 응답이 올바르지 않습니다.")
+                            result.postValue(false)
+                        }
+                    } else {
+                        _error.postValue("봉사활동을 삭제하지 못했습니다.")
+                        result.postValue(false)
+                        try {
+                            throw response.errorBody()?.string()?.let {
+                                RuntimeException(it)
+                            } ?: RuntimeException("Unknown error")
+                        } catch (e: Exception) {
+                            Log.e(
+                                "deleteVolunteerInfo",
+                                "deleteVolunteerInfo API 오류: ${e.message}"
+                            )
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<DeleteCareerResponse>, t: Throwable) {
+                    _error.postValue("네트워크 오류: ${t.message}")
+                    Log.d("deleteVolunteerInfo", "deleteVolunteerInfo 네트워크 오류: ${t.message}")
+                    result.postValue(false)
+                }
+            })
+        return result
     }
 }

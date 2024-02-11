@@ -33,7 +33,9 @@ class GradeFragment : Fragment() {
 		viewModel.getGradeInfo() // 사용자 성적 사항 조회 api
 		initRecyclerView() // 성적 사항 recycleView 연결
 
-		viewModel.semesters?.observe(viewLifecycleOwner, Observer {semesters ->
+		viewModel.semesters?.observe(viewLifecycleOwner, Observer { semesters ->
+			// semesters를 사용하여 RecyclerView 어댑터 업데이트
+//			(binding.recyclerView.adapter as GradeRVAdapter).submitList(semesters.values.toList())
 			binding.tvSemester.text = (semesters.keys ?: "null").toString()
 		})
 

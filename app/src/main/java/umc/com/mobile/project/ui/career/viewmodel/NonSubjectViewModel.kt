@@ -25,6 +25,7 @@ class NonSubjectViewModel : ViewModel() {
     var accumulatedPoints: String = ""
     var pageSize: Long = 0
     var currentPage = 1
+
     fun getNonSubjectInfo2(page: Int) {
         currentPage = page
         careerApiService.getNonSubjectList(page).enqueue(object : Callback<NonSubjectResponse> {

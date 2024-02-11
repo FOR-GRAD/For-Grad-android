@@ -25,6 +25,29 @@ class GradInfoViewModel : ViewModel() {
 	val error: LiveData<String>
 		get() = _error
 
+	private val _register: MutableLiveData<String> = MutableLiveData()
+	val register: LiveData<String>
+		get() = _register
+
+	private val _grades: MutableLiveData<String> = MutableLiveData()
+	val grades: LiveData<String>
+		get() = _grades
+
+	private val _point: MutableLiveData<String> = MutableLiveData()
+	val point: LiveData<String>
+		get() = _point
+
+	private val _scores: MutableLiveData<String> = MutableLiveData()
+	val scores: LiveData<String>
+		get() = _scores
+
+	fun init(requirementsResponse: RequirementsResponse) {
+		_register.postValue(requirementsResponse.result.commonRequirmentsDto.registration)
+		_grades.postValue(requirementsResponse.result.commonRequirmentsDto.grades)
+		_point.postValue(requirementsResponse.result.commonRequirmentsDto.point)
+		_scores.postValue(requirementsResponse.result.commonRequirmentsDto.scores)
+	}
+
 	fun getGradRequirementsInfo() {
 		gradInfoApiService.getRequirements().enqueue(object : Callback<RequirementsResponse> {
 			override fun onResponse(

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -30,6 +31,7 @@ class GradInfoFragment : Fragment() {
 		_binding = FragmentGradInfoBinding.inflate(inflater, container, false)
 
 		initTabLayout()
+		initViewPager()
 
 		return binding.root
 	}
@@ -52,6 +54,28 @@ class GradInfoFragment : Fragment() {
 		TabLayoutMediator(tabLayout, viewPager
 		) { tab, position -> tab.text = tabTitle[position] }.attach()
 	}
+
+	private fun initViewPager() {
+		/*binding.viewPagerGradInfo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+			override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+				// 이 메서드는 페이지 스크롤이 발생할 때 호출됩니다.
+				// 스와이프를 막으려면 여기에 해당 페이지로 이동시키는 로직을 구현합니다.
+			}
+
+			override fun onPageSelected(position: Int) {
+				// 이 메서드는 새 페이지가 선택될 때 호출됩니다.
+				// 필요에 따라 추가적인 동작을 수행할 수 있습니다.
+			}
+
+			override fun onPageScrollStateChanged(state: Int) {
+				// 페이지 스크롤의 상태가 변경될 때 호출됩니다.
+				// 필요에 따라 추가적인 동작을 수행할 수 있습니다.
+			}
+		})*/
+
+		binding.viewPagerGradInfo.isUserInputEnabled = false
+	}
+
 
 	override fun onDestroyView() {
 		super.onDestroyView()

@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_grad_info_title"
-        app:tabBackground="@drawable/bg_grad_info_tab_radius_17"
+        app:tabBackground="@drawable/bg_board_tab_radius_17"
         app:tabGravity="fill"
         app:tabIconTint="@android:color/transparent"
         app:tabIndicatorHeight="0dp"
@@ -39,7 +39,7 @@
         app:tabPaddingEnd="17dp"
         app:tabPaddingStart="17dp"
         app:tabRippleColor="@null"
-        app:tabSelectedTextColor="@color/white"
+        app:tabSelectedTextColor="@color/skyBlue"
         app:tabTextAppearance="@style/SemiBoldFont.14"
         app:tabTextColor="@color/text_gray"
         app:tabUnboundedRipple="false" />
@@ -64,5 +64,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout_grad_info" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

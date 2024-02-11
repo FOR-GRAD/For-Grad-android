@@ -36,13 +36,12 @@ class CareerAddFragment : Fragment() {
 
         _binding!!.etCareerEditSpinner.setOnClickListener {
             val bottomSheet = CategoryBottomFragment(mContext, viewModel)
-            bottomSheet.setStyle(DialogFragment.STYLE_NORMAL, R.style.RoundCornerBottomSheetDialogTheme)
+            bottomSheet.setStyle(
+                DialogFragment.STYLE_NORMAL,
+                R.style.RoundCornerBottomSheetDialogTheme
+            )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-
-/*        viewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
-            replaceFragment(selectedCategory)
-        }*/
 
         return binding.root
     }
@@ -60,20 +59,25 @@ class CareerAddFragment : Fragment() {
                 R.id.constraintLayout_career_edit,
                 CareerAddCertificateFragment()
             )
+
             "봉사활동" -> fragmentTransaction.replace(
                 R.id.constraintLayout_career_edit,
                 CareerAddVolunteerFragment()
             )
+
             "공모전" -> fragmentTransaction.replace(
                 R.id.constraintLayout_career_edit,
                 CareerAddContestFragment()
             )
+
             "교외활동" -> fragmentTransaction.replace(
                 R.id.constraintLayout_career_edit,
                 CareerAddActivityFragment()
             )
+
             else -> {
-                val existingFragment = childFragmentManager.findFragmentById(R.id.constraintLayout_career_edit)
+                val existingFragment =
+                    childFragmentManager.findFragmentById(R.id.constraintLayout_career_edit)
                 if (existingFragment != null) {
                     fragmentTransaction.remove(existingFragment)
                 }
@@ -81,11 +85,13 @@ class CareerAddFragment : Fragment() {
         }
         fragmentTransaction.commit()
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init()
         viewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
-            binding.etCareerEditSpinner.text = Editable.Factory.getInstance().newEditable(selectedCategory)
+            binding.etCareerEditSpinner.text =
+                Editable.Factory.getInstance().newEditable(selectedCategory)
             replaceFragment(selectedCategory)
         }
     }

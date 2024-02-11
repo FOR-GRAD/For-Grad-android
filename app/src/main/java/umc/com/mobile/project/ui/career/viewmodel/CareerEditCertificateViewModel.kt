@@ -13,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.career.CareerDetailResponse
+import umc.com.mobile.project.data.model.career.DeleteCareerResponse
 import umc.com.mobile.project.data.model.career.UpdateCareerResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.CareerApi
@@ -111,7 +112,9 @@ class CareerEditCertificateViewModel : ViewModel() {
             })
     }
 
-    fun updateCertificate() {
+    fun updateCertificate(): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+
         val updatedTitle = title.value ?: ""
         val updatedType = type.value ?: ""
         val updatedStartDate = startDate.value ?: ""
@@ -196,11 +199,14 @@ class CareerEditCertificateViewModel : ViewModel() {
                         val CareerDetailResponse = response.body()
                         if (CareerDetailResponse != null) {
                             Log.d("updateCertificateInfo 성공", "${response.body()}")
+                            result.postValue(true)
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
+                            result.postValue(false)
                         }
                     } else {
                         _error.postValue("자격증 정보 수정을 못했습니다.")
+                        result.postValue(false)
                         try {
                             throw response.errorBody()?.string()?.let {
                                 RuntimeException(it)
@@ -217,7 +223,51 @@ class CareerEditCertificateViewModel : ViewModel() {
                 override fun onFailure(call: Call<UpdateCareerResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
                     Log.d("updateCertificateInfo", "updateCertificateInfo 네트워크 오류: ${t.message}")
+                    result.postValue(false)
                 }
             })
+        return result
+    }
+
+    fun deleteCertificate(): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+        careerApiService.deleteCareer(studentId.value!!)
+            .enqueue(object : Callback<DeleteCareerResponse> {
+                override fun onResponse(
+                    call: Call<DeleteCareerResponse>,
+                    response: Response<DeleteCareerResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val deleteCareerResponse = response.body()
+                        if (deleteCareerResponse != null) {
+                            Log.d("deleteCertificateInfo 성공", "${response.body()}")
+                            result.postValue(true)
+                        } else {
+                            _error.postValue("서버 응답이 올바르지 않습니다.")
+                            result.postValue(false)
+                        }
+                    } else {
+                        _error.postValue("자격증을 삭제하지 못했습니다.")
+                        result.postValue(false)
+                        try {
+                            throw response.errorBody()?.string()?.let {
+                                RuntimeException(it)
+                            } ?: RuntimeException("Unknown error")
+                        } catch (e: Exception) {
+                            Log.e(
+                                "deleteCertificateInfo",
+                                "deleteCertificateInfo API 오류: ${e.message}"
+                            )
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<DeleteCareerResponse>, t: Throwable) {
+                    _error.postValue("네트워크 오류: ${t.message}")
+                    Log.d("deleteCertificateInfo", "deleteCertificateInfo 네트워크 오류: ${t.message}")
+                    result.postValue(false)
+                }
+            })
+        return result
     }
 }

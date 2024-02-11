@@ -16,11 +16,19 @@ import umc.com.mobile.project.data.network.api.HomeApi
 
 class GradDateViewModel : ViewModel() {
 
+<<<<<<< HEAD
 	val _selectedDate: MutableLiveData<String> = MutableLiveData()
 	val selectedDate: LiveData<String>
 		get() = _selectedDate
 
 	val _selectedDateRequest: MutableLiveData<String> = MutableLiveData()
+=======
+	private val _selectedDate: MutableLiveData<String> = MutableLiveData()
+	val selectedDate: LiveData<String>
+		get() = _selectedDate
+
+	private val _selectedDateRequest: MutableLiveData<String> = MutableLiveData()
+>>>>>>> 49e9c273db6c9adddcb570bcef81f6623823345d
 	val selectedDateRequest: LiveData<String>
 		get() = _selectedDateRequest
 
@@ -64,11 +72,15 @@ class GradDateViewModel : ViewModel() {
 	fun updateSelectedDate(year: String, month: String, day: String) {
 		val selectedDateString = "졸업 예정일 ${year}년 $month ${day}일"
 		_selectedDate.value = selectedDateString
+<<<<<<< HEAD
 		_selectedDateRequest.value = "${year}-${month}-${day}"
 	}
 
 	fun updateCheeringMessage(message: String) {
 		_cheeringMessage.value = message
+=======
+		_selectedDateRequest.value = "${year}-$month-${day}"
+>>>>>>> 49e9c273db6c9adddcb570bcef81f6623823345d
 	}
 
 	fun getDateInfo() {

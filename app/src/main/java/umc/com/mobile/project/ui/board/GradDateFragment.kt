@@ -38,6 +38,7 @@ class GradDateFragment : Fragment() {
         bottomSheetBinding =
             FragmentGradDateBottomBinding.inflate(layoutInflater)  // bottomSheetBinding 초기화
 
+<<<<<<< HEAD
         with(binding) {
             tvGradDateDate.setOnClickListener {
                 val bottomSheet = GradDateBottomFragment(mContext)
@@ -51,6 +52,23 @@ class GradDateFragment : Fragment() {
 
         navigateBack() // 뒤로 가기 버튼 클릭 시
         initTodayDate() // 오늘 날짜 설정
+=======
+		with(binding) {
+			tvGradDateDate.setOnClickListener {
+				val bottomSheet = GradDateBottomFragment(mContext)
+				bottomSheet.setStyle(
+					DialogFragment.STYLE_NORMAL,
+					umc.com.mobile.project.R.style.RoundCornerBottomSheetDialogTheme
+				)
+				bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
+			}
+		}
+
+		//실패 코드-값을 눌러도 text 안 바뀜
+		viewModel.selectedDate.observe(viewLifecycleOwner) { selectedDate ->
+			binding.tvGradDateDate.text = selectedDate
+		}
+>>>>>>> 49e9c273db6c9adddcb570bcef81f6623823345d
 
         viewModel.dateResponse.observe(viewLifecycleOwner, Observer { response ->
             if (response != null && response.result != null) {
@@ -58,9 +76,24 @@ class GradDateFragment : Fragment() {
             }
         })
 
+<<<<<<< HEAD
         binding.btnSave.setOnClickListener {
             val originalFormat = SimpleDateFormat("yyyy-M월-d", Locale.KOREA)
             val targetFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+=======
+		bottomSheetBinding!!.npGradDateYear.setOnClickListener {
+			updateSelectedDate()
+		}
+		bottomSheetBinding!!.npGradDateMonth.setOnClickListener {
+			updateSelectedDate()
+		}
+		bottomSheetBinding!!.npGradDateDay.setOnClickListener {
+			updateSelectedDate()
+		}
+
+		return binding.root
+	}
+>>>>>>> 49e9c273db6c9adddcb570bcef81f6623823345d
 
             val date = originalFormat.parse(viewModel.selectedDateRequest.value)
             val formattedDate = targetFormat.format(date)
@@ -120,4 +153,20 @@ class GradDateFragment : Fragment() {
         binding.tvGradDateToday.text = currentTime.format(pattern)
     }
 
+<<<<<<< HEAD
+=======
+			Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
+		}
+	}
+
+	private fun updateSelectedDate() {
+		val selectedYear = bottomSheetBinding?.npGradDateYear?.value
+		val selectedMonth = bottomSheetBinding?.npGradDateMonth?.value
+		val selectedDay = bottomSheetBinding?.npGradDateDay?.value
+
+		val selectedDateString = "$selectedYear 년 $selectedMonth 월 $selectedDay 일"
+
+		binding.tvGradDateDate.text = selectedDateString
+	}
+>>>>>>> 49e9c273db6c9adddcb570bcef81f6623823345d
 }

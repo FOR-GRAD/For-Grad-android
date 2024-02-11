@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import umc.com.mobile.project.data.model.gradInfo.GradesResponse
 import umc.com.mobile.project.databinding.ItemClassAndGradeBinding
 class GradeRVAdapter : RecyclerView.Adapter<GradeRVAdapter.MyViewHolder>() {
-
 	private var dataList = mutableListOf<GradesResponse>()
 
 	inner class MyViewHolder(private val binding: ItemClassAndGradeBinding) :

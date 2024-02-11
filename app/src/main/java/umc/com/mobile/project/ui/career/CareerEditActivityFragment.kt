@@ -3,13 +3,16 @@ package umc.com.mobile.project.ui.career
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentCareerEditActivityBinding
 import umc.com.mobile.project.ui.career.viewmodel.CareerEditActivityViewModel
@@ -57,7 +60,8 @@ class CareerEditActivityFragment : Fragment() {
             )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.etCareerEditActivityFile.setOnClickListener {
+        _binding!!.tvCareerActivityUpdateFile.setOnClickListener {
+            Toast.makeText(mContext, "기존 파일은 모두 삭제됩니다.", Toast.LENGTH_SHORT).show()
             val bottomSheet = UploadBottomFragment(mContext, 2)
             bottomSheet.setStyle(
                 DialogFragment.STYLE_NORMAL,
@@ -65,9 +69,23 @@ class CareerEditActivityFragment : Fragment() {
             )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
+        _binding!!.tvCareerActivityDelete.setOnClickListener {
+            val deleteResult = viewModel.deleteActivity()
+            deleteResult.observe(viewLifecycleOwner, Observer { isDeleted ->
+                if (isDeleted) {
+                    //삭제 작업이 완료되면 목록 업데이트
+                    navigate(R.id.action_fragment_edit_activity_to_fragment_career_activity)
+                }
+            })
+        }
         _binding!!.btnCareerEdit.setOnClickListener {
-            viewModel.updateActivity()
-            navigate(R.id.action_fragment_edit_activity_to_fragment_career)
+            val updateResult = viewModel.updateActivity()
+            updateResult.observe(viewLifecycleOwner, Observer { isUpdated ->
+                if (isUpdated) {
+                    //수정 작업이 완료되면 목록 업데이트
+                    navigate(R.id.action_fragment_edit_activity_to_fragment_career_activity)
+                }
+            })
         }
         return binding.root
     }
@@ -76,6 +94,12 @@ class CareerEditActivityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init()
         sharedViewModel.init()
+        viewModel.fileAddedEvent.observe(viewLifecycleOwner, Observer { isFileAdded ->
+            if (isFileAdded) {
+                binding.etCareerEditActivityFile.setText("파일이 추가되었습니다")
+                viewModel.fileAddedEvent.value = false // 이벤트를 처리했으므로 다시 false로 설정
+            }
+        })
         //버튼 활성화
         viewModel.isFilledAllOptions.observe(viewLifecycleOwner) { isEnabled ->
             binding?.btnCareerEdit?.isEnabled = isEnabled
@@ -91,8 +115,13 @@ class CareerEditActivityFragment : Fragment() {
         viewModel.activityDetailInfo.observe(viewLifecycleOwner) { _activityInfo ->
             _activityInfo?.let {
                 _binding?.etCareerEditActivity?.hint = it.result.title ?: ""
-                _binding?.etCareerEditActivityFile?.hint =
-                    it.result.fileUrls?.toString() ?: ""
+                val urls = _activityInfo.result.fileUrls.map { it.url }.joinToString("\n")
+                //URL 클릭 가능하게
+                _binding?.etCareerEditActivityFile?.apply {
+                    setText(urls)
+                    movementMethod = LinkMovementMethod.getInstance()
+                }
+                _binding?.etCareerEditActivityFile?.hint = urls
                 _binding?.etCareerEditActivityStartYear?.hint = it.result.startDate ?: ""
                 _binding?.etCareerEditActivityEndYear?.hint = it.result.endDate ?: ""
             }

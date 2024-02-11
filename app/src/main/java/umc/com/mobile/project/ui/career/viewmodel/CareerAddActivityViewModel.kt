@@ -27,17 +27,20 @@ class CareerAddActivityViewModel : ViewModel() {
     val startDate: MutableLiveData<String> = MutableLiveData()
     val endDate: MutableLiveData<String> = MutableLiveData()
     val fileAddedEvent: MutableLiveData<Boolean> = MutableLiveData()
+    val imageList: MutableList<MultipartBody.Part> = mutableListOf()
 
     init {
         title.value = ""
         startDate.value = ""
         endDate.value = ""
+        imageList.clear()
     }
 
     fun init() {
         title.value = ""
         startDate.value = ""
         endDate.value = ""
+        imageList.clear()
     }
 
     /* 버튼 활성화 기능 */
@@ -48,14 +51,14 @@ class CareerAddActivityViewModel : ViewModel() {
     }
 
     private fun areBothFieldsFilled(): Boolean {
-        return !title.value.isNullOrBlank() && isDateValid(startDate.value) && isDateValid(endDate.value)
+        return !(title.value.isNullOrEmpty() || title.value!!.contains(" ") || title.value!!.length > 20) && isDateValid(
+            startDate.value
+        ) && isDateValid(endDate.value)
     }
 
     private fun isDateValid(date: String?): Boolean {
         return !date.isNullOrBlank() && date.length == 8
     }
-
-    private val imageList: MutableList<MultipartBody.Part> = mutableListOf()
 
     fun addImageFile(file: File) {
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
@@ -64,22 +67,36 @@ class CareerAddActivityViewModel : ViewModel() {
         fileAddedEvent.value = true
     }
 
-    fun addFile(filePart: MultipartBody.Part) {
+    //파일 확장자에 따른 MIME 타입 반환
+    fun getMimeType(file: File): String {
+        val extension = file.extension
+
+        return when (extension.toLowerCase()) {
+            "jpg", "jpeg" -> "image/jpeg"
+            "png" -> "image/png"
+            "gif" -> "image/gif"
+            "pdf" -> "application/pdf"
+            "doc" -> "application/msword"
+            "docx" -> "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            "xls" -> "application/vnd.ms-excel"
+            "xlsx" -> "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            "ppt" -> "application/vnd.ms-powerpoint"
+            "pptx" -> "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+            else -> "application/octet-stream" //알 수 없는 파일 형식
+        }
+    }
+
+    fun addFile(file: File) {
+        val fileName = file.name
+        val mimeType = getMimeType(file) //파일 확장자에 따른 MIME 타입 결정
+        val requestFile: RequestBody = RequestBody.create(mimeType?.toMediaTypeOrNull(), file)
+        val filePart = MultipartBody.Part.createFormData("image", fileName, requestFile)
+
         imageList.add(filePart)
         fileAddedEvent.value = true
     }
 
-    // 빈 이미지 생성
-    fun addEmptyImage() {
-        val emptyImageBytes: ByteArray = byteArrayOf()
-
-        val requestFile =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), emptyImageBytes)
-        val body = MultipartBody.Part.createFormData("image", "empty_image.jpg", requestFile)
-        imageList.add(body)
-    }
-
-    //API에 전송할 데이터를 포함하는 RequestDto를 생성하는 함수
+    //API에 전송할 데이터를 포함하는 RequestDto 생성 함수
     fun createRequestDto(): ActivityDto? {
         val startDateString = startDate.value
         val endDateString = endDate.value
@@ -115,10 +132,21 @@ class CareerAddActivityViewModel : ViewModel() {
             .create()
 
         val requestDtoJson = gson.toJson(requestDto)
-        println(requestDtoJson)
         val requestDtoPart: RequestBody =
             requestDtoJson.toRequestBody("application/json".toMediaTypeOrNull())
 
+        //파일 사이즈 측정
+        fun calculateTotalFileSize(): Long {
+            var totalSize: Long = 0
+            for (filePart in imageList) {
+                val file = filePart.body
+                totalSize += file?.contentLength() ?: 0
+            }
+            return totalSize
+        }
+
+        val totalFileSize = calculateTotalFileSize()
+        Log.d("File Size", "Total File Size: $totalFileSize bytes")
         careerApiService.addCareer(imageList, requestDtoPart)
             .enqueue(object : Callback<AddCareerResponse> {
                 override fun onResponse(
@@ -130,6 +158,7 @@ class CareerAddActivityViewModel : ViewModel() {
                         if (addCareerResponse != null) {
                             _addedCareerInfo.postValue(addCareerResponse)
                             Log.d("addCareer:Extras 성공", "${response.body()}")
+                            Log.d("addSuccessFileName", imageList.toString())
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
                         }
@@ -141,6 +170,7 @@ class CareerAddActivityViewModel : ViewModel() {
                             } ?: RuntimeException("Unknown error")
                         } catch (e: Exception) {
                             Log.e("addCareerInfo", "addCareer:Extras API 오류: ${e.message}")
+                            e.printStackTrace()
                         }
                     }
                 }

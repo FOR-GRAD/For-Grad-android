@@ -3,10 +3,12 @@ package umc.com.mobile.project.ui.career
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -73,10 +75,11 @@ class CareerAddActivityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.init()
         viewModel.fileAddedEvent.observe(viewLifecycleOwner, Observer { isFileAdded ->
             if (isFileAdded) {
                 binding.etCareerAddActivityFile.setText("파일이 추가되었습니다")
-                viewModel.fileAddedEvent.value = false // 이벤트를 처리했으므로 다시 false로 설정
+                viewModel.fileAddedEvent.value = false //이벤트를 처리했으므로 다시 false로 설정
             }
         })
         sharedViewModel.selectedStartYear.observe(viewLifecycleOwner) { year ->

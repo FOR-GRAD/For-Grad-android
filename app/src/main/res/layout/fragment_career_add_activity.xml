@@ -37,7 +37,7 @@
             android:layout_marginEnd="23dp"
             android:background="@drawable/bg_solid_gray_radius_15"
             android:gravity="top"
-            android:hint="예)헌혈"
+            android:hint="@string/career_activity_name_ex"
             android:paddingStart="18dp"
             android:paddingTop="11dp"
             android:paddingBottom="10dp"
