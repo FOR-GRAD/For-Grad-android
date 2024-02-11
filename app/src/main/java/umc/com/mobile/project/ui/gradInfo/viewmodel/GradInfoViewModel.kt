@@ -7,10 +7,7 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import umc.com.mobile.project.data.model.gradInfo.CompletionResponse
-import umc.com.mobile.project.data.model.gradInfo.GradesResponse
 import umc.com.mobile.project.data.model.gradInfo.RequirementsResponse
-import umc.com.mobile.project.data.model.home.UserResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.GradInfoApi
 

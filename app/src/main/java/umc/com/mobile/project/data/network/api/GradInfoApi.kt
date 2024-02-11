@@ -1,8 +1,8 @@
 package umc.com.mobile.project.data.network.api
 
+import CompletionResponse
 import retrofit2.Call
 import retrofit2.http.GET
-import umc.com.mobile.project.data.model.gradInfo.CompletionResponse
 import umc.com.mobile.project.data.model.gradInfo.GradesResponse
 import umc.com.mobile.project.data.model.gradInfo.RequirementsResponse
 

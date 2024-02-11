@@ -29,12 +29,10 @@ class GradConditionFragment : Fragment() {
 			/**
 			 * 공통 졸업 요건
 			 */
-
 			val content1 = it?.result?.commonRequirmentsDto?.point
 			val content2 = it?.result?.commonRequirmentsDto?.scores
 			val content3 = it?.result?.commonRequirmentsDto?.registration
 			val content4 = it?.result?.commonRequirmentsDto?.grades
-
 
 			binding.tvPointContent.text = it?.result?.commonRequirmentsDto?.point?.let { regex.find("$content1")?.groupValues?.get(1)?.trim() }
 			binding.tvCreditContent.text = it?.result?.commonRequirmentsDto?.grades.let { regex.find("$content2")?.groupValues?.get(1)?.trim() }

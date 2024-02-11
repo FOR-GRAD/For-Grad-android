@@ -36,9 +36,8 @@ class GradeFragment : Fragment() {
 		viewModel.semesters?.observe(viewLifecycleOwner, Observer { semesters ->
 			// semesters를 사용하여 RecyclerView 어댑터 업데이트
 //			(binding.recyclerView.adapter as GradeRVAdapter).submitList(semesters.values.toList())
-			binding.tvSemester.text = (semesters.keys ?: "null").toString()
+//			binding.tvSemester.text = (semesters.keys ?: "null").toString()
 		})
-
 
 		return binding.root
 	}

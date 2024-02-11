@@ -1,5 +1,6 @@
 package umc.com.mobile.project.ui.gradInfo.viewmodel
 
+import CompletionResponse
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,10 +8,6 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import umc.com.mobile.project.data.model.gradInfo.CompletionResponse
-import umc.com.mobile.project.data.model.gradInfo.GradesResponse
-import umc.com.mobile.project.data.model.gradInfo.RequirementsResponse
-import umc.com.mobile.project.data.model.home.UserResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.GradInfoApi
 
@@ -33,53 +30,32 @@ class CompletionStateViewModel : ViewModel() {
 	val foundationElectiveCourses: MutableLiveData<Map<String, String>>
 		get() = _foundationElectiveCourses
 
-		private fun processRequiredBasicCourses(completionResponse: CompletionResponse) {
-			val requiredBasicCoursesMap = mutableMapOf<String, String>()
-			val foundationElectiveCoursesMap = mutableMapOf<String, String>()
-
-			val requiredBasicCourses = completionResponse?.result?.generalCompletionDto?.generalMap?.requiredBasicCourses
-			val foundationElectiveCourses = completionResponse?.result?.generalCompletionDto?.generalMap?.foundationElectiveCourses
-
-			requiredBasicCourses?.let {
-				for ((courseName, courseStatus) in it) {
-					requiredBasicCoursesMap[courseName] = courseStatus
-					Log.d("Completion: requiredBasicCoursesMap ", "$courseName : $courseStatus")
-				}
-			}
-
-			foundationElectiveCourses?.let {
-				for ((courseName, courseStatus) in it) {
-					foundationElectiveCoursesMap[courseName] = courseStatus
-					Log.d("Completion: foundationElectiveCoursesMap ", "$courseName : $courseStatus")
-				}
-			}
-
-			_requiredBasicCourses.postValue(requiredBasicCoursesMap)
-			_foundationElectiveCourses.postValue(foundationElectiveCoursesMap)
-		}
 //	private fun processRequiredBasicCourses(completionResponse: CompletionResponse) {
 //		val requiredBasicCoursesMap = mutableMapOf<String, String>()
 //		val foundationElectiveCoursesMap = mutableMapOf<String, String>()
 //
-//		completionResponse.completionDtoMap.liberalArts.requiredBasic.forEachIndexed { index, course ->
-//			requiredBasicCoursesMap[course.courseName] = course.credit
-//			Log.d(
-//				"Completion: requiredBasicCoursesMap ",
-//				"$index: ${course.courseName} : ${course.credit}"
-//			)
+//		val liberalArts = completionResponse.result.completionDtoMap.find { it.keys.equals("필수교양(기초)")}?.values
+//		val requiredBasicCourses = liberalArts?.requiredBasic
+//		val foundationElectiveCourses = liberalArts?.fundamental
+//
+//		requiredBasicCourses?.let {
+//			for ((index, courseName) in requiredBasicCourses.withIndex()) {
+//				requiredBasicCoursesMap["Course ${index + 1}"] = courseName
+//				Log.d("Completion: requiredBasicCoursesMap ", "Course ${index + 1} : $courseName")
+//			}
 //		}
 //
-//		completionResponse.completionDtoMap.liberalArts.fundamental.forEachIndexed { index, course ->
-//			foundationElectiveCoursesMap[course.courseName] = course.credit
-//			Log.d(
-//				"Completion: foundationElectiveCoursesMap ",
-//				"$index: ${course.courseName} : ${course.credit}"
-//			)
+//		foundationElectiveCourses?.let {
+//			for ((index, courseName) in requiredBasicCourses.withIndex()) {
+//				foundationElectiveCoursesMap["Course ${index + 1}"] = courseName
+//				Log.d("Completion: foundationElectiveCoursesMap ", "Course ${index + 1} : $courseName")
+//			}
 //		}
 //
 //		_requiredBasicCourses.postValue(requiredBasicCoursesMap)
 //		_foundationElectiveCourses.postValue(foundationElectiveCoursesMap)
 //	}
+
 
 	fun getCompletionInfo() {
 		gradInfoApiService.getCompletion().enqueue(object : Callback<CompletionResponse> {
@@ -90,7 +66,7 @@ class CompletionStateViewModel : ViewModel() {
 				if (response.isSuccessful) {
 					if (response.body() != null) {
 						_completionInfo.postValue(response.body())
-						processRequiredBasicCourses(response.body()!!)
+//						processRequiredBasicCourses(response.body()!!)
 						Log.d("gradInfo", "${response.body()}")
 					} else {
 						_error.postValue("서버 응답이 올바르지 않습니다.")
