@@ -51,23 +51,13 @@ class GradDateFragment : Fragment() {
 
 		//실패 코드-값을 눌러도 text 안 바뀜
 		viewModel.selectedDate.observe(viewLifecycleOwner) { selectedDate ->
-			binding.tvGradDateDate.text = selectedDate
+			binding.tvGradDateDate.text = selectedDate.toString()
 		}
 
 		navigateBack() // 뒤로 가기 버튼 클릭 시
 		initTodayDate() // 오늘 날짜 설정
 		saveCheeringMemo()
 		viewModel.getDateInfo()
-
-		bottomSheetBinding!!.npGradDateYear.setOnClickListener {
-			updateSelectedDate()
-		}
-		bottomSheetBinding!!.npGradDateMonth.setOnClickListener {
-			updateSelectedDate()
-		}
-		bottomSheetBinding!!.npGradDateDay.setOnClickListener {
-			updateSelectedDate()
-		}
 
 		return binding.root
 	}
@@ -92,19 +82,9 @@ class GradDateFragment : Fragment() {
 
 	private fun saveCheeringMemo() {
 		binding.btnSave.setOnClickListener {
-			viewModel.updateDateInfo(binding.tvGradDateToday.text.toString())
+			viewModel.updateDateInfo(viewModel.selectedDateRequest.value.toString())
 
 			Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
 		}
-	}
-
-	private fun updateSelectedDate() {
-		val selectedYear = bottomSheetBinding?.npGradDateYear?.value
-		val selectedMonth = bottomSheetBinding?.npGradDateMonth?.value
-		val selectedDay = bottomSheetBinding?.npGradDateDay?.value
-
-		val selectedDateString = "$selectedYear 년 $selectedMonth 월 $selectedDay 일"
-
-		binding.tvGradDateDate.text = selectedDateString
 	}
 }
