@@ -59,6 +59,16 @@ class GradDateFragment : Fragment() {
 		saveCheeringMemo()
 		viewModel.getDateInfo()
 
+		bottomSheetBinding!!.npGradDateYear.setOnClickListener {
+			updateSelectedDate()
+		}
+		bottomSheetBinding!!.npGradDateMonth.setOnClickListener {
+			updateSelectedDate()
+		}
+		bottomSheetBinding!!.npGradDateDay.setOnClickListener {
+			updateSelectedDate()
+		}
+
 		return binding.root
 	}
 
@@ -86,5 +96,15 @@ class GradDateFragment : Fragment() {
 
 			Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
 		}
+	}
+
+	private fun updateSelectedDate() {
+		val selectedYear = bottomSheetBinding?.npGradDateYear?.value
+		val selectedMonth = bottomSheetBinding?.npGradDateMonth?.value
+		val selectedDay = bottomSheetBinding?.npGradDateDay?.value
+
+		val selectedDateString = "$selectedYear 년 $selectedMonth 월 $selectedDay 일"
+
+		binding.tvGradDateDate.text = selectedDateString
 	}
 }

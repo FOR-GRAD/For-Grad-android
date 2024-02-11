@@ -29,7 +29,7 @@ class CompletionStateFragment : Fragment() {
 
 		viewModel.completionInfo.observe(viewLifecycleOwner, Observer {
 			// general
-			binding.tvTotalScore.text = it?.result?.generalCompletionDto?.generalMap?.subtotal?.get("소 계").toString()
+			binding.tvTotalScore.text = it?.result?.generalCompletionDto?.generalMap?.subtotal?.get("소 계") ?: "누적 / (총계)"
 
 			// major
 			binding.tvTotalScore2.text = it?.result?.majorCompletionDto?.majorMap?.total?.get(0).toString()

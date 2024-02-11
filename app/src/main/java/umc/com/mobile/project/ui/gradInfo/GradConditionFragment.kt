@@ -15,7 +15,7 @@ class GradConditionFragment : Fragment() {
 	private val viewModel: GradInfoViewModel by viewModels()
 	private val binding get() = _binding!!
 
-	val regex = Regex(":(.*)")
+	private val regex = Regex(":(.*)")
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -52,6 +52,7 @@ class GradConditionFragment : Fragment() {
 
 		return binding.root
 	}
+
 
 	override fun onDestroyView() {
 		super.onDestroyView()
