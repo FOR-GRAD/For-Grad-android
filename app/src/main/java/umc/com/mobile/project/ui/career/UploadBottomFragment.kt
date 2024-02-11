@@ -62,6 +62,7 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
             addCategory(Intent.CATEGORY_OPENABLE)
             type = "*/*"
+            putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         }
         startActivityForResult(intent, PICK_FILE)
     }
@@ -81,25 +82,7 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
         return file
     }
 
-    /*private fun createFile(uri: Uri): MultipartBody.Part {
-        Log.d("fileUri", uri.toString())
-        val inputStream = requireContext().contentResolver.openInputStream(uri)
-        val bytes = inputStream?.readBytes()
-            ?: throw IllegalArgumentException("Could not create RequestBody: InputStream was null")
-
-        // 파일의 원래 이름 가져오기
-        val fileName = getFileName(uri)
-
-        // 파일의 MIME 타입 가져오기
-        val mimeType = requireContext().contentResolver.getType(uri)
-
-        val requestFile: RequestBody = bytes.toRequestBody(mimeType?.toMediaTypeOrNull())
-        val body = MultipartBody.Part.createFormData("file", fileName, requestFile)
-        return body
-    }*/
     private fun createFile(uri: Uri): File {
-        Log.d("fileUri", uri.toString())
-
         //파일의 원래 이름 가져오기
         val fileName = getFileName(uri)
 
@@ -146,7 +129,7 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("editFile: " ,data?.data.toString())
+        Log.d("editFile: ", data?.data.toString())
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 PICK_IMAGE_MULTIPLE -> {
@@ -157,10 +140,8 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
                             val selectedImageFile = createImageFile(imageUri)
                             if (viewModelType == 1) {
                                 addViewModel.addImageFile(selectedImageFile)
-                                Log.d("addFile: " ,"이미지 여러장")
                             } else {
                                 editViewModel.addImageFile(selectedImageFile)
-                                Log.d("editFile: " ,"이미지 여러장")
                             }
                         }
                     } else {
@@ -169,10 +150,8 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
                             val selectedImageFile = createImageFile(imageUri)
                             if (viewModelType == 1) {
                                 addViewModel.addImageFile(selectedImageFile)
-                                Log.d("addFile: " ,"이미지 한장")
                             } else {
                                 editViewModel.addImageFile(selectedImageFile)
-                                Log.d("editFile: " ,"이미지 한장")
                             }
                         }
                     }
@@ -180,13 +159,26 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
                 }
 
                 PICK_FILE -> {
-                    val fileUri = data?.data
-                    if (fileUri != null) {
-                        val selectedFile = createFile(fileUri)
-                        if (viewModelType == 1) {
-                            addViewModel.addFile(selectedFile)
-                        } else {
-                            editViewModel.addFile(selectedFile)
+                    if (data?.clipData != null) {
+                        val count = data.clipData!!.itemCount
+                        for (i in 0 until count) {
+                            val fileUri = data.clipData!!.getItemAt(i).uri
+                            val selectedFile = createFile(fileUri)
+                            if (viewModelType == 1) {
+                                addViewModel.addFile(selectedFile)
+                            } else {
+                                editViewModel.addFile(selectedFile)
+                            }
+                        }
+                    } else {
+                        val fileUri = data?.data
+                        if (fileUri != null) {
+                            val selectedFile = createFile(fileUri)
+                            if (viewModelType == 1) {
+                                addViewModel.addFile(selectedFile)
+                            } else {
+                                editViewModel.addFile(selectedFile)
+                            }
                         }
                     }
                     dismiss()

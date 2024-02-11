@@ -7,6 +7,7 @@ import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -59,7 +60,8 @@ class CareerEditActivityFragment : Fragment() {
             )
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
-        _binding!!.etCareerEditActivityFile.setOnClickListener {
+        _binding!!.tvCareerActivityUpdateFile.setOnClickListener {
+            Toast.makeText(mContext, "기존 파일은 모두 삭제됩니다.", Toast.LENGTH_SHORT).show()
             val bottomSheet = UploadBottomFragment(mContext, 2)
             bottomSheet.setStyle(
                 DialogFragment.STYLE_NORMAL,
@@ -68,12 +70,22 @@ class CareerEditActivityFragment : Fragment() {
             bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
         }
         _binding!!.tvCareerActivityDelete.setOnClickListener {
-            viewModel.deleteActivity()
-            navigate(R.id.action_fragment_edit_activity_to_fragment_career)
+            val deleteResult = viewModel.deleteActivity()
+            deleteResult.observe(viewLifecycleOwner, Observer { isDeleted ->
+                if (isDeleted) {
+                    //삭제 작업이 완료되면 목록 업데이트
+                    navigate(R.id.action_fragment_edit_activity_to_fragment_career_activity)
+                }
+            })
         }
         _binding!!.btnCareerEdit.setOnClickListener {
-            viewModel.updateActivity()
-            navigate(R.id.action_fragment_edit_activity_to_fragment_career)
+            val updateResult = viewModel.updateActivity()
+            updateResult.observe(viewLifecycleOwner, Observer { isUpdated ->
+                if (isUpdated) {
+                    //수정 작업이 완료되면 목록 업데이트
+                    navigate(R.id.action_fragment_edit_activity_to_fragment_career_activity)
+                }
+            })
         }
         return binding.root
     }
