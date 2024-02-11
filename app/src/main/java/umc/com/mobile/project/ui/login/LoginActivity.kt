@@ -27,19 +27,17 @@ class LoginActivity : AppCompatActivity() {
 
 		binding.btnLogin.setOnClickListener {
 			viewModel.login()
-
-			val intent = Intent(this@LoginActivity, MainActivity::class.java)
-			startActivity(intent)
 		}
 
-		/*viewModel.loginStatus.observe(this, Observer {
-			if (it == true) {
+		viewModel.loginStatus.observe(this, Observer { loginStatus ->
+			if (!loginStatus) {
 				val intent = Intent(this@LoginActivity, MainActivity::class.java)
 				startActivity(intent)
-
-				finish()
+				finish() // 로그인 성공시 로그인 액티비티 종료
+			} else {
+				// 로그인 실패시 처리할 로직 추가 가능
 			}
-		})*/
+		})
 	}
 
 }

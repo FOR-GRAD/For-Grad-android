@@ -18,32 +18,14 @@ data class GradesTotalDto(
 	val percentile: String
 )
 
-data class MyGradesInfoListDto(
-	@SerializedName("2023 학년도 1 학기")
-	val semester2023: SemesterGradesDto,
-
-	@SerializedName("2021 학년도 2 학기")
-	val semester2021: SemesterGradesDto,
-
-	@SerializedName("2018 학년도 1 학기")
-	val semester2018: SemesterGradesDto,
-
-	@SerializedName("2022 학년도 2 학기")
-	val semester2022: SemesterGradesDto,
-
-	@SerializedName("2022 학년도 1 학기")
-	val semester2022_1: SemesterGradesDto,
-
-	@SerializedName("2021 학년도 1 학기")
-	val semester2021_1: SemesterGradesDto,
-
-	@SerializedName("2018 학년도 2 학기")
-	val semester2018_2: SemesterGradesDto
-)
-
 data class SemesterGradesDto(
 	val gradesDtoList: List<GradesDto>,
 	val gradesTotalDto: GradesTotalDto
+)
+
+data class MyGradesInfoListDto(
+	@SerializedName("myGradesInfoListDto")
+	val semesters: Map<String, SemesterGradesDto>
 )
 
 data class GradesResponse(

@@ -1,49 +1,46 @@
-package umc.com.mobile.project.data.model.gradInfo
-
 import com.google.gson.annotations.SerializedName
 
-data class GeneralCompletionDto(
-	val generalMap: GeneralMap
+data class CompletionResponse(
+	@SerializedName("isSuccess")
+	val isSuccess: Boolean,
+	@SerializedName("code")
+	val code: String,
+	@SerializedName("message")
+	val message: String,
+	@SerializedName("result")
+	val result: Result
 )
 
-data class GeneralMap(
-	@SerializedName("필수(기초)교양")
-	val requiredBasicCourses: Map<String, String>,
+data class Result(
+	@SerializedName("titleList")
+	val titleList: TitleList,
+	@SerializedName("completionDtoMap")
+	val completionDtoMap: List<Map<String, List<String>>>,
+	@SerializedName("majorRequirements")
+	val majorRequirements: MajorRequirements
+)
 
-	@SerializedName("토대교양")
-	val foundationElectiveCourses: Map<String, String>,
+data class TitleList(
+	@SerializedName("titleList")
+	val titles: List<String>
+)
 
+data class CompletionDto(
+	@SerializedName("필수교양(기초)")
+	val requiredBasic: List<String>,
+	@SerializedName("필수교양(소양)")
+	val requiredCultural: List<String>,
+	@SerializedName("선택필수교양")
+	val optionalRequired: List<String>,
 	@SerializedName("소 계")
-	val subtotal: Map<String, String>
+	val optionalRequiredSubtotal: List<String>
 )
 
-data class MajorCompletionDto(
-	val majorMap: MajorMap
-)
-
-data class MajorMap(
-	@SerializedName("총합계")
-	val total: List<String>,
-
+data class MajorRequirements(
 	@SerializedName("제1트랙")
 	val track1: List<String>,
-
 	@SerializedName("제2트랙")
 	val track2: List<String>,
-
 	@SerializedName("부전공 부전공 - micro college")
-	val minorAndMicroCollege: List<String>
+	val minorMicroCollege: List<String>
 )
-
-data class Results(
-	val generalCompletionDto: GeneralCompletionDto,
-	val majorCompletionDto: MajorCompletionDto
-)
-
-data class CompletionResponse(
-	val isSuccess: Boolean,
-	val code: String,
-	val message: String,
-	val result: Results
-)
-

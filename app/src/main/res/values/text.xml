@@ -71,8 +71,16 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="MediumFont.15" parent="MediumFont">
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="MediumFont.14" parent="MediumFont">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MediumFont.13" parent="MediumFont">
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="MediumFont.12" parent="MediumFont">
