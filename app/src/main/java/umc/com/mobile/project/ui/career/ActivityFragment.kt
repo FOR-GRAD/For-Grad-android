@@ -23,7 +23,7 @@ class ActivityFragment : Fragment() {
     private val viewModel: ActivityViewModel by viewModels()
     private val sharedViewModel: CareerEditActivityViewModel by activityViewModels()
     val adapter = ActivityRVAdapter(emptyList())
-//머지 테스트중
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
