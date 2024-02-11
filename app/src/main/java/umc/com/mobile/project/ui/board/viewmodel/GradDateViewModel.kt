@@ -48,8 +48,6 @@ class GradDateViewModel : ViewModel() {
 
 	fun init(value: GradDateResponse) {
 		_dday.postValue(value.result.dday)
-		_dday.postValue(0)
-		_selectedDate.postValue(" 선택하기!")
 		_cheeringMessage.postValue(value.result.message)
 	}
 

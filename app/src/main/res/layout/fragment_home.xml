@@ -184,7 +184,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="27dp"
-                    android:hint="응원의 한 마디!"
+                    android:hint="응원의 한 마디를 적어보세요!"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     app:layout_constraintStart_toStartOf="@+id/cv_home_profile"
