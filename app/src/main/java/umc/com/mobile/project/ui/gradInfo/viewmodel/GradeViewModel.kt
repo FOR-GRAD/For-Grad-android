@@ -76,6 +76,10 @@ class GradeViewModel : ViewModel() {
 	val grades: LiveData<Map<String, GradesTotalDto>>
 		get() = _grades
 
+	private val _selectedSemester: MutableLiveData<String> = MutableLiveData()
+	val selectedSemester: LiveData<String>
+		get() = _selectedSemester
+
 	private fun processRequiredBasicCourses(gradesResponse: GradesResponse) {
 		val semestersMap = mutableMapOf<String, MutableList<GradesDto>>()
 		val gradesTotalMap = mutableMapOf<String, GradesTotalDto>()
@@ -150,7 +154,6 @@ class GradeViewModel : ViewModel() {
 	}
 
 	fun onSemesterItemClick(semester: String) {
-		// 클릭된 학기 정보를 사용하여 필요한 작업 수행
-		// 예: 해당 학기 정보를 띄우는 메서드 호출 등
+		_selectedSemester.postValue(semester)
 	}
 }
