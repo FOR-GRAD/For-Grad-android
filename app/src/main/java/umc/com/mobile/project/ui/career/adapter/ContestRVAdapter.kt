@@ -45,7 +45,7 @@ class ContestRVAdapter(private var contestList: List<ActivityWithAccumulatedHour
 
         holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(startDate)
         holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
-        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(arwardType)
+        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(mapType(arwardType))
         holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(index)
 
         holder.itemView.setOnClickListener {
@@ -55,4 +55,13 @@ class ContestRVAdapter(private var contestList: List<ActivityWithAccumulatedHour
 
     class ContestViewHolder(val itemBinding: ItemCertificateBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
+
+    private fun mapType(updatedType: String): String {
+        return when (updatedType) {
+            "GRAND_PRIZE" -> "대상"
+            "EXCELLENT_PRIZE" -> "최우수상"
+            "GOOD_PRIZE" -> "우수상"
+            else -> "장려상"
+        }
+    }
 }
