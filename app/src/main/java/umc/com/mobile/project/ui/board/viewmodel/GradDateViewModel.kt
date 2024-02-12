@@ -12,6 +12,9 @@ import umc.com.mobile.project.data.model.home.UpdateGradDateRequest
 import umc.com.mobile.project.data.model.home.UpdateGradDateResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.HomeApi
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 class GradDateViewModel : ViewModel() {
 	val _selectedDate: MutableLiveData<String> = MutableLiveData()
@@ -33,7 +36,7 @@ class GradDateViewModel : ViewModel() {
 	private val _error: MutableLiveData<String> = MutableLiveData()
 	val error: LiveData<String>
 		get() = _error
-	private val _dday: MutableLiveData<Int> = MutableLiveData()
+	val _dday: MutableLiveData<Int> = MutableLiveData()
 	val dday: LiveData<Int>
 		get() = _dday
 	private val _cheeringMessage: MutableLiveData<String> = MutableLiveData()
@@ -57,6 +60,18 @@ class GradDateViewModel : ViewModel() {
 		val selectedDateString = "졸업 예정일 ${year}년 $month ${day}일"
 		_selectedDate.value = selectedDateString
 		_selectedDateRequest.value = "${year}-${month}-${day}"
+		calculateDDay(year, month, day)
+	}
+
+	fun calculateDDay(year: String, month: String, day: String) {
+		val monthNumber = month.replace("월", "").trim().padStart(2, '0')
+		val dayNumber = day.padStart(2, '0')
+
+		val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+		val selectedDate = LocalDate.parse("$year-$monthNumber-$dayNumber", formatter)
+		val currentDate = LocalDate.now()
+
+		_dday.value = ChronoUnit.DAYS.between(currentDate, selectedDate).toInt()
 	}
 
 	fun updateCheeringMessage(message: String) {
