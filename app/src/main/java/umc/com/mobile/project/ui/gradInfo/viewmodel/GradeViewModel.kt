@@ -2,6 +2,7 @@ package umc.com.mobile.project.ui.gradInfo.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import retrofit2.Call
@@ -80,6 +81,21 @@ class GradeViewModel : ViewModel() {
 	val selectedSemester: LiveData<String>
 		get() = _selectedSemester
 
+	private val _selectedSemesterGrade: MutableLiveData<String> = MutableLiveData()
+	private val selectedSemesterGrade: LiveData<String>
+		get() = _selectedSemesterGrade
+
+	val selectedSemesterGradeAndGrades: MediatorLiveData<Pair<String?, Map<String, GradesTotalDto>?>> = MediatorLiveData()
+
+	init {
+		selectedSemesterGradeAndGrades.addSource(selectedSemesterGrade) { selectedGrade ->
+			selectedSemesterGradeAndGrades.value = Pair(selectedGrade, _grades.value)
+		}
+		selectedSemesterGradeAndGrades.addSource(_grades) { grades ->
+			selectedSemesterGradeAndGrades.value = Pair(_selectedSemesterGrade.value, grades)
+		}
+	}
+
 	private fun processRequiredBasicCourses(gradesResponse: GradesResponse) {
 		val semestersMap = mutableMapOf<String, MutableList<GradesDto>>()
 		val gradesTotalMap = mutableMapOf<String, GradesTotalDto>()
@@ -89,7 +105,6 @@ class GradeViewModel : ViewModel() {
 		semestersDto.let {
 			for ((semester, semesterClasses) in it) {
 				val gradesDtoList = semesterClasses.gradesDtoList
-//				val semesterNum = semesterClasses.gradesDtoList.size - count
 				val newKey = "$count 학기"
 				val semesterList = semestersMap.getOrPut(newKey) { mutableListOf() }
 
@@ -104,7 +119,6 @@ class GradeViewModel : ViewModel() {
 		semestersDto.let {
 			for ((semester, semesterClasses) in it) {
 				val gradeTotalDto = semesterClasses.gradesTotalDto
-//				val semesterNum = count
 				val newGradeKey = "$count 학기 성적"
 
 				gradesTotalMap[newGradeKey] = gradeTotalDto
@@ -155,5 +169,9 @@ class GradeViewModel : ViewModel() {
 
 	fun onSemesterItemClick(semester: String) {
 		_selectedSemester.postValue(semester)
+	}
+
+	fun onSemesterGradeItemClick(grade: String) {
+		_selectedSemesterGrade.postValue(grade)
 	}
 }

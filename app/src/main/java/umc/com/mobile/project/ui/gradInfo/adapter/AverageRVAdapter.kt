@@ -15,12 +15,13 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) : RecyclerView.Ada
 	inner class MyViewHolder(private val binding: ItemAverageGradeBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 		init {
-			// ViewHolder가 생성될 때 클릭 리스너 설정
 			binding.root.setOnClickListener {
 				val position = adapterPosition
 				if (position != RecyclerView.NO_POSITION) {
 					val semester = "${position + 1} 학기"
-					viewModel.onSemesterItemClick(semester) // 클릭된 항목의 학기 정보를 ViewModel에 전달
+					val semesterGrade = "${position + 1} 학기 성적"
+					viewModel.onSemesterItemClick(semester)
+					viewModel.onSemesterGradeItemClick(semesterGrade)
 				}
 			}
 		}
@@ -59,6 +60,8 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) : RecyclerView.Ada
 		dataList.clear()
 		dataList.addAll(data)
 		notifyDataSetChanged()
+
+
 	}
 
 }

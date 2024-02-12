@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import okhttp3.internal.notify
 import umc.com.mobile.project.data.model.gradInfo.GradesResponse
 import umc.com.mobile.project.databinding.FragmentGradeBinding
 import umc.com.mobile.project.ui.gradInfo.adapter.AverageRVAdapter
@@ -32,23 +33,32 @@ class GradeFragment : Fragment() {
 		initRecyclerView() // 성적 사항 recycleView 연결
 
 		viewModel.selectedSemester.observe(viewLifecycleOwner, Observer { selectedSemester ->
-			(binding.recyclerView.adapter as? GradeRVAdapter)?.updateSelectedSemester(selectedSemester)
-
+			(binding.recyclerView.adapter as? GradeRVAdapter)?.updateSelectedSemester(
+				selectedSemester
+			)
 			binding.tvSemester.text = selectedSemester
+		})
 
-			val selectedGradeInfo = viewModel.grades.value?.get("$selectedSemester 학기 성적")
+		viewModel.selectedSemesterGradeAndGrades.observe(viewLifecycleOwner) { pair ->
+			val selectedGrade = pair.first
+			val gradesMap = pair.second
+
+			Log.d("selectedGrade", "$selectedGrade")
+			Log.d("gradesMap", "$gradesMap")
+
+			val selectedGradeInfo = gradesMap?.get("$selectedGrade")
+			Log.d("selectedGradeInfo", "$selectedGradeInfo")
 
 			binding.tvAcquiredCredit.text = selectedGradeInfo?.acquiredCredits
 			binding.tvAppliedCredit.text = selectedGradeInfo?.appliedCredits
 			binding.tvAverageGrade.text = selectedGradeInfo?.averageGrade
 			binding.tvAverageTotal.text = selectedGradeInfo?.totalGrade
 			binding.tvPercent.text = selectedGradeInfo?.percentile
-		})
+		}
 
 		viewModel.grades.observe(viewLifecycleOwner, Observer { gradesMap ->
 			(binding.recyclerView2.adapter as? AverageRVAdapter)?.setData(gradesMap.values.toList())
 		})
-
 
 		return binding.root
 	}
@@ -67,5 +77,18 @@ class GradeFragment : Fragment() {
 
 		binding.recyclerView2.adapter = adapter2
 		binding.recyclerView2.layoutManager = GridLayoutManager(context, 2)
+	}
+
+	private fun observeGrades() {
+		viewModel.grades.observe(viewLifecycleOwner, Observer { gradesMap ->
+			(binding.recyclerView2.adapter as? AverageRVAdapter)?.setData(gradesMap.values.toList())
+
+			val selectedGradeInfo = gradesMap["1 학기 성적"]
+			binding.tvAcquiredCredit.text = selectedGradeInfo?.acquiredCredits
+			binding.tvAppliedCredit.text = selectedGradeInfo?.appliedCredits
+			binding.tvAverageGrade.text = selectedGradeInfo?.averageGrade
+			binding.tvAverageTotal.text = selectedGradeInfo?.totalGrade
+			binding.tvPercent.text = selectedGradeInfo?.percentile
+		})
 	}
 }
