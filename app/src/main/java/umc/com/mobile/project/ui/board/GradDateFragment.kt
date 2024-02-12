@@ -82,6 +82,10 @@ class GradDateFragment : Fragment() {
 			binding.tvGradDateDate.text = date
 		}
 
+		viewModel._dday.observe(viewLifecycleOwner) { dday ->
+			binding.tvGradDateDday.text = "D-$dday"
+		}
+
 		viewModel.dateResponse.observe(viewLifecycleOwner, Observer { response ->
 			if (response != null && response.result != null) {
 				val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
