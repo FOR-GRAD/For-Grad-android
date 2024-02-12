@@ -13,9 +13,9 @@
         android:background="@drawable/bg_stroke_gray"
         android:gravity="center"
         android:paddingTop="14dp"
-        android:textColor="@color/black"
         android:paddingBottom="14dp"
         android:text="분류"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,14 +23,14 @@
         android:id="@+id/tv_class_title"
         style="@style/MediumFont.13"
         android:layout_width="0dp"
-        android:textColor="@color/black"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="4"
         android:background="@drawable/bg_stroke_gray"
         android:gravity="center"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
         android:text="교과명"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,14 +38,14 @@
         android:id="@+id/tv_credit_title"
         style="@style/MediumFont.13"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/bg_stroke_gray"
         android:gravity="center"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
         android:text="학점"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,29 +53,14 @@
         android:id="@+id/tv_grade_title"
         style="@style/MediumFont.13"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/bg_stroke_gray"
         android:gravity="center"
         android:paddingTop="14dp"
-        android:textColor="@color/black"
         android:paddingBottom="14dp"
         android:text="성적"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_current_track_title"
-        style="@style/MediumFont.13"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:background="@drawable/bg_stroke_gray"
         android:textColor="@color/black"
-        android:gravity="center"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:text="트랙"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

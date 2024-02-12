@@ -2,6 +2,7 @@ package umc.com.mobile.project.ui.gradInfo.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import retrofit2.Call
@@ -9,6 +10,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.gradInfo.GradesDto
 import umc.com.mobile.project.data.model.gradInfo.GradesResponse
+import umc.com.mobile.project.data.model.gradInfo.GradesTotalDto
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.GradInfoApi
 
@@ -71,28 +73,65 @@ class GradeViewModel : ViewModel() {
 	val semesters: LiveData<Map<String, List<GradesDto>>>?
 		get() = _semesters
 
+	private val _grades: MutableLiveData<Map<String, GradesTotalDto>> = MutableLiveData()
+	val grades: LiveData<Map<String, GradesTotalDto>>
+		get() = _grades
 
-		private fun processRequiredBasicCourses(gradesResponse: GradesResponse) {
-			val semestersMap = mutableMapOf<String, List<GradesDto>>()
-			val semesterList = mutableListOf<String>()
-			val semestersDto = gradesResponse.result.semesters
-			var count = 1
+	private val _selectedSemester: MutableLiveData<String> = MutableLiveData()
+	val selectedSemester: LiveData<String>
+		get() = _selectedSemester
 
-			semestersDto.let {
-				for ((semester, semesterClasses) in it) {
-					for (i in 0 until semesterClasses.gradesDtoList.size) {
-						val newKey = "$count 학기"
-						semestersMap[newKey] = listOf(semesterClasses.gradesDtoList[i])
+	private val _selectedSemesterGrade: MutableLiveData<String> = MutableLiveData()
+	private val selectedSemesterGrade: LiveData<String>
+		get() = _selectedSemesterGrade
 
-						semesterList.add(i, semestersMap[newKey]!!.toString())
-						count++
-					}
-				}
-				Log.d("Grade: semestersMap ", "$semestersMap")
-				count = 0
-			}
-			_semesters?.postValue(semestersMap)
+	val selectedSemesterGradeAndGrades: MediatorLiveData<Pair<String?, Map<String, GradesTotalDto>?>> = MediatorLiveData()
+
+	init {
+		selectedSemesterGradeAndGrades.addSource(selectedSemesterGrade) { selectedGrade ->
+			selectedSemesterGradeAndGrades.value = Pair(selectedGrade, _grades.value)
 		}
+		selectedSemesterGradeAndGrades.addSource(_grades) { grades ->
+			selectedSemesterGradeAndGrades.value = Pair(_selectedSemesterGrade.value, grades)
+		}
+	}
+
+	private fun processRequiredBasicCourses(gradesResponse: GradesResponse) {
+		val semestersMap = mutableMapOf<String, MutableList<GradesDto>>()
+		val gradesTotalMap = mutableMapOf<String, GradesTotalDto>()
+		val semestersDto = gradesResponse.result.semesters
+		var count = 1
+
+		semestersDto.let {
+			for ((semester, semesterClasses) in it) {
+				val gradesDtoList = semesterClasses.gradesDtoList
+				val newKey = "$count 학기"
+				val semesterList = semestersMap.getOrPut(newKey) { mutableListOf() }
+
+				semesterList.addAll(gradesDtoList)
+				count++
+			}
+			Log.d("Grade: semestersMap ", "$semestersMap")
+
+			count = 1
+		}
+
+		semestersDto.let {
+			for ((semester, semesterClasses) in it) {
+				val gradeTotalDto = semesterClasses.gradesTotalDto
+				val newGradeKey = "$count 학기 성적"
+
+				gradesTotalMap[newGradeKey] = gradeTotalDto
+
+				count++
+			}
+			Log.d("Grade: gradeTotalList ", "$gradesTotalMap")
+
+			count = 0
+		}
+		_semesters?.postValue(semestersMap)
+		_grades.postValue(gradesTotalMap)
+	}
 
 	fun getGradeInfo() {
 		gradInfoApiService.getGrades().enqueue(object : Callback<GradesResponse> {
@@ -126,5 +165,13 @@ class GradeViewModel : ViewModel() {
 				Log.d("gradInfo", "grade: ${t.message}")
 			}
 		})
+	}
+
+	fun onSemesterItemClick(semester: String) {
+		_selectedSemester.postValue(semester)
+	}
+
+	fun onSemesterGradeItemClick(grade: String) {
+		_selectedSemesterGrade.postValue(grade)
 	}
 }

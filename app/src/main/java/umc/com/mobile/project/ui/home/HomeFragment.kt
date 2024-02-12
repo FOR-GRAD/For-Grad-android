@@ -109,7 +109,6 @@ class HomeFragment : Fragment() {
 			val decodedImage = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
 			binding.ivHomeProfile.setImageBitmap(decodedImage)
 
-
 			/**
 			 * 나만의 계획
 			 */
@@ -120,8 +119,8 @@ class HomeFragment : Fragment() {
 				(it?.result?.futureTimeTableDto?.get(planKey)?.semester?.sumCredits ?: "총 학점 0").toString()
 
 			val dDay = it?.result?.dday ?: 0
-//			binding.progressbarToGrad.progress = 1460 - dDay
-			binding.progressbarToGrad.progress = 1095 // 임의값
+			binding.progressbarToGrad.progress = 1460 - dDay
+//			binding.progressbarToGrad.progress = 1095 // 임의값
 		})
 	}
 }
