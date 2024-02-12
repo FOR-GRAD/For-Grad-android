@@ -30,7 +30,7 @@ class PeriodBottomFragment(
         _binding = FragmentPeriodBottomBinding.inflate(inflater, container, false)
 
         val years = ArrayList<String>()
-        for (year in 2015..2024) {
+        for (year in 2026 downTo 2015) {
             years.add("$year")
         }
         val year = years.toTypedArray()

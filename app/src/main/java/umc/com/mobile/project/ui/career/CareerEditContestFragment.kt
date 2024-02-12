@@ -102,12 +102,21 @@ class CareerEditContestFragment : Fragment() {
         }
         //공모전 세부 내용 api 연결
         viewModel.getContestDetail()
+
+        fun mapType(updatedType: String?): String {
+            return when (updatedType) {
+                "GRAND_PRIZE" -> "대상"
+                "EXCELLENT_PRIZE" -> "최우수상"
+                "GOOD_PRIZE" -> "우수상"
+                else -> "장려상"
+            }
+        }
         //불러온 값 hint에 넣기
         viewModel.contestDetailInfo.observe(viewLifecycleOwner) { _contestInfo ->
             _contestInfo?.let {
                 _binding?.etCareerEditContest?.hint = it.result.title ?: ""
                 _binding?.etCareerEditContestAward?.hint =
-                    it.result.award?.toString() ?: ""
+                    mapType(it.result.award?.toString()) ?: ""
                 _binding?.etCareerEditContestStartYear?.hint = it.result.startDate ?: ""
                 _binding?.etCareerEditContestEndYear?.hint = it.result.endDate ?: ""
             }

@@ -95,12 +95,21 @@ class CareerEditCertificateFragment : Fragment() {
         }
         //자격증 세부 내용 api 연결
         viewModel.getCertificateDetail()
+
+        fun mapType(updatedType: String?): String {
+            return when (updatedType) {
+                "PRACTICAL_EXAM" -> "실기"
+                "WRITTEN_EXAM" -> "필기"
+                else -> "면접"
+            }
+        }
+
         //불러온 값 hint에 넣어줌
         viewModel.certificateDetailInfo.observe(viewLifecycleOwner) { _certificateInfo ->
             _certificateInfo?.let {
                 _binding?.etCareerEditCertificate?.hint = it.result.title ?: ""
                 _binding?.etCareerEditCertificateType?.hint =
-                    it.result.certificationType?.toString() ?: ""
+                    mapType(it.result.certificationType?.toString()) ?: ""
                 _binding?.etCareerEditCertificateStartYear?.hint = it.result.startDate ?: ""
                 _binding?.etCareerEditCertificateEndYear?.hint = it.result.endDate ?: ""
             }
