@@ -2,6 +2,9 @@ package umc.com.mobile.project.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
@@ -38,6 +41,21 @@ class LoginActivity : AppCompatActivity() {
 				// 로그인 실패시 처리할 로직 추가 가능
 			}
 		})
+
+		binding.etPassword.setOnEditorActionListener { _, actionId, event ->
+			if (actionId == EditorInfo.IME_ACTION_DONE ||
+				(event != null && event.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
+			) {
+				// 키패드 내리기
+				val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+				imm.hideSoftInputFromWindow(binding.etPassword.windowToken, 0)
+
+				// 로그인 버튼 클릭
+				binding.btnLogin.performClick()
+				return@setOnEditorActionListener true
+			}
+			false
+		}
 	}
 
 }
