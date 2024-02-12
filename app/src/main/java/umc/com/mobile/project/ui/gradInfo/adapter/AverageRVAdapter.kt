@@ -1,17 +1,16 @@
 package umc.com.mobile.project.ui.gradInfo.adapter
 
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import umc.com.mobile.project.data.model.gradInfo.GradesResponse
 import umc.com.mobile.project.data.model.gradInfo.GradesTotalDto
 import umc.com.mobile.project.databinding.ItemAverageGradeBinding
-import umc.com.mobile.project.databinding.ItemClassAndGradeBinding
 import umc.com.mobile.project.ui.gradInfo.viewmodel.GradeViewModel
 
-class AverageRVAdapter(private val viewModel: GradeViewModel) : RecyclerView.Adapter<AverageRVAdapter.MyViewHolder>() {
+class AverageRVAdapter(private val viewModel: GradeViewModel) :
+	RecyclerView.Adapter<AverageRVAdapter.MyViewHolder>() {
 	private var dataList = mutableListOf<GradesTotalDto>()
+
 	inner class MyViewHolder(private val binding: ItemAverageGradeBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 		init {
@@ -59,9 +58,18 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) : RecyclerView.Ada
 	fun setData(data: List<GradesTotalDto>) {
 		dataList.clear()
 		dataList.addAll(data)
+		repeat(8 - dataList.size) {
+			dataList.add(
+				GradesTotalDto(
+					"0",
+					"0",
+					"0.0",
+					"0.0",
+					"0"
+				)
+			)
+		}
 		notifyDataSetChanged()
-
-
 	}
 
 }
