@@ -331,6 +331,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="9dp"
+                android:background="@color/selector_selected_gray_else_white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_grade_average_title"
                 tools:listitem="@layout/item_average_grade" />

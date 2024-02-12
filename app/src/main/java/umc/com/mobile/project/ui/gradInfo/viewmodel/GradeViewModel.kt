@@ -20,6 +20,50 @@ class GradeViewModel : ViewModel() {
 	val error: LiveData<String>
 		get() = _error
 
+	private val _userSemester: MutableLiveData<String> = MutableLiveData()
+	val userSemester: LiveData<String>
+		get() = _userSemester
+
+	private val _userClassification: MutableLiveData<String> = MutableLiveData()
+	val userClassification: LiveData<String>
+		get() = _userClassification
+
+	private val _userSubjectName: MutableLiveData<String> = MutableLiveData()
+	val userSubjectName: LiveData<String>
+		get() = _userSubjectName
+
+	private val _userCredits: MutableLiveData<String> = MutableLiveData()
+	val userCredits: LiveData<String>
+		get() = _userCredits
+
+	private val _userGrade: MutableLiveData<String> = MutableLiveData()
+	val userGrade: LiveData<String>
+		get() = _userGrade
+
+	private val _userTrack: MutableLiveData<String> = MutableLiveData()
+	val userTrack: LiveData<String>
+		get() = _userTrack
+
+	private val _userAppliedCredit: MutableLiveData<String> = MutableLiveData()
+	val userAppliedCredit: LiveData<String>
+		get() = _userAppliedCredit
+
+	private val _userAcquiredCredit: MutableLiveData<String> = MutableLiveData()
+	val userAcquiredCredit: LiveData<String>
+		get() = _userAcquiredCredit
+
+	private val _userAverageTotal: MutableLiveData<String> = MutableLiveData()
+	val userAverageTotal: LiveData<String>
+		get() = _userAverageTotal
+
+	private val _userAverageGrade: MutableLiveData<String> = MutableLiveData()
+	val userAverageGrade: LiveData<String>
+		get() = _userAverageGrade
+
+	private val _userPercentile: MutableLiveData<String> = MutableLiveData()
+	val userPercentile: LiveData<String>
+		get() = _userPercentile
+
 	private val _gradesInfo: MutableLiveData<GradesResponse?> = MutableLiveData()
 	val gradesInfo: MutableLiveData<GradesResponse?>
 		get() = _gradesInfo
