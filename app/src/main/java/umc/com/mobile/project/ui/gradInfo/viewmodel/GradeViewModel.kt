@@ -9,6 +9,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.gradInfo.GradesDto
 import umc.com.mobile.project.data.model.gradInfo.GradesResponse
+import umc.com.mobile.project.data.model.gradInfo.GradesTotalDto
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.GradInfoApi
 
@@ -71,26 +72,47 @@ class GradeViewModel : ViewModel() {
 	val semesters: LiveData<Map<String, List<GradesDto>>>?
 		get() = _semesters
 
+	private val _grades: MutableLiveData<Map<String, GradesTotalDto>> = MutableLiveData()
+	val grades: LiveData<Map<String, GradesTotalDto>>
+		get() = _grades
 
 	private fun processRequiredBasicCourses(gradesResponse: GradesResponse) {
 		val semestersMap = mutableMapOf<String, MutableList<GradesDto>>()
+		val gradesTotalMap = mutableMapOf<String, GradesTotalDto>()
 		val semestersDto = gradesResponse.result.semesters
-		var count = 0
+		var count = 1
 
 		semestersDto.let {
 			for ((semester, semesterClasses) in it) {
 				val gradesDtoList = semesterClasses.gradesDtoList
-				val semesterNum = semesterClasses.gradesDtoList.size - count
-				val newKey = "$semesterNum 학기"
+//				val semesterNum = semesterClasses.gradesDtoList.size - count
+				val newKey = "$count 학기"
 				val semesterList = semestersMap.getOrPut(newKey) { mutableListOf() }
-				semesterList.addAll(gradesDtoList)
 
+				semesterList.addAll(gradesDtoList)
 				count++
 			}
 			Log.d("Grade: semestersMap ", "$semestersMap")
+
+			count = 1
+		}
+
+		semestersDto.let {
+			for ((semester, semesterClasses) in it) {
+				val gradeTotalDto = semesterClasses.gradesTotalDto
+//				val semesterNum = count
+				val newGradeKey = "$count 학기 성적"
+
+				gradesTotalMap[newGradeKey] = gradeTotalDto
+
+				count++
+			}
+			Log.d("Grade: gradeTotalList ", "$gradesTotalMap")
+
 			count = 0
 		}
 		_semesters?.postValue(semestersMap)
+		_grades.postValue(gradesTotalMap)
 	}
 
 	fun getGradeInfo() {
@@ -125,5 +147,10 @@ class GradeViewModel : ViewModel() {
 				Log.d("gradInfo", "grade: ${t.message}")
 			}
 		})
+	}
+
+	fun onSemesterItemClick(semester: String) {
+		// 클릭된 학기 정보를 사용하여 필요한 작업 수행
+		// 예: 해당 학기 정보를 띄우는 메서드 호출 등
 	}
 }
