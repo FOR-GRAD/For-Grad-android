@@ -51,12 +51,10 @@ class SettingFragment : Fragment() {
 
 			fun toast() {
 				Toast.makeText(requireContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
-//				MyApplication.prefs.edit.remove("email") // 여기서 Shared Preference 를 remove 한다!
-//				MyApplication.prefs.edit.remove("password")
-//				MyApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
 				val intent = Intent(requireContext(), LoginActivity::class.java)
 				intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
 				startActivity(intent)
+				requireActivity().finish()
 			}
 			var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
 				when (p1) {
