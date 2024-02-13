@@ -27,14 +27,39 @@ class CompletionStateFragment : Fragment() {
 		viewModel.completionInfo.observe(viewLifecycleOwner, Observer {
 			val completionDtoMap: List<Map<String, List<String>>>? = it?.result?.completionDtoMap
 
-			// general
-//			binding.tvTotalScore.text = it?.result?.completionDtoMap?.generalMap?.subtotal?.get("소 계") ?: "누적 / (총계)"
+			/**
+			 * 필수 교양 (기초)
+			 */
+			completionDtoMap?.firstOrNull { it.containsKey("필수교양(기초)") }?.get("필수교양(기초)")?.let { requiredBasicCourses1 ->
+				binding.tvBasic1.text = requiredBasicCourses1[0]
+				binding.tvBasic1Content.text = requiredBasicCourses1[1]
+				binding.tvBasic2.text = requiredBasicCourses1[2]
+				binding.tvBasic2Content.text = requiredBasicCourses1[3]
+				binding.tvBasic3.text = requiredBasicCourses1[4]
+				binding.tvBasic3Content.text = requiredBasicCourses1[5]
+
+//				binding.tvBasic4.text = requiredBasicCourses1[6]
+//				binding.tvBasic4Content.text = requiredBasicCourses1[7]
+//				binding.tvBasic5.text = requiredBasicCourses1[8]
+//				binding.tvBasic5Content.text = requiredBasicCourses1[9]
+//				binding.tvBasic6.text = requiredBasicCourses1[10]
+//				binding.tvBasic6Content.text = requiredBasicCourses1[11]
+			}
+
+			/**
+			 * 필수 교양 (소양)
+			 */
+			completionDtoMap?.firstOrNull { it.containsKey("필수교양(소양)") }?.get("필수교양(소양)")?.let { requiredBasicCourses2 ->
+				binding.tvSoyang1.text = requiredBasicCourses2[0]
+				binding.tvSoyang1Content.text = requiredBasicCourses2[1]
+				binding.tvSoyang2.text = requiredBasicCourses2[2]
+				binding.tvSoyang2Content.text = requiredBasicCourses2[3]
+				binding.tvTotalScore.text = requiredBasicCourses2[5]
+			}
 
 			/**
 			 * 트랙 1, 트랙 2
  			 */
-//			 = it?.result?.majorCompletionDto?.majorMap?.total?.get(0).toString()
-
 			completionDtoMap?.firstOrNull { it.containsKey("제1트랙") }?.get("제1트랙")?.let { track1Values ->
 				binding.tvTrack11Content.text = track1Values[0]
 				binding.tvTrack12Content.text = track1Values[1]
@@ -47,38 +72,8 @@ class CompletionStateFragment : Fragment() {
 				binding.tvTrack22Content.text = track1Values[1]
 				binding.tvTrack23Content.text = track1Values[2]
 			}
+
 		})
-
-		/*viewModel.foundationElectiveCourses.observe(viewLifecycleOwner, Observer { courses ->
-			courses?.let {
-				if (it.isNotEmpty()) {
-					val coursesList = it.map { entry -> entry.key to entry.value }
-					if (coursesList.size > 1) {
-						binding.tvSoyang1.text = coursesList[0].first
-						binding.tvSoyang1Content.text = coursesList[0].second
-						binding.tvSoyang2.text = coursesList[1].first
-						binding.tvSoyang2Content.text = coursesList[1].second
-					}
-				}
-			}
-		})*/
-
-		viewModel.requiredBasicCourses.observe(viewLifecycleOwner, Observer { courses ->
-			courses?.let {
-				if (it.isNotEmpty()) {
-					val coursesList = it.map { entry -> entry.key to entry.value }
-					if (coursesList.size > 2) {
-						binding.tvBasic1.text = coursesList[0].first
-						binding.tvBasic1Content.text = coursesList[0].second
-						binding.tvBasic2.text = coursesList[1].first
-						binding.tvBasic2Content.text = coursesList[1].second
-						binding.tvBasic3.text = coursesList[2].first
-						binding.tvBasic3Content.text = coursesList[2].second
-					}
-				}
-			}
-		})
-
 
 		return binding.root
 	}
