@@ -111,7 +111,119 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_spinner"/>
+                    app:layout_constraintTop_toBottomOf="@+id/et_career_edit_spinner">
+
+                    <TextView
+                        android:id="@+id/tv_career_add_volunteer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="30dp"
+                        android:text="이름"
+                        android:textAppearance="@style/SemiBoldFont.16"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_career_add_volunteer"
+                        style="@style/MediumFont.14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="23dp"
+                        android:background="@drawable/bg_solid_gray_radius_15"
+                        android:gravity="top"
+                        android:paddingStart="18dp"
+                        android:paddingTop="11dp"
+                        android:paddingBottom="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer" />
+
+                    <TextView
+                        android:id="@+id/tv_career_add_volunteer_startDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="23dp"
+                        android:text="@string/career_startDate"
+                        android:textAppearance="@style/SemiBoldFont.16"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_career_add_volunteer_start_year"
+                        style="@style/MediumFont.14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="23dp"
+                        android:background="@drawable/bg_solid_gray_radius_15"
+                        android:focusable="false"
+                        android:gravity="top"
+                        android:hint="@string/career_date_ex"
+                        android:paddingStart="18dp"
+                        android:paddingTop="11dp"
+                        android:paddingBottom="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer_startDate" />
+
+                    <TextView
+                        android:id="@+id/tv_career_add_volunteer_endDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="23dp"
+                        android:text="@string/career_endDate"
+                        android:textAppearance="@style/SemiBoldFont.16"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer_start_year" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_career_add_volunteer_end_year"
+                        style="@style/MediumFont.14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="23dp"
+                        android:background="@drawable/bg_solid_gray_radius_15"
+                        android:focusable="false"
+                        android:gravity="top"
+                        android:hint="@string/career_date_ex"
+                        android:paddingStart="18dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_career_add_volunteer_endDate" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_career_add"
+                        style="@style/SemiBoldFont.16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="23dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/bg_solid_dark_gray_radius_23_5"
+                        android:backgroundTint="@color/gray"
+                        android:enabled="false"
+                        android:stateListAnimator="@null"
+                        android:text="@string/career_edit_add"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_career_add_volunteer_end_year" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

@@ -45,7 +45,7 @@ class CertificateRVAdapter(private var certificateList: List<ActivityWithAccumul
 
         holder.itemBinding.etCertificateDate.text = editableFactory.newEditable(startDate)
         holder.itemBinding.etCertificateTitle.text = editableFactory.newEditable(title)
-        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(certificationType)
+        holder.itemBinding.etCertificateType.text = editableFactory.newEditable(mapType(certificationType))
         holder.itemBinding.etCertificateRating.text = editableFactory.newEditable(reindex)
         holder.itemView.setOnClickListener {
             mItemClickListener.onItemClick(position)
@@ -54,4 +54,12 @@ class CertificateRVAdapter(private var certificateList: List<ActivityWithAccumul
 
     class CertificateViewHolder(val itemBinding: ItemCertificateBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
+
+    private fun mapType(updatedType: String): String {
+        return when (updatedType) {
+            "PRACTICAL_EXAM" -> "실기"
+            "WRITTEN_EXAM" -> "필기"
+            else -> "면접"
+        }
+    }
 }
