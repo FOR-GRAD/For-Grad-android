@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_fragment_home_to_fragment_grad_info"
             app:destination="@id/fragment_grad_info" />
+        <action
+            android:id="@+id/action_fragment_home_to_planSettingFragment"
+            app:destination="@id/planSettingFragment" />
     </fragment>
 
     <fragment
@@ -230,5 +233,26 @@
         android:name="umc.com.mobile.project.ui.setting.SettingNotificationFragment"
         android:label="@string/title_setting_notification"
         tools:layout="@layout/fragment_setting_notification" />
+    <fragment
+        android:id="@+id/planSettingFragment"
+        android:name="umc.com.mobile.project.ui.plan.PlanSettingFragment"
+        android:label="plan_time_tab_main"
+        tools:layout="@layout/plan_time_tab_main" >
+        <action
+            android:id="@+id/action_planSettingFragment_to_planSemesterFragment"
+            app:destination="@id/planSemesterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planSemesterFragment"
+        android:name="umc.com.mobile.project.ui.plan.PlanSemesterFragment"
+        android:label="PlanSemesterFragment" />
+    <fragment
+        android:id="@+id/planTimeFragment"
+        android:name="umc.com.mobile.project.ui.plan.PlanTimeFragment"
+        android:label="PlanTimeFragment" >
+        <action
+            android:id="@+id/action_planTimeFragment_to_planSemesterFragment"
+            app:destination="@id/planSemesterFragment" />
+    </fragment>
 
 </navigation>

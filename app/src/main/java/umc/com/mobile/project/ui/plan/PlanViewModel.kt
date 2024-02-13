@@ -1,5 +1,6 @@
 package umc.com.mobile.project.ui.plan
 
+
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +9,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.plan.BringlicenseResponse
+import umc.com.mobile.project.data.model.plan.ListTimeResponse
+import umc.com.mobile.project.data.model.plan.SaveInfo
 import umc.com.mobile.project.data.model.plan.SavelicenseRequest
 
 import umc.com.mobile.project.data.model.plan.UPlicenseResponse
@@ -20,23 +23,50 @@ class PlanViewModel : ViewModel() {
     //api
     private val planApiService = ApiClient.createService<PlanApi>()
 
+    private val _hakki : MutableLiveData<String> = MutableLiveData()
+    val hakki :LiveData<String>
+        get()=_hakki
+
+    private val _track : MutableLiveData<String> = MutableLiveData()
+    val track :LiveData<String>
+        get()=_track
+
+
+
+    private val _planTimeStatus: MutableLiveData<Boolean> = MutableLiveData()
+    val planTimeStatus: LiveData<Boolean>
+        get() = _planTimeStatus
+
     private val _bringLicenseInfo= MutableLiveData<BringlicenseResponse?>()
+
+
+    private val _listTimeInfo=MutableLiveData<ListTimeResponse?>()
+
+    val listTimeInfo:LiveData<ListTimeResponse?>
+        get()=_listTimeInfo
 
     val bringLicenseInfo : LiveData<BringlicenseResponse?>
         get()=_bringLicenseInfo
 
-    private val _savelicenseInfo: MutableLiveData<SavelicenseRequest?> = MutableLiveData()
+    private val _savelicenseInfo: MutableList<SaveInfo> = MutableList()
 
     private val _licenseInfo: MutableLiveData<UPlicenseResponse?> = MutableLiveData()
+    val licenseInfo: LiveData<UPlicenseResponse?>
+        get() = _licenseInfo
+
+
 
     private val _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String>
         get() = _error
-    val licenseInfo: MutableLiveData<UPlicenseResponse?>
-        get() = _licenseInfo
 
-    val SaveInfo : MutableLiveData<SavelicenseRequest?>
+
+    val SaveInfo : MutableList<SaveInfo?>
         get() = _savelicenseInfo
+
+    fun updateLicenseInfo(licensemessage:List<SaveInfo>){
+        _savelicenseInfo.value=licensemessage
+    }
 
     // 기존에 있던 text LiveData
     private val _text = MutableLiveData<String>().apply {
@@ -53,6 +83,40 @@ class PlanViewModel : ViewModel() {
     // isFilledAllOptions의 값을 업데이트하는 메서드
     fun updateIsFilledAllOptions(isFilled: Boolean) {
         _isFilledAllOptions.value = isFilled
+    }
+
+
+    fun getListTimeInfo() {
+        _hakki.value?.let {
+            _track.value?.let { it1 ->
+                planApiService.getListTime(it, it1).enqueue(object : Callback<ListTimeResponse> {
+                    override fun onResponse(call: Call<ListTimeResponse>, response: Response<ListTimeResponse>) {
+                        if (response.isSuccessful) {
+                            if (response.body() != null) {
+                                _listTimeInfo.postValue(response.body())
+                                Log.d("Planlicense", "${response.body()}")
+                            } else {
+                                _error.postValue("서버 응답이 올바르지 않습니다.")
+                            }
+                        } else {
+                            _error.postValue("사용자 정보를 가져오지 못했습니다.")
+                            try {
+                                throw response.errorBody()?.string()?.let {
+                                    RuntimeException(it)
+                                } ?: RuntimeException("Unknown error")
+                            } catch (e: Exception) {
+                                Log.e("PlanInfo", "PlanResponse API 오류: ${e.message}")
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ListTimeResponse>, t: Throwable) {
+                        _error.postValue("네트워크 오류: ${t.message}")
+                        Log.d("gradInfo", "completion: ${t.message}")
+                    }
+                })
+            }
+        }
     }
 
 
@@ -90,10 +154,10 @@ class PlanViewModel : ViewModel() {
 
 
     fun saveLicense(request: SavelicenseRequest) {
-        planApiService.saveLicense(request).enqueue(object : Callback<SavelicenseRequest> {
-            override fun onResponse(call: Call<SavelicenseRequest>, response: Response<SavelicenseRequest>) {
+        planApiService.saveLicense(request).enqueue(object : Callback<BringlicenseResponse> {
+            override fun onResponse(call: Call<BringlicenseResponse>, response: Response<BringlicenseResponse>) {
                 if (response.isSuccessful) {
-                    _savelicenseInfo.postValue(response.body())
+                    _bringLicenseInfo.postValue(response.body())
                     Log.d("PlanViewModel", "License saved successfully: ${response.body()}")
                 } else {
                     _error.postValue("자격증 정보 저장 실패: ${response.errorBody()?.string()}")
@@ -101,31 +165,14 @@ class PlanViewModel : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<SavelicenseRequest>, t: Throwable) {
+            override fun onFailure(call: Call<BringlicenseResponse>, t: Throwable) {
                 _error.postValue("네트워크 오류: ${t.message}")
                 Log.e("PlanViewModel", "Network error: ${t.message}")
             }
         })
     }
 
-    fun getBringlicense(request: SavelicenseRequest) {
-        planApiService.getBringlicense(request).enqueue(object : Callback<BringlicenseResponse> {
-            override fun onResponse(call: Call<BringlicenseResponse>, response: Response<BringlicenseResponse>) {
-                if (response.isSuccessful) {
-                    _bringLicenseInfo.postValue(response.body())
-                    Log.d("PlanViewModel", "Bring license info successfully fetched: ${response.body()}")
-                } else {
-                    _error.postValue("Failed to fetch license info: ${response.errorBody()?.string()}")
-                    Log.e("PlanViewModel", "Error fetching license info: ${response.errorBody()?.string()}")
-                }
-            }
 
-            override fun onFailure(call: Call<BringlicenseResponse>, t: Throwable) {
-                _error.postValue("Network error on fetching license info: ${t.message}")
-                Log.e("PlanViewModel", "Network error on fetching license info: ${t.message}")
-            }
-        })
-    }
 
 }
 

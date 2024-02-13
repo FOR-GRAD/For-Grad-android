@@ -2,6 +2,8 @@ package umc.com.mobile.project.ui.plan
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +18,7 @@ import androidx.core.view.setMargins
 import androidx.lifecycle.Observer
 import umc.com.mobile.project.data.model.plan.SaveInfo
 import umc.com.mobile.project.data.model.plan.SavelicenseRequest
+import java.time.LocalDate
 
 class PlanlicenseFragment : Fragment() {
     private var _binding: FragmentPlanlicenseBinding? = null
@@ -29,7 +32,6 @@ class PlanlicenseFragment : Fragment() {
     ): View {
         _binding = FragmentPlanlicenseBinding.inflate(inflater, container, false)
 
-//        setupAddRowButton()
 
 
         viewModel.getLicenseInfo() // api 연결
@@ -51,7 +53,7 @@ class PlanlicenseFragment : Fragment() {
     }
 
     private fun submitData() {
-        // 예시: EditText로부터 입력 값 수집
+
         val name = binding.planLicenseName.text.toString()
         val date = binding.planLicenseDate.text.toString()
 
@@ -59,72 +61,59 @@ class PlanlicenseFragment : Fragment() {
         val saveInfoList = listOf(SaveInfo(name, date))
 
         // SavelicenseRequest 객체 생성
-        val request = SavelicenseRequest(info = saveInfoList)
+
 
         // API 호출
-        viewModel.saveLicense(request)
+        viewModel.saveLicense(saveInfoList)
+
+    }
+
+
+    private fun setupEditTextListener(){
+        val textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // 필요 없음
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // 입력이 변경될 때마다 호출됩니다.
+                checkIfAnyInputIsFilled()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // 필요 없음
+            }
+        }
+        binding.planLicenseName.addTextChangedListener(textWatcher)
+    }
+
+    private fun checkIfAnyInputIsFilled() {
+        val isAnyFieldFilled = binding.planLicenseName.text.trim().isNotEmpty()
+        //버튼 활성화 업데이트
+        binding.licenseButtonStore.isEnabled = isAnyFieldFilled
+
+        // 버튼 색상도 업데이트
+        val colorResId = if (isAnyFieldFilled) R.color.skyBlue else R.color.gray
+        val color = ContextCompat.getColor(requireContext(), colorResId)
+        binding.licenseButtonStore.backgroundTintList = ColorStateList.valueOf(color)
+
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.isFilledAllOptions.observe(viewLifecycleOwner, Observer { isFilled ->
-            // 여기에서 `isFilled` 값에 따라 UI를 업데이트
-            val colorResId = if (isFilled) R.color.skyBlue else R.color.gray
-            val color = ContextCompat.getColor(requireContext(), colorResId)
-            binding.licenseButtonStore.backgroundTintList = ColorStateList.valueOf(color)
-        })
-
+        setupEditTextListener()
+        checkIfAnyInputIsFilled() // 초기 상태 확인
         binding.licenseButtonStore.setOnClickListener {
             submitData() // 사용자 입력을 기반으로 API 호출
         }
 
 
-        // bringLicenseInfo
-        viewModel.bringLicenseInfo.observe(viewLifecycleOwner) { response ->
-            response?.result?.firstOrNull()?.let { license ->
-                // 첫 번째 자격증 정보를 EditText에 표시
-                //firstofnull-> 안전하게 사용? 리스트가 비어있을 때 null 값 반환
-                binding.planLicenseName.setText(license.name)
-                binding.planLicenseDate.setText(license.date)
-            }
-        }
 
-        binding.licenseButtonStore.setOnClickListener {
-            //api 호출 디테일하게?
-            submitData()
-        }
+
+
     }
-
-//    private fun setupAddRowButton() {
-//        binding.licenseAddrowButton.setOnClickListener {
-//            addRowToGridLayout()
-//        }
-//    }
-
-//    private fun addRowToGridLayout() {
-//        val gridLayout = binding.myGridLayout // GridLayout 인스턴스를 가져옵니다.
-//        val columnCount = 2 // GridLayout의 열 수를 직접 설정합니다.
-//
-//        // 새로운 행에 들어갈 EditText 두 개를 생성하고 설정합니다.
-//        for (i in 0 until columnCount) {
-//            val newEditText = EditText(context).apply {
-//                layoutParams = GridLayout.LayoutParams().apply {
-//                    width = 0 // GridLayout에서 가중치를 사용할 때는 0dp로 설정합니다.
-//                    height = GridLayout.LayoutParams.WRAP_CONTENT
-//                    columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-//                    rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-//                    setMargins(10) // 모든 마진 설정
-//                }
-//                gravity = View.TEXT_ALIGNMENT_CENTER
-//                setPadding(20, 20, 20, 20)
-//                background = ContextCompat.getDrawable(requireContext(), R.drawable.edittext_white_line) // 배경 설정
-//            }
-//
-//            // GridLayout에 새로운 EditText 추가
-//            gridLayout.addView(newEditText)
-//        }
-//    }
 
         override fun onDestroyView() {
             super.onDestroyView()

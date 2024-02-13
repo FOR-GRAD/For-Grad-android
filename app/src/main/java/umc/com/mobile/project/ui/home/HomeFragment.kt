@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
 
 		binding.lifecycleOwner = viewLifecycleOwner
 		binding.vm = viewModel
-
+		navigateFragmentTime() // 임시 시간표 페이지 이동
 		navigateFragment() // 페이지 이동
 		saveCheeringMemo() // 응원의 한마디 연결
 		viewModel.getUserInfo() // 홈 화면 정보 조회 api
@@ -59,6 +59,12 @@ class HomeFragment : Fragment() {
 	private fun navigateFragment() {
 		binding.btnCheeringWordMove.setOnClickListener {
 			navigate(R.id.action_fragment_home_to_fragment_date)
+		}
+	}
+
+	private fun navigateFragmentTime() {
+		binding.tvPlanTitle.setOnClickListener {
+			navigate(R.id.action_fragment_home_to_planSettingFragment)
 		}
 	}
 

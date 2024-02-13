@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.setting.SettingFragment">
+    tools:context=".ui.plan.PlanSettingFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/plan_time_tab_title"
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="41dp"
         android:layout_marginEnd="16dp"
         android:minHeight="0dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,5 +1,7 @@
 package umc.com.mobile.project.data.model.plan
 
+import java.time.LocalDate
+
 
 data class SaveInfo(
     val name: String,
@@ -7,7 +9,6 @@ data class SaveInfo(
 )
 
 
-//typealias Root = List<SaveInfo>
 
 
 data class SavelicenseRequest(
@@ -16,9 +17,4 @@ data class SavelicenseRequest(
 )
 
 
-//data class SavelicenseRequest(
-//    val isSuccess: Boolean,
-//    val code: Int,
-//    val message: String,
-//    val result: Root
-//)
+

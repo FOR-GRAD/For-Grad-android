@@ -34,21 +34,22 @@ class PlanSettingFragment : Fragment() {
         initTabLayout()
         initViewPager()
 
+
         return binding.root
     }
 
     private fun initTabLayout() {
-        // 타이틀 오빠 거에 맞춰서 넣으면 됨
-        val tabTitle = arrayOf("시간표", "자격증", "저장")
 
-        // 뷰페이저/탭레이아웃 뷰바인딩 오빠 거에 맞춰서 넣으면 됨
-        viewPager = binding.viewPagerTimeTabMain // viewPager 연결
-        tabLayout = binding.tabLayoutPlanTime // tabLayout 연결
+        val tabTitle = arrayOf("시간표", "자격증", "자유")
 
-        // 어댑터 오빠 거에 맞춰서 넣으면 됨
+
+        viewPager = binding.viewPagerTimeTabMain
+        tabLayout = binding.tabLayoutPlanTime
+
+
         val adapter = PlanVPAdapter(this)
 
-        // 프래그먼트 오빠 거에 맞춰서 넣으면 됨
+
         adapter.addFragment(PlanlicenseFragment())
         adapter.addFragment(PlanTimeFragment())
         adapter.addFragment(PlanFreeFragment())
@@ -61,7 +62,7 @@ class PlanSettingFragment : Fragment() {
     }
 
     private fun initViewPager() {
-        // viewPager 간 스와이프 방지
+
         binding.viewPagerTimeTabMain.isUserInputEnabled = false
     }
 
