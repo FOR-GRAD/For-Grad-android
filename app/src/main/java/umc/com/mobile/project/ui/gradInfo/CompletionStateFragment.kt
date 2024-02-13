@@ -1,6 +1,7 @@
 package umc.com.mobile.project.ui.gradInfo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,21 +25,31 @@ class CompletionStateFragment : Fragment() {
 		viewModel.getCompletionInfo() // 사용자 개인별 이수 현황 조회 api
 
 		viewModel.completionInfo.observe(viewLifecycleOwner, Observer {
+			val completionDtoMap: List<Map<String, List<String>>>? = it?.result?.completionDtoMap
+
 			// general
 //			binding.tvTotalScore.text = it?.result?.completionDtoMap?.generalMap?.subtotal?.get("소 계") ?: "누적 / (총계)"
 
-			// major
-//			binding.tvTotalScore2.text = it?.result?.majorCompletionDto?.majorMap?.total?.get(0).toString()
-			binding.tvTrack11Content.text = it?.result?.majorRequirements?.track1?.get(0).toString()
-			binding.tvTrack12Content.text = it?.result?.majorRequirements?.track1?.get(1).toString()
-			binding.tvTrack13Content.text = it?.result?.majorRequirements?.track1?.get(2).toString()
-			binding.tvTrack21Content.text = it?.result?.majorRequirements?.track2?.get(0).toString()
-			binding.tvTrack22Content.text = it?.result?.majorRequirements?.track2?.get(1).toString()
-			binding.tvTrack23Content.text = it?.result?.majorRequirements?.track2?.get(2).toString()
+			/**
+			 * 트랙 1, 트랙 2
+ 			 */
+//			 = it?.result?.majorCompletionDto?.majorMap?.total?.get(0).toString()
 
+			completionDtoMap?.firstOrNull { it.containsKey("제1트랙") }?.get("제1트랙")?.let { track1Values ->
+				binding.tvTrack11Content.text = track1Values[0]
+				binding.tvTrack12Content.text = track1Values[1]
+				binding.tvTrack13Content.text = track1Values[2]
+				binding.tvTotalScore2.text = track1Values[3]
+			}
+
+			completionDtoMap?.firstOrNull { it.containsKey("제2트랙") }?.get("제2트랙")?.let { track1Values ->
+				binding.tvTrack21Content.text = track1Values[0]
+				binding.tvTrack22Content.text = track1Values[1]
+				binding.tvTrack23Content.text = track1Values[2]
+			}
 		})
 
-		viewModel.foundationElectiveCourses.observe(viewLifecycleOwner, Observer { courses ->
+		/*viewModel.foundationElectiveCourses.observe(viewLifecycleOwner, Observer { courses ->
 			courses?.let {
 				if (it.isNotEmpty()) {
 					val coursesList = it.map { entry -> entry.key to entry.value }
@@ -50,7 +61,7 @@ class CompletionStateFragment : Fragment() {
 					}
 				}
 			}
-		})
+		})*/
 
 		viewModel.requiredBasicCourses.observe(viewLifecycleOwner, Observer { courses ->
 			courses?.let {
