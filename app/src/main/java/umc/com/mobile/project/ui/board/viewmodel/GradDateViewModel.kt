@@ -1,5 +1,6 @@
 package umc.com.mobile.project.ui.board.viewmodel
 import android.util.Log
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,6 +17,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
+
 class GradDateViewModel : ViewModel() {
 	val _selectedDate: MutableLiveData<String> = MutableLiveData()
 	val selectedDate: LiveData<String>
@@ -30,28 +32,37 @@ class GradDateViewModel : ViewModel() {
 	private val _dateResponse: MutableLiveData<GradDateResponse?> = MutableLiveData()
 	val dateResponse: MutableLiveData<GradDateResponse?>
 		get() = _dateResponse
+
 	private val _updateDateResponse: MutableLiveData<UpdateGradDateResponse?> = MutableLiveData()
 	val updateDateResponse: MutableLiveData<UpdateGradDateResponse?>
 		get() = _updateDateResponse
+
 	private val _error: MutableLiveData<String> = MutableLiveData()
 	val error: LiveData<String>
 		get() = _error
+
 	val _dday: MutableLiveData<Int> = MutableLiveData()
 	val dday: LiveData<Int>
 		get() = _dday
+
 	private val _cheeringMessage: MutableLiveData<String> = MutableLiveData()
 	val cheeringMessage: LiveData<String>
 		get() = _cheeringMessage
-	val isFilledMemo: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
-		addSource(cheeringMessage) { value = isFieldFilled() }
-	}
-	private fun isFieldFilled(): Boolean {
-		return !cheeringMessage.value.isNullOrEmpty()
-	}
+
+	private val _isEditMode = MutableLiveData<Boolean>(false)
+	val isEditMode: LiveData<Boolean>
+		get() = _isEditMode
 
 	fun init(value: GradDateResponse) {
 		_dday.postValue(value.result.dday)
 		_cheeringMessage.postValue(value.result.message)
+	}
+
+	val isFilledMemo: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
+		addSource(cheeringMessage) { value = isFieldFilled() }
+	}
+	fun isFieldFilled(): Boolean {
+		return !cheeringMessage.value.isNullOrEmpty()
 	}
 
 	fun updateSelectedDate(year: String, month: String, day: String) {
@@ -74,6 +85,10 @@ class GradDateViewModel : ViewModel() {
 
 	fun updateCheeringMessage(message: String) {
 		_cheeringMessage.value = message
+	}
+
+	fun onEditButtonClick() {
+		_isEditMode.value = !_isEditMode.value!!
 	}
 
 	fun getDateInfo() {

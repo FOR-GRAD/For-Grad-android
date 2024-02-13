@@ -3,6 +3,7 @@ package umc.com.mobile.project.ui.board
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import umc.com.mobile.project.databinding.FragmentGradDateBinding
 import umc.com.mobile.project.databinding.FragmentGradDateBottomBinding
 import umc.com.mobile.project.ui.board.viewmodel.GradDateViewModel
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -34,6 +36,7 @@ class GradDateFragment : Fragment() {
 		savedInstanceState: Bundle?
 	): View {
 		_binding = FragmentGradDateBinding.inflate(inflater, container, false)
+		binding.vm = viewModel
 		mContext = requireContext()
 		bottomSheetBinding =
 			FragmentGradDateBottomBinding.inflate(layoutInflater)  // bottomSheetBinding 초기화
@@ -62,12 +65,23 @@ class GradDateFragment : Fragment() {
 			val originalFormat = SimpleDateFormat("yyyy-M월-d", Locale.KOREA)
 			val targetFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
 
-			val date = originalFormat.parse(viewModel.selectedDateRequest.value)
-			val formattedDate = targetFormat.format(date)
-			viewModel.updateCheeringMessage(binding.tvGradDateMemo.text.toString())
-			viewModel.updateDateInfo(formattedDate)
-			Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
-			navigate(R.id.action_fragment_date_to_fragment_home)
+			val dateString = viewModel.selectedDateRequest.value
+			if (dateString != null) {
+				try {
+					val date = originalFormat.parse(dateString)
+					val formattedDate = targetFormat.format(date)
+					viewModel.updateCheeringMessage(binding.tvGradDateMemo.text.toString())
+					viewModel.updateDateInfo(formattedDate)
+					Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
+					navigate(R.id.action_fragment_date_to_fragment_home)
+					viewModel.onEditButtonClick()
+				} catch (e: ParseException) {
+					Log.e("GradDateFragment", "Error parsing date", e)
+					Toast.makeText(context, "날짜를 올바른 형식으로 입력해주세요.", Toast.LENGTH_LONG).show()
+				}
+			} else {
+				Toast.makeText(context, "졸업예정일을 선택해주세요.", Toast.LENGTH_LONG).show()
+			}
 		}
 
 		return binding.root
@@ -104,6 +118,16 @@ class GradDateFragment : Fragment() {
 		viewModel.cheeringMessage.observe(viewLifecycleOwner) { message ->
 			binding.tvGradDateMemo.text = Editable.Factory.getInstance().newEditable(message)
 		}
+
+		viewModel.isEditMode.observe(viewLifecycleOwner, Observer { isEditMode ->
+			if (isEditMode) {
+				binding.tvGradDateEdit.visibility = View.GONE
+				binding.btnSave.visibility = View.VISIBLE
+			} else {
+				binding.tvGradDateEdit.visibility = View.VISIBLE
+				binding.btnSave.visibility = View.GONE
+			}
+		})
 	}
 
 	override fun onDestroyView() {
