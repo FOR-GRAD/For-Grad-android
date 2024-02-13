@@ -1,6 +1,7 @@
 package umc.com.mobile.project.ui.gradInfo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,50 +25,55 @@ class CompletionStateFragment : Fragment() {
 		viewModel.getCompletionInfo() // 사용자 개인별 이수 현황 조회 api
 
 		viewModel.completionInfo.observe(viewLifecycleOwner, Observer {
-			// general
-//			binding.tvTotalScore.text = it?.result?.completionDtoMap?.generalMap?.subtotal?.get("소 계") ?: "누적 / (총계)"
+			val completionDtoMap: List<Map<String, List<String>>>? = it?.result?.completionDtoMap
 
-			// major
-//			binding.tvTotalScore2.text = it?.result?.majorCompletionDto?.majorMap?.total?.get(0).toString()
-			binding.tvTrack11Content.text = it?.result?.majorRequirements?.track1?.get(0).toString()
-			binding.tvTrack12Content.text = it?.result?.majorRequirements?.track1?.get(1).toString()
-			binding.tvTrack13Content.text = it?.result?.majorRequirements?.track1?.get(2).toString()
-			binding.tvTrack21Content.text = it?.result?.majorRequirements?.track2?.get(0).toString()
-			binding.tvTrack22Content.text = it?.result?.majorRequirements?.track2?.get(1).toString()
-			binding.tvTrack23Content.text = it?.result?.majorRequirements?.track2?.get(2).toString()
+			/**
+			 * 필수 교양 (기초)
+			 */
+			completionDtoMap?.firstOrNull { it.containsKey("필수교양(기초)") }?.get("필수교양(기초)")?.let { requiredBasicCourses1 ->
+				binding.tvBasic1.text = requiredBasicCourses1[0]
+				binding.tvBasic1Content.text = requiredBasicCourses1[1]
+				binding.tvBasic2.text = requiredBasicCourses1[2]
+				binding.tvBasic2Content.text = requiredBasicCourses1[3]
+				binding.tvBasic3.text = requiredBasicCourses1[4]
+				binding.tvBasic3Content.text = requiredBasicCourses1[5]
 
-		})
-
-		viewModel.foundationElectiveCourses.observe(viewLifecycleOwner, Observer { courses ->
-			courses?.let {
-				if (it.isNotEmpty()) {
-					val coursesList = it.map { entry -> entry.key to entry.value }
-					if (coursesList.size > 1) {
-						binding.tvSoyang1.text = coursesList[0].first
-						binding.tvSoyang1Content.text = coursesList[0].second
-						binding.tvSoyang2.text = coursesList[1].first
-						binding.tvSoyang2Content.text = coursesList[1].second
-					}
-				}
+//				binding.tvBasic4.text = requiredBasicCourses1[6]
+//				binding.tvBasic4Content.text = requiredBasicCourses1[7]
+//				binding.tvBasic5.text = requiredBasicCourses1[8]
+//				binding.tvBasic5Content.text = requiredBasicCourses1[9]
+//				binding.tvBasic6.text = requiredBasicCourses1[10]
+//				binding.tvBasic6Content.text = requiredBasicCourses1[11]
 			}
-		})
 
-		viewModel.requiredBasicCourses.observe(viewLifecycleOwner, Observer { courses ->
-			courses?.let {
-				if (it.isNotEmpty()) {
-					val coursesList = it.map { entry -> entry.key to entry.value }
-					if (coursesList.size > 2) {
-						binding.tvBasic1.text = coursesList[0].first
-						binding.tvBasic1Content.text = coursesList[0].second
-						binding.tvBasic2.text = coursesList[1].first
-						binding.tvBasic2Content.text = coursesList[1].second
-						binding.tvBasic3.text = coursesList[2].first
-						binding.tvBasic3Content.text = coursesList[2].second
-					}
-				}
+			/**
+			 * 필수 교양 (소양)
+			 */
+			completionDtoMap?.firstOrNull { it.containsKey("필수교양(소양)") }?.get("필수교양(소양)")?.let { requiredBasicCourses2 ->
+				binding.tvSoyang1.text = requiredBasicCourses2[0]
+				binding.tvSoyang1Content.text = requiredBasicCourses2[1]
+				binding.tvSoyang2.text = requiredBasicCourses2[2]
+				binding.tvSoyang2Content.text = requiredBasicCourses2[3]
+				binding.tvTotalScore.text = requiredBasicCourses2[5]
 			}
-		})
 
+			/**
+			 * 트랙 1, 트랙 2
+ 			 */
+			completionDtoMap?.firstOrNull { it.containsKey("제1트랙") }?.get("제1트랙")?.let { track1Values ->
+				binding.tvTrack11Content.text = track1Values[0]
+				binding.tvTrack12Content.text = track1Values[1]
+				binding.tvTrack13Content.text = track1Values[2]
+				binding.tvTotalScore2.text = track1Values[3]
+			}
+
+			completionDtoMap?.firstOrNull { it.containsKey("제2트랙") }?.get("제2트랙")?.let { track1Values ->
+				binding.tvTrack21Content.text = track1Values[0]
+				binding.tvTrack22Content.text = track1Values[1]
+				binding.tvTrack23Content.text = track1Values[2]
+			}
+
+		})
 
 		return binding.root
 	}
