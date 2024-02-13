@@ -78,17 +78,4 @@ class GradeFragment : Fragment() {
 		binding.recyclerView2.adapter = adapter2
 		binding.recyclerView2.layoutManager = GridLayoutManager(context, 2)
 	}
-
-	private fun observeGrades() {
-		viewModel.grades.observe(viewLifecycleOwner, Observer { gradesMap ->
-			(binding.recyclerView2.adapter as? AverageRVAdapter)?.setData(gradesMap.values.toList())
-
-			val selectedGradeInfo = gradesMap["1 학기 성적"]
-			binding.tvAcquiredCredit.text = selectedGradeInfo?.acquiredCredits
-			binding.tvAppliedCredit.text = selectedGradeInfo?.appliedCredits
-			binding.tvAverageGrade.text = selectedGradeInfo?.averageGrade
-			binding.tvAverageTotal.text = selectedGradeInfo?.totalGrade
-			binding.tvPercent.text = selectedGradeInfo?.percentile
-		})
-	}
 }
