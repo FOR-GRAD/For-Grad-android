@@ -50,6 +50,12 @@ class PlanTimeFragment : Fragment() {
 
         }
 
+        _binding!!.planSubjectListSemester.setOnClickListener {
+            //api 연결
+//            viewModel.addCareer()
+            navigate(R.id.action_planSettingFragment_to_planSemesterFragment)
+        }
+
 
 
         return binding.root
@@ -59,12 +65,10 @@ class PlanTimeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        binding.planSubjectListSemester.setOnClickListener {
-
-            findNavController().navigate(R.id.action_planTimeFragment_to_planSemesterFragment)
-        }
     }
+
+
+
 
 
 
