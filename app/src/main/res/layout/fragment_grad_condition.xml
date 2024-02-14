@@ -62,7 +62,6 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="23dp"
                     android:maxEms="10"
-                    android:text="@{vm.register}"
                     android:textColor="@color/skyBlue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -75,7 +74,6 @@
                     android:layout_marginTop="26dp"
                     android:layout_marginEnd="23dp"
                     android:maxEms="10"
-                    android:text="@{vm.grades}"
                     android:textColor="@color/skyBlue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_register_content" />
@@ -108,7 +106,6 @@
                     android:layout_marginTop="26dp"
                     android:layout_marginEnd="23dp"
                     android:maxEms="10"
-                    android:text="@{vm.point}"
                     android:textColor="@color/skyBlue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_credit_content" />
@@ -133,36 +130,10 @@
                     android:layout_marginEnd="23dp"
                     android:layout_marginBottom="30dp"
                     android:maxEms="10"
-                    android:text="@{vm.scores}"
                     android:textColor="@color/skyBlue"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_point_content" />
-                <!--
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/appCompatTextView6"
-                                    style="@style/MediumFont.16"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="26dp"
-                                    android:layout_marginBottom="30dp"
-                                    android:text="전공"
-                                    android:textColor="@color/black"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView4"
-                                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4" />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/tv_point_content3"
-                                    style="@style/MediumFont.16"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="23dp"
-                                    android:text="78학점 이상"
-                                    android:textColor="@color/skyBlue"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="@+id/appCompatTextView6" />
-                -->
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatTextView

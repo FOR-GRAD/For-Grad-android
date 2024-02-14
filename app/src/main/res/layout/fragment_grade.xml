@@ -246,7 +246,6 @@
                     android:gravity="center"
                     android:paddingTop="14dp"
                     android:paddingBottom="14dp"
-                    android:text="@{vm.userAppliedCredit}"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -261,7 +260,6 @@
                     android:gravity="center"
                     android:paddingTop="14dp"
                     android:paddingBottom="14dp"
-                    android:text="@{vm.userAcquiredCredit}"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -276,7 +274,6 @@
                     android:gravity="center"
                     android:paddingTop="14dp"
                     android:paddingBottom="14dp"
-                    android:text="@{vm.userAverageTotal}"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -291,7 +288,6 @@
                     android:gravity="center"
                     android:paddingTop="14dp"
                     android:paddingBottom="14dp"
-                    android:text="@{vm.userAverageGrade}"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -306,7 +302,6 @@
                     android:gravity="center"
                     android:paddingTop="14dp"
                     android:paddingBottom="14dp"
-                    android:text="@{vm.userPercentile}"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

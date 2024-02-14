@@ -22,38 +22,6 @@ class CompletionStateViewModel : ViewModel() {
 	val completionInfo: MutableLiveData<CompletionResponse?>
 		get() = _completionInfo
 
-	// 필수교양기초
-	private val _requiredBasicCourses: MutableLiveData<Map<String, String>> = MutableLiveData()
-	val requiredBasicCourses: LiveData<Map<String, String>>
-		get() = _requiredBasicCourses
-
-	private val _foundationElectiveCourses: MutableLiveData<Map<String, String>> = MutableLiveData()
-	val foundationElectiveCourses: LiveData<Map<String, String>>
-		get() = _foundationElectiveCourses
-
-	// 전공 트랙
-	private val _majorTrack1Courses: MutableLiveData<Map<String, String>> = MutableLiveData()
-	val majorTrack1Courses: MutableLiveData<Map<String, String>>
-		get() = _majorTrack1Courses
-
-	private fun processRequiredBasicCourses(completionResponse: CompletionResponse) {
-		val requiredBasicCoursesMap = mutableMapOf<String, String>()
-//		val majorTrack1CoursesList = completionResponse.result.completionDtoMaptrack1
-//		val majorTrack2CoursesList = completionResponse.result.majorRequirements.track1
-
-		/*
-		_majorTrack1Courses?.let {
-			for ((index, courseName) in requiredBasicCourses.withIndex()) {
-				majorTrack1CoursesMap["Course ${index + 1}"] = courseName
-				Log.d("Completion: foundationElectiveCoursesMap ", "Course ${index + 1} : $courseName")
-			}
-		}*/
-
-		_requiredBasicCourses.postValue(requiredBasicCoursesMap)
-//		_majorTrack1Courses.postValue(majorTrack1CoursesMap)
-	}
-
-
 	fun getCompletionInfo() {
 		gradInfoApiService.getCompletion().enqueue(object : Callback<CompletionResponse> {
 			override fun onResponse(
