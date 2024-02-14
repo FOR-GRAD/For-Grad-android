@@ -37,13 +37,6 @@ class GradeViewModel : ViewModel() {
 	val userCredits: LiveData<String>
 		get() = _userCredits
 
-	private val _userGrade: MutableLiveData<String> = MutableLiveData()
-	val userGrade: LiveData<String>
-		get() = _userGrade
-
-	private val _userTrack: MutableLiveData<String> = MutableLiveData()
-	val userTrack: LiveData<String>
-		get() = _userTrack
 
 	private val _userAppliedCredit: MutableLiveData<String> = MutableLiveData()
 	val userAppliedCredit: LiveData<String>
@@ -84,6 +77,10 @@ class GradeViewModel : ViewModel() {
 	private val _selectedSemesterGrade: MutableLiveData<String> = MutableLiveData()
 	private val selectedSemesterGrade: LiveData<String>
 		get() = _selectedSemesterGrade
+
+	private val _totalAverage: MutableLiveData<Double> = MutableLiveData()
+	val totalAverage: LiveData<Double>
+		get() = _totalAverage
 
 	val selectedSemesterGradeAndGrades: MediatorLiveData<Pair<String?, Map<String, GradesTotalDto>?>> = MediatorLiveData()
 
@@ -174,4 +171,8 @@ class GradeViewModel : ViewModel() {
 	fun onSemesterGradeItemClick(grade: String) {
 		_selectedSemesterGrade.postValue(grade)
 	}
-}
+
+	fun onSetTotalAverageGrade(totalAverageGrade: Double, totalNumber: Int) {
+		_totalAverage.postValue((totalAverageGrade/totalNumber))
+	}
+ }
