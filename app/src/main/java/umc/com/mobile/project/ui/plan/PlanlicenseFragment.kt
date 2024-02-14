@@ -1,6 +1,7 @@
 package umc.com.mobile.project.ui.plan
 
 import android.content.res.ColorStateList
+import umc.com.mobile.project.data.model.plan.SaveInfo
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,15 +11,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.gridlayout.widget.GridLayout
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentPlanlicenseBinding
-import android.widget.EditText
-import androidx.core.view.setMargins
-import androidx.lifecycle.Observer
-import umc.com.mobile.project.data.model.plan.SaveInfo
-import umc.com.mobile.project.data.model.plan.SavelicenseRequest
-import java.time.LocalDate
 
 class PlanlicenseFragment : Fragment() {
     private var _binding: FragmentPlanlicenseBinding? = null
@@ -41,10 +35,31 @@ class PlanlicenseFragment : Fragment() {
 
       // UPlicenseResponse-자격증 정보 불러오기
         viewModel.licenseInfo.observe(viewLifecycleOwner) { licenseInfo ->
-            licenseInfo?.result?.firstOrNull()?.let { firstResult ->
-                // 첫 번째 Result 객체의 name과 date 필드에 접근
-                binding.planLicenseName.setText(firstResult.name)
-                binding.planLicenseDate.setText(firstResult.date)
+            licenseInfo?.result?.let { resultList ->
+                // 첫 번째 Result 객체에 접근하여 데이터 매핑
+                resultList.getOrNull(0)?.let { firstResult ->
+                    binding.planLicenseName.setText(firstResult.name)
+                    binding.planLicenseDate.setText(firstResult.date)
+                }
+
+                // 두 번째 Result 객체에 접근하여 데이터 매핑
+                resultList.getOrNull(1)?.let { secondResult ->
+                    binding.planLicenseName2.setText(secondResult.name)
+                    binding.planLicenseDate2.setText(secondResult.date)
+
+                }
+
+                resultList.getOrNull(2)?.let { thirdResult ->
+                    binding.planLicenseName3.setText(thirdResult.name)
+                    binding.planLicenseDate3.setText(thirdResult.date)
+
+
+                }
+
+                resultList.getOrNull(3)?.let { fourthResult ->
+                    binding.planLicenseName4.setText(fourthResult.name)
+                    binding.planLicenseDate4.setText(fourthResult.date)
+                }
             }
         }
 

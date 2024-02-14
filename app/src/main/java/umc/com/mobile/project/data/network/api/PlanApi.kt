@@ -9,7 +9,6 @@ import umc.com.mobile.project.data.model.plan.BringlicenseResponse
 import umc.com.mobile.project.data.model.plan.ListTimeResponse
 import umc.com.mobile.project.data.model.plan.PlanTrackResponse
 import umc.com.mobile.project.data.model.plan.SaveInfo
-import umc.com.mobile.project.data.model.plan.SavelicenseRequest
 import umc.com.mobile.project.data.model.plan.SemesterTimeResponse
 import umc.com.mobile.project.data.model.plan.UPlicenseResponse
 
@@ -20,7 +19,7 @@ interface PlanApi {
 
 
     @POST("plans/certifications")
-    fun saveLicense(@Body request:SavelicenseRequest): Call<BringlicenseResponse>
+    fun saveLicense(@Body request: List<SaveInfo>): Call<BringlicenseResponse>
 
 
 

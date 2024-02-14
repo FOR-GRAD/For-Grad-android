@@ -16,7 +16,8 @@ import umc.com.mobile.project.databinding.FragmentPlanlicenseBinding
 import android.widget.EditText
 import androidx.core.view.setMargins
 import androidx.lifecycle.Observer
-import umc.com.mobile.project.data.model.plan.SaveInfo
+import androidx.recyclerview.widget.LinearLayoutManager
+
 import umc.com.mobile.project.data.model.plan.SavelicenseRequest
 import umc.com.mobile.project.data.model.plan.semesterResult
 import umc.com.mobile.project.databinding.SemesterChooseBinding
@@ -46,6 +47,22 @@ class PlanSemesterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val adapter = PlanSemesterAdapter(listOf()) // 초기 데이터로 빈 리스트 사용
+
+        // RecyclerView에 어댑터와 레이아웃 매니저 설정
+        binding.recyclerViewPlanSemester.adapter = adapter
+        binding.recyclerViewPlanSemester.layoutManager = LinearLayoutManager(context)
+
+
+        viewModel.planSemesterInfo.observe(viewLifecycleOwner) { semesterInfo ->
+            // 데이터가 업데이트되면 어댑터의 리스트 업데이트
+            adapter.semesterList = semesterInfo?.result ?: emptyList()
+            adapter.notifyDataSetChanged()
+
+        }
+
+        viewModel.getSemesterInfo() // 데이터 로드
     }
 
     override fun onDestroyView() {

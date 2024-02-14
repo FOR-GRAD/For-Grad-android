@@ -49,9 +49,8 @@ class PlanSettingFragment : Fragment() {
 
         val adapter = PlanVPAdapter(this)
 
-
-        adapter.addFragment(PlanlicenseFragment())
         adapter.addFragment(PlanTimeFragment())
+        adapter.addFragment(PlanlicenseFragment())
         adapter.addFragment(PlanFreeFragment())
 
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL

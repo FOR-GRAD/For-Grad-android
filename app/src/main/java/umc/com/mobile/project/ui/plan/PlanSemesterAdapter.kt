@@ -26,7 +26,10 @@ class PlanSemesterAdapter( semesterList: List<semesterResult?>): RecyclerView.Ad
 
     override fun onBindViewHolder(holder: PlanSemesterAdapter.NonSubjectViewHolder, position: Int) {
 
-        holder.itemBinding.planTimeSemesterItem.text =semesterList[position]?.hakkiText.toString()
+        val semesterInfo = semesterList[position]
+        if (semesterInfo != null) {
+            holder.itemBinding.planTimeSemesterItem.text = semesterInfo.hakkiText
+        }
 
     }
 

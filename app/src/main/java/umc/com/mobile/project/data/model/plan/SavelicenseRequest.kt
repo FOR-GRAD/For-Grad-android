@@ -8,12 +8,8 @@ data class SaveInfo(
     val date: String
 )
 
-
-
-
 data class SavelicenseRequest(
-    val info : List<SaveInfo>,
-
+    val info: List<SaveInfo>
 )
 
 

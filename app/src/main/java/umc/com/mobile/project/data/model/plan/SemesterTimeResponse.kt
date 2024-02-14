@@ -5,7 +5,10 @@ data class SemesterTimeResponse(
     val code: String,
     val message: String,
     val result: List<semesterResult>,
-)
+) {
+
+
+}
 
 data class semesterResult(
     val hakkiNum: String,

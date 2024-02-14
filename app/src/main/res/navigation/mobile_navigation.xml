@@ -237,15 +237,7 @@
         android:id="@+id/planSettingFragment"
         android:name="umc.com.mobile.project.ui.plan.PlanSettingFragment"
         android:label="plan_time_tab_main"
-        tools:layout="@layout/plan_time_tab_main" >
-        <action
-            android:id="@+id/action_planSettingFragment_to_planSemesterFragment"
-            app:destination="@id/planSemesterFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/planSemesterFragment"
-        android:name="umc.com.mobile.project.ui.plan.PlanSemesterFragment"
-        android:label="PlanSemesterFragment" />
+        tools:layout="@layout/plan_time_tab_main" />
     <fragment
         android:id="@+id/planTimeFragment"
         android:name="umc.com.mobile.project.ui.plan.PlanTimeFragment"
@@ -254,5 +246,9 @@
             android:id="@+id/action_planTimeFragment_to_planSemesterFragment"
             app:destination="@id/planSemesterFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/planSemesterFragment"
+        android:name="umc.com.mobile.project.ui.plan.PlanSemesterFragment"
+        android:label="PlanSemesterFragment" />
 
 </navigation>

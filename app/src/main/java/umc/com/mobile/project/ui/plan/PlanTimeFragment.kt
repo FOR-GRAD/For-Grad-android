@@ -25,9 +25,8 @@ class PlanTimeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = PlanSubjectListBinding.inflate(inflater, container, false)
-        binding.planSubjectListSemester.setOnClickListener{
-            navigate(R.id.action_planTimeFragment_to_planSemesterFragment)
-        }
+
+
 
         viewModel.getListTimeInfo()
         val adapter = viewModel.listTimeInfo.value?.let { PlanRecyclerAdapter(it.result) }
@@ -56,6 +55,17 @@ class PlanTimeFragment : Fragment() {
         return binding.root
 
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        binding.planSubjectListSemester.setOnClickListener {
+
+            findNavController().navigate(R.id.action_planTimeFragment_to_planSemesterFragment)
+        }
+    }
+
 
 
 

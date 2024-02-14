@@ -65,7 +65,8 @@
                     android:text="시험 일정"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1" />
+                    app:layout_rowWeight="1"
+                    />
 
                 <EditText
                     android:id="@+id/plan_license_name"
@@ -75,7 +76,9 @@
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1" />
+                    app:layout_rowWeight="1"
+                    android:gravity="center"
+                  />
 
                 <EditText
                     android:id="@+id/plan_license_date"
@@ -86,61 +89,75 @@
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1" />
+                    app:layout_rowWeight="1"
+                    android:gravity="center"
+                    />
 
                 <EditText
+                    android:id="@+id/plan_license_name2"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1" />
+                    app:layout_rowWeight="1"
+                    android:gravity="center"/>
 
                 <EditText
+                    android:id="@+id/plan_license_date2"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1" />
+                    app:layout_rowWeight="1"
+                    android:gravity="center"/>
 
                 <EditText
+                    android:id="@+id/plan_license_name3"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1" />
+                    app:layout_rowWeight="1"
+                    android:gravity="center"/>
 
                 <EditText
+                    android:id="@+id/plan_license_date3"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1" />
+                    app:layout_rowWeight="1"
+                    android:gravity="center"/>
 
                 <EditText
+                    android:id="@+id/plan_license_name4"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1" />
+                    app:layout_rowWeight="1"
+                    android:gravity="center"/>
 
                 <EditText
+                    android:id="@+id/plan_license_date4"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1" />
+                    app:layout_rowWeight="1"
+                    android:gravity="center"/>
 
 
             </androidx.gridlayout.widget.GridLayout>

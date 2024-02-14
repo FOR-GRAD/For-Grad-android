@@ -16,7 +16,6 @@ import umc.com.mobile.project.databinding.FragmentPlanlicenseBinding
 import android.widget.EditText
 import androidx.core.view.setMargins
 import androidx.lifecycle.Observer
-import umc.com.mobile.project.data.model.plan.SaveInfo
 import umc.com.mobile.project.data.model.plan.SavelicenseRequest
 import umc.com.mobile.project.data.model.plan.semesterResult
 import umc.com.mobile.project.databinding.PlanTimeChooseTrackBinding
