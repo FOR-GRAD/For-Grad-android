@@ -14,6 +14,7 @@ import umc.com.mobile.project.MainActivity
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentSettingBinding
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
+import umc.com.mobile.project.ui.login.LoginActivity
 import umc.com.mobile.project.ui.setting.viewmodel.SettingViewModel
 
 class SettingFragment : Fragment() {
@@ -53,7 +54,7 @@ class SettingFragment : Fragment() {
 //				MyApplication.prefs.edit.remove("email") // 여기서 Shared Preference 를 remove 한다!
 //				MyApplication.prefs.edit.remove("password")
 //				MyApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
-				val intent = Intent(requireContext(), MainActivity::class.java)
+				val intent = Intent(requireContext(), LoginActivity::class.java)
 				intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
 				startActivity(intent)
 			}

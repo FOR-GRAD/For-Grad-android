@@ -4,19 +4,23 @@ import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import umc.com.mobile.project.data.model.gradInfo.GradesResponse
+import umc.com.mobile.project.data.model.gradInfo.GradesDto
 import umc.com.mobile.project.databinding.ItemClassAndGradeBinding
-class GradeRVAdapter : RecyclerView.Adapter<GradeRVAdapter.MyViewHolder>() {
-	private var dataList = mutableListOf<GradesResponse>()
+import umc.com.mobile.project.ui.gradInfo.viewmodel.GradeViewModel
+
+class GradeRVAdapter(private val viewModel: GradeViewModel) :
+	RecyclerView.Adapter<GradeRVAdapter.MyViewHolder>() {
+	private var dataList = mutableListOf<GradesDto>()
+	private var selectedSemester = ""
 
 	inner class MyViewHolder(private val binding: ItemClassAndGradeBinding) :
 		RecyclerView.ViewHolder(binding.root) {
-		fun bind(gradesResponse: GradesResponse) {
-			binding.tvKindTitle.text = gradesResponse.result.semesters["1학기"]?.gradesDtoList?.get(0)?.classification
-			binding.tvClassTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(1)?.subjectName
-			binding.tvCreditTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(2)?.credits
-			binding.tvGradeTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(3)?.grade
-			binding.tvCurrentTrackTitle.text = gradesResponse.result.semesters["학기"]?.gradesDtoList?.get(4)?.track
+
+		fun bind(gradesDto: GradesDto) {
+			binding.tvKindTitle.text = gradesDto.subjectName
+			binding.tvClassTitle.text = gradesDto.classification
+			binding.tvCreditTitle.text = gradesDto.credits
+			binding.tvGradeTitle.text = gradesDto.grade
 		}
 	}
 
@@ -37,4 +41,17 @@ class GradeRVAdapter : RecyclerView.Adapter<GradeRVAdapter.MyViewHolder>() {
 		return dataList.size
 	}
 
+	fun updateSelectedSemester(selectedSemester: String) {
+		this.selectedSemester = selectedSemester
+
+		val semestersInfo = viewModel.semesters?.value?.get(selectedSemester)
+
+		semestersInfo?.let {
+			dataList.clear()
+			dataList.addAll(it ?: emptyList())
+			notifyDataSetChanged()
+		} ?: run {
+			Log.e("GradeRVAdapter", "null")
+		}
+	}
 }

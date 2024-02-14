@@ -73,6 +73,7 @@
                 android:paddingStart="23dp"
                 android:paddingTop="18dp"
                 android:paddingBottom="18dp"
+                android:singleLine="true"
                 android:text="@={vm.id}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -112,6 +113,7 @@
                 android:paddingStart="23dp"
                 android:paddingTop="18dp"
                 android:paddingBottom="18dp"
+                android:singleLine="true"
                 android:text="@={vm.pw}" />
 
             <!--        </com.google.android.material.textfield.TextInputLayout>-->

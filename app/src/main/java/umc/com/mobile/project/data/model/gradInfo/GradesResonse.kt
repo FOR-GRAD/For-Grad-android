@@ -7,7 +7,6 @@ data class GradesDto(
 	val subjectName: String,
 	val credits: String,
 	val grade: String,
-	val track: String
 )
 
 data class GradesTotalDto(
