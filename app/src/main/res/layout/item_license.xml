@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_license_name"
+        style="@style/MediumFont.14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="#F5F5F5"
+        android:hint="자격증 이름"
+        android:textColorHint="@android:color/black"
+        android:focusable="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_certificate_title"
+        style="@style/MediumFont.14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="#F5F5F5"
+        android:hint="자격증 이름"
+        android:textColorHint="@android:color/black"
+        android:focusable="false"
+        app:layout_constraintTop_toBottomOf="@+id/et_license_name"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_license_title"
+        style="@style/MediumFont.14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="#F5F5F5"
+        android:hint="자격증 이름"
+        android:textColorHint="@android:color/black"
+        android:focusable="false"
+        app:layout_constraintTop_toBottomOf="@+id/et_certificate_title"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+
+    <View
+        android:id="@+id/v_certificate_underline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D9D9D9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

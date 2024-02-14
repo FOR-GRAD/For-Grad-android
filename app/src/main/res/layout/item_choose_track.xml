@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayoutCompat3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="6dp"
+    android:layout_marginEnd="6dp"
+    android:layout_marginBottom="6dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+
+    >
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time_track_checkbox"
+        android:background="@drawable/plan_checkbox"
+        android:button="@null"
+        android:minWidth="5dp"
+        android:minHeight="3dp"
+        android:layout_marginRight="16dp"
+
+        />
+
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/plan_time_track_item"
+        style="@style/SemiBoldFont.14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="left"
+        android:paddingTop="12dp"
+        android:paddingBottom="7dp"
+        android:text="[번호] 트랙이름"
+        android:textColor="@color/black"
+
+
+        />
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -275,7 +275,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/appCompatImageView3"
+                    android:id="@+id/layout_next_plan"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginStart="20dp"
@@ -302,8 +302,8 @@
                         android:paddingEnd="34dp"
                         android:text="몇 학년 몇 학기"
                         android:textColor="@color/white"
-                        app:layout_constraintStart_toStartOf="@+id/appCompatImageView3"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatImageView3" />
+                        app:layout_constraintStart_toStartOf="@+id/layout_next_plan"
+                        app:layout_constraintTop_toTopOf="@+id/layout_next_plan" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_total_credit"
@@ -326,7 +326,7 @@
                         android:layout_marginBottom="6dp"
                         android:background="@drawable/bg_solid_blue_radius_without_top_right_20"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/appCompatImageView3"
+                        app:layout_constraintEnd_toEndOf="@+id/layout_next_plan"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_grade_semester">
 

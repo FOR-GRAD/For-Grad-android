@@ -39,6 +39,10 @@ class GradeFragment : Fragment() {
 			binding.tvSemester.text = selectedSemester
 		})
 
+		viewModel.totalAverage.observe(viewLifecycleOwner, Observer { totalAverageGrade ->
+			binding.tvAverageTotal.text = totalAverageGrade.toString()
+		})
+
 		viewModel.selectedSemesterGradeAndGrades.observe(viewLifecycleOwner) { pair ->
 			val selectedGrade = pair.first
 			val gradesMap = pair.second

@@ -10,16 +10,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import umc.com.mobile.project.MainActivity
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentSettingBinding
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
+import umc.com.mobile.project.ui.home.viewmodel.HomeViewModel
 import umc.com.mobile.project.ui.login.LoginActivity
 import umc.com.mobile.project.ui.setting.viewmodel.SettingViewModel
 
 class SettingFragment : Fragment() {
 	private var _binding: FragmentSettingBinding? = null
-	private val viewModel: SettingViewModel by viewModels()
+	private val viewModel: HomeViewModel by viewModels()
 	private val binding get() = _binding!!
 
 	override fun onCreateView(
@@ -30,6 +32,11 @@ class SettingFragment : Fragment() {
 		_binding = FragmentSettingBinding.inflate(inflater, container, false)
 
 		navigateFragment()
+
+		viewModel.userInfoResponse.observe(viewLifecycleOwner, Observer {
+			binding.tvAccountIdContent.text = it?.result?.id.toString()
+			binding.tvAccountMajorContent.text = "1트랙: ${it?.result?.track1} / 트랙: ${it?.result?.track2}"
+		})
 
 		return binding.root
 	}
@@ -51,12 +58,10 @@ class SettingFragment : Fragment() {
 
 			fun toast() {
 				Toast.makeText(requireContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
-//				MyApplication.prefs.edit.remove("email") // 여기서 Shared Preference 를 remove 한다!
-//				MyApplication.prefs.edit.remove("password")
-//				MyApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
 				val intent = Intent(requireContext(), LoginActivity::class.java)
 				intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
 				startActivity(intent)
+				requireActivity().finish()
 			}
 			var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
 				when (p1) {

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <TextView
+        android:id="@+id/text_time_semester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="학기선택"
+        android:textSize="19sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+<!--    <androidx.appcompat.widget.AppCompatImageButton-->
+<!--        android:id="@+id/buttonSelectSemester"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--&lt;!&ndash;        android:src="@drawable/your_image"&ndash;&gt;-->
+<!--        android:layout_marginLeft="120dp"-->
+
+<!--        app:layout_constraintStart_toEndOf="@id/text_time_semester"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/text_time_semester" />-->
+
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/appCompatButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginRight="130dp"-->
+<!--        android:text="전체 선택"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_time_semester" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/text_time_semester"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:text="전체 취소"-->
+<!--        />-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/license_const_layout"
+        android:layout_width="322dp"
+        android:layout_height="223dp"
+        android:background="@drawable/rectangle_4257"
+        android:paddingLeft="8dp"
+        android:paddingTop="57dp"
+        android:paddingRight="9dp"
+        android:paddingBottom="7dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_time_semester"
+
+        >
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

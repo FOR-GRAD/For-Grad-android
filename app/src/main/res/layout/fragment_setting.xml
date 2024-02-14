@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+    <data>
+
+        <variable
+            name="vm"
+            type="umc.com.mobile.project.ui.home.viewmodel.HomeViewModel" />
+
+    </data>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -61,6 +70,18 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_account_title" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_account_id_content"
+                    style="@style/MediumFont.14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{vm.userId}"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_account_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_account_major"
                     style="@style/MediumFont.14"
                     android:layout_width="wrap_content"
@@ -72,6 +93,17 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_account_id"
                     app:layout_constraintTop_toBottomOf="@+id/tv_account_id" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_account_major_content"
+                    style="@style/MediumFont.14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{vm.userInfoResponse.result.track1}"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_account_major" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -184,8 +216,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="29dp"
-                android:layout_marginBottom="29dp"
                 android:layout_marginEnd="17dp"
+                android:layout_marginBottom="29dp"
                 android:background="@drawable/bg_stroke_gray_radius_16_5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
