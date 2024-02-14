@@ -44,7 +44,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayoutCompat"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="34dp"
             android:layout_marginEnd="18dp"
@@ -112,8 +112,8 @@
                     style="@style/BoldFont.30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#7D7D7D"
                     android:text="@{String.format(`D - %s`, vm.dday)}"
+                    android:textColor="#7D7D7D"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_grad_date_card2"
                     app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card2"
                     app:layout_constraintStart_toStartOf="@+id/iv_grad_date_card2"
@@ -131,16 +131,30 @@
                 android:background="@drawable/bg_solid_white_radius_10"
                 android:gravity="top"
                 android:hint="@string/board_grad_date_memo"
-                android:inputType="text"
                 android:paddingStart="12dp"
                 android:paddingTop="17dp"
                 android:paddingBottom="106dp"
+                android:text="@={vm.cheeringMessage}"
                 android:textColorHint="#B3B3B3"
                 app:layout_constraintBottom_toTopOf="@+id/btn_save"
                 app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card2"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/iv_grad_date_card2"
                 app:layout_constraintTop_toBottomOf="@+id/iv_grad_date_card2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_grad_date_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{(v) -> vm.onEditButtonClick()}"
+                android:text="@string/board_grad_date_edit"
+                android:textAppearance="@style/MediumFont.12"
+                android:textColor="#FFFFFF"
+                android:visibility="@{vm.isEditMode ? 8 : 0}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_grad_date_memo" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_save"
@@ -149,28 +163,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/bg_solid_gray_radius_25"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/gray"
                 android:minHeight="0dp"
                 android:paddingTop="17dp"
                 android:paddingBottom="17dp"
                 android:stateListAnimator="@null"
                 android:text="저장하기"
                 android:textColor="@color/skyBlue"
+                android:visibility="@{vm.isEditMode ? 0 : 8}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_grad_date_memo"
                 app:layout_constraintStart_toStartOf="@+id/tv_grad_date_memo" />
-
-            <!--<TextView
-                android:id="@+id/tv_grad_date_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="19dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/board_grad_date_edit"
-                android:textColor="#FFFFFF"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_grad_date_memo" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
