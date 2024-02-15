@@ -17,57 +17,58 @@ import umc.com.mobile.project.ui.gradInfo.adapter.GradInfoVPAdapter
 import umc.com.mobile.project.ui.gradInfo.viewmodel.GradInfoViewModel
 
 class PlanSettingFragment : Fragment() {
-    private var _binding:PlanTimeTabMainBinding? = null
-    private val viewModel: PlanViewModel by viewModels()
-    private val binding get() = _binding!!
+	private var _binding:PlanTimeTabMainBinding? = null
+	private val viewModel: PlanViewModel by viewModels()
+	private val binding get() = _binding!!
 
-    private lateinit var viewPager : ViewPager2
-    private lateinit var tabLayout : TabLayout
+	private lateinit var viewPager : ViewPager2
+	private lateinit var tabLayout : TabLayout
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = PlanTimeTabMainBinding.inflate(inflater, container, false)
+	override fun onCreateView(
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		savedInstanceState: Bundle?
+	): View {
+		_binding = PlanTimeTabMainBinding.inflate(inflater, container, false)
 
-        initTabLayout()
-        initViewPager()
-
-
-        return binding.root
-    }
-
-    private fun initTabLayout() {
-
-        val tabTitle = arrayOf("시간표", "자격증", "자유")
+		initTabLayout()
+		initViewPager()
 
 
-        viewPager = binding.viewPagerTimeTabMain
-        tabLayout = binding.tabLayoutPlanTime
+		return binding.root
+	}
+
+	private fun initTabLayout() {
+
+		val tabTitle = arrayOf("시간표", "자격증", "자유")
 
 
-        val adapter = PlanVPAdapter(this)
-
-        adapter.addFragment(PlanTimeFragment())
-        adapter.addFragment(PlanlicenseFragment())
-        adapter.addFragment(PlanFreeFragment())
-
-        viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        viewPager.adapter = adapter
-
-        TabLayoutMediator(tabLayout, viewPager
-        ) { tab, position -> tab.text = tabTitle[position] }.attach()
-    }
-
-    private fun initViewPager() {
-
-        binding.viewPagerTimeTabMain.isUserInputEnabled = false
-    }
+		viewPager = binding.viewPagerTimeTabMain
+		tabLayout = binding.tabLayoutPlanTime
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+		val adapter = PlanVPAdapter(this)
+
+
+		adapter.addFragment(PlanlicenseFragment())
+		adapter.addFragment(PlanTimeFragment())
+		adapter.addFragment(PlanFreeFragment())
+
+		viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+		viewPager.adapter = adapter
+
+		TabLayoutMediator(tabLayout, viewPager
+		) { tab, position -> tab.text = tabTitle[position] }.attach()
+	}
+
+	private fun initViewPager() {
+
+		binding.viewPagerTimeTabMain.isUserInputEnabled = false
+	}
+
+
+	override fun onDestroyView() {
+		super.onDestroyView()
+		_binding = null
+	}
 }

@@ -16,6 +16,7 @@ import umc.com.mobile.project.databinding.FragmentPlanlicenseBinding
 import android.widget.EditText
 import androidx.core.view.setMargins
 import androidx.lifecycle.Observer
+import umc.com.mobile.project.data.model.plan.SaveInfo
 import umc.com.mobile.project.data.model.plan.SavelicenseRequest
 import umc.com.mobile.project.data.model.plan.semesterResult
 import umc.com.mobile.project.databinding.PlanTimeChooseTrackBinding
@@ -23,35 +24,35 @@ import umc.com.mobile.project.databinding.SemesterChooseBinding
 import java.time.LocalDate
 
 class PlanTrackFragment : Fragment() {
-    private var _binding: PlanTimeChooseTrackBinding? = null
-    private val viewModel: PlanViewModel by viewModels()
-    private val binding get() = _binding!!
+	private var _binding: PlanTimeChooseTrackBinding? = null
+	private val viewModel: PlanViewModel by viewModels()
+	private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = PlanTimeChooseTrackBinding.inflate(inflater, container, false)
-
-
+	override fun onCreateView(
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		savedInstanceState: Bundle?
+	): View {
+		_binding = PlanTimeChooseTrackBinding.inflate(inflater, container, false)
 
 
 
-        return binding.root
-    }
+
+
+		return binding.root
+	}
 
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
 
-    }
+	}
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+	override fun onDestroyView() {
+		super.onDestroyView()
+		_binding = null
+	}
 }
 
 

@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/semester_choose_const"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/semester_title"
@@ -26,7 +19,32 @@
 
         />
 
+    <!--    <androidx.appcompat.widget.AppCompatTextView-->
+    <!--        android:id="@+id/semester_all_click"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@drawable/semester_all_choose"-->
+    <!--        android:text="전체선택"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/semester_title"-->
+    <!--        app:layout_constraintEnd_toStartOf="@id/semester_all_cancle"-->
+    <!--        android:gravity="center"-->
+    <!--        android:layout_marginRight="10dp"-->
+    <!--        android:layout_marginTop="15dp"-->
 
+    <!--        />-->
+
+    <!--    <androidx.appcompat.widget.AppCompatTextView-->
+    <!--        android:id="@+id/semester_all_cancle"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@drawable/semester_all_choose"-->
+    <!--        android:text="전체취소"-->
+    <!--        android:gravity="center"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/semester_title"-->
+    <!--        android:layout_marginRight="10dp"-->
+    <!--        android:layout_marginTop="15dp"-->
+    <!--        />-->
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:layout_width="wrap_content"
@@ -67,6 +85,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

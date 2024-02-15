@@ -7,31 +7,28 @@ import umc.com.mobile.project.data.model.plan.semesterResult
 import umc.com.mobile.project.databinding.ItemChooseSemesterBinding
 
 class PlanSemesterAdapter( semesterList: List<semesterResult?>): RecyclerView.Adapter<PlanSemesterAdapter.NonSubjectViewHolder>(){
-    var semesterList: List<semesterResult?> = semesterList
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-            //데이터가 바뀌었다 알려줌.
-        }
+	var semesterList: List<semesterResult?> = semesterList
+		set(value) {
+			field = value
+			notifyDataSetChanged()
+			//데이터가 바뀌었다 알려줌.
+		}
 
 
-    override fun getItemCount(): Int {
-        return semesterList?.size ?: 0
-    }
+	override fun getItemCount(): Int {
+		return semesterList?.size ?: 0
+	}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanSemesterAdapter.NonSubjectViewHolder {
-        val itemBinding = ItemChooseSemesterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PlanSemesterAdapter.NonSubjectViewHolder(itemBinding)
-    }
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanSemesterAdapter.NonSubjectViewHolder {
+		val itemBinding = ItemChooseSemesterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+		return PlanSemesterAdapter.NonSubjectViewHolder(itemBinding)
+	}
 
-    override fun onBindViewHolder(holder: PlanSemesterAdapter.NonSubjectViewHolder, position: Int) {
+	override fun onBindViewHolder(holder: PlanSemesterAdapter.NonSubjectViewHolder, position: Int) {
 
-        val semesterInfo = semesterList[position]
-        if (semesterInfo != null) {
-            holder.itemBinding.planTimeSemesterItem.text = semesterInfo.hakkiText
-        }
+		holder.itemBinding.planTimeSemesterItem.text =semesterList[position]?.hakkiText.toString()
 
-    }
+	}
 
-    class NonSubjectViewHolder(val itemBinding: ItemChooseSemesterBinding) : RecyclerView.ViewHolder(itemBinding.root)
+	class NonSubjectViewHolder(val itemBinding: ItemChooseSemesterBinding) : RecyclerView.ViewHolder(itemBinding.root)
 }
