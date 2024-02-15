@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,6 +59,10 @@ class GradDateViewModel : ViewModel() {
         cheeringMessage.value = ""
     }
 
+    fun init() {
+        _isEditMode.value = false
+    }
+
     fun updateSelectedDate(year: String, month: String, day: String) {
         val selectedDateString = "졸업 예정일 ${year}년 $month ${day}일"
         _selectedDate.value = selectedDateString
@@ -85,17 +90,27 @@ class GradDateViewModel : ViewModel() {
     private var previousMessage: String? = null
     private var previousDDay: Int? = null
 
+    //버튼 활성화 조건
     val isButtonEnabled = MediatorLiveData<Boolean>().apply {
+        var previousMessage: String? = null
+        var previousDDay: String? = null
+
         //cheeringMessage 값이 변경될 때마다 실행
-        addSource(cheeringMessage) { currentMessage ->
-            value = previousMessage != currentMessage
+        val cheeringMessageObserver = Observer<String> { currentMessage ->
+            val dDayValue = _dday.value
+            value =
+                previousMessage != currentMessage && currentMessage.isNotEmpty() && dDayValue != null && dDayValue != 0
             previousMessage = currentMessage
         }
         //_dday 값이 변경될 때마다 실행
-        addSource(_dday) { currentDDay ->
-            value = previousDDay != currentDDay
-            previousDDay = currentDDay
+        val dDayObserver = Observer<Int> { currentDDay ->
+            val messageValue = cheeringMessage.value
+            value =
+                previousDDay != currentDDay.toString() && currentDDay != null && currentDDay != 0 && messageValue != null && messageValue.isNotEmpty()
+            previousDDay = currentDDay.toString()
         }
+        addSource(cheeringMessage, cheeringMessageObserver)
+        addSource(_dday, dDayObserver)
     }
 
     fun getDateInfo() {
@@ -111,7 +126,6 @@ class GradDateViewModel : ViewModel() {
                         _dateResponse2.postValue(dateInfoResponse)
                         if (_dateResponse2.value != null && _dateResponse2.value!!.result != null) {
                             _selectedDate.value = _dateResponse2.value!!.result.gradDate
-                            Log.d("getSelectedDate", selectedDate.value.toString())
                         }
                         Log.d("gradDate", "${response.body()}")
                     } else {
