@@ -2,7 +2,6 @@ package umc.com.mobile.project.ui.board
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -42,6 +41,10 @@ class GradDateFragment : Fragment() {
         bottomSheetBinding =
             FragmentGradDateBottomBinding.inflate(layoutInflater)  // bottomSheetBinding 초기화
 
+        //fragment 들어왔을 때 수정하기 text만 보이게
+        viewModel.init()
+
+        //졸업예정일 누르면 bottom frag 뜨게
         with(binding) {
             tvGradDateDate.setOnClickListener {
                 val bottomSheet = GradDateBottomFragment(mContext)
@@ -70,7 +73,6 @@ class GradDateFragment : Fragment() {
                     navigate(R.id.action_fragment_date_to_fragment_home)
                     viewModel.onEditButtonClick()
                 } catch (e: ParseException) {
-                    Log.e("GradDateFragment", "Error parsing date", e)
                     Toast.makeText(context, "날짜를 올바른 형식으로 입력해주세요.", Toast.LENGTH_LONG).show()
                 }
             } else {
@@ -83,7 +85,7 @@ class GradDateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        //api 연결
         viewModel.getDateInfo()
 
         //전에 저장했던 졸업일자랑 dday 불러오기
@@ -100,10 +102,12 @@ class GradDateFragment : Fragment() {
                 binding.tvGradDateDday.text = "D-" + response.result.dday.toString()
             }
         })
+
         //다시 선택한 졸업 일자 띄우기
         viewModel._selectedDate.observe(viewLifecycleOwner) { date ->
             binding.tvGradDateDate.text = date
         }
+
         //다시 선택한 졸업 일자에 맞춰 dday 띄우기
         viewModel._dday.observe(viewLifecycleOwner) { dday ->
             binding.tvGradDateDday.text = "D-$dday"
@@ -123,6 +127,7 @@ class GradDateFragment : Fragment() {
                 binding.tvGradDateMemo.isEnabled = false
             }
         })
+
         //버튼 활성화 조건
         viewModel.isButtonEnabled.observe(viewLifecycleOwner, Observer { isEnabled ->
             if (isEnabled) {
