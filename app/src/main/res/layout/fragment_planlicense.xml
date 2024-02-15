@@ -78,7 +78,7 @@
                     app:layout_gravity="fill"
                     app:layout_rowWeight="1"
                     android:gravity="center"
-                  />
+                    />
 
                 <EditText
                     android:id="@+id/plan_license_date"
