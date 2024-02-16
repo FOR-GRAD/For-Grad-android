@@ -3,12 +3,12 @@ package umc.com.mobile.project.ui.home.adapter
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import umc.com.mobile.project.data.model.gradInfo.GradesTotalDto
 import umc.com.mobile.project.data.model.home.TimeTableDto
 import umc.com.mobile.project.databinding.ItemHomeNextPlanBinding
 
 class NextPlanRVAdapter : RecyclerView.Adapter<NextPlanRVAdapter.MyViewHolder>() {
-
-	private var dataList = listOf<TimeTableDto>()
+	private var dataList = mutableListOf<TimeTableDto>()
 
 	inner class MyViewHolder(private val binding: ItemHomeNextPlanBinding) :
 		RecyclerView.ViewHolder(binding.root) {
@@ -36,8 +36,9 @@ class NextPlanRVAdapter : RecyclerView.Adapter<NextPlanRVAdapter.MyViewHolder>()
 		return dataList.size
 	}
 
-	fun setData(dataList: List<TimeTableDto>) {
-		this.dataList = dataList
+	fun setData(data: List<TimeTableDto>) {
+		dataList.clear()
+		dataList.addAll(data)
 		notifyDataSetChanged()
 	}
 
