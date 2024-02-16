@@ -85,10 +85,9 @@ class HomeViewModel : ViewModel() {
 
 						if (userResponse.result.futureTimeTableDto.isEmpty()) {
 							_planStatus.postValue(false)
+						} else {
+							_planStatus.postValue(true)
 						}
-//						Log.d("home", "${response.body()}")
-						Log.d("home", "${userResponse.result.futureTimeTableDto}")
-					} else {
 						_error.postValue("서버 응답이 올바르지 않습니다.")
 					}
 				} else {

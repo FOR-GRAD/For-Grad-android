@@ -46,7 +46,7 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 			val grade = if (position % 2 == 0) position / 2 + 1 else (position + 1) / 2
 //			totalAverageGrade += Integer.parseInt(gradesTotalDto.averageGrade)
 
-				binding.tvSemesterContent1.text = "$grade - $semester"
+			binding.tvSemesterContent1.text = "$grade - $semester"
 			binding.tvAverageGradeContent1.text = gradesTotalDto.averageGrade
 //			viewModel.onSetTotalAverageGrade(totalAverageGrade, position+1)
 		}
@@ -72,6 +72,7 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 	fun setData(data: List<GradesTotalDto>) {
 		dataList.clear()
 		dataList.addAll(data)
+//		viewModel.onSetNullCheckGrade(true)
 		repeat(8 - dataList.size) {
 			dataList.add(
 				GradesTotalDto(
@@ -82,8 +83,8 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 					"0"
 				)
 			)
+			viewModel.onSetNullCheckGrade(false)
 		}
-
 		notifyDataSetChanged()
 	}
 

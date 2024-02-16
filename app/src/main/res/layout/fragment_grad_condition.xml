@@ -56,7 +56,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_register_content"
-                    style="@style/MediumFont.15"
+                    style="@style/MediumFont.13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
@@ -68,7 +68,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_credit_content"
-                    style="@style/MediumFont.15"
+                    style="@style/MediumFont.13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="26dp"
@@ -100,7 +100,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_point_content"
-                    style="@style/MediumFont.15"
+                    style="@style/MediumFont.13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="26dp"
@@ -123,7 +123,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_score_content"
-                    style="@style/MediumFont.15"
+                    style="@style/MediumFont.13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="26dp"
@@ -217,7 +217,6 @@
                         android:layout_marginTop="56dp"
                         android:layout_marginEnd="27dp"
                         android:layout_marginBottom="56dp"
-                        android:text="트랙1 이름"
                         android:textColor="@color/skyBlue" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -229,7 +228,6 @@
                         android:layout_marginTop="17dp"
                         android:layout_marginEnd="20dp"
                         android:lineSpacingExtra="5dp"
-                        android:text="트랙1 내용"
                         android:textColor="@color/black"
                         app:layout_gravity="fill" />
 
@@ -255,7 +253,6 @@
                         android:layout_marginTop="56dp"
                         android:layout_marginEnd="27dp"
                         android:layout_marginBottom="56dp"
-                        android:text="트랙2 이름"
                         android:textColor="@color/skyBlue" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -268,8 +265,6 @@
                         android:layout_marginEnd="20dp"
                         android:ellipsize="none"
                         android:lineSpacingExtra="5dp"
-                        android:maxLines="5"
-                        android:text="트랙2 내용"
                         android:textColor="@color/black"
                         app:layout_gravity="fill" />
 

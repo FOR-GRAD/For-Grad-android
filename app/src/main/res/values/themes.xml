@@ -38,4 +38,10 @@
     <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <!-- 커스텀 다이얼로그 -->
+    <style name="CustomAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@drawable/custom_dialog_background</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

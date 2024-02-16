@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,7 +36,8 @@ class SettingFragment : Fragment() {
 
 		viewModel.userInfoResponse.observe(viewLifecycleOwner, Observer {
 			binding.tvAccountIdContent.text = it?.result?.id.toString()
-			binding.tvAccountMajorContent.text = "1트랙: ${it?.result?.track1} / 트랙: ${it?.result?.track2}"
+			binding.tvAccountMajorContent.text =
+				"1트랙: ${it?.result?.track1} / 트랙: ${it?.result?.track2}"
 		})
 
 		return binding.root
@@ -52,25 +54,29 @@ class SettingFragment : Fragment() {
 		}
 
 		binding.tvEtcLogout.setOnClickListener {
-			var dialog = AlertDialog.Builder(requireContext())
-			dialog.setTitle("로그아웃을 하시겠습니까?")
-			dialog.setMessage("서비스를 이용해주셔서 감사합니다.")
+			var dialogBuilder =
+				AlertDialog.Builder(requireContext(), R.style.CustomAlertDialogTheme)
 
-			fun toast() {
-				Toast.makeText(requireContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+			val customView = layoutInflater.inflate(R.layout.custom_dialog_logout, null)
+			dialogBuilder.setView(customView)
+			val alertDialog = dialogBuilder.create()
+
+			alertDialog.show()
+
+			customView.findViewById<Button>(R.id.button_positive).setOnClickListener {
+//				Toast.makeText(requireContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
 				val intent = Intent(requireContext(), LoginActivity::class.java)
 				intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+				intent.putExtra("logged_out", true)
 				startActivity(intent)
 				requireActivity().finish()
 			}
-			var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
-				when (p1) {
-					DialogInterface.BUTTON_POSITIVE -> toast()
-				}
+
+			customView.findViewById<Button>(R.id.button_negative).setOnClickListener {
+				alertDialog.dismiss()
 			}
-			dialog.setPositiveButton("YES", dialogLister)
-			dialog.setNegativeButton("NO", null)
-			dialog.show()
+
 		}
+
 	}
 }
