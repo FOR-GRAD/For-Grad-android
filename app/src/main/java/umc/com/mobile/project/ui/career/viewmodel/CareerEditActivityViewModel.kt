@@ -33,6 +33,9 @@ class CareerEditActivityViewModel : ViewModel() {
     val endDate: MutableLiveData<String> = MutableLiveData()
     val fileAddedEvent: MutableLiveData<Boolean> = MutableLiveData()
     val addFiles: MutableList<MultipartBody.Part> = mutableListOf()
+    val addFilesLive: MutableLiveData<Boolean> = MutableLiveData<Boolean>().apply {
+        value = addFiles.isNotEmpty()
+    }
 
     init {
         studentId.value = 0
@@ -49,18 +52,19 @@ class CareerEditActivityViewModel : ViewModel() {
         startDate.value = ""
         endDate.value = ""
         addFiles.clear()
+        addFilesLive.value = addFiles.isNotEmpty()
     }
 
-    val isFilledAllOptions: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
-        value = areBothFieldsFilled()
-        addSource(startDate) { value = areBothFieldsFilled() }
-        addSource(endDate) { value = areBothFieldsFilled() }
+    val isFilledAnyOptions: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
+        value = isAnyFieldFilled()
+        addSource(title) { value = isAnyFieldFilled() }
+        addSource(startDate) { value = isAnyFieldFilled() }
+        addSource(endDate) { value = isAnyFieldFilled() }
+        addSource(addFilesLive) { value = isAnyFieldFilled() }
     }
 
-    private fun areBothFieldsFilled(): Boolean {
-        return (startDate.value.isNullOrBlank() && endDate.value.isNullOrBlank()) || (isDateValid(
-            startDate.value
-        ) && isDateValid(endDate.value))
+    private fun isAnyFieldFilled(): Boolean {
+        return !title.value.isNullOrBlank() || !startDate.value.isNullOrBlank() || !endDate.value.isNullOrBlank() || (addFilesLive.value ?: false)
     }
 
     private fun isDateValid(date: String?): Boolean {
@@ -71,6 +75,7 @@ class CareerEditActivityViewModel : ViewModel() {
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("addFiles", file.name, requestFile)
         addFiles.add(body)
+        addFilesLive.value = addFiles.isNotEmpty()
         fileAddedEvent.value = true
     }
 
@@ -99,6 +104,7 @@ class CareerEditActivityViewModel : ViewModel() {
         val requestFile: RequestBody = RequestBody.create(mimeType?.toMediaTypeOrNull(), file)
         val filePart = MultipartBody.Part.createFormData("addFiles", fileName, requestFile)
         addFiles.add(filePart)
+        addFilesLive.value = addFiles.isNotEmpty()
         fileAddedEvent.value = true
     }
 
