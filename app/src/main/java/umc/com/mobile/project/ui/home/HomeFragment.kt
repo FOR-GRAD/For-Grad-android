@@ -23,7 +23,7 @@ import umc.com.mobile.project.ui.home.viewmodel.HomeViewModel
 class HomeFragment : Fragment() {
 	private var _binding: FragmentHomeBinding? = null
 	private val viewModel: HomeViewModel by viewModels()
-//	private val gradDateViewModel: GradDateViewModel by activityViewModels()
+	private val gradDateViewModel: GradDateViewModel by activityViewModels()
 	private val binding get() = _binding!!
 
 	override fun onCreateView(
@@ -39,7 +39,6 @@ class HomeFragment : Fragment() {
 		viewModel.getUserInfo() // 홈 화면 정보 조회 api
 
 		navigateFragment()
-//		saveCheeringMemo() // 응원의 한마디 연결
 		setupRecyclerView() // recyclerView 연결
 		setupHomeInfoRetrofit() // 홈 화면 ui 연결
 
@@ -48,7 +47,6 @@ class HomeFragment : Fragment() {
 
 	override fun onPause() {
 		super.onPause()
-//		saveCheeringMemo()
 	}
 
 	override fun onDestroyView() {
@@ -65,13 +63,6 @@ class HomeFragment : Fragment() {
 			navigate(R.id.action_fragment_home_to_planSettingFragment)
 		}
 	}
-
-/*
-	private fun saveCheeringMemo() {
-		gradDateViewModel.dateResponse.observe(viewLifecycleOwner, Observer {
-		})
-	}
-*/
 
 	private fun setupRecyclerView() {
 		val adapter = NextPlanRVAdapter()
