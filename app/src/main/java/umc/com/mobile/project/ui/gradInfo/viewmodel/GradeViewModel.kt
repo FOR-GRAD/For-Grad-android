@@ -45,6 +45,10 @@ class GradeViewModel : ViewModel() {
 	val totalAverage: LiveData<Double>
 		get() = _totalAverage
 
+	private val _isNullCheckGrade: MutableLiveData<Boolean> = MutableLiveData()
+	val isNullCheckGrade: LiveData<Boolean>
+		get() = _isNullCheckGrade
+
 	val selectedSemesterGradeAndGrades: MediatorLiveData<Pair<String?, Map<String, GradesTotalDto>?>> = MediatorLiveData()
 
 	init {
@@ -137,5 +141,9 @@ class GradeViewModel : ViewModel() {
 
 	fun onSetTotalAverageGrade(totalAverageGrade: Double, totalNumber: Int) {
 		_totalAverage.postValue((totalAverageGrade/totalNumber))
+	}
+
+	fun onSetNullCheckGrade(flag: Boolean) {
+		_isNullCheckGrade.postValue(flag)
 	}
  }
