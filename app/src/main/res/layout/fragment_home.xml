@@ -255,7 +255,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_plan"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="0dp"
                 android:layout_marginTop="78dp"
                 android:background="@drawable/bg_solid_light_blue_top_right_radius_70"
                 android:paddingBottom="50dp"
@@ -283,7 +283,6 @@
                     android:layout_marginTop="31dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/bg_solid_white_radius_20"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_plan_title">
@@ -321,7 +320,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout3"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="6dp"
                         android:layout_marginEnd="6dp"
                         android:layout_marginBottom="6dp"
@@ -377,9 +376,8 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerView"
                             android:layout_width="0dp"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat3"
