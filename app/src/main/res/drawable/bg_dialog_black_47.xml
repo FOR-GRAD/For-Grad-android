@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="20dp" />
+    <solid android:color="#78000000" /> <!-- 검정색의 투명도를 나타내는 78(47) + 검정색 값 -->
+</shape>
