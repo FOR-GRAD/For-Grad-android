@@ -41,7 +41,12 @@
 
     <!-- 커스텀 다이얼로그 -->
     <style name="CustomAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:background">@drawable/custom_dialog_background</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="CustomAlertDialogTheme2" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@drawable/bg_dialog_black_47</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 </resources>

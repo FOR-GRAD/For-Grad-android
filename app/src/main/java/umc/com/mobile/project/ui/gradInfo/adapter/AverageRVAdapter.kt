@@ -4,8 +4,10 @@ import android.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import umc.com.mobile.project.data.model.gradInfo.GradesTotalDto
 import umc.com.mobile.project.databinding.ItemAverageGradeBinding
+import umc.com.mobile.project.ui.gradInfo.GradeFragment
 import umc.com.mobile.project.ui.gradInfo.viewmodel.GradeViewModel
 
 class AverageRVAdapter(private val viewModel: GradeViewModel) :
@@ -24,14 +26,8 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 					viewModel.onSemesterItemClick(semester)
 					viewModel.onSemesterGradeItemClick(semesterGrade)
 
-					val gradesTotalDto = dataList[position]
-					if (gradesTotalDto.averageGrade == "0.0") {
-						val alertDialogBuilder = AlertDialog.Builder(binding.root.context)
-						alertDialogBuilder.setTitle("알림")
-						alertDialogBuilder.setMessage("${position + 1} 학기의 성적이 아직 입력되지 않았습니다.")
-						alertDialogBuilder.setPositiveButton("확인") { dialog, _ ->
-							dialog.dismiss()
-						}
+					if (dataList[position].averageGrade == "0.0") {
+						viewModel.onSetNullCheckGrade(true)
 					}
 				}
 			}
@@ -72,7 +68,6 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 	fun setData(data: List<GradesTotalDto>) {
 		dataList.clear()
 		dataList.addAll(data)
-//		viewModel.onSetNullCheckGrade(true)
 		repeat(8 - dataList.size) {
 			dataList.add(
 				GradesTotalDto(
@@ -83,9 +78,10 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 					"0"
 				)
 			)
-			viewModel.onSetNullCheckGrade(false)
 		}
 		notifyDataSetChanged()
 	}
+
+
 
 }

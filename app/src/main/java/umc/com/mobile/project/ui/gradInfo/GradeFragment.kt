@@ -1,5 +1,6 @@
 package umc.com.mobile.project.ui.gradInfo
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import okhttp3.internal.notify
+import umc.com.mobile.project.R
 import umc.com.mobile.project.data.model.gradInfo.GradesResponse
 import umc.com.mobile.project.databinding.FragmentGradeBinding
 import umc.com.mobile.project.ui.gradInfo.adapter.AverageRVAdapter
@@ -64,6 +66,10 @@ class GradeFragment : Fragment() {
 			(binding.recyclerView2.adapter as? AverageRVAdapter)?.setData(gradesMap.values.toList())
 		})
 
+		viewModel.isNullCheckGrade.observe(viewLifecycleOwner) {
+			if (it) {	showDialog()	}
+		}
+
 		return binding.root
 	}
 
@@ -81,5 +87,15 @@ class GradeFragment : Fragment() {
 
 		binding.recyclerView2.adapter = adapter2
 		binding.recyclerView2.layoutManager = GridLayoutManager(context, 2)
+	}
+
+	private fun showDialog() {
+		val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialogTheme2)
+
+		val customView = layoutInflater.inflate(R.layout.custom_dialog_grade, null)
+		dialogBuilder.setView(customView)
+
+		val alertDialog = dialogBuilder.create()
+		alertDialog.show()
 	}
 }

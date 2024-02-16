@@ -1,5 +1,6 @@
 package umc.com.mobile.project.ui.gradInfo.viewmodel
 
+import android.app.AlertDialog
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -13,6 +14,7 @@ import umc.com.mobile.project.data.model.gradInfo.GradesResponse
 import umc.com.mobile.project.data.model.gradInfo.GradesTotalDto
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.GradInfoApi
+import kotlin.coroutines.coroutineContext
 
 class GradeViewModel : ViewModel() {
 	private val gradInfoApiService = ApiClient.createService<GradInfoApi>()

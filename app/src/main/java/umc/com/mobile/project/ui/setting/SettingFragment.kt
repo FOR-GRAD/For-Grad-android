@@ -55,7 +55,7 @@ class SettingFragment : Fragment() {
 
 		binding.tvEtcLogout.setOnClickListener {
 			var dialogBuilder =
-				AlertDialog.Builder(requireContext(), R.style.CustomAlertDialogTheme)
+				AlertDialog.Builder(requireContext(), R.style.CustomAlertDialogTheme2)
 
 			val customView = layoutInflater.inflate(R.layout.custom_dialog_logout, null)
 			dialogBuilder.setView(customView)
