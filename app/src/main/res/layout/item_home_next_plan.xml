@@ -19,16 +19,18 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
+        android:paddingTop="12dp"
         android:paddingBottom="7dp"
         android:text="분류"
         android:textColor="@color/white" />
-
-    <!-- 분류 선 -->
+<!--
+    &lt;!&ndash; 분류 선 &ndash;&gt;
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:background="@android:color/white" />
 
+  -->
     <!-- 교과목 -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_class_title"
@@ -37,15 +39,18 @@
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:gravity="center"
+        android:paddingTop="12dp"
         android:paddingBottom="7dp"
         android:text="교과목"
         android:textColor="@color/white" />
+<!--
 
-    <!-- 교과목 선 -->
+    &lt;!&ndash; 교과목 선 &ndash;&gt;
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:background="@android:color/white" />
+-->
 
     <!-- 학점 -->
     <androidx.appcompat.widget.AppCompatTextView
@@ -55,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
+        android:paddingTop="12dp"
         android:paddingBottom="7dp"
         android:text="학점"
         android:textColor="@color/white" />
