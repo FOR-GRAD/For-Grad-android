@@ -90,7 +90,7 @@ class GradeFragment : Fragment() {
 	}
 
 	private fun showDialog() {
-		val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialogTheme2)
+		val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialogTheme)
 
 		val customView = layoutInflater.inflate(R.layout.custom_dialog_grade, null)
 		dialogBuilder.setView(customView)
