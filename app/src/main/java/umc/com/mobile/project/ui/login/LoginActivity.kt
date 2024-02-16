@@ -69,8 +69,7 @@ class LoginActivity : AppCompatActivity() {
 	}
 
 	private fun showLogoutDialog() {
-		var dialogBuilder =
-			AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+		val dialogBuilder = AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
 
 		val customView = layoutInflater.inflate(R.layout.custom_dialog_logout_home, null)
 		dialogBuilder.setView(customView)
