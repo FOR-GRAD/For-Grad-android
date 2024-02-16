@@ -23,7 +23,6 @@ import umc.com.mobile.project.ui.home.viewmodel.HomeViewModel
 class HomeFragment : Fragment() {
 	private var _binding: FragmentHomeBinding? = null
 	private val viewModel: HomeViewModel by viewModels()
-	private val gradDateViewModel: GradDateViewModel by activityViewModels()
 	private val binding get() = _binding!!
 
 	override fun onCreateView(
@@ -71,14 +70,10 @@ class HomeFragment : Fragment() {
 			val futureTimeTableDto = userInfoResponse?.result?.futureTimeTableDto
 			if (futureTimeTableDto != null) {
 				val futureSemesterInfo = futureTimeTableDto.values.firstOrNull()
-				if (futureSemesterInfo?.semester != null) {
-					val timeTableDtoList = futureSemesterInfo.semester.timeTableDtoList
+				val timeTableDtoList = futureSemesterInfo?.timeTableDtoList
+				if (timeTableDtoList != null) {
 					adapter.setData(timeTableDtoList)
-				} else {
-					Log.e("HomeFragment", "정보 없음")
 				}
-			} else {
-				Log.e("HomeFragment", "정보 없음")
 			}
 		})
 
@@ -111,7 +106,7 @@ class HomeFragment : Fragment() {
 			binding.tvGradeSemester.text = planKey
 
 			binding.tvTotalCredit.text =
-				(it?.result?.futureTimeTableDto?.get(planKey)?.semester?.sumCredits ?: "총 학점 0").toString()
+				"총 학점 ${it?.result?.futureTimeTableDto?.get(planKey)?.sumCredits}" ?: "총 학점 0"
 
 			val dDay = it?.result?.dday ?: 0
 			binding.progressbarToGrad.progress = 1460 - dDay
