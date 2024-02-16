@@ -1,48 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_solid_white_radius_20"
-    android:orientation="vertical">
+    android:background="@null">
 
-    <TextView
-        android:id="@+id/textView_message"
-        style="@style/SemiBoldFont.16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="21dp"
-        android:text="포어그래드에서\n로그아웃 하시겠습니까?"
-        android:textColor="@android:color/black" />
-
-    <!-- 버튼들 -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="38dp"
+        android:background="@drawable/bg_solid_white_radius_20"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_positive"
+        <TextView
+            android:id="@+id/textView_message"
             style="@style/SemiBoldFont.16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="9dp"
-            android:background="@drawable/bg_solid_white_radius_20"
-            android:stateListAnimator="@null"
-            android:padding="15dp"
-            android:text="로그아웃"
-            android:textColor="@color/skyBlue" />
+            android:gravity="center"
+            android:padding="21dp"
+            android:text="포어그래드에서\n로그아웃 하시겠습니까?"
+            android:textColor="@android:color/black" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_negative"
-            style="@style/SemiBoldFont.16"
+        <!-- 버튼들 -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_solid_white_radius_20"
-            android:stateListAnimator="@null"
-            android:padding="15dp"
-            android:text="닫기"
-            android:textColor="@color/black" />
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_positive"
+                style="@style/SemiBoldFont.16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:background="@drawable/bg_solid_white_radius_20"
+                android:padding="15dp"
+                android:stateListAnimator="@null"
+                android:text="로그아웃"
+                android:textColor="@color/skyBlue" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_negative"
+                style="@style/SemiBoldFont.16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_solid_white_radius_20"
+                android:padding="15dp"
+                android:stateListAnimator="@null"
+                android:text="닫기"
+                android:textColor="@color/black" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

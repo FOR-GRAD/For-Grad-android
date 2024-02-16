@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.KeyEvent
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
@@ -75,6 +76,7 @@ class LoginActivity : AppCompatActivity() {
 		dialogBuilder.setView(customView)
 
 		val dialog = dialogBuilder.create()
+
 		dialog.show()
 
 		Handler().postDelayed({
