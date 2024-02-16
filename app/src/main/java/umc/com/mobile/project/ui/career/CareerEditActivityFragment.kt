@@ -103,7 +103,7 @@ class CareerEditActivityFragment : Fragment() {
             }
         })
         //버튼 활성화
-        viewModel.isFilledAllOptions.observe(viewLifecycleOwner) { isEnabled ->
+        viewModel.isFilledAnyOptions.observe(viewLifecycleOwner) { isEnabled ->
             binding?.btnCareerEdit?.isEnabled = isEnabled
             binding?.btnCareerEdit?.backgroundTintList =
                 ContextCompat.getColorStateList(
