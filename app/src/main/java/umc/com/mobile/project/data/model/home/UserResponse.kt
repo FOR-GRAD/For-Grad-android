@@ -25,10 +25,6 @@ data class Result(
 )
 
 data class FutureTimeTableDto(
-	val semester: SemesterInfo
-)
-
-data class SemesterInfo(
 	val sumCredits: Int,
 	val timeTableDtoList: List<TimeTableDto>
 )
