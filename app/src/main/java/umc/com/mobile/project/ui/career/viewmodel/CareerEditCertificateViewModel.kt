@@ -44,17 +44,17 @@ class CareerEditCertificateViewModel : ViewModel() {
         startDate.value = ""
         endDate.value = ""
     }
-
+    
     val isFilledAllOptions: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
-        value = areBothFieldsFilled()
-        addSource(startDate) { value = areBothFieldsFilled() }
-        addSource(endDate) { value = areBothFieldsFilled() }
+        value = isAnyFieldFilled()
+        addSource(title) { value = isAnyFieldFilled() }
+        addSource(type) { value = isAnyFieldFilled() }
+        addSource(startDate) { value = isAnyFieldFilled() }
+        addSource(endDate) { value = isAnyFieldFilled() }
     }
 
-    private fun areBothFieldsFilled(): Boolean {
-        return (startDate.value.isNullOrBlank() && endDate.value.isNullOrBlank()) || (isDateValid(
-            startDate.value
-        ) && isDateValid(endDate.value))
+    private fun isAnyFieldFilled(): Boolean {
+        return !title.value.isNullOrBlank() || !type.value.isNullOrBlank() || !startDate.value.isNullOrBlank() || !endDate.value.isNullOrBlank()
     }
 
     private fun isDateValid(date: String?): Boolean {
