@@ -14,9 +14,11 @@ import umc.com.mobile.project.data.model.home.UpdateGradDateRequest
 import umc.com.mobile.project.data.model.home.UpdateGradDateResponse
 import umc.com.mobile.project.data.network.ApiClient
 import umc.com.mobile.project.data.network.api.HomeApi
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import java.util.Locale
 
 class GradDateViewModel : ViewModel() {
     val _selectedDate: MutableLiveData<String> = MutableLiveData()
@@ -55,10 +57,6 @@ class GradDateViewModel : ViewModel() {
     val isEditMode: LiveData<Boolean>
         get() = _isEditMode
 
-    init {
-        cheeringMessage.value = ""
-    }
-
     fun init() {
         _isEditMode.value = false
     }
@@ -86,12 +84,9 @@ class GradDateViewModel : ViewModel() {
         _isEditMode.value = !_isEditMode.value!!
     }
 
-    //전의 메모랑 같으면 저장 안됨
-    private var previousMessage: String? = null
-    private var previousDDay: Int? = null
-
     //버튼 활성화 조건
     val isButtonEnabled = MediatorLiveData<Boolean>().apply {
+        //이전 메모랑 내용 같으면 저장 안됨
         var previousMessage: String? = null
         var previousDDay: String? = null
 
@@ -99,14 +94,14 @@ class GradDateViewModel : ViewModel() {
         val cheeringMessageObserver = Observer<String> { currentMessage ->
             val dDayValue = _dday.value
             value =
-                previousMessage != currentMessage && currentMessage.isNotEmpty() && dDayValue != null && dDayValue != 0
+                previousMessage != currentMessage && currentMessage.isNotEmpty()
             previousMessage = currentMessage
         }
         //_dday 값이 변경될 때마다 실행
         val dDayObserver = Observer<Int> { currentDDay ->
             val messageValue = cheeringMessage.value
             value =
-                previousDDay != currentDDay.toString() && currentDDay != null && currentDDay != 0 && messageValue != null && messageValue.isNotEmpty()
+                previousDDay != currentDDay.toString() && currentDDay != null && currentDDay != 0
             previousDDay = currentDDay.toString()
         }
         addSource(cheeringMessage, cheeringMessageObserver)
@@ -124,6 +119,13 @@ class GradDateViewModel : ViewModel() {
                     if (dateInfoResponse != null) {
                         dateResponse.postValue(dateInfoResponse)//home에 있어서 놔둠
                         _dateResponse2.postValue(dateInfoResponse)
+                        val originalFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+                        val targetFormat = SimpleDateFormat("yyyy-M월-d", Locale.KOREA)
+                        if (dateInfoResponse.result.dday != null) {
+                            val date = originalFormat.parse(dateInfoResponse.result.gradDate)
+                            val formattedDate = targetFormat.format(date)
+                            _selectedDateRequest.value = formattedDate
+                        }
                         if (_dateResponse2.value != null && _dateResponse2.value!!.result != null) {
                             _selectedDate.value = _dateResponse2.value!!.result.gradDate
                         }
