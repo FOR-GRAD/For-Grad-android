@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import umc.com.mobile.project.data.model.plan.PlanFreeRequest
 import umc.com.mobile.project.databinding.FragmentPlanFreeBinding
 import umc.com.mobile.project.ui.plan.PlanViewModel
 
@@ -19,11 +21,32 @@ class PlanFreeFragment : Fragment() {
     ): View {
         _binding = FragmentPlanFreeBinding.inflate(inflater, container, false)
 
-        viewModel.text.observe(viewLifecycleOwner) { text ->
-            // Update your UI here with the LiveData update
-            // Make sure 'textViewExample' matches the ID of the TextView in your layout
-//            binding.textViewExample.text = text
+        // 버튼 클릭 이벤트 설정
+        binding.freeStoreButton.setOnClickListener {
+            val memoText = binding.planFreeMemo.text.toString()
+            if (memoText.isNotEmpty()) {
+                viewModel.postMemo(PlanFreeRequest(memo = memoText))
+            }
         }
+
+        // 메모 저장 결과 관찰
+        viewModel.postMemoResult.observe(viewLifecycleOwner) { isSuccess ->
+            if (isSuccess) {
+                Toast.makeText(context, "메모가 성공적으로 저장되었습니다.", Toast.LENGTH_SHORT).show()
+                viewModel.getFreeInfo() // 저장 후 메모 정보 다시 불러오기
+            } else {
+                Toast.makeText(context, "메모 저장에 실패했습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // 저장된 메모 정보를 불러와서 EditText에 표시
+        viewModel.planFreeInfo.observe(viewLifecycleOwner) { planFreeResponse ->
+            planFreeResponse?.result?.memo?.let {
+                binding.planFreeMemo.setText(it)
+            }
+        }
+
+
         return binding.root
     }
 
@@ -32,3 +55,4 @@ class PlanFreeFragment : Fragment() {
         _binding = null
     }
 }
+

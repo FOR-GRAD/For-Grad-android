@@ -1,6 +1,7 @@
 package umc.com.mobile.project.ui.plan
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,10 @@ class PlanSettingFragment : Fragment() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
+
+    // 선택된 학기와 트랙 정보
+    private var selectedHakki: String = ""
+    private var selectedTrackId: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,6 +78,24 @@ class PlanSettingFragment : Fragment() {
 
         binding.viewPagerTimeTabMain.isUserInputEnabled = false
     }
+
+    // 학기 및 트랙 선택 후 호출되는 함수
+//    fun onSemesterAndTrackSelected(hakki: String, trackId: String) {
+//        selectedHakki = hakki
+//        selectedTrackId = trackId
+//
+//        Log.d("PlanSettingFragment", "Selected Hakki: $hakki, TrackId: $trackId")
+//
+//    }
+//
+//
+//    fun navigateToPlanTrackFragment() {
+//        val bundle = Bundle().apply {
+//            putString("hakki", selectedHakki)
+//            putString("trackId", selectedTrackId)
+//        }
+//        findNavController().navigate(R.id.action_planSettingFragment_to_planTimeFragment, bundle)
+//    }
 
 
     override fun onDestroyView() {

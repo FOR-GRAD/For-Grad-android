@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import umc.com.mobile.project.data.model.plan.semesterResult
 import umc.com.mobile.project.databinding.SemesterChooseBinding
+
+import umc.com.mobile.project.R
+
 
 class PlanSemesterFragment : Fragment() {
     private var _binding: SemesterChooseBinding? = null
@@ -28,7 +30,17 @@ class PlanSemesterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = PlanSemesterAdapter(emptyList()) // 초기 데이터로 빈 리스트 사용
+        viewModel.resetSemesterSelection() // 상태 초기화
+
+        val adapter = PlanSemesterAdapter(emptyList()) { selectedItem ->
+
+
+            val bundle = Bundle().apply {
+                putString("hakki", selectedItem.hakkiNum)
+            }
+            findNavController().navigate(R.id.action_planSemesterFragment_to_planTrackFragment, bundle)
+        }
+
 
         // RecyclerView에 어댑터와 레이아웃 매니저 설정
         binding.recyclerViewPlanSemester.adapter = adapter
@@ -41,6 +53,12 @@ class PlanSemesterFragment : Fragment() {
         }
 
         viewModel.getSemesterInfo() // 데이터 로드
+
+
+        // x 버튼 누르고 뒤로가기
+         binding.planSemesterBackspace.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     override fun onDestroyView() {

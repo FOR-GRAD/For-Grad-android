@@ -37,13 +37,15 @@
             >
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/plan_free_memo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="자유롭게 메모하듯이 추후 계획을 작성해보아요"
                 style="@style/MediumFont.13"
                 android:textColor="#7D7D7D"
                 android:background="@null"
                 android:inputType="textMultiLine"
+                android:gravity="top|start"
 
                 />
 
