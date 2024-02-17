@@ -2,6 +2,7 @@ package umc.com.mobile.project.ui.gradInfo
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -67,7 +68,9 @@ class GradeFragment : Fragment() {
 		})
 
 		viewModel.isNullCheckGrade.observe(viewLifecycleOwner) {
-			if (it) {	showDialog()	}
+			if (it) {
+				showDialog()
+			}
 		}
 
 		return binding.root
@@ -97,5 +100,9 @@ class GradeFragment : Fragment() {
 
 		val alertDialog = dialogBuilder.create()
 		alertDialog.show()
+
+		Handler().postDelayed({
+			alertDialog.dismiss()
+		}, 2000)
 	}
 }

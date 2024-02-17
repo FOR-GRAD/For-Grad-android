@@ -28,6 +28,8 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 
 					if (dataList[position].averageGrade == "0.0") {
 						viewModel.onSetNullCheckGrade(true)
+					} else {
+						viewModel.onSetNullCheckGrade(false)
 					}
 				}
 			}
