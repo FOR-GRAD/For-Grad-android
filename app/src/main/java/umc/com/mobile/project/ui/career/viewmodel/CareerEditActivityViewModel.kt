@@ -36,6 +36,7 @@ class CareerEditActivityViewModel : ViewModel() {
     val addFilesLive: MutableLiveData<Boolean> = MutableLiveData<Boolean>().apply {
         value = addFiles.isNotEmpty()
     }
+    val totalFileSize = MutableLiveData<Long>(0)
 
     init {
         studentId.value = 0
@@ -44,6 +45,7 @@ class CareerEditActivityViewModel : ViewModel() {
         startDate.value = ""
         endDate.value = ""
         addFiles.clear()
+        totalFileSize.value = 0
     }
 
     fun init() {
@@ -53,6 +55,7 @@ class CareerEditActivityViewModel : ViewModel() {
         endDate.value = ""
         addFiles.clear()
         addFilesLive.value = addFiles.isNotEmpty()
+        totalFileSize.value = 0
     }
 
     val isFilledAnyOptions: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
@@ -61,14 +64,20 @@ class CareerEditActivityViewModel : ViewModel() {
         addSource(startDate) { value = isAnyFieldFilled() }
         addSource(endDate) { value = isAnyFieldFilled() }
         addSource(addFilesLive) { value = isAnyFieldFilled() }
+        addSource(totalFileSize) { value = isAnyFieldFilled() }
     }
 
     private fun isAnyFieldFilled(): Boolean {
-        return !title.value.isNullOrBlank() || !startDate.value.isNullOrBlank() || !endDate.value.isNullOrBlank() || (addFilesLive.value ?: false)
+        return (!title.value.isNullOrBlank() || !startDate.value.isNullOrBlank() || !endDate.value.isNullOrBlank() || addFilesLive.value ?: false) && isFileSizeValid()
     }
 
     private fun isDateValid(date: String?): Boolean {
         return date.isNullOrBlank() || date.length == 8
+    }
+
+    //파일 사이즈가 30MB를 넘지 않는지 체크
+    private fun isFileSizeValid(): Boolean {
+        return totalFileSize.value ?: 0 <= 30 * 1024 * 1024
     }
 
     fun addImageFile(file: File) {
@@ -76,6 +85,7 @@ class CareerEditActivityViewModel : ViewModel() {
         val body = MultipartBody.Part.createFormData("addFiles", file.name, requestFile)
         addFiles.add(body)
         addFilesLive.value = addFiles.isNotEmpty()
+        calculateTotalFileSize() //파일 사이즈 계산
         fileAddedEvent.value = true
     }
 
@@ -105,7 +115,18 @@ class CareerEditActivityViewModel : ViewModel() {
         val filePart = MultipartBody.Part.createFormData("addFiles", fileName, requestFile)
         addFiles.add(filePart)
         addFilesLive.value = addFiles.isNotEmpty()
+        calculateTotalFileSize() //파일 사이즈 계산
         fileAddedEvent.value = true
+    }
+
+    //파일 사이즈 측정
+    fun calculateTotalFileSize() {
+        var totalSize: Long = 0
+        for (filePart in addFiles) {
+            val file = filePart.body
+            totalSize += file?.contentLength() ?: 0
+        }
+        totalFileSize.value = totalSize
     }
 
     private val careerApiService = ApiClient.createService<CareerApi>()
