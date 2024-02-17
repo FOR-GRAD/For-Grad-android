@@ -28,12 +28,14 @@ class CareerAddActivityViewModel : ViewModel() {
     val endDate: MutableLiveData<String> = MutableLiveData()
     val fileAddedEvent: MutableLiveData<Boolean> = MutableLiveData()
     val imageList: MutableList<MultipartBody.Part> = mutableListOf()
+    val totalFileSize = MutableLiveData<Long>(0)
 
     init {
         title.value = ""
         startDate.value = ""
         endDate.value = ""
         imageList.clear()
+        totalFileSize.value = 0
     }
 
     fun init() {
@@ -41,6 +43,7 @@ class CareerAddActivityViewModel : ViewModel() {
         startDate.value = ""
         endDate.value = ""
         imageList.clear()
+        totalFileSize.value = 0
     }
 
     /* 버튼 활성화 기능 */
@@ -48,22 +51,29 @@ class CareerAddActivityViewModel : ViewModel() {
         addSource(title) { value = areBothFieldsFilled() }
         addSource(startDate) { value = areBothFieldsFilled() }
         addSource(endDate) { value = areBothFieldsFilled() }
+        addSource(totalFileSize) { value = areBothFieldsFilled() }
     }
 
     private fun areBothFieldsFilled(): Boolean {
         return !(title.value.isNullOrEmpty() || title.value!!.contains(" ") || title.value!!.length > 20) && isDateValid(
             startDate.value
-        ) && isDateValid(endDate.value)
+        ) && isDateValid(endDate.value) && isFileSizeValid()
     }
 
     private fun isDateValid(date: String?): Boolean {
         return !date.isNullOrBlank() && date.length == 8
     }
 
+    //파일 사이즈가 30MB를 넘지 않는지 체크
+    private fun isFileSizeValid(): Boolean {
+        return totalFileSize.value ?: 0 <= 30 * 1024 * 1024
+    }
+
     fun addImageFile(file: File) {
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         imageList.add(body)
+        calculateTotalFileSize() //파일 사이즈 계산
         fileAddedEvent.value = true
     }
 
@@ -93,7 +103,18 @@ class CareerAddActivityViewModel : ViewModel() {
         val filePart = MultipartBody.Part.createFormData("image", fileName, requestFile)
 
         imageList.add(filePart)
+        calculateTotalFileSize() //파일 사이즈 계산
         fileAddedEvent.value = true
+    }
+
+    //파일 사이즈 측정
+    fun calculateTotalFileSize() {
+        var totalSize: Long = 0
+        for (filePart in imageList) {
+            val file = filePart.body
+            totalSize += file?.contentLength() ?: 0
+        }
+        totalFileSize.value = totalSize
     }
 
     //API에 전송할 데이터를 포함하는 RequestDto 생성 함수
@@ -135,18 +156,6 @@ class CareerAddActivityViewModel : ViewModel() {
         val requestDtoPart: RequestBody =
             requestDtoJson.toRequestBody("application/json".toMediaTypeOrNull())
 
-        //파일 사이즈 측정
-        fun calculateTotalFileSize(): Long {
-            var totalSize: Long = 0
-            for (filePart in imageList) {
-                val file = filePart.body
-                totalSize += file?.contentLength() ?: 0
-            }
-            return totalSize
-        }
-
-        val totalFileSize = calculateTotalFileSize()
-        Log.d("File Size", "Total File Size: $totalFileSize bytes")
         careerApiService.addCareer(imageList, requestDtoPart)
             .enqueue(object : Callback<AddCareerResponse> {
                 override fun onResponse(
@@ -158,7 +167,7 @@ class CareerAddActivityViewModel : ViewModel() {
                         if (addCareerResponse != null) {
                             _addedCareerInfo.postValue(addCareerResponse)
                             Log.d("addCareer:Extras 성공", "${response.body()}")
-                            Log.d("addSuccessFileName", imageList.toString())
+                            Log.d("totalFileSize", totalFileSize.value.toString())
                         } else {
                             _error.postValue("서버 응답이 올바르지 않습니다.")
                         }
