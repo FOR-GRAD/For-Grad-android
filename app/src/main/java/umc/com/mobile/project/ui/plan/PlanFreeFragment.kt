@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.data.model.plan.PlanFreeRequest
 import umc.com.mobile.project.databinding.FragmentPlanFreeBinding
@@ -13,7 +14,7 @@ import umc.com.mobile.project.ui.plan.PlanViewModel
 
 class PlanFreeFragment : Fragment() {
     private var _binding: FragmentPlanFreeBinding? = null
-    private val viewModel: PlanViewModel by viewModels()
+    private val viewModel: PlanViewModel by activityViewModels()
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -43,6 +44,13 @@ class PlanFreeFragment : Fragment() {
         viewModel.planFreeInfo.observe(viewLifecycleOwner) { planFreeResponse ->
             planFreeResponse?.result?.memo?.let {
                 binding.planFreeMemo.setText(it)
+            }
+        }
+
+        binding.editMemo.setOnClickListener {
+            val memoText = binding.planFreeMemo.text.toString()
+            if (memoText.isNotEmpty()) {
+                viewModel.editMemo(memoText) // 수정된 메모를 서버에 전송
             }
         }
 

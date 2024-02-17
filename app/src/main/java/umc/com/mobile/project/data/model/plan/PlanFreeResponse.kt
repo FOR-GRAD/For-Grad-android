@@ -2,7 +2,7 @@ package umc.com.mobile.project.data.model.plan
 
 data class PlanFreeResponse(
     val isSuccess: Boolean,
-    val code: Long,
+    val code: String,
     val message: String,
     val result: FreeInfo,
 )

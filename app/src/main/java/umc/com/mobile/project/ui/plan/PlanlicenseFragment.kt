@@ -10,13 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.FragmentPlanlicenseBinding
 
 class PlanlicenseFragment : Fragment() {
     private var _binding: FragmentPlanlicenseBinding? = null
-    private val viewModel: PlanViewModel by viewModels()
+    private val viewModel: PlanViewModel by activityViewModels()
     private val binding get() = _binding!!
 
     override fun onCreateView(

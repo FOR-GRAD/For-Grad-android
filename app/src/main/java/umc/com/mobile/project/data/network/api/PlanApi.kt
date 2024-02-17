@@ -3,6 +3,7 @@ package umc.com.mobile.project.data.network.api
 import retrofit2.http.GET
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Query
 import umc.com.mobile.project.data.model.plan.BringlicenseResponse
@@ -13,6 +14,7 @@ import umc.com.mobile.project.data.model.plan.PlanTrackResponse
 import umc.com.mobile.project.data.model.plan.SaveInfo
 import umc.com.mobile.project.data.model.plan.SemesterTimeResponse
 import umc.com.mobile.project.data.model.plan.UPlicenseResponse
+import umc.com.mobile.project.data.model.plan.EditMemoRequest
 
 
 interface PlanApi {
@@ -40,6 +42,9 @@ interface PlanApi {
 
     @POST("/plans/memo")
     fun postFreeMemo(@Body request: PlanFreeRequest): Call<PlanFreeResponse>
+
+    @PATCH("/plans/memo")
+    fun editMemo(@Body editMemoRequest: EditMemoRequest) : Call<PlanFreeResponse>
 
 
 

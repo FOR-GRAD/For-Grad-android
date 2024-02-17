@@ -9,6 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import umc.com.mobile.project.data.model.plan.BringlicenseResponse
+import umc.com.mobile.project.data.model.plan.EditMemoRequest
 import umc.com.mobile.project.data.model.plan.ListTimeResponse
 import umc.com.mobile.project.data.model.plan.PlanFreeRequest
 import umc.com.mobile.project.data.model.plan.PlanFreeResponse
@@ -86,6 +87,8 @@ class PlanViewModel : ViewModel() {
         get() = _savelicenseInfo
 
 
+
+
     // 기존에 있던 text LiveData
     private val _text = MutableLiveData<String>().apply {
         value = "This is Plan Fragment"
@@ -113,6 +116,19 @@ class PlanViewModel : ViewModel() {
         _track.postValue("") // 트랙 식별자 초기화 (또는 적절한 초기 값으로 설정)
     }
 
+    fun setHakki(hakki: String) {
+        _hakki.value = hakki
+        Log.d("hakki value", "setHakki 호출됨: hakki=$hakki")
+    }
+
+
+    fun setHakkiAndTrack(hakki: String, trackId: String) {
+        Log.d("hakkitrackvalue", "setHakkiAndTrack 호출됨: hakki=$hakki, trackId=$trackId")
+        _hakki.value = hakki
+        _track.value = trackId
+    }
+
+
 
 
 
@@ -127,6 +143,7 @@ class PlanViewModel : ViewModel() {
                     _postMemoResult.postValue(true)
                 } else {
                     // 실패 시, 실패 LiveData 업데이트
+                    Log.e("PlanViewModel", "Error posting memo: ${response.errorBody()?.string()}")
                     _postMemoResult.postValue(false)
                 }
             }
@@ -172,37 +189,26 @@ class PlanViewModel : ViewModel() {
     }
 
 
-    fun getListTimeInfo(hakki:String,track:String) {
-                planApiService.getListTime(hakki,track).enqueue(object : Callback<ListTimeResponse> {
-                    override fun onResponse(
-                        call: Call<ListTimeResponse>,
-                        response: Response<ListTimeResponse>
-                    ) {
-                        if (response.isSuccessful) {
-                            if (response.body() != null) {
-                                _listTimeInfo.postValue(response.body())
-                                Log.d("Planlicense", "${response.body()}")
-                            } else {
-                                _error.postValue("서버 응답이 올바르지 않습니다.")
-                            }
-                        } else {
-                            _error.postValue("사용자 정보를 가져오지 못했습니다.")
-                            try {
-                                throw response.errorBody()?.string()?.let {
-                                    RuntimeException(it)
-                                } ?: RuntimeException("Unknown error")
-                            } catch (e: Exception) {
-                                Log.e("PlanInfo", "PlanResponse API 오류: ${e.message}")
-                            }
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ListTimeResponse>, t: Throwable) {
-                        _error.postValue("네트워크 오류: ${t.message}")
-                        Log.d("gradInfo", "completion: ${t.message}")
-                    }
-                })
+    fun getListTimeInfo(hakki: String, track: String) {
+        Log.d("PlanViewModel", "getListTimeInfo 호출됨: hakki=$hakki, track=$track")
+        planApiService.getListTime(hakki, track).enqueue(object : Callback<ListTimeResponse> {
+            override fun onResponse(call: Call<ListTimeResponse>, response: Response<ListTimeResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    Log.d("PlanViewModel", "getListTimeInfo 성공: ${response.body()}")
+                    _listTimeInfo.postValue(response.body())
+                } else {
+                    Log.e("PlanViewModel", "getListTimeInfo 실패: ${response.errorBody()?.string()}")
+                    _error.postValue("리스트 정보를 가져오는데 실패했습니다.")
+                }
             }
+
+            override fun onFailure(call: Call<ListTimeResponse>, t: Throwable) {
+                Log.e("PlanViewModel", "getListTimeInfo 네트워크 오류: ${t.message}")
+                _error.postValue("네트워크 오류: ${t.message}")
+            }
+        })
+    }
+
 
 
     fun getLicenseInfo() {
@@ -328,6 +334,29 @@ class PlanViewModel : ViewModel() {
             }
         })
     }
+
+
+    fun editMemo(memo: String) {
+        val editMemoRequest = EditMemoRequest(memo = memo)
+        planApiService.editMemo(editMemoRequest).enqueue(object : Callback<PlanFreeResponse> {
+            override fun onResponse(
+                call: Call<PlanFreeResponse>,
+                response: Response<PlanFreeResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("PlanMemoEdit", "Memo successfully edited: ${response.body()}")
+                    // 필요한 경우, UI 업데이트를 위한 LiveData 업데이트 로직을 여기에 추가하세요.
+                } else {
+                    Log.e("PlanMemoEdit", "Failed to edit memo: ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<PlanFreeResponse>, t: Throwable) {
+                Log.e("PlanMemoEdit", "Network error on edit memo: ${t.message}")
+            }
+        })
+    }
+
 }
 
 

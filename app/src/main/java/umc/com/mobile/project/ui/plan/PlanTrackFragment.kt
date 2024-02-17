@@ -1,8 +1,10 @@
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,44 +17,43 @@ import umc.com.mobile.project.ui.plan.PlanViewModel
 
 class PlanTrackFragment : Fragment() {
     private var _binding: PlanTimeChooseTrackBinding? = null
-    private val viewModel: PlanViewModel by viewModels()
+    private val viewModel: PlanViewModel by activityViewModels()
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = PlanTimeChooseTrackBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.resetTrackSelection() // 화면 진입 시 트랙 선택 초기화
 
-        val hakki = arguments?.getString("hakki") ?: ""
+        viewModel.resetTrackSelection()
 
-
+        viewModel.hakki.observe(viewLifecycleOwner) { hakkiValue ->
+            if (hakkiValue.isNotEmpty()) {
+                Log.d("PlanTrackFragment", "Observed hakki value: $hakkiValue")
+                viewModel.getTrackInfo(hakkiValue)
+            }
+        }
 
         // 클릭 리스너 정의
         val onItemClick: (TrackResult) -> Unit = { selectedItem ->
-            val bundle = Bundle().apply {
-                putString("hakki", hakki)
-                putString("trackId", selectedItem.trackCode)
+            // 옵저빙된 'hakkiValue' 사용
+            viewModel.hakki.value?.let { observedHakki ->
+                // 선택된 트랙 정보를 ViewModel에 저장
+                viewModel.setHakkiAndTrack(observedHakki, selectedItem.trackCode)
+                // PlanSettingFragment로 화면 전환
+                findNavController().navigate(R.id.action_planTrackFragment_to_planSettingFragment)
             }
-            findNavController().navigate(R.id.action_planTrackFragment_to_planTimeFragment, bundle)
         }
 
-        // Adapter 초기화
+        // Adapter 초기화 및 RecyclerView 설정
         val adapter = PlanTrackAdapter(emptyList(), onItemClick)
-
-        // RecyclerView 설정
         binding.recyclerViewPlanTrack.adapter = adapter
         binding.recyclerViewPlanTrack.layoutManager = LinearLayoutManager(context)
 
-        // Track 정보 로드
-        viewModel.getTrackInfo(hakki)
-
-        // Track 정보 갱신 관찰
+        // 트랙 정보 갱신 관찰
         viewModel.planTrackInfo.observe(viewLifecycleOwner) { trackInfo ->
             adapter.trackList = trackInfo?.result ?: emptyList()
             adapter.notifyDataSetChanged()
@@ -63,6 +64,7 @@ class PlanTrackFragment : Fragment() {
             findNavController().navigateUp()
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
