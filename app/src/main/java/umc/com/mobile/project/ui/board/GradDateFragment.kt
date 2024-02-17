@@ -113,6 +113,11 @@ class GradDateFragment : Fragment() {
             binding.tvGradDateDday.text = "D-$dday"
         }
 
+        //api에서 메모 hint로 가져오기
+        viewModel._dateResponse2.observe(viewLifecycleOwner) { response ->
+            binding.tvGradDateMemo.hint = response!!.result.message
+        }
+
         //수정하기 및 버튼 visible 조건
         viewModel.isEditMode.observe(viewLifecycleOwner, Observer { isEditMode ->
             if (isEditMode) {
