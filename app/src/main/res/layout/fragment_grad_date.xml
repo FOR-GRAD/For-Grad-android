@@ -76,7 +76,7 @@
                         android:layout_marginStart="57dp"
                         android:layout_marginTop="17dp"
                         android:layout_marginEnd="52dp"
-                        android:text="@{String.format(`졸업 예정일 %s`, vm.selectedDate)}"
+                        android:text='@{vm.selectedDate != null ? String.format("졸업 예정일 %s", vm.selectedDate) : "선택해주세요"}'
                         android:textAppearance="@style/MediumFont.14"
                         android:textColor="#555555"
                         app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card1"
@@ -116,7 +116,7 @@
                         style="@style/BoldFont.30"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.format(`D - %s`, vm.dday)}"
+                        android:text='@{vm.dday != null ? String.format("D - %s", vm.dday) : "D -"}'
                         android:textColor="#7D7D7D"
                         app:layout_constraintBottom_toBottomOf="@+id/iv_grad_date_card2"
                         app:layout_constraintEnd_toEndOf="@+id/iv_grad_date_card2"
