@@ -1,10 +1,12 @@
 package umc.com.mobile.project.ui.gradInfo.adapter
 
 import android.app.AlertDialog
+import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContentProviderCompat.requireContext
+import umc.com.mobile.project.R
 import umc.com.mobile.project.data.model.gradInfo.GradesTotalDto
 import umc.com.mobile.project.databinding.ItemAverageGradeBinding
 import umc.com.mobile.project.ui.gradInfo.GradeFragment
@@ -34,8 +36,6 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 
 			if (dataList[position].averageGrade == "0.0") {
 				viewModel.onSetNullCheckGrade(true)
-			} else {
-				viewModel.onSetNullCheckGrade(false)
 			}
 		}
 
@@ -45,12 +45,19 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 			} else {
 				2
 			}
+
 			val grade = if (position % 2 == 0) position / 2 + 1 else (position + 1) / 2
-//			totalAverageGrade += Integer.parseInt(gradesTotalDto.averageGrade)
 
 			binding.tvSemesterContent1.text = "$grade - $semester"
 			binding.tvAverageGradeContent1.text = gradesTotalDto.averageGrade
-//			viewModel.onSetTotalAverageGrade(totalAverageGrade, position+1)
+
+			if (gradesTotalDto.averageGrade == "0.0") {
+				binding.tvAverageGradeContent1.setTextColor(Color.GRAY)
+				binding.tvSemesterContent1.setTextColor(Color.GRAY)
+			} else {
+				binding.tvAverageGradeContent1.setTextColor(Color.BLACK)
+				binding.tvSemesterContent1.setTextColor(Color.BLACK)
+			}
 		}
 	}
 

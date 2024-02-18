@@ -71,8 +71,6 @@ class GradeFragment : Fragment() {
 			binding.tvAverageGrade.text = selectedGradeInfo?.averageGrade
 			binding.tvAverageTotal.text = selectedGradeInfo?.totalGrade
 			binding.tvPercent.text = selectedGradeInfo?.percentile
-
-			selectedSemesterPosition = selectedGrade
 		}
 
 		/**
@@ -90,7 +88,6 @@ class GradeFragment : Fragment() {
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
-		selectedSemesterPosition = null
 	}
 
 	private fun initRecyclerView() {
