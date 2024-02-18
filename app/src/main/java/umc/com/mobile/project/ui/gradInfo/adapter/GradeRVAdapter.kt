@@ -48,10 +48,11 @@ class GradeRVAdapter(private val viewModel: GradeViewModel) :
 
 		semestersInfo?.let {
 			dataList.clear()
-			dataList.addAll(it ?: emptyList())
+			dataList.addAll(it)
 			notifyDataSetChanged()
 		} ?: run {
-			Log.e("GradeRVAdapter", "null")
+			dataList.clear()
+			notifyDataSetChanged()
 		}
 	}
 }

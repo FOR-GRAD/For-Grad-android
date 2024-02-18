@@ -2,6 +2,7 @@ package umc.com.mobile.project.ui.gradInfo
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import okhttp3.internal.notify
 import umc.com.mobile.project.R
-import umc.com.mobile.project.data.model.gradInfo.GradesResponse
+import umc.com.mobile.project.data.model.gradInfo.GradesTotalDto
 import umc.com.mobile.project.databinding.FragmentGradeBinding
 import umc.com.mobile.project.ui.gradInfo.adapter.AverageRVAdapter
 import umc.com.mobile.project.ui.gradInfo.adapter.GradeRVAdapter
@@ -34,26 +34,43 @@ class GradeFragment : Fragment() {
 		viewModel.getGradeInfo() // 사용자 성적 사항 조회 api
 		initRecyclerView() // 성적 사항 recycleView 연결
 
+		/**
+		 *  선택한 학기 정보 넘기기
+		 */
 		viewModel.selectedSemester.observe(viewLifecycleOwner, Observer { selectedSemester ->
 			(binding.recyclerView.adapter as? GradeRVAdapter)?.updateSelectedSemester(
 				selectedSemester
 			)
-			binding.tvSemester.text = selectedSemester
 		})
 
+		/**
+		 *  총 평균 관찰
+		 */
 		viewModel.totalAverage.observe(viewLifecycleOwner, Observer { totalAverageGrade ->
-			binding.tvAverageTotal.text = totalAverageGrade.toString()
+			binding.tvAverageContent.text = totalAverageGrade.toString()
 		})
 
+		/**
+		 *  선택한 학기 총 학점 데이터 삽입
+		 */
+		viewModel.grades.observe(viewLifecycleOwner, Observer { gradesMap ->
+			(binding.recyclerView2.adapter as? AverageRVAdapter)?.setData(gradesMap.values.toList())
+		})
+
+		/**
+		 *  선택한 학기의 총 학점 관찰
+		 */
 		viewModel.selectedSemesterGradeAndGrades.observe(viewLifecycleOwner) { pair ->
 			val selectedGrade = pair.first
 			val gradesMap = pair.second
 
-			Log.d("selectedGrade", "$selectedGrade")
-			Log.d("gradesMap", "$gradesMap")
+//			Log.d("selectedGrade", "$selectedGrade")
+//			Log.d("gradesMap", "$gradesMap")
 
 			val selectedGradeInfo = gradesMap?.get("$selectedGrade")
-			Log.d("selectedGradeInfo", "$selectedGradeInfo")
+//			Log.d("selectedGradeInfo", "$selectedGradeInfo")
+
+			binding.tvSemester.text = selectedGrade
 
 			binding.tvAcquiredCredit.text = selectedGradeInfo?.acquiredCredits
 			binding.tvAppliedCredit.text = selectedGradeInfo?.appliedCredits
@@ -62,12 +79,13 @@ class GradeFragment : Fragment() {
 			binding.tvPercent.text = selectedGradeInfo?.percentile
 		}
 
-		viewModel.grades.observe(viewLifecycleOwner, Observer { gradesMap ->
-			(binding.recyclerView2.adapter as? AverageRVAdapter)?.setData(gradesMap.values.toList())
-		})
-
+		/**
+		 * 이수 안 한 학기 관찰
+		 */
 		viewModel.isNullCheckGrade.observe(viewLifecycleOwner) {
-			if (it) {	showDialog()	}
+			if (it) {
+				showDialog()
+			}
 		}
 
 		return binding.root
@@ -97,5 +115,10 @@ class GradeFragment : Fragment() {
 
 		val alertDialog = dialogBuilder.create()
 		alertDialog.show()
+
+		Handler().postDelayed({
+			alertDialog.dismiss()
+			viewModel.onSetNullCheckGrade(false)
+		}, 1000)
 	}
 }

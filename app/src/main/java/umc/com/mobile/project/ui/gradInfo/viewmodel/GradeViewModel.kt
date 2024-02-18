@@ -43,8 +43,8 @@ class GradeViewModel : ViewModel() {
 	private val selectedSemesterGrade: LiveData<String>
 		get() = _selectedSemesterGrade
 
-	private val _totalAverage: MutableLiveData<Double> = MutableLiveData()
-	val totalAverage: LiveData<Double>
+	private val _totalAverage: MutableLiveData<String> = MutableLiveData()
+	val totalAverage: LiveData<String>
 		get() = _totalAverage
 
 	private val _isNullCheckGrade: MutableLiveData<Boolean> = MutableLiveData()
@@ -67,6 +67,7 @@ class GradeViewModel : ViewModel() {
 		val gradesTotalMap = mutableMapOf<String, GradesTotalDto>()
 		val semestersDto = gradesResponse.result.semesters
 		var count = 1
+		var total = 0.0
 
 		semestersDto.let {
 			for ((semester, semesterClasses) in it) {
@@ -88,15 +89,14 @@ class GradeViewModel : ViewModel() {
 				val newGradeKey = "$count 학기 성적"
 
 				gradesTotalMap[newGradeKey] = gradeTotalDto
-
+				total += gradeTotalDto.averageGrade.toDouble()
 				count++
 			}
-			Log.d("Grade: gradeTotalList ", "$gradesTotalMap")
-
-			count = 0
+//			Log.d("Grade: gradeTotalList ", "$gradesTotalMap")
 		}
 		_semesters?.postValue(semestersMap)
 		_grades.postValue(gradesTotalMap)
+		_totalAverage.postValue(String.format("%.2f", total / (count - 1)))
 	}
 
 	fun getGradeInfo() {
@@ -110,7 +110,7 @@ class GradeViewModel : ViewModel() {
 					if (userResponse != null) {
 						_gradesInfo.postValue(userResponse)
 						processRequiredBasicCourses(userResponse)
-						Log.d("gradInfo", "${response.body()}")
+//						Log.d("gradInfo", "${response.body()}")
 					} else {
 						_error.postValue("서버 응답이 올바르지 않습니다.")
 					}
@@ -139,10 +139,6 @@ class GradeViewModel : ViewModel() {
 
 	fun onSemesterGradeItemClick(grade: String) {
 		_selectedSemesterGrade.postValue(grade)
-	}
-
-	fun onSetTotalAverageGrade(totalAverageGrade: Double, totalNumber: Int) {
-		_totalAverage.postValue((totalAverageGrade/totalNumber))
 	}
 
 	fun onSetNullCheckGrade(flag: Boolean) {
