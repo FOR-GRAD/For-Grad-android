@@ -73,7 +73,6 @@ class CareerEditContestFragment : Fragment() {
                 if (isDeleted) {
                     //삭제 작업이 완료되면 목록 업데이트
                     navigate(R.id.action_fragment_edit_contest_to_fragment_career_contest)
-                    Toast.makeText(mContext, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -83,7 +82,6 @@ class CareerEditContestFragment : Fragment() {
                 if (isUpdated) {
                     //수정 작업이 완료되면 목록 업데이트
                     navigate(R.id.action_fragment_edit_contest_to_fragment_career_contest)
-                    Toast.makeText(mContext, "수정되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             })
         }
