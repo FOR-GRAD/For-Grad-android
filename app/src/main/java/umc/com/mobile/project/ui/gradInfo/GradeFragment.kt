@@ -22,7 +22,6 @@ import umc.com.mobile.project.ui.gradInfo.viewmodel.GradeViewModel
 class GradeFragment : Fragment() {
 	private var _binding: FragmentGradeBinding? = null
 	private val viewModel: GradeViewModel by viewModels()
-	private var selectedSemesterPosition: String? = null
 	private val binding get() = _binding!!
 
 	override fun onCreateView(
@@ -35,36 +34,43 @@ class GradeFragment : Fragment() {
 		viewModel.getGradeInfo() // 사용자 성적 사항 조회 api
 		initRecyclerView() // 성적 사항 recycleView 연결
 
+		/**
+		 *  선택한 학기 정보 넘기기
+		 */
 		viewModel.selectedSemester.observe(viewLifecycleOwner, Observer { selectedSemester ->
 			(binding.recyclerView.adapter as? GradeRVAdapter)?.updateSelectedSemester(
 				selectedSemester
 			)
-			binding.tvSemester.text = selectedSemester
 		})
 
+		/**
+		 *  총 평균 관찰
+		 */
 		viewModel.totalAverage.observe(viewLifecycleOwner, Observer { totalAverageGrade ->
 			binding.tvAverageContent.text = totalAverageGrade.toString()
 		})
 
 		/**
-		 *  총 학점 체크 후 데이터 넣기
+		 *  선택한 학기 총 학점 데이터 삽입
 		 */
 		viewModel.grades.observe(viewLifecycleOwner, Observer { gradesMap ->
 			(binding.recyclerView2.adapter as? AverageRVAdapter)?.setData(gradesMap.values.toList())
 		})
 
 		/**
-		 *  총 학점 체크 후 화면 띄우기
+		 *  선택한 학기의 총 학점 관찰
 		 */
 		viewModel.selectedSemesterGradeAndGrades.observe(viewLifecycleOwner) { pair ->
 			val selectedGrade = pair.first
 			val gradesMap = pair.second
 
-			Log.d("selectedGrade", "$selectedGrade")
-			Log.d("gradesMap", "$gradesMap")
+//			Log.d("selectedGrade", "$selectedGrade")
+//			Log.d("gradesMap", "$gradesMap")
 
 			val selectedGradeInfo = gradesMap?.get("$selectedGrade")
-			Log.d("selectedGradeInfo", "$selectedGradeInfo")
+//			Log.d("selectedGradeInfo", "$selectedGradeInfo")
+
+			binding.tvSemester.text = selectedGrade
 
 			binding.tvAcquiredCredit.text = selectedGradeInfo?.acquiredCredits
 			binding.tvAppliedCredit.text = selectedGradeInfo?.appliedCredits
@@ -74,7 +80,7 @@ class GradeFragment : Fragment() {
 		}
 
 		/**
-		 * 이수 안 한 학기 체크
+		 * 이수 안 한 학기 관찰
 		 */
 		viewModel.isNullCheckGrade.observe(viewLifecycleOwner) {
 			if (it) {
