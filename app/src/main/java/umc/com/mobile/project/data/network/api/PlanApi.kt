@@ -6,6 +6,8 @@ import retrofit2.http.Body
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Query
+import umc.com.mobile.project.data.model.plan.AddTimeRequest
+import umc.com.mobile.project.data.model.plan.AddTimeResponse
 import umc.com.mobile.project.data.model.plan.BringlicenseResponse
 import umc.com.mobile.project.data.model.plan.ListTimeResponse
 import umc.com.mobile.project.data.model.plan.PlanFreeRequest
@@ -36,6 +38,9 @@ interface PlanApi {
 
     @GET("/plans/timetable/searchHakki")
     fun getSemesterInfo():Call<SemesterTimeResponse>
+
+    @POST("/plans/timetable")
+    fun addTime(@Body addTimeRequest: AddTimeRequest): Call<AddTimeResponse>
 
     @GET("/plans/memo")
     fun getFreeInfo() : Call<PlanFreeResponse>

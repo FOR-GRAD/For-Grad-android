@@ -247,6 +247,9 @@
         <action
             android:id="@+id/action_planSettingFragment_to_planTimeFragment"
             app:destination="@id/planTimeFragment" />
+        <action
+            android:id="@+id/action_planSettingFragment_to_planTimetableFragment"
+            app:destination="@id/planTimetableFragment" />
     </fragment>
     <fragment
         android:id="@+id/planSemesterFragment"
@@ -271,7 +274,10 @@
         android:id="@+id/planTimeFragment"
         android:name="umc.com.mobile.project.ui.plan.PlanTimeFragment"
         android:label="PlanTimeFragment" />
-
+    <fragment
+        android:id="@+id/planTimetableFragment"
+        android:name="umc.com.mobile.project.ui.plan.PlanTimetableFragment"
+        android:label="PlanTimetableFragment" />
 
 
 </navigation>

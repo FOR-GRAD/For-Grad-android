@@ -19,7 +19,9 @@ class PlanTimeFragment : Fragment() {
     private val viewModel: PlanViewModel by activityViewModels()
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         _binding = PlanSubjectListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -27,33 +29,46 @@ class PlanTimeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = PlanRecyclerAdapter(emptyList())
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        setupRecyclerView()
+        observeViewModel()
+        setupNavigation()
+    }
 
-        // 학기(hakki)와 트랙(trackId) 값이 모두 준비되었을 때 데이터 로드
+    private fun setupRecyclerView() {
+        val adapter = PlanRecyclerAdapter(emptyList(), onAddButtonClicked = { timeResult ->
+
+            if (timeResult != null) {
+                viewModel.setSelectedTimeResult(timeResult)
+            }
+
+
+        })
+
+        binding.recyclerView.apply {
+            this.adapter = adapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        }
+    }
+
+    private fun observeViewModel() {
+        // 학기(hakki)와 트랙(trackId) 정보 변경 감지
         viewModel.hakki.observe(viewLifecycleOwner) { hakki ->
-            Log.d("PlanTimeFragment", "Observed hakki: $hakki")
-            val trackId = viewModel.track.value
-            if (hakki.isNotEmpty() && trackId != null && trackId.isNotEmpty()) {
-                viewModel.getListTimeInfo(hakki, trackId)
+            viewModel.track.value?.let { trackId ->
+                if (hakki.isNotEmpty() && trackId.isNotEmpty()) {
+                    viewModel.getListTimeInfo(hakki, trackId)
+                }
             }
         }
 
-        viewModel.track.observe(viewLifecycleOwner) { trackId ->
-            Log.d("PlanTimeFragment", "Observed trackId: $trackId")
-            val hakki = viewModel.hakki.value
-            if (trackId.isNotEmpty() && hakki != null && hakki.isNotEmpty()) {
-                viewModel.getListTimeInfo(hakki, trackId)
-            }
-        }
-
-        // listTimeInfo LiveData를 관찰하여 RecyclerView 업데이트
+        // listTimeInfo LiveData 관찰
         viewModel.listTimeInfo.observe(viewLifecycleOwner) { timeListResponse ->
-            timeListResponse?.let {
-                adapter.timeList = it.result
-                adapter.notifyDataSetChanged()
-            }
+            (binding.recyclerView.adapter as PlanRecyclerAdapter).updateTimeList(timeListResponse?.result ?: emptyList())
+        }
+    }
+
+    private fun setupNavigation() {
+        binding.planTimeMoveTimetable.setOnClickListener {
+            navigate(R.id.action_planSettingFragment_to_planTimetableFragment)
         }
 
         binding.planSubjectListSemester.setOnClickListener {

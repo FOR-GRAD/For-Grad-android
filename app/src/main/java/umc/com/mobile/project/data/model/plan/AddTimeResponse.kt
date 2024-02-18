@@ -1,18 +1,17 @@
 package umc.com.mobile.project.data.model.plan
 
 data class AddTimeResponse(
-val semesterDto: SemesterDto,
-val subjectDtoList: List<SubjectDtoList>,
+    val isSuccess: Boolean,
+    val code: String,
+    val message: String,
+    val result: AddResponseResult
 )
 
-data class SemesterDto(
-    val grade: Long,
-    val semester: Long,
+data class AddResponseResult(
+    val addResponseDtos: List<AddResponseDto>
 )
 
-data class SubjectDtoList(
-    val type: String,
-    val name: String,
-    val credit: Long,
+data class AddResponseDto(
+    val subjectId: Long,
+    val createdAt: String
 )
-

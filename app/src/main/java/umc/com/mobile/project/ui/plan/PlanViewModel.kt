@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import umc.com.mobile.project.data.model.plan.AddTimeRequest
+import umc.com.mobile.project.data.model.plan.AddTimeResponse
 import umc.com.mobile.project.data.model.plan.BringlicenseResponse
 import umc.com.mobile.project.data.model.plan.EditMemoRequest
 import umc.com.mobile.project.data.model.plan.ListTimeResponse
@@ -18,6 +20,8 @@ import umc.com.mobile.project.data.model.plan.SaveInfo
 
 import umc.com.mobile.project.data.model.plan.SavelicenseRequest
 import umc.com.mobile.project.data.model.plan.SemesterTimeResponse
+import umc.com.mobile.project.data.model.plan.SubjectDtoList
+import umc.com.mobile.project.data.model.plan.TimeResult
 
 import umc.com.mobile.project.data.model.plan.UPlicenseResponse
 import umc.com.mobile.project.data.network.ApiClient
@@ -28,6 +32,18 @@ class PlanViewModel : ViewModel() {
 
     //api
     private val planApiService = ApiClient.createService<PlanApi>()
+
+    private val _selectedTimeResults = MutableLiveData<ArrayList<TimeResult>>()
+    val selectedTimeResults: LiveData<ArrayList<TimeResult>> = _selectedTimeResults
+
+    fun setSelectedTimeResult(timeResult: TimeResult) {
+        val currentList = _selectedTimeResults.value ?: ArrayList()
+        currentList.add(timeResult)
+        _selectedTimeResults.value = currentList
+        Log.d("PlanTimetable", "setSelectedTimeResult: $timeResult")
+    }
+
+
 
 
     private val _planFreeInfo: MutableLiveData<PlanFreeResponse?> = MutableLiveData()
@@ -54,6 +70,9 @@ class PlanViewModel : ViewModel() {
     private val _planTrackInfo: MutableLiveData<PlanTrackResponse?> = MutableLiveData()
     val planTrackInfo: LiveData<PlanTrackResponse?>
         get() = _planTrackInfo
+
+    private val _timeTableInfo = MutableLiveData<AddTimeResponse?>()
+    val timeTableInfo: LiveData<AddTimeResponse?> = _timeTableInfo
 
 
     private val _planTimeStatus: MutableLiveData<Boolean> = MutableLiveData()
@@ -126,6 +145,30 @@ class PlanViewModel : ViewModel() {
         Log.d("hakkitrackvalue", "setHakkiAndTrack 호출됨: hakki=$hakki, trackId=$trackId")
         _hakki.value = hakki
         _track.value = trackId
+    }
+
+    private val _addTimeResponse = MutableLiveData<AddTimeResponse?>()
+    val addTimeResponse: MutableLiveData<AddTimeResponse?> = _addTimeResponse
+
+    fun addTime(request: AddTimeRequest) {
+        planApiService.addTime(request).enqueue(object : Callback<AddTimeResponse> {
+            override fun onResponse(call: Call<AddTimeResponse>, response: Response<AddTimeResponse>) {
+                if (response.isSuccessful) {
+                    // 서버로부터 응답을 성공적으로 받았을 때 LiveData 업데이트
+                    Log.d("TimeTableApi", "getListTimeInfo 성공: ${response.body()}")
+                    _addTimeResponse.postValue(response.body())
+                } else {
+                    // 에러 처리: 실패 응답 처리
+                    Log.e("TimeTableApi", "Error posting memo: ${response.errorBody()?.string()}")
+                    _addTimeResponse.postValue(null)
+                }
+            }
+
+            override fun onFailure(call: Call<AddTimeResponse>, t: Throwable) {
+                // 네트워크 에러 처리: LiveData 업데이트로 에러 상태 전달 가능
+                _addTimeResponse.postValue(null)
+            }
+        })
     }
 
 
@@ -356,6 +399,8 @@ class PlanViewModel : ViewModel() {
             }
         })
     }
+
+
 
 }
 
