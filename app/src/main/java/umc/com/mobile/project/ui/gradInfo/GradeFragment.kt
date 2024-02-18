@@ -103,6 +103,7 @@ class GradeFragment : Fragment() {
 
 		Handler().postDelayed({
 			alertDialog.dismiss()
-		}, 2000)
+			viewModel.onSetNullCheckGrade(false)
+		}, 1000)
 	}
 }

@@ -21,17 +21,21 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 			binding.root.setOnClickListener {
 				val position = adapterPosition
 				if (position != RecyclerView.NO_POSITION) {
-					val semester = "${position + 1} 학기"
-					val semesterGrade = "${position + 1} 학기 성적"
-					viewModel.onSemesterItemClick(semester)
-					viewModel.onSemesterGradeItemClick(semesterGrade)
-
-					if (dataList[position].averageGrade == "0.0") {
-						viewModel.onSetNullCheckGrade(true)
-					} else {
-						viewModel.onSetNullCheckGrade(false)
-					}
+					handleItemClick(position)
 				}
+			}
+		}
+
+		private fun handleItemClick(position: Int) {
+			val semester = "${position + 1} 학기"
+			val semesterGrade = "${position + 1} 학기 성적"
+			viewModel.onSemesterItemClick(semester)
+			viewModel.onSemesterGradeItemClick(semesterGrade)
+
+			if (dataList[position].averageGrade == "0.0") {
+				viewModel.onSetNullCheckGrade(true)
+			} else {
+				viewModel.onSetNullCheckGrade(false)
 			}
 		}
 
@@ -83,7 +87,6 @@ class AverageRVAdapter(private val viewModel: GradeViewModel) :
 		}
 		notifyDataSetChanged()
 	}
-
 
 
 }
