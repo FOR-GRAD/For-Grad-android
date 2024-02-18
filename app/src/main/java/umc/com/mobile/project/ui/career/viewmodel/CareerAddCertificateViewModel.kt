@@ -48,14 +48,14 @@ class CareerAddCertificateViewModel : ViewModel() {
     /* 버튼 활성화 기능 */
     val isFilledAllOptions: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
         addSource(title) { value = areBothFieldsFilled() }
+        addSource(selectedCertificateType) { value = areBothFieldsFilled() }
         addSource(startDate) { value = areBothFieldsFilled() }
         addSource(endDate) { value = areBothFieldsFilled() }
     }
 
     private fun areBothFieldsFilled(): Boolean {
-        return !(title.value.isNullOrEmpty() || title.value!!.contains(" ") || title.value!!.length > 20) && isDateValid(
-            startDate.value
-        ) && isDateValid(endDate.value)
+        return !(title.value.isNullOrEmpty() || title.value!!.contains(" ") || title.value!!.length > 20) && !selectedCertificateType.value.isNullOrEmpty()
+                && isDateValid(startDate.value) && isDateValid(endDate.value)
     }
 
     private fun isDateValid(date: String?): Boolean {

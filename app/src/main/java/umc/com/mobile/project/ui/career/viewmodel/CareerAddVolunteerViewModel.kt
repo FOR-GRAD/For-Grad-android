@@ -43,9 +43,8 @@ class CareerAddVolunteerViewModel : ViewModel() {
     }
 
     private fun areBothFieldsFilled(): Boolean {
-        return !(title.value.isNullOrEmpty() || title.value!!.contains(" ") || title.value!!.length > 20) && isDateValid(
-            startDate.value
-        ) && isDateValid(endDate.value)
+        return !(title.value.isNullOrEmpty() || title.value!!.contains(" ") || title.value!!.length > 20) && !hour.value.isNullOrBlank()
+                && isDateValid(startDate.value) && isDateValid(endDate.value)
     }
 
     private fun isDateValid(date: String?): Boolean {

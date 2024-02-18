@@ -69,7 +69,7 @@ class GradDateFragment : Fragment() {
                     val date = originalFormat.parse(dateString)
                     val formattedDate = targetFormat.format(date)
                     viewModel.updateDateInfo(formattedDate)
-                    Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
                     navigate(R.id.action_fragment_date_to_fragment_home)
                     viewModel.onEditButtonClick()
                 } catch (e: ParseException) {
@@ -111,6 +111,11 @@ class GradDateFragment : Fragment() {
         //다시 선택한 졸업 일자에 맞춰 dday 띄우기
         viewModel._dday.observe(viewLifecycleOwner) { dday ->
             binding.tvGradDateDday.text = "D-$dday"
+        }
+
+        //api에서 메모 hint로 가져오기
+        viewModel._dateResponse2.observe(viewLifecycleOwner) { response ->
+            binding.tvGradDateMemo.hint = response!!.result.message
         }
 
         //수정하기 및 버튼 visible 조건
