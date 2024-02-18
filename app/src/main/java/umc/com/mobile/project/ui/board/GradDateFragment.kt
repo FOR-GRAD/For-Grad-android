@@ -69,7 +69,7 @@ class GradDateFragment : Fragment() {
                     val date = originalFormat.parse(dateString)
                     val formattedDate = targetFormat.format(date)
                     viewModel.updateDateInfo(formattedDate)
-                    Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_LONG).show()
                     navigate(R.id.action_fragment_date_to_fragment_home)
                     viewModel.onEditButtonClick()
                 } catch (e: ParseException) {
