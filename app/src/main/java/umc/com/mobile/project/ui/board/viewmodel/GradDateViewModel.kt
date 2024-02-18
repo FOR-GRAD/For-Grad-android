@@ -126,9 +126,6 @@ class GradDateViewModel : ViewModel() {
                             val formattedDate = targetFormat.format(date)
                             _selectedDateRequest.value = formattedDate
                         }
-                        if (_dateResponse2.value != null && _dateResponse2.value!!.result != null) {
-                            _selectedDate.value = _dateResponse2.value!!.result.gradDate
-                        }
                         Log.d("gradDate", "${response.body()}")
                     } else {
                         _error.postValue("서버 응답이 올바르지 않습니다.")
