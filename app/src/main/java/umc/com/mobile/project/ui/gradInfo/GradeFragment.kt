@@ -12,9 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import okhttp3.internal.notify
 import umc.com.mobile.project.R
-import umc.com.mobile.project.data.model.gradInfo.GradesResponse
+import umc.com.mobile.project.data.model.gradInfo.GradesTotalDto
 import umc.com.mobile.project.databinding.FragmentGradeBinding
 import umc.com.mobile.project.ui.gradInfo.adapter.AverageRVAdapter
 import umc.com.mobile.project.ui.gradInfo.adapter.GradeRVAdapter
@@ -23,6 +22,7 @@ import umc.com.mobile.project.ui.gradInfo.viewmodel.GradeViewModel
 class GradeFragment : Fragment() {
 	private var _binding: FragmentGradeBinding? = null
 	private val viewModel: GradeViewModel by viewModels()
+	private var selectedSemesterPosition: String? = null
 	private val binding get() = _binding!!
 
 	override fun onCreateView(
@@ -43,9 +43,19 @@ class GradeFragment : Fragment() {
 		})
 
 		viewModel.totalAverage.observe(viewLifecycleOwner, Observer { totalAverageGrade ->
-			binding.tvAverageTotal.text = totalAverageGrade.toString()
+			binding.tvAverageContent.text = totalAverageGrade.toString()
 		})
 
+		/**
+		 *  총 학점 체크 후 데이터 넣기
+		 */
+		viewModel.grades.observe(viewLifecycleOwner, Observer { gradesMap ->
+			(binding.recyclerView2.adapter as? AverageRVAdapter)?.setData(gradesMap.values.toList())
+		})
+
+		/**
+		 *  총 학점 체크 후 화면 띄우기
+		 */
 		viewModel.selectedSemesterGradeAndGrades.observe(viewLifecycleOwner) { pair ->
 			val selectedGrade = pair.first
 			val gradesMap = pair.second
@@ -61,12 +71,13 @@ class GradeFragment : Fragment() {
 			binding.tvAverageGrade.text = selectedGradeInfo?.averageGrade
 			binding.tvAverageTotal.text = selectedGradeInfo?.totalGrade
 			binding.tvPercent.text = selectedGradeInfo?.percentile
+
+			selectedSemesterPosition = selectedGrade
 		}
 
-		viewModel.grades.observe(viewLifecycleOwner, Observer { gradesMap ->
-			(binding.recyclerView2.adapter as? AverageRVAdapter)?.setData(gradesMap.values.toList())
-		})
-
+		/**
+		 * 이수 안 한 학기 체크
+		 */
 		viewModel.isNullCheckGrade.observe(viewLifecycleOwner) {
 			if (it) {
 				showDialog()
@@ -79,6 +90,7 @@ class GradeFragment : Fragment() {
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
+		selectedSemesterPosition = null
 	}
 
 	private fun initRecyclerView() {

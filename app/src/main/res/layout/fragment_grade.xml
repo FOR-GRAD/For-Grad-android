@@ -349,20 +349,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_grade_average_title">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_average_content"
+                    android:id="@+id/tv_average_title"
                     style="@style/MediumFont.13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="13dp"
                     android:text="총 평균"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toTopOf="@+id/appCompatTextView9"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_average_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/appCompatTextView9"
+                    android:id="@+id/tv_average_content"
                     style="@style/BoldFont.20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -371,7 +371,7 @@
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_average_content" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_average_title" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
