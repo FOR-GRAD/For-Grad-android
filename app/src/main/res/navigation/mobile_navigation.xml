@@ -246,13 +246,5 @@
         android:id="@+id/planSemesterFragment"
         android:name="umc.com.mobile.project.ui.plan.PlanSemesterFragment"
         android:label="PlanSemesterFragment" />
-    <fragment
-        android:id="@+id/planTimeFragment"
-        android:name="umc.com.mobile.project.ui.plan.PlanTimeFragment"
-        android:label="PlanTimeFragment" >
-        <action
-            android:id="@+id/action_planTimeFragment_to_planSemesterFragment"
-            app:destination="@id/planSemesterFragment" />
-    </fragment>
 
 </navigation>

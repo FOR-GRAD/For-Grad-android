@@ -17,64 +17,68 @@ import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 import umc.com.mobile.project.ui.plan.PlanViewModel
 
 class PlanTimeFragment : Fragment() {
-    private var _binding: PlanSubjectListBinding? = null
-    private val viewModel: PlanViewModel by viewModels()
-    private val binding get() = _binding!!
+	private var _binding: PlanSubjectListBinding? = null
+	private val viewModel: PlanViewModel by viewModels()
+	private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        _binding = PlanSubjectListBinding.inflate(inflater, container, false)
-
-
-
-        viewModel.getListTimeInfo()
-        val adapter = viewModel.listTimeInfo.value?.let { PlanRecyclerAdapter(it.result) }
-
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+	override fun onCreateView(
+		inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+	): View {
+		_binding = PlanSubjectListBinding.inflate(inflater, container, false)
 
 
 
-        viewModel.listTimeInfo.observe(viewLifecycleOwner) { timenewList ->
-            if (timenewList != null) {
-                if (adapter != null) {
-                    adapter.timeList=timenewList.result
-                    adapter.notifyDataSetChanged()
-                }
-            }
+		viewModel.getListTimeInfo()
+		val adapter = viewModel.listTimeInfo.value?.let { PlanRecyclerAdapter(it.result) }
+
+		binding.recyclerView.adapter = adapter
+		binding.recyclerView.layoutManager =
+			LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
 
 
-
-        }
-
-
-
-        return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-        binding.planSubjectListSemester.setOnClickListener {
-
-            findNavController().navigate(R.id.action_planTimeFragment_to_planSemesterFragment)
-        }
-    }
+		viewModel.listTimeInfo.observe(viewLifecycleOwner) { timenewList ->
+			if (timenewList != null) {
+				if (adapter != null) {
+					adapter.timeList=timenewList.result
+					adapter.notifyDataSetChanged()
+				}
+			}
 
 
 
 
+		}
+
+		_binding!!.planSubjectListSemester.setOnClickListener {
+			//api 연결
+//            viewModel.addCareer()
+			navigate(R.id.action_planSettingFragment_to_planSemesterFragment)
+		}
 
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+		return binding.root
+
+	}
+
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+
+	}
+
+
+
+
+
+
+
+
+
+
+	override fun onDestroyView() {
+		super.onDestroyView()
+		_binding = null
+	}
 
 }
