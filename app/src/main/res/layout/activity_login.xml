@@ -147,14 +147,5 @@
             android:text="@string/login_title"
             android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_content2"
-            style="@style/MediumFont.10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/login_content_id_pw"
-            android:textColor="@color/text_gray" />
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
