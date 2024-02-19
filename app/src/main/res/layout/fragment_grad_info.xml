@@ -13,14 +13,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginTop="43dp"
-        android:textColor="@color/black"
         android:text="졸업요건"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout_grad_info"
-        style="@style/SemiBoldFont.16"
+        style="@style/SemiBoldFont.15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -34,13 +34,13 @@
         app:tabGravity="fill"
         app:tabIconTint="@android:color/transparent"
         app:tabIndicatorHeight="0dp"
-        app:tabMinWidth="85dp"
+        app:tabMaxWidth="0dp"
         app:tabMode="fixed"
         app:tabPaddingEnd="17dp"
         app:tabPaddingStart="17dp"
         app:tabRippleColor="@null"
         app:tabSelectedTextColor="@color/white"
-        app:tabTextAppearance="@style/SemiBoldFont.14"
+        app:tabTextAppearance="@style/SemiBoldFont.15"
         app:tabTextColor="@color/text_gray"
         app:tabUnboundedRipple="false" />
 

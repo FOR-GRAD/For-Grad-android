@@ -12,15 +12,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="54dp"
-        android:textColor="@color/black"
         android:text="향후계획"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout_plan_time"
-        style="@style/SemiBoldFont.16"
+        style="@style/SemiBoldFont.15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plan_time_tab_title"
-        app:tabBackground="@drawable/bg_grad_info_tab_radius_17"
+        app:tabBackground="@drawable/bg_plan_tab_radius_17"
         app:tabGravity="fill"
         app:tabIconTint="@android:color/transparent"
         app:tabIndicatorHeight="0dp"
@@ -39,9 +39,9 @@
         app:tabPaddingEnd="17dp"
         app:tabPaddingStart="17dp"
         app:tabRippleColor="@null"
-        app:tabSelectedTextColor="#FFB9B9"
-        app:tabTextAppearance="@style/SemiBoldFont.14"
-        app:tabTextColor="@color/text_gray"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextAppearance="@style/SemiBoldFont.10"
+        app:tabTextColor="@color/white"
         app:tabUnboundedRipple="false" />
 
     <View

@@ -45,19 +45,20 @@
                 tools:layout_editor_absoluteY="4dp">
 
                 <TextView
-                    style="@style/MediumFont.16"
-                    android:layout_width="60dp"
+                    style="@style/SemiBoldFont.13"
+                    android:layout_width="0dp"
                     android:layout_height="13dp"
                     android:background="@drawable/edittext_white_line"
                     android:gravity="center"
                     android:text="@string/plan_license"
-                    app:layout_columnWeight="1"
+                    app:layout_columnWeight="2"
                     app:layout_gravity="fill"
                     app:layout_rowWeight="1"
 
                     />
 
                 <TextView
+                    style="@style/SemiBoldFont.13"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
@@ -69,6 +70,7 @@
                     />
 
                 <EditText
+                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_name"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -81,8 +83,8 @@
                     />
 
                 <EditText
+                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_date"
-                    style="@style/Widget.AppCompat.EditText"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
@@ -94,6 +96,7 @@
                     />
 
                 <EditText
+                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_name2"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -105,6 +108,7 @@
                     android:gravity="center"/>
 
                 <EditText
+                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_date2"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -116,6 +120,7 @@
                     android:gravity="center"/>
 
                 <EditText
+                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_name3"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -127,6 +132,7 @@
                     android:gravity="center"/>
 
                 <EditText
+                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_date3"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -138,6 +144,7 @@
                     android:gravity="center"/>
 
                 <EditText
+                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_name4"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -149,6 +156,7 @@
                     android:gravity="center"/>
 
                 <EditText
+                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_date4"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -165,39 +173,30 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/license_addrow_button"
-            app:layout_constraintBottom_toTopOf="@id/license_button_store"
-            app:layout_constraintEnd_toEndOf="@id/license_button_store"
-            android:layout_marginBottom="116dp"
-            android:layout_marginLeft="287dp"
-            android:layout_marginRight="27dp"
-            android:text="칸 추가하기"
-            android:background="@android:color/transparent"
             style="@style/MediumFont.12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="칸 추가하기"
             android:textColor="@color/gray"
-
-            />
+            app:layout_constraintEnd_toEndOf="@+id/license_const_layout"
+            app:layout_constraintTop_toBottomOf="@+id/license_const_layout" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/license_button_store"
             style="@style/SemiBoldFont.14"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="147dp"
-            android:layout_marginLeft="21dp"
-            android:layout_marginRight="26dp"
             android:background="@drawable/bg_solid_gray_radius_25"
             android:backgroundTint="@{vm.isFilledAllOptions ? @color/skyBlue : @color/gray}"
             android:stateListAnimator="@null"
             android:text="저장하기"
             android:textColor="@color/white"
-            app:layout_constraintTop_toTopOf="@id/license_const_layout"
             app:layout_constraintBottom_toBottomOf="parent"
-
-
-            />
+            app:layout_constraintEnd_toEndOf="@+id/license_const_layout"
+            app:layout_constraintStart_toStartOf="@+id/license_const_layout"
+            app:layout_constraintTop_toBottomOf="@+id/license_const_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

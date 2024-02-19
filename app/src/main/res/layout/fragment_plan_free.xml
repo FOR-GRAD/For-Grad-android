@@ -1,78 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/appCompatImageView_memo"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="326dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/time_solid_white_radius_20"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="match_parent">
 
-        <androidx.gridlayout.widget.GridLayout
-            android:id="@+id/my_grid_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp"
-            android:background="@drawable/edittext_rounded_line"
-            android:padding="16dp"
-            app:columnCount="2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:rowCount="5">
+            android:layout_height="0dp">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/plan_free_memo"
-                style="@style/MediumFont.13"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/appCompatImageView_memo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@null"
-                android:gravity="top|start"
-                android:inputType="textMultiLine"
-                android:text="자유롭게 메모하듯이 추후 계획을 작성해보아요"
-                android:textColor="#7D7D7D"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="29dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/time_solid_white_radius_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/plan_free_memo"
+                    style="@style/MediumFont.13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="300dp"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/edittext_rounded_line"
+                    android:gravity="top|start"
+                    android:hint="자유롭게 메모하듯이 추후 계획을 작성해보아요"
+                    android:inputType="textMultiLine"
+                    android:padding="16dp"
+                    android:textColor="#7D7D7D"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-        </androidx.gridlayout.widget.GridLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/free_store_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="29dp"
+                android:background="@drawable/time_store_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appCompatImageView_memo" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/edit_memo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수정하기"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatImageView_memo"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView_memo" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/free_store_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/time_store_button"
-        android:layout_marginTop="29dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appCompatImageView_memo" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/edit_memo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="수정하기"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView_memo"
-        app:layout_constraintEnd_toEndOf="@+id/appCompatImageView_memo"
-
-        />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

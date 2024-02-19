@@ -117,8 +117,16 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="SemiBoldFont.15" parent="SemiBoldFont">
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="SemiBoldFont.14" parent="SemiBoldFont">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SemiBoldFont.13" parent="SemiBoldFont">
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="SemiBoldFont.12" parent="SemiBoldFont">
