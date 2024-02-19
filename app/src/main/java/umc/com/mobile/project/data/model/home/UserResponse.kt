@@ -13,14 +13,8 @@ data class Result(
 	val grade: String,
 	val status: String,
 	val message: String,
-	val track1: String,
-	val track2: String,
 	val base64Image: String,
 	val dday: Int,
-	val trackRequirement1: String,
-	val trackRequirement2: String,
-	val note1: String,
-	val note2: String,
 	val futureTimeTableDto: Map<String, FutureTimeTableDto>
 )
 
