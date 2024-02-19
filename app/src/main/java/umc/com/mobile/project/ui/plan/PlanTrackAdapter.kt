@@ -9,13 +9,15 @@ import umc.com.mobile.project.data.model.plan.semesterResult
 import umc.com.mobile.project.databinding.ItemChooseSemesterBinding
 import umc.com.mobile.project.databinding.ItemChooseTrackBinding
 
-class PlanTrackAdapter( trackList: List<TrackResult?>): RecyclerView.Adapter<PlanTrackAdapter.NonSubjectViewHolder>(){
+class PlanTrackAdapter(trackList: List<TrackResult?>, private val onItemClick: (TrackResult) -> Unit) : RecyclerView.Adapter<PlanTrackAdapter.NonSubjectViewHolder>() {
+
     var trackList: List<TrackResult?> = trackList
         set(value) {
             field = value
             notifyDataSetChanged()
             //데이터가 바뀌었다 알려줌.
         }
+
 
 
     override fun getItemCount(): Int {
@@ -29,7 +31,21 @@ class PlanTrackAdapter( trackList: List<TrackResult?>): RecyclerView.Adapter<Pla
 
     override fun onBindViewHolder(holder: PlanTrackAdapter.NonSubjectViewHolder, position: Int) {
 
-        holder.itemBinding.planTimeTrackItem.text =trackList[position]?.trackName.toString()
+        val trackInfo = trackList[position]
+        if (trackInfo != null) {
+            holder.itemBinding.planTimeTrackItem.text = trackInfo.trackName
+        }
+
+        holder.itemBinding.root.setOnClickListener {
+            if (trackInfo != null) {
+                onItemClick(trackInfo)
+            }
+        }
+
+
+
+
+
 
     }
 

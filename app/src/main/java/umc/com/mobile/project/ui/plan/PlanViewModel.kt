@@ -8,12 +8,20 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import umc.com.mobile.project.data.model.plan.AddTimeRequest
+import umc.com.mobile.project.data.model.plan.AddTimeResponse
 import umc.com.mobile.project.data.model.plan.BringlicenseResponse
+import umc.com.mobile.project.data.model.plan.EditMemoRequest
 import umc.com.mobile.project.data.model.plan.ListTimeResponse
+import umc.com.mobile.project.data.model.plan.PlanFreeRequest
+import umc.com.mobile.project.data.model.plan.PlanFreeResponse
+import umc.com.mobile.project.data.model.plan.PlanTrackResponse
 import umc.com.mobile.project.data.model.plan.SaveInfo
 
 import umc.com.mobile.project.data.model.plan.SavelicenseRequest
 import umc.com.mobile.project.data.model.plan.SemesterTimeResponse
+import umc.com.mobile.project.data.model.plan.SubjectDtoList
+import umc.com.mobile.project.data.model.plan.TimeResult
 
 import umc.com.mobile.project.data.model.plan.UPlicenseResponse
 import umc.com.mobile.project.data.network.ApiClient
@@ -25,6 +33,27 @@ class PlanViewModel : ViewModel() {
     //api
     private val planApiService = ApiClient.createService<PlanApi>()
 
+    private val _selectedTimeResults = MutableLiveData<ArrayList<TimeResult>>()
+    val selectedTimeResults: LiveData<ArrayList<TimeResult>> = _selectedTimeResults
+
+    fun setSelectedTimeResult(timeResult: TimeResult) {
+        val currentList = _selectedTimeResults.value ?: ArrayList()
+        currentList.add(timeResult)
+        _selectedTimeResults.value = currentList
+        Log.d("PlanTimetable", "setSelectedTimeResult: $timeResult")
+    }
+
+
+
+
+    private val _planFreeInfo: MutableLiveData<PlanFreeResponse?> = MutableLiveData()
+    val planFreeInfo: LiveData<PlanFreeResponse?>
+        get() = _planFreeInfo
+
+    private val _postMemoResult = MutableLiveData<Boolean>()
+    val postMemoResult: LiveData<Boolean>
+        get() = _postMemoResult
+
     private val _hakki: MutableLiveData<String> = MutableLiveData()
     val hakki: LiveData<String>
         get() = _hakki
@@ -34,9 +63,16 @@ class PlanViewModel : ViewModel() {
         get() = _track
 
 
-    private val _planSemesterInfo : MutableLiveData<SemesterTimeResponse?> = MutableLiveData()
-    val planSemesterInfo :LiveData<SemesterTimeResponse?>
-        get()=_planSemesterInfo
+    private val _planSemesterInfo: MutableLiveData<SemesterTimeResponse?> = MutableLiveData()
+    val planSemesterInfo: LiveData<SemesterTimeResponse?>
+        get() = _planSemesterInfo
+
+    private val _planTrackInfo: MutableLiveData<PlanTrackResponse?> = MutableLiveData()
+    val planTrackInfo: LiveData<PlanTrackResponse?>
+        get() = _planTrackInfo
+
+    private val _timeTableInfo = MutableLiveData<AddTimeResponse?>()
+    val timeTableInfo: LiveData<AddTimeResponse?> = _timeTableInfo
 
 
     private val _planTimeStatus: MutableLiveData<Boolean> = MutableLiveData()
@@ -55,9 +91,6 @@ class PlanViewModel : ViewModel() {
         get() = _bringLicenseInfo
 
 
-
-
-
     private val _licenseInfo: MutableLiveData<UPlicenseResponse?> = MutableLiveData()
     val licenseInfo: LiveData<UPlicenseResponse?>
         get() = _licenseInfo
@@ -68,9 +101,11 @@ class PlanViewModel : ViewModel() {
         get() = _error
 
 
-    private val _savelicenseInfo : MutableLiveData<SavelicenseRequest> =MutableLiveData()
-    val savelicenseInfo : LiveData<SavelicenseRequest>
-        get()=_savelicenseInfo
+    private val _savelicenseInfo: MutableLiveData<SavelicenseRequest> = MutableLiveData()
+    val savelicenseInfo: LiveData<SavelicenseRequest>
+        get() = _savelicenseInfo
+
+
 
 
     // 기존에 있던 text LiveData
@@ -89,43 +124,134 @@ class PlanViewModel : ViewModel() {
     fun updateIsFilledAllOptions(isFilled: Boolean) {
         _isFilledAllOptions.value = isFilled
     }
-
-
-    fun getListTimeInfo() {
-        _hakki.value?.let {
-            _track.value?.let { it1 ->
-                planApiService.getListTime(it, it1).enqueue(object : Callback<ListTimeResponse> {
-                    override fun onResponse(
-                        call: Call<ListTimeResponse>,
-                        response: Response<ListTimeResponse>
-                    ) {
-                        if (response.isSuccessful) {
-                            if (response.body() != null) {
-                                _listTimeInfo.postValue(response.body())
-                                Log.d("Planlicense", "${response.body()}")
-                            } else {
-                                _error.postValue("서버 응답이 올바르지 않습니다.")
-                            }
-                        } else {
-                            _error.postValue("사용자 정보를 가져오지 못했습니다.")
-                            try {
-                                throw response.errorBody()?.string()?.let {
-                                    RuntimeException(it)
-                                } ?: RuntimeException("Unknown error")
-                            } catch (e: Exception) {
-                                Log.e("PlanInfo", "PlanResponse API 오류: ${e.message}")
-                            }
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ListTimeResponse>, t: Throwable) {
-                        _error.postValue("네트워크 오류: ${t.message}")
-                        Log.d("gradInfo", "completion: ${t.message}")
-                    }
-                })
-            }
-        }
+    fun resetSemesterSelection() {
+        // 학기 정보 관련 상태 초기화
+        _planSemesterInfo.postValue(null) // 학기 정보 초기화
+        _hakki.postValue("") // 학기 식별자 초기화 (또는 적절한 초기 값으로 설정)
     }
+
+    fun resetTrackSelection() {
+        // 선택된 트랙 정보 초기화
+        _track.postValue("") // 트랙 식별자 초기화 (또는 적절한 초기 값으로 설정)
+    }
+
+    fun setHakki(hakki: String) {
+        _hakki.value = hakki
+        Log.d("hakki value", "setHakki 호출됨: hakki=$hakki")
+    }
+
+
+    fun setHakkiAndTrack(hakki: String, trackId: String) {
+        Log.d("hakkitrackvalue", "setHakkiAndTrack 호출됨: hakki=$hakki, trackId=$trackId")
+        _hakki.value = hakki
+        _track.value = trackId
+    }
+
+    private val _addTimeResponse = MutableLiveData<AddTimeResponse?>()
+    val addTimeResponse: MutableLiveData<AddTimeResponse?> = _addTimeResponse
+
+    fun addTime(request: AddTimeRequest) {
+        planApiService.addTime(request).enqueue(object : Callback<AddTimeResponse> {
+            override fun onResponse(call: Call<AddTimeResponse>, response: Response<AddTimeResponse>) {
+                if (response.isSuccessful) {
+                    // 서버로부터 응답을 성공적으로 받았을 때 LiveData 업데이트
+                    Log.d("TimeTableApi", "getListTimeInfo 성공: ${response.body()}")
+                    _addTimeResponse.postValue(response.body())
+                } else {
+                    // 에러 처리: 실패 응답 처리
+                    Log.e("TimeTableApi", "Error posting memo: ${response.errorBody()?.string()}")
+                    _addTimeResponse.postValue(null)
+                }
+            }
+
+            override fun onFailure(call: Call<AddTimeResponse>, t: Throwable) {
+                // 네트워크 에러 처리: LiveData 업데이트로 에러 상태 전달 가능
+                _addTimeResponse.postValue(null)
+            }
+        })
+    }
+
+
+
+
+
+    fun postMemo(memoRequest: PlanFreeRequest) {
+        planApiService.postFreeMemo(memoRequest).enqueue(object : Callback<PlanFreeResponse> {
+            override fun onResponse(
+                call: Call<PlanFreeResponse>,
+                response: Response<PlanFreeResponse>
+            ) {
+                if (response.isSuccessful) {
+                    // API 호출 성공 시, 성공 LiveData 업데이트
+                    _postMemoResult.postValue(true)
+                } else {
+                    // 실패 시, 실패 LiveData 업데이트
+                    Log.e("PlanViewModel", "Error posting memo: ${response.errorBody()?.string()}")
+                    _postMemoResult.postValue(false)
+                }
+            }
+
+            override fun onFailure(call: Call<PlanFreeResponse>, t: Throwable) {
+                // 네트워크 오류 등으로 호출 실패 시, 실패 LiveData 업데이트
+                _postMemoResult.postValue(false)
+            }
+        })
+    }
+
+
+    fun getFreeInfo() {
+        planApiService.getFreeInfo().enqueue(object : Callback<PlanFreeResponse> {
+            override fun onResponse(
+                call: Call<PlanFreeResponse>,
+                response: Response<PlanFreeResponse>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.body() != null) {
+                        _planFreeInfo.postValue(response.body())
+                        Log.d("PlanFree", "${response.body()}")
+                    } else {
+                        _error.postValue("서버 응답이 올바르지 않습니다.")
+                    }
+                } else {
+                    _error.postValue("사용자 정보를 가져오지 못했습니다.")
+                    try {
+                        throw response.errorBody()?.string()?.let {
+                            RuntimeException(it)
+                        } ?: RuntimeException("Unknown error")
+                    } catch (e: Exception) {
+                        Log.e("PlanInfo", "PlanResponse API 오류: ${e.message}")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<PlanFreeResponse>, t: Throwable) {
+                _error.postValue("네트워크 오류: ${t.message}")
+                Log.d("gradInfo", "completion: ${t.message}")
+            }
+        })
+    }
+
+
+    fun getListTimeInfo(hakki: String, track: String) {
+        Log.d("PlanViewModel", "getListTimeInfo 호출됨: hakki=$hakki, track=$track")
+        planApiService.getListTime(hakki, track).enqueue(object : Callback<ListTimeResponse> {
+            override fun onResponse(call: Call<ListTimeResponse>, response: Response<ListTimeResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    Log.d("PlanViewModel", "getListTimeInfo 성공: ${response.body()}")
+                    _listTimeInfo.postValue(response.body())
+                } else {
+                    Log.e("PlanViewModel", "getListTimeInfo 실패: ${response.errorBody()?.string()}")
+                    _error.postValue("리스트 정보를 가져오는데 실패했습니다.")
+                }
+            }
+
+            override fun onFailure(call: Call<ListTimeResponse>, t: Throwable) {
+                Log.e("PlanViewModel", "getListTimeInfo 네트워크 오류: ${t.message}")
+                _error.postValue("네트워크 오류: ${t.message}")
+            }
+        })
+    }
+
 
 
     fun getLicenseInfo() {
@@ -164,7 +290,8 @@ class PlanViewModel : ViewModel() {
     fun saveLicense(request: List<SaveInfo>) {
 
         planApiService.saveLicense(request).enqueue(object : Callback<BringlicenseResponse> {
-            override fun onResponse(call: Call<BringlicenseResponse>, response: Response<BringlicenseResponse>
+            override fun onResponse(
+                call: Call<BringlicenseResponse>, response: Response<BringlicenseResponse>
             ) {
                 if (response.isSuccessful) {
                     _bringLicenseInfo.postValue(response.body())
@@ -184,7 +311,6 @@ class PlanViewModel : ViewModel() {
             }
         })
     }
-
 
 
     fun getSemesterInfo() {
@@ -218,7 +344,67 @@ class PlanViewModel : ViewModel() {
             }
         })
     }
+
+
+    fun getTrackInfo(hakki: String) {
+        planApiService.getTrackInfo(hakki).enqueue(object : Callback<PlanTrackResponse> {
+            override fun onResponse(
+                call: Call<PlanTrackResponse>,
+                response: Response<PlanTrackResponse>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.body() != null) {
+                        _planTrackInfo.postValue(response.body())
+                        Log.d("PlanTrackInfo", "${response.body()}")
+                    } else {
+                        _error.postValue("서버 응답이 올바르지 않습니다.")
+                    }
+                } else {
+                    _error.postValue("사용자 정보를 가져오지 못했습니다.")
+                    try {
+                        throw response.errorBody()?.string()?.let {
+                            RuntimeException(it)
+                        } ?: RuntimeException("Unknown error")
+                    } catch (e: Exception) {
+                        Log.e("PlanInfo", "PlanResponse API 오류: ${e.message}")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<PlanTrackResponse>, t: Throwable) {
+                _error.postValue("네트워크 오류: ${t.message}")
+                Log.d("gradInfo", "completion: ${t.message}")
+            }
+        })
+    }
+
+
+    fun editMemo(memo: String) {
+        val editMemoRequest = EditMemoRequest(memo = memo)
+        planApiService.editMemo(editMemoRequest).enqueue(object : Callback<PlanFreeResponse> {
+            override fun onResponse(
+                call: Call<PlanFreeResponse>,
+                response: Response<PlanFreeResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("PlanMemoEdit", "Memo successfully edited: ${response.body()}")
+                    // 필요한 경우, UI 업데이트를 위한 LiveData 업데이트 로직을 여기에 추가하세요.
+                } else {
+                    Log.e("PlanMemoEdit", "Failed to edit memo: ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<PlanFreeResponse>, t: Throwable) {
+                Log.e("PlanMemoEdit", "Network error on edit memo: ${t.message}")
+            }
+        })
+    }
+
+
+
 }
+
+
 
 
 
