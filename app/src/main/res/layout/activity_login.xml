@@ -74,7 +74,8 @@
                 android:paddingTop="18dp"
                 android:paddingBottom="18dp"
                 android:singleLine="true"
-                android:text="@={vm.id}" />
+                android:text="@={vm.id}"
+                android:theme="@style/EditText.DarkMode" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -114,7 +115,8 @@
                 android:paddingTop="18dp"
                 android:paddingBottom="18dp"
                 android:singleLine="true"
-                android:text="@={vm.pw}" />
+                android:text="@={vm.pw}"
+                android:theme="@style/EditText.DarkMode" />
 
             <!--        </com.google.android.material.textfield.TextInputLayout>-->
         </androidx.appcompat.widget.LinearLayoutCompat>

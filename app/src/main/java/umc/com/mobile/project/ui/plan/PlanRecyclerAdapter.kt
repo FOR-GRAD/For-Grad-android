@@ -10,30 +10,39 @@ import umc.com.mobile.project.data.model.plan.TimeResult
 import umc.com.mobile.project.databinding.ItemCertificateBinding
 import umc.com.mobile.project.databinding.ItemTimeSubjectBinding
 
-class PlanRecyclerAdapter( timeList: List<TimeResult?>): RecyclerView.Adapter<PlanRecyclerAdapter.NonSubjectViewHolder>(){
-    var timeList: List<TimeResult?> = timeList
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-            //데이터가 바뀌었다 알려줌.
-        }
+class PlanRecyclerAdapter(
+    private var timeList: List<TimeResult?>,
+    private val onAddButtonClicked: ((TimeResult?) -> Unit)? = null
+) : RecyclerView.Adapter<PlanRecyclerAdapter.NonSubjectViewHolder>() {
 
-
-    override fun getItemCount(): Int {
-        return timeList?.size ?: 0
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanRecyclerAdapter.NonSubjectViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NonSubjectViewHolder {
         val itemBinding = ItemTimeSubjectBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PlanRecyclerAdapter.NonSubjectViewHolder(itemBinding)
+        return NonSubjectViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: PlanRecyclerAdapter.NonSubjectViewHolder, position: Int) {
-
-        holder.itemBinding.timeItemScore.text =timeList[position]?.searchCredit.toString()
-        holder.itemBinding.timeItemSemester.text =timeList[position]?.searchGrade.toString()
-        holder.itemBinding.timeItemSubject.text = timeList[position]?.searchName.toString()
+    override fun onBindViewHolder(holder: NonSubjectViewHolder, position: Int) {
+        val timeResult = timeList[position]
+        holder.bind(timeResult, onAddButtonClicked)
     }
 
-    class NonSubjectViewHolder(val itemBinding: ItemTimeSubjectBinding) : RecyclerView.ViewHolder(itemBinding.root)
+    override fun getItemCount(): Int = timeList.size
+
+    fun updateTimeList(newTimeList: List<TimeResult?>) {
+        this.timeList = newTimeList
+        notifyDataSetChanged() // 데이터가 변경되었음을 알리고 UI를 갱신
+    }
+
+    class NonSubjectViewHolder(private val itemBinding: ItemTimeSubjectBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+        fun bind(timeResult: TimeResult?, onAddButtonClicked: ((TimeResult?) -> Unit)?) {
+            itemBinding.timeItemSubject.text=timeResult?.searchName.toString()
+            itemBinding.timeItemSemester.text = timeResult?.searchGrade.toString()
+            val divisionAndCredit = "${timeResult?.searchType} / ${timeResult?.searchCredit}"
+            itemBinding.timeItemScore.text = divisionAndCredit
+
+            // 버튼 클릭 이벤트 설정
+            itemBinding.planTimeAddButton.setOnClickListener {
+                onAddButtonClicked?.invoke(timeResult)
+            }
+        }
+    }
 }

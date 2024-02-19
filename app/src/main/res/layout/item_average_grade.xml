@@ -11,20 +11,24 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_1"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_stroke_gray_radius_16_5"
+            android:minWidth="88dp"
             android:paddingStart="27dp"
-            android:paddingTop="20dp"
             android:paddingEnd="27dp"
+            android:paddingTop="20dp"
             android:paddingBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

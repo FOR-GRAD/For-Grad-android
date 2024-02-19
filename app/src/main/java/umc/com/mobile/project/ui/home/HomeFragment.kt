@@ -61,6 +61,9 @@ class HomeFragment : Fragment() {
 		binding.layoutNextPlan.setOnClickListener {
 			navigate(R.id.action_fragment_home_to_planSettingFragment)
 		}
+		binding.constraintLayout3.setOnClickListener {
+			navigate(R.id.action_fragment_home_to_planSettingFragment)
+		}
 	}
 
 	private fun setupRecyclerView() {
@@ -87,11 +90,9 @@ class HomeFragment : Fragment() {
 			/**
 			 * 기본 정보
 			 */
-			binding.tvName.text = it?.result?.name
-			binding.tvStdId.text = it?.result?.id.toString()
-			binding.tvSchool.text = it?.result?.department
-			binding.tvGrade.text = it?.result?.grade
-			binding.tvStatus.text = it?.result?.status
+			binding.tvNameStdId.text = "${it?.result?.name}  ${it?.result?.id.toString()}"
+			binding.tvSchool.text = "한성대학교  ${it?.result?.department}"
+			binding.tvGradeStatus.text = "${it?.result?.grade}  ${it?.result?.status}"
 			binding.tvGraduateDday.text = it?.result?.dday.toString()
 			binding.tvCheeringWord.text = it?.result?.message
 

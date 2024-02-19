@@ -8,16 +8,49 @@
             name="vm"
             type="umc.com.mobile.project.ui.plan.PlanViewModel" />
     </data>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/plan_timetable_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시간표"
+            app:layout_constraintBottom_toTopOf="@+id/time_track_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="54dp"
+            android:layout_marginBottom="40dp"
+            style="@style/BoldFont.20"
+            android:textColor="@color/black"
+
+
+
+
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/plan_timetable_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/plan_time_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="59dp"
+            android:layout_marginLeft="19dp"
+            />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/time_track_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="118dp"
         android:background="@drawable/time_track_name_title"
         android:gravity="center"
         android:text="트랙이름~"
@@ -31,17 +64,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/time_solid_white_radius_20"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/time_track_name"
-        app:layout_constraintVertical_bias="0.0">
+        >
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/plan_time_track_semester"
@@ -61,7 +93,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
             android:layout_marginBottom="6dp"
@@ -150,11 +182,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/time_store_button"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appCompatImageView4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

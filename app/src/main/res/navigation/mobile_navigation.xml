@@ -241,18 +241,43 @@
         <action
             android:id="@+id/action_planSettingFragment_to_planSemesterFragment"
             app:destination="@id/planSemesterFragment" />
+        <action
+            android:id="@+id/action_planSettingFragment_to_planTrackFragment"
+            app:destination="@id/planTrackFragment" />
+        <action
+            android:id="@+id/action_planSettingFragment_to_planTimeFragment"
+            app:destination="@id/planTimeFragment" />
+        <action
+            android:id="@+id/action_planSettingFragment_to_planTimetableFragment"
+            app:destination="@id/planTimetableFragment" />
     </fragment>
     <fragment
         android:id="@+id/planSemesterFragment"
         android:name="umc.com.mobile.project.ui.plan.PlanSemesterFragment"
-        android:label="PlanSemesterFragment" />
+        android:label="PlanSemesterFragment" >
+        <action
+            android:id="@+id/action_planSemesterFragment_to_planTrackFragment"
+            app:destination="@id/planTrackFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planTrackFragment"
+        android:name="PlanTrackFragment"
+        android:label="PlanTrackFragment" >
+        <action
+            android:id="@+id/action_planTrackFragment_to_planTimeFragment"
+            app:destination="@id/planTimeFragment" />
+        <action
+            android:id="@+id/action_planTrackFragment_to_planSettingFragment"
+            app:destination="@id/planSettingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/planTimeFragment"
         android:name="umc.com.mobile.project.ui.plan.PlanTimeFragment"
-        android:label="PlanTimeFragment" >
-        <action
-            android:id="@+id/action_planTimeFragment_to_planSemesterFragment"
-            app:destination="@id/planSemesterFragment" />
-    </fragment>
+        android:label="PlanTimeFragment" />
+    <fragment
+        android:id="@+id/planTimetableFragment"
+        android:name="umc.com.mobile.project.ui.plan.PlanTimetableFragment"
+        android:label="PlanTimetableFragment" />
+
 
 </navigation>
