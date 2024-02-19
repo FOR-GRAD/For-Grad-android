@@ -36,11 +36,11 @@ class LoginActivity : AppCompatActivity() {
 			viewModel.login()
 		}
 
-		viewModel.loginStatus.observe(this, Observer { loginStatus ->
-			if (!loginStatus) {
+		viewModel.loginSuccess.observe(this, Observer { loginSuccess ->
+			if (!loginSuccess) {
 				val intent = Intent(this@LoginActivity, MainActivity::class.java)
 				startActivity(intent)
-				finish() // 로그인 성공시 로그인 액티비티 종료
+				finish()
 			} else {
 				// 로그인 실패시 처리할 로직 추가 가능
 			}
