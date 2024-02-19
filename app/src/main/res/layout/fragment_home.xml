@@ -107,7 +107,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_name"
+                    android:id="@+id/tv_name_stdId"
                     style="@style/BoldFont.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,53 +119,30 @@
                     app:layout_constraintTop_toTopOf="@+id/cv_home_profile" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_stdId"
-                    style="@style/BoldFont.16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="30dp"
-                    android:text="@{vm.userId}"
-                    android:textColor="@color/white"
-                    app:layout_constraintStart_toEndOf="@+id/tv_name"
-                    app:layout_constraintTop_toTopOf="@+id/cv_home_profile" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_school_title"
-                    style="@style/BoldFont.16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="34dp"
-                    android:layout_marginTop="23dp"
-                    android:text="한성대학교"
-                    android:textColor="@color/white"
-                    app:layout_constraintStart_toEndOf="@+id/cv_home_profile"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_name" />
-
-                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_school"
-                    style="@style/BoldFont.16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="23dp"
-                    android:text="@{vm.userDepart}"
-                    android:textColor="@color/white"
-                    app:layout_constraintStart_toEndOf="@+id/tv_school_title"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_name" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_grade"
                     style="@style/BoldFont.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="34dp"
                     android:layout_marginTop="13dp"
-                    android:text="@{vm.userGrade}"
+                    android:text="@{String.format(`한성대학교 %s`, vm.userDepart)}"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/cv_home_profile"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name_stdId" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_grade_status"
+                    style="@style/BoldFont.16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginTop="13dp"
+                    android:text="@{String.format(`%s %s`, vm.userGrade, vm.userStatus)}"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/cv_home_profile"
                     app:layout_constraintTop_toBottomOf="@+id/tv_school" />
 
+<!--
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_status"
                     style="@style/BoldFont.16"
@@ -173,10 +150,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="34dp"
                     android:layout_marginTop="13dp"
-                    android:text="@{vm.userStatus}"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/tv_grade"
                     app:layout_constraintTop_toBottomOf="@+id/tv_school" />
+-->
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_cheering_word"

@@ -44,4 +44,9 @@
         <item name="android:background">@drawable/custom_dialog_background</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
+    <style name="EditText.DarkMode" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>
