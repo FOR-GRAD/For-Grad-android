@@ -1,8 +1,12 @@
 package umc.com.mobile.project.ui.career
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
@@ -10,6 +14,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import umc.com.mobile.project.databinding.FragmentUploadBottomBinding
@@ -25,6 +31,9 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
     private val addViewModel: CareerAddActivityViewModel by activityViewModels()
     private val editViewModel: CareerEditActivityViewModel by activityViewModels()
     private val binding get() = _binding!!
+
+    private val REQUEST_CODE_PERMISSIONS = 10
+    private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +53,26 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
         _binding!!.ivUploadBottomClose.setOnClickListener {
             dialog!!.dismiss()
         }
+
+        if (!allPermissionsGranted()) {
+            requestPermissions(REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+        }
         return binding.root
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
+                // 권한이 모두 부여되었을 때 실행할 코드를 여기에 작성합니다.
+            } else {
+                Toast.makeText(requireContext(), "Permissions not granted by the user.", Toast.LENGTH_SHORT).show()
+                activity?.finish()
+            }
+        }
     }
 
     private val PICK_IMAGE_MULTIPLE = 2
@@ -68,13 +96,20 @@ class UploadBottomFragment(context: Context, private val viewModelType: Int) :
     }
 
     private fun createImageFile(uri: Uri): File {
-        val fileName = "img_" + System.currentTimeMillis() + ".jpg"
+        val fileName = getFileName(uri)
         val directory = requireContext().getExternalFilesDir(null)
         val file = File(directory, fileName)
 
         val inputStream = requireContext().contentResolver.openInputStream(uri)
+        val originalBitmap = BitmapFactory.decodeStream(inputStream)
+
+        // 이미지 리사이징
+        val newWidth = originalBitmap.width / 2
+        val newHeight = originalBitmap.height / 2
+        val resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true)
+
         val outputStream: OutputStream = FileOutputStream(file)
-        inputStream?.copyTo(outputStream)
+        resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
 
         inputStream?.close()
         outputStream.close()
