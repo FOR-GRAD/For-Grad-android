@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
 
 	private fun navigateFragmentTime() {
 		binding.tvPlanTitle.setOnClickListener {
-			navigate(R.id.action_fragment_home_to_planSettingFragment)
+			navigate(R.id.action_fragment_home_to_planTimetableFragment)
 		}
 	}
 

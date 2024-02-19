@@ -68,6 +68,7 @@ class PlanlicenseFragment : Fragment() {
         return binding.root
     }
 
+
     private fun submitData() {
 
         val name = binding.planLicenseName.text.toString()
@@ -124,11 +125,27 @@ class PlanlicenseFragment : Fragment() {
         binding.licenseButtonStore.setOnClickListener {
             submitData() // 사용자 입력을 기반으로 API 호출
         }
+        binding.licenseDeleteButton.setOnClickListener {
+            deleteLicense() // 삭제 API 호출
+        }
 
 
 
 
 
+
+
+
+
+
+
+    }
+    private fun deleteLicense() {
+        // 삭제할 자격증 ID
+        val certificateId = 1 // 예시로 1을 사용하였습니다. 실제로는 삭제할 자격증의 ID를 전달해야 합니다.
+
+        // API 호출
+//        viewModel.deleteLicense(certificateId)
     }
 
         override fun onDestroyView() {

@@ -4,10 +4,8 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import umc.com.mobile.project.data.model.career.PointDtoList
-import umc.com.mobile.project.data.model.career.Result
+import umc.com.mobile.project.data.model.plan.TimeInfoResponse
 import umc.com.mobile.project.data.model.plan.TimeResult
-import umc.com.mobile.project.databinding.ItemCertificateBinding
 import umc.com.mobile.project.databinding.ItemTimeSubjectBinding
 
 class PlanRecyclerAdapter(
@@ -27,7 +25,7 @@ class PlanRecyclerAdapter(
 
     override fun getItemCount(): Int = timeList.size
 
-    fun updateTimeList(newTimeList: List<TimeResult?>) {
+    fun updateTimeList(newTimeList: List<TimeResult>) {
         this.timeList = newTimeList
         notifyDataSetChanged() // 데이터가 변경되었음을 알리고 UI를 갱신
     }

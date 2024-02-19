@@ -18,6 +18,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/plan_setting_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/plan_time_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="59dp"
+        android:layout_marginLeft="19dp"
+        />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout_plan_time"
         style="@style/SemiBoldFont.16"
