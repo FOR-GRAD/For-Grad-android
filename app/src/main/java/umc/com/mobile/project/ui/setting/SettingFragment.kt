@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,11 +34,13 @@ class SettingFragment : Fragment() {
 		_binding = FragmentSettingBinding.inflate(inflater, container, false)
 
 		navigateFragment()
+		viewModel.getUserInfo() // 홈 화면 정보 조회 api
 
 		viewModel.userInfoResponse.observe(viewLifecycleOwner, Observer {
 			binding.tvAccountIdContent.text = it?.result?.id.toString()
-			binding.tvAccountMajorContent.text =
-				"1트랙: ${it?.result?.track1} / 트랙: ${it?.result?.track2}"
+			Log.d("setting", it?.result?.id.toString())
+
+			binding.tvAccountMajorContent.text = it?.result?.department
 		})
 
 		return binding.root
