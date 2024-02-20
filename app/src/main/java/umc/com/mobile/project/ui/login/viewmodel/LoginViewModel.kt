@@ -37,7 +37,7 @@ class LoginViewModel : ViewModel() {
 	val loginStatus: LiveData<Boolean>
 		get() = _loginStatus
 
-	// 추가: 로그인 성공 여부 LiveData
+	// 로그인 성공 여부 LiveData
 	private val _loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
 	val loginSuccess: LiveData<Boolean>
 		get() = _loginSuccess
@@ -53,6 +53,7 @@ class LoginViewModel : ViewModel() {
 	}
 
 	init {
+//		_loginStatus.value = false
 		_loginStatus.postValue(false)
 	}
 
@@ -77,8 +78,9 @@ class LoginViewModel : ViewModel() {
 						_loginResult.postValue(response.body())
 						_loginSuccess.postValue(false)
 
-						Log.d("cookies", "$cookies")
-						Log.d("Login", "${response.body()}")
+//						Log.d("cookies", "$cookies")
+//						Log.d("Login", "${_loginResult.value}")
+//						Log.d("Login success", "${response.body()}")
 					} else {
 						_loginResult.postValue(
 							LoginResponse(
@@ -91,7 +93,7 @@ class LoginViewModel : ViewModel() {
 						_loginSuccess.postValue(true)
 						_loginStatus.postValue(true)
 
-						Log.e("Login", "정보 틀림: $loginResult")
+//						Log.e("Login", "정보 틀림: ${_loginResult.value}")
 					}
 				}
 

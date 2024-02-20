@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
 				imm.hideSoftInputFromWindow(binding.etPassword.windowToken, 0)
 
 				// 로그인 버튼 클릭
-				binding.btnLogin.performClick()
+//				binding.btnLogin.performClick()
 				return@setOnEditorActionListener true
 			}
 			false
