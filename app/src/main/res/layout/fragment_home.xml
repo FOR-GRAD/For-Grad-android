@@ -50,20 +50,11 @@
                     android:id="@+id/iv_home_notification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="18dp"
+                    android:layout_marginEnd="22dp"
                     android:src="@drawable/ic_notification_white_24"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_home_logo"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_home_my_page"
-                    app:layout_constraintTop_toTopOf="@+id/iv_home_logo" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_home_my_page"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="22dp"
-                    android:src="@drawable/ic_my_page_24"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/iv_home_notification" />
+                    app:layout_constraintTop_toTopOf="@+id/iv_home_logo" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_home_hello"
