@@ -28,6 +28,12 @@
         </string-array>
 
 
+    <string name="button_save">저장하기</string>
+    <string name="button_update">수정하기</string>
+
+
+
+
     <!-- 유진 -->
     <!--졸업 예정일-->
     <string name="board_grad_date_date">졸업 예정일 2026년 2월</string>

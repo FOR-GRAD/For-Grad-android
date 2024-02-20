@@ -13,12 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
+import umc.com.mobile.project.data.model.plan.CertificateLicenseRequest
 import umc.com.mobile.project.databinding.FragmentPlanlicenseBinding
 
 class PlanlicenseFragment : Fragment() {
     private var _binding: FragmentPlanlicenseBinding? = null
     private val viewModel: PlanViewModel by activityViewModels()
     private val binding get() = _binding!!
+    private var edit:Boolean=false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +28,43 @@ class PlanlicenseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPlanlicenseBinding.inflate(inflater, container, false)
+        binding.licenseCertificateButton.setOnClickListener {
+            if(edit){
+                var licenseList=ArrayList<CertificateLicenseRequest>() // 빈 배열만듦
+                viewModel.licenseInfo.value?.result?.get(0)?.certificateId?.let { it1 ->
+                    CertificateLicenseRequest(
+                        it1,
+                        binding.planLicenseName.text.toString(),binding.planLicenseDate.text.toString())
+                }?.let { it2 -> licenseList.add(it2) }
+
+                viewModel.licenseInfo.value?.result?.get(1)?.certificateId?.let { it1 ->
+                    CertificateLicenseRequest(
+                        it1,
+                        binding.planLicenseName2.text.toString(),binding.planLicenseDate2.text.toString())
+                }?.let { it2 -> licenseList.add(it2) }
+
+
+                viewModel.licenseInfo.value?.result?.get(2)?.certificateId?.let { it1 ->
+                    CertificateLicenseRequest(
+                        it1,
+                        binding.planLicenseName3.text.toString(),binding.planLicenseDate3.text.toString())
+                }?.let { it2 -> licenseList.add(it2) }
+
+                viewModel.licenseInfo.value?.result?.get(3)?.certificateId?.let { it1 ->
+                    CertificateLicenseRequest(
+                        it1,
+                        binding.planLicenseName4.text.toString(),binding.planLicenseDate4.text.toString())
+                }?.let { it2 -> licenseList.add(it2) }
+
+
+
+
+
+                viewModel.certificateLicense(licenseList)
+
+
+            }
+        }
 
 
 
@@ -34,36 +73,38 @@ class PlanlicenseFragment : Fragment() {
 
 
 
-      // UPlicenseResponse-자격증 정보 불러오기
+        // UPlicenseResponse-자격증 정보 불러오기
         viewModel.licenseInfo.observe(viewLifecycleOwner) { licenseInfo ->
             licenseInfo?.result?.let { resultList ->
-                // 첫 번째 Result 객체에 접근하여 데이터 매핑
-                resultList.getOrNull(0)?.let { firstResult ->
-                    binding.planLicenseName.setText(firstResult.name)
-                    binding.planLicenseDate.setText(firstResult.date)
-                }
+                if (resultList.isNotEmpty()) {
+                    resultList.forEachIndexed { index, result ->
+                        when (index) {
+                            0 -> {
+                                binding.planLicenseName.setText(result.name)
+                                binding.planLicenseDate.setText(result.date)
 
-                // 두 번째 Result 객체에 접근하여 데이터 매핑
-                resultList.getOrNull(1)?.let { secondResult ->
-                    binding.planLicenseName2.setText(secondResult.name)
-                    binding.planLicenseDate2.setText(secondResult.date)
+                            }
+                            1 -> {
+                                binding.planLicenseName2.setText(result.name)
+                                binding.planLicenseDate2.setText(result.date)
 
-                }
+                            }
+                            2 -> {
+                                binding.planLicenseName3.setText(result.name)
+                                binding.planLicenseDate3.setText(result.date)
 
-                resultList.getOrNull(2)?.let { thirdResult ->
-                    binding.planLicenseName3.setText(thirdResult.name)
-                    binding.planLicenseDate3.setText(thirdResult.date)
+                            }
+                            3 -> {
+                                binding.planLicenseName4.setText(result.name)
+                                binding.planLicenseDate4.setText(result.date)
 
-
-                }
-
-                resultList.getOrNull(3)?.let { fourthResult ->
-                    binding.planLicenseName4.setText(fourthResult.name)
-                    binding.planLicenseDate4.setText(fourthResult.date)
+                            }
+                        }
+                    }
+                    setupEditTextListeners()
                 }
             }
         }
-
 
         return binding.root
     }
@@ -86,24 +127,24 @@ class PlanlicenseFragment : Fragment() {
     }
 
 
-    private fun setupEditTextListener(){
-        val textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // 필요 없음
-            }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // 입력이 변경될 때마다 호출됩니다.
-                checkIfAnyInputIsFilled()
-            }
+    private fun setupEditTextListeners() {
 
-            override fun afterTextChanged(s: Editable?) {
-                // 필요 없음
-            }
-        }
-        binding.planLicenseName.addTextChangedListener(textWatcher)
+        binding.planLicenseName.addTextChangedListener(createTextWatcher())
+        binding.planLicenseName2.addTextChangedListener(createTextWatcher())
+        binding.planLicenseName3.addTextChangedListener(createTextWatcher())
+        binding.planLicenseName4.addTextChangedListener(createTextWatcher())
     }
+    private fun createTextWatcher(): TextWatcher {
+        return object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                edit=true
 
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        }
+    }
     private fun checkIfAnyInputIsFilled() {
         val isAnyFieldFilled = binding.planLicenseName.text.trim().isNotEmpty()
         //버튼 활성화 업데이트
@@ -120,7 +161,7 @@ class PlanlicenseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupEditTextListener()
+        setupEditTextListeners()
         checkIfAnyInputIsFilled() // 초기 상태 확인
         binding.licenseButtonStore.setOnClickListener {
             submitData() // 사용자 입력을 기반으로 API 호출
@@ -148,10 +189,8 @@ class PlanlicenseFragment : Fragment() {
 //        viewModel.deleteLicense(certificateId)
     }
 
-        override fun onDestroyView() {
-            super.onDestroyView()
-            _binding = null
-        }
-        }
-
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

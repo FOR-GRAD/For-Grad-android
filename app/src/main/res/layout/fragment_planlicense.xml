@@ -78,6 +78,8 @@
                     app:layout_gravity="fill"
                     app:layout_rowWeight="1"
                     android:gravity="center"
+                    android:maxLength="9"
+                    android:maxLines="1"
                   />
 
                 <EditText
@@ -91,6 +93,7 @@
                     app:layout_gravity="fill"
                     app:layout_rowWeight="1"
                     android:gravity="center"
+
                     />
 
                 <EditText
@@ -181,20 +184,6 @@
 
             />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/license_delete_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="삭제하기"
-            app:layout_constraintTop_toBottomOf="@+id/license_const_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="60dp"
-            android:layout_marginBottom="116dp"
-            style="@style/MediumFont.12"
-            android:textColor="@color/gray"
-            app:layout_constraintBottom_toTopOf="@id/license_button_store"
-            />
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/license_button_store"
             style="@style/SemiBoldFont.14"
@@ -208,7 +197,7 @@
             android:stateListAnimator="@null"
             android:text="저장하기"
             android:textColor="@color/white"
-            app:layout_constraintTop_toTopOf="@id/license_const_layout"
+            app:layout_constraintTop_toBottomOf="@id/license_const_layout"
             app:layout_constraintBottom_toBottomOf="parent"
 
 

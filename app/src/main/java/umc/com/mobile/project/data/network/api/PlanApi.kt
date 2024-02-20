@@ -55,13 +55,14 @@ interface PlanApi {
     fun postFreeMemo(@Body request: PlanFreeRequest): Call<PlanFreeResponse>
 
     @GET("/plans/timetable")
-    fun getUptime(@Query("grade") grade:Int, @Query("semseter") semester : Int):Call<UpTimeResponse>
+    fun getUptime(@Query("grade") grade:Int, @Query("semester") semester : Int):Call<UpTimeResponse>
 
     @PATCH("/plans/memo")
     fun editMemo(@Body editMemoRequest: EditMemoRequest) : Call<PlanFreeResponse>
 
     @PATCH("/plans/certifications")
-    fun certificateLicense(@Body request: CertificateLicenseRequest) : Call<CertificateResponse>
+    fun certificateLicense(@Body request: List<CertificateLicenseRequest>) : Call<CertificateResponse>
+
     @DELETE("/plans/certifications")
     fun deleteLicense(@Query("certificateId") certificateId: Long): Call<DeleteLicense>
 
