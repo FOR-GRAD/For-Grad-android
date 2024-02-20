@@ -57,10 +57,6 @@ class CareerEditCertificateViewModel : ViewModel() {
         return !title.value.isNullOrBlank() || !type.value.isNullOrBlank() || !startDate.value.isNullOrBlank() || !endDate.value.isNullOrBlank()
     }
 
-    private fun isDateValid(date: String?): Boolean {
-        return date.isNullOrBlank() || date.length == 8
-    }
-
     fun updateCertificateType(selectedType: String) {
         type.value = selectedType
     }
