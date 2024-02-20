@@ -226,8 +226,23 @@
         <action
             android:id="@+id/action_fragment_setting_to_fragment_setting_notification"
             app:destination="@id/fragment_setting_notification" />
+        <action
+            android:id="@+id/action_fragment_setting_to_fragment_setting_policy_privacy"
+            app:destination="@id/fragment_setting_policy_privacy" />
+        <action
+            android:id="@+id/action_fragment_setting_to_fragment_setting_service_term"
+            app:destination="@id/fragment_setting_service_term" />
     </fragment>
-
+    <fragment
+        android:id="@+id/fragment_setting_service_term"
+        android:name="umc.com.mobile.project.ui.setting.SettingServiceTermsFragment"
+        android:label="서비스 이용약관"
+        tools:layout="@layout/fragment_setting_service_terms" />
+    <fragment
+        android:id="@+id/fragment_setting_policy_privacy"
+        android:name="umc.com.mobile.project.ui.setting.SettingPolicyPrivacyFragment"
+        android:label="개인정보처리방침"
+        tools:layout="@layout/fragment_setting_policy_privacy" />
     <fragment
         android:id="@+id/fragment_setting_notification"
         android:name="umc.com.mobile.project.ui.setting.SettingNotificationFragment"

@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="33dp"
         android:layout_marginEnd="17dp"
         android:background="@drawable/bg_stroke_gray_radius_16_5"
         app:layout_constraintEnd_toEndOf="parent"

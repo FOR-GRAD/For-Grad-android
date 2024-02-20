@@ -56,6 +56,14 @@ class SettingFragment : Fragment() {
 			navigate(R.id.action_fragment_setting_to_fragment_setting_notification)
 		}
 
+		binding.tvServiceTerms.setOnClickListener {
+			navigate(R.id.action_fragment_setting_to_fragment_setting_service_term)
+		}
+
+		binding.tvGuideTerms2.setOnClickListener {
+			navigate(R.id.action_fragment_setting_to_fragment_setting_policy_privacy)
+		}
+
 		binding.tvEtcLogout.setOnClickListener {
 			var dialogBuilder =
 				AlertDialog.Builder(requireContext(), R.style.CustomAlertDialogTheme)
