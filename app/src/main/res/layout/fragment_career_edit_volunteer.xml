@@ -127,6 +127,7 @@
                     android:background="@drawable/bg_solid_gray_radius_15"
                     android:gravity="top"
                     android:hint=""
+                    android:inputType="number"
                     android:paddingStart="18dp"
                     android:paddingTop="11dp"
                     android:paddingBottom="10dp"
