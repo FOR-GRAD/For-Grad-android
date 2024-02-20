@@ -1,19 +1,21 @@
+package umc.com.mobile.project.ui.plan
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import umc.com.mobile.project.data.model.plan.TimeResult
+import umc.com.mobile.project.data.model.plan.TimeInfoResponse
 import umc.com.mobile.project.databinding.ItemPlanTimeBinding
 
-class PlanTimeAdapter : ListAdapter<TimeResult, PlanTimeAdapter.ViewHolder>(TimeResultDiffCallback()) {
+class PlanTimeAdapter(private var addnewtime: List<Any> = ArrayList()): ListAdapter<TimeInfoResponse, PlanTimeAdapter.ViewHolder>(UpTimeResultDiffCallback()) {
 
-    // ViewHolder 클래스는 그대로 유지합니다.
     class ViewHolder(private val binding: ItemPlanTimeBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TimeResult) {
-            binding.timeKindTitle.text = item.searchType
-            binding.timeClassTitle.text = item.searchName
-            binding.timeGradeTitle.text = item.searchCredit.toString() // toString() 추가, 학점을 문자열로 표시
+        fun bind(item: TimeInfoResponse) {
+            binding.timeKindTitle.text = item.type
+            binding.timeClassTitle.text = item.name
+            // 학점을 문자열로 변환하여 표시
+            binding.timeGradeTitle.text = item.credit.toString()
         }
     }
 
@@ -27,17 +29,18 @@ class PlanTimeAdapter : ListAdapter<TimeResult, PlanTimeAdapter.ViewHolder>(Time
         holder.bind(item)
     }
 
-    // 현재 데이터 리스트를 가져오는 편의 메서드를 추가합니다.
-    fun getCurrentData(): List<TimeResult> {
-        return currentList
+    fun updateTimeList(addnewtime: ArrayList<TimeInfoResponse>) {
+        submitList(addnewtime)
     }
 
-    class TimeResultDiffCallback : DiffUtil.ItemCallback<TimeResult>() {
-        override fun areItemsTheSame(oldItem: TimeResult, newItem: TimeResult): Boolean {
-            return oldItem.searchName == newItem.searchName
+    class UpTimeResultDiffCallback : DiffUtil.ItemCallback<TimeInfoResponse>() {
+        override fun areItemsTheSame(oldItem: TimeInfoResponse, newItem: TimeInfoResponse): Boolean {
+            // subjectId를 비교하여 동일한 아이템인지 판별
+            return oldItem.name== newItem.name
         }
 
-        override fun areContentsTheSame(oldItem: TimeResult, newItem: TimeResult): Boolean {
+        override fun areContentsTheSame(oldItem: TimeInfoResponse, newItem: TimeInfoResponse): Boolean {
+            // 내용이 동일한지 비교
             return oldItem == newItem
         }
     }

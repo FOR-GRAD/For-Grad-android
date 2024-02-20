@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
+import umc.com.mobile.project.data.model.plan.TimeInfoResponse
 import umc.com.mobile.project.databinding.PlanSubjectListBinding
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
 
@@ -38,7 +39,7 @@ class PlanTimeFragment : Fragment() {
         val adapter = PlanRecyclerAdapter(emptyList(), onAddButtonClicked = { timeResult ->
 
             if (timeResult != null) {
-                viewModel.setSelectedTimeResult(timeResult)
+                viewModel.setSelectedTimeResult(timeResult = TimeInfoResponse(timeResult.searchType,timeResult.searchName,timeResult.searchCredit))
             }
 
 
@@ -67,9 +68,7 @@ class PlanTimeFragment : Fragment() {
     }
 
     private fun setupNavigation() {
-        binding.planTimeMoveTimetable.setOnClickListener {
-            navigate(R.id.action_planSettingFragment_to_planTimetableFragment)
-        }
+
 
         binding.planSubjectListSemester.setOnClickListener {
             navigate(R.id.action_planSettingFragment_to_planSemesterFragment)

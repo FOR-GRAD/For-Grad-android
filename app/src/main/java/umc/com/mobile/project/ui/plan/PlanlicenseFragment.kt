@@ -27,12 +27,7 @@ class PlanlicenseFragment : Fragment() {
 	): View {
 		_binding = FragmentPlanlicenseBinding.inflate(inflater, container, false)
 
-
-
 		viewModel.getLicenseInfo() // api 연결
-
-
-
 
 		// UPlicenseResponse-자격증 정보 불러오기
 		viewModel.licenseInfo.observe(viewLifecycleOwner) { licenseInfo ->
@@ -64,9 +59,9 @@ class PlanlicenseFragment : Fragment() {
 			}
 		}
 
-
 		return binding.root
 	}
+
 
 	private fun submitData() {
 
@@ -78,14 +73,13 @@ class PlanlicenseFragment : Fragment() {
 
 		// SavelicenseRequest 객체 생성
 
-
 		// API 호출
 		viewModel.saveLicense(saveInfoList)
 
 	}
 
 
-	private fun setupEditTextListener(){
+	private fun setupEditTextListener() {
 		val textWatcher = object : TextWatcher {
 			override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 				// 필요 없음
@@ -112,9 +106,6 @@ class PlanlicenseFragment : Fragment() {
 		val colorResId = if (isAnyFieldFilled) R.color.skyBlue else R.color.gray
 		val color = ContextCompat.getColor(requireContext(), colorResId)
 		binding.licenseButtonStore.backgroundTintList = ColorStateList.valueOf(color)
-
-
-
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -124,11 +115,17 @@ class PlanlicenseFragment : Fragment() {
 		binding.licenseButtonStore.setOnClickListener {
 			submitData() // 사용자 입력을 기반으로 API 호출
 		}
+		binding.licenseDeleteButton.setOnClickListener {
+			deleteLicense() // 삭제 API 호출
+		}
+	}
 
+	private fun deleteLicense() {
+		// 삭제할 자격증 ID
+		val certificateId = 1 // 예시로 1을 사용하였습니다. 실제로는 삭제할 자격증의 ID를 전달해야 합니다.
 
-
-
-
+		// API 호출
+//        viewModel.deleteLicense(certificateId)
 	}
 
 	override fun onDestroyView() {
@@ -136,4 +133,3 @@ class PlanlicenseFragment : Fragment() {
 		_binding = null
 	}
 }
-

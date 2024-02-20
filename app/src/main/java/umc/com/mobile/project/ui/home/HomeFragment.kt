@@ -56,13 +56,13 @@ class HomeFragment : Fragment() {
 	// 페이지 이동
 	private fun navigateFragment() {
 		binding.btnCheeringWordMove.setOnClickListener {
-			navigate(R.id.action_fragment_home_to_fragment_date)
+			navigate(R.id.action_fragment_home_to_planTimetableFragment)
 		}
 		binding.layoutNextPlan.setOnClickListener {
-			navigate(R.id.action_fragment_home_to_planSettingFragment)
+			navigate(R.id.action_fragment_home_to_planTimetableFragment)
 		}
 		binding.constraintLayout3.setOnClickListener {
-			navigate(R.id.action_fragment_home_to_planSettingFragment)
+			navigate(R.id.action_fragment_home_to_planTimetableFragment)
 		}
 	}
 

@@ -5,10 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="umc.com.mobile.project.ui.plan.PlanViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,15 +19,15 @@
             android:id="@+id/license_const_layout"
             android:layout_width="322dp"
             android:layout_height="223dp"
+            android:layout_marginTop="29dp"
             android:background="@drawable/rectangle_4257"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:paddingRight="9dp"
+            android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:paddingTop="10dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="9dp"
-            android:paddingBottom="10dp"
-            android:layout_marginTop="29dp"
 
             >
 
@@ -36,10 +38,10 @@
                 android:background="@drawable/edittext_rounded_line"
                 android:padding="16dp"
                 app:columnCount="2"
-                app:rowCount="5"
-                app:layout_constraintTop_toTopOf="@id/license_const_layout"
-                app:layout_constraintStart_toStartOf="@id/license_const_layout"
                 app:layout_constraintEnd_toEndOf="@id/license_const_layout"
+                app:layout_constraintStart_toStartOf="@id/license_const_layout"
+                app:layout_constraintTop_toTopOf="@id/license_const_layout"
+                app:rowCount="5"
 
                 tools:layout_editor_absoluteX="11dp"
                 tools:layout_editor_absoluteY="4dp">
@@ -66,106 +68,103 @@
                     android:text="시험 일정"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <EditText
-                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_name"
+                    style="@style/MediumFont.10"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
+                    android:gravity="center"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    android:gravity="center"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <EditText
-                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_date"
+                    style="@style/MediumFont.10"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
-                    android:hint=""
-                    app:layout_columnWeight="1"
-                    app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
                     android:gravity="center"
-                    />
+                    android:hint=""
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
 
                 <EditText
-                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_name2"
+                    style="@style/MediumFont.10"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
+                    android:gravity="center"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    android:gravity="center"/>
+                    app:layout_rowWeight="1" />
 
                 <EditText
-                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_date2"
+                    style="@style/MediumFont.10"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
+                    android:gravity="center"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    android:gravity="center"/>
+                    app:layout_rowWeight="1" />
 
                 <EditText
-                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_name3"
+                    style="@style/MediumFont.10"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
+                    android:gravity="center"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    android:gravity="center"/>
+                    app:layout_rowWeight="1" />
 
                 <EditText
-                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_date3"
+                    style="@style/MediumFont.10"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
+                    android:gravity="center"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    android:gravity="center"/>
+                    app:layout_rowWeight="1" />
 
                 <EditText
-                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_name4"
+                    style="@style/MediumFont.10"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
+                    android:gravity="center"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    android:gravity="center"/>
+                    app:layout_rowWeight="1" />
 
                 <EditText
-                    style="@style/MediumFont.10"
                     android:id="@+id/plan_license_date4"
+                    style="@style/MediumFont.10"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="@drawable/edittext_white_line"
+                    android:gravity="center"
                     android:hint=""
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    android:gravity="center"/>
+                    app:layout_rowWeight="1" />
 
 
             </androidx.gridlayout.widget.GridLayout>
@@ -173,14 +172,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/license_addrow_button"
+            android:id="@+id/license_certificate_button"
             style="@style/MediumFont.12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:text="칸 추가하기"
+            android:text="수정하기"
             android:textColor="@color/gray"
             app:layout_constraintEnd_toEndOf="@+id/license_const_layout"
+            app:layout_constraintTop_toBottomOf="@+id/license_const_layout"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/license_delete_button"
+            style="@style/MediumFont.12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="삭제하기"
+            android:textColor="@color/gray"
+            app:layout_constraintStart_toStartOf="@+id/license_const_layout"
             app:layout_constraintTop_toBottomOf="@+id/license_const_layout" />
 
         <androidx.appcompat.widget.AppCompatButton
