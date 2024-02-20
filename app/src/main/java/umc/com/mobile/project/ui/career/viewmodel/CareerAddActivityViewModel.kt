@@ -70,6 +70,7 @@ class CareerAddActivityViewModel : ViewModel() {
     }
 
     fun addImageFile(file: File) {
+        Log.d("imagePath", file.toString())
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         imageList.add(body)
@@ -179,6 +180,8 @@ class CareerAddActivityViewModel : ViewModel() {
                             } ?: RuntimeException("Unknown error")
                         } catch (e: Exception) {
                             Log.e("addCareerInfo", "addCareer:Extras API 오류: ${e.message}")
+                            val errorMessage = response.errorBody()?.string()
+                            Log.e("addCareerInfo", "addCareer:Extras API 오류: $errorMessage")
                             e.printStackTrace()
                         }
                     }
