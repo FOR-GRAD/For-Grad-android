@@ -166,9 +166,6 @@ class PlanlicenseFragment : Fragment() {
         binding.licenseButtonStore.setOnClickListener {
             submitData() // 사용자 입력을 기반으로 API 호출
         }
-        binding.licenseDeleteButton.setOnClickListener {
-            deleteLicense() // 삭제 API 호출
-        }
 
 
 
