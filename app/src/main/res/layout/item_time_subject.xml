@@ -3,10 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F2F2F2"
+    android:layout_marginTop="5dp"
     >
 
     <TextView
         android:id="@+id/time_item_subject"
+        style="@style/MediumFont.12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="과목명"
@@ -14,12 +17,15 @@
         android:layout_marginRight="100dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#F2F2F2"/>
 
     <TextView
         android:id="@+id/time_item_semester"
+        style="@style/MediumFont.12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#F2F2F2"
         android:text="학년"
         android:layout_marginRight="100dp"
         android:textSize="16sp"
@@ -29,21 +35,25 @@
 
     <TextView
         android:id="@+id/time_item_score"
+        style="@style/MediumFont.12"
         android:layout_width="310dp"
         android:layout_height="27dp"
         android:layout_marginRight="100dp"
         android:text="이수구분/ 학점"
         android:textSize="16sp"
+        android:background="#F2F2F2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/time_item_semester" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/plan_time_add_button"
+        style="@style/MediumFont.10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/time_rounded_corners"
+        android:background="@drawable/item_radius_plan"
         android:text="추가하기"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/time_item_score"
         app:layout_constraintTop_toTopOf="@id/time_item_score" />

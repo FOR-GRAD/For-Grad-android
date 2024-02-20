@@ -172,4 +172,3 @@ class PlanTimetableFragment : Fragment() {
         _binding = null
     }
 }
-
