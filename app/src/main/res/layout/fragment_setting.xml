@@ -184,7 +184,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_guide_title" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_guide_terms"
+                    android:id="@+id/tv_service_terms"
                     style="@style/MediumFont.14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -204,8 +204,8 @@
                     android:text="개인정보 처리방침"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tv_guide_terms"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_guide_terms" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_service_terms"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_service_terms" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
