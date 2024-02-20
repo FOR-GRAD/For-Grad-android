@@ -26,11 +26,9 @@
     import umc.com.mobile.project.data.model.plan.SemesterTimeResponse
     import umc.com.mobile.project.data.model.plan.SubjectDtoList
     import umc.com.mobile.project.data.model.plan.TimeInfoResponse
-    import umc.com.mobile.project.data.model.plan.TimeResult
 
     import umc.com.mobile.project.data.model.plan.UPlicenseResponse
     import umc.com.mobile.project.data.model.plan.UpTimeResponse
-    import umc.com.mobile.project.data.model.plan.upTimeResult
     import umc.com.mobile.project.data.network.ApiClient
     import umc.com.mobile.project.data.network.api.PlanApi
 
@@ -179,12 +177,13 @@
         val addTimeResponse: MutableLiveData<AddTimeResponse?> = _addTimeResponse
 
         fun addTime(request: AddTimeRequest) {
-            Log.d("gradesemester", "Sending AddTimeRequest with grade: ${request.semesterDto.grade}, semester: ${request.semesterDto.semester}")
+
             planApiService.addTime(request).enqueue(object : Callback<AddTimeResponse> {
                 override fun onResponse(call: Call<AddTimeResponse>, response: Response<AddTimeResponse>) {
                     if (response.isSuccessful) {
                         // 서버로부터 응답을 성공적으로 받았을 때 LiveData 업데이트
                         Log.d("TimeTableApi", "getListTimeInfo 성공: ${response.body()}")
+                        Log.d("gradesemester", "Sending AddTimeRequest with grade: ${request.semesterDto.grade}, semester: ${request.semesterDto.semester}")
                         _addTimeResponse.postValue(response.body())
                     } else {
                         // 에러 처리: 실패 응답 처리
@@ -340,6 +339,8 @@
         }
 
 
+
+
         fun saveLicense(request: List<SaveInfo>) {
 
             planApiService.saveLicense(request).enqueue(object : Callback<BringlicenseResponse> {
@@ -453,7 +454,7 @@
             })
         }
 
-        fun certificateLicense(request: CertificateLicenseRequest) {
+        fun certificateLicense(request: List<CertificateLicenseRequest>) {
             planApiService.certificateLicense(request).enqueue(object : Callback<CertificateResponse> {
                 override fun onResponse(call: Call<CertificateResponse>, response: Response<CertificateResponse>) {
                     if (response.isSuccessful) {
@@ -476,7 +477,8 @@
         }
 
 
-        fun getTimeInfo(grade:Int,semester:Int) {
+
+        fun getTimeInfo(grade:Int, semester:Int) {
             planApiService.getUptime(grade,semester).enqueue(object : Callback<UpTimeResponse> {
                 override fun onResponse(
                     call: Call<UpTimeResponse>,
@@ -484,16 +486,18 @@
                 ) {
                     if (response.isSuccessful) {
                         if (response.body() != null) {
-                            var timeList =  response.body()!!.result
-                            var itemList = ArrayList<TimeInfoResponse>()
-                           timeList.forEach{
-
+                            val timeList =  response.body()!!.result
+                            val itemList = ArrayList<TimeInfoResponse>()
+                            timeList.forEach {
                                 itemList.add(TimeInfoResponse(it.type,it.name,it.credit.toString()))
                             }
-                            _selectedTimeResults.postValue(itemList)
+                            _selectedTimeResults.value = itemList
+
+                            Log.d("PlanUpTime1", "TimeInfoResponse: $timeList")
 
                             Log.d("PlanUpTime", "${response.body()}")
                         } else {
+                            Log.d("PlanUpTime", "${response.body()}")
                             _error.postValue("서버 응답이 올바르지 않습니다.")
                         }
                     } else {
@@ -503,17 +507,19 @@
                                 RuntimeException(it)
                             } ?: RuntimeException("Unknown error")
                         } catch (e: Exception) {
-                            Log.e("PlanUpTime", "PlanResponse API 오류: ${e.message}")
+                            Log.e("PlanViewModel", "Failed to get time info: ${response.errorBody()?.string()}")
+
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<UpTimeResponse>, t: Throwable) {
                     _error.postValue("네트워크 오류: ${t.message}")
-                    Log.d("gradInfo", "completion: ${t.message}")
+                    Log.d("PlanUpTime12", "Network error: ${t.message}")
                 }
             })
         }
+
 
         fun deleteLicense(certificateId: Long) {
             planApiService.deleteLicense(certificateId).enqueue(object : Callback<DeleteLicense> {

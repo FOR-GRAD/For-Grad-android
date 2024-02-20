@@ -29,8 +29,12 @@ interface PlanApi {
     @GET("plans/certifications")
     fun getUPlicense(): Call<UPlicenseResponse>
 
+
     @POST("plans/certifications")
     fun saveLicense(@Body request: List<SaveInfo>): Call<BringlicenseResponse>
+
+
+
 
     @GET("/plans/timetable/searchSubject")
     fun getListTime(@Query("hakki") hakki:String, @Query("track") track : String) : Call<ListTimeResponse>
@@ -51,14 +55,25 @@ interface PlanApi {
     fun postFreeMemo(@Body request: PlanFreeRequest): Call<PlanFreeResponse>
 
     @GET("/plans/timetable")
-    fun getUptime(@Query("grade") grade:Int, @Query("semseter") semester : Int):Call<UpTimeResponse>
+    fun getUptime(@Query("grade") grade:Int, @Query("semester") semester : Int):Call<UpTimeResponse>
 
     @PATCH("/plans/memo")
     fun editMemo(@Body editMemoRequest: EditMemoRequest) : Call<PlanFreeResponse>
 
     @PATCH("/plans/certifications")
-    fun certificateLicense(@Body request: CertificateLicenseRequest) : Call<CertificateResponse>
+    fun certificateLicense(@Body request: List<CertificateLicenseRequest>) : Call<CertificateResponse>
 
     @DELETE("/plans/certifications")
     fun deleteLicense(@Query("certificateId") certificateId: Long): Call<DeleteLicense>
+
+
+
+
+
+
+
+
+
+
+
 }

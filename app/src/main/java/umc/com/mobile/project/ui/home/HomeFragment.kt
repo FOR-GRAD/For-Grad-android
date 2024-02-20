@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
 	// 페이지 이동
 	private fun navigateFragment() {
 		binding.btnCheeringWordMove.setOnClickListener {
-			navigate(R.id.action_fragment_home_to_planTimetableFragment)
+			navigate(R.id.action_fragment_home_to_fragment_date)
 		}
 		binding.layoutNextPlan.setOnClickListener {
 			navigate(R.id.action_fragment_home_to_planTimetableFragment)
