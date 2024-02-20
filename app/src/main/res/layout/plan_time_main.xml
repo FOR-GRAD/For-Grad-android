@@ -12,182 +12,175 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/plan_timetable_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="시간표"
-            app:layout_constraintBottom_toTopOf="@+id/time_track_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="54dp"
-            android:layout_marginBottom="40dp"
-            style="@style/BoldFont.20"
-            android:textColor="@color/black"
-
-
-
-
-            />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/plan_timetable_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/plan_time_back"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="59dp"
-            android:layout_marginLeft="19dp"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/time_track_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="118dp"
-        android:background="@drawable/time_track_name_title"
-        android:gravity="center"
-        android:text="트랙이름~"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/appCompatImageView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/time_solid_white_radius_20"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/time_track_name"
-        >
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/plan_time_track_semester"
-            style="SemiBoldFont.12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/time_solid_beige_top_radius_20"
-            android:paddingStart="34dp"
-            android:paddingTop="12dp"
-            android:paddingEnd="34dp"
-            android:text="0학년 0학기"
-            android:textColor="#B3B3B3"
-            app:layout_constraintStart_toStartOf="@+id/appCompatImageView4"
-            app:layout_constraintTop_toTopOf="@+id/appCompatImageView4" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
-            android:layout_marginBottom="6dp"
-            android:background="@drawable/time_solid_beige_radius_without_top_right_20"
-            app:layout_constraintEnd_toEndOf="@+id/appCompatImageView4"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/plan_time_track_semester"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linearLayoutCompat3"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:visibility="invisible"
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/plan_timetable_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간표"
+                app:layout_constraintBottom_toTopOf="@+id/title_move_timetable"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="54dp"
+                android:layout_marginBottom="40dp"
+                style="@style/BoldFont.20"
+                android:textColor="@color/black"
+
+
+
+
+                />
+
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_move_timetable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="118dp"
+                android:background="@drawable/time_track_name_title"
+                android:gravity="center"
+                android:text="시간표 담기~"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:visibleIf="@{vm.planTimeStatus}">
+                />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/BoldFont.14"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="7dp"
-                    android:text="분류"
-                    android:textColor="@color/black" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/MediumFont.13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="7dp"
-                    android:text="교과목"
-                    android:textColor="@color/gray" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/MediumFont.13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="7dp"
-                    android:text="학점"
-                    android:textColor="@color/gray" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/appCompatImageView4"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/time_solid_white_radius_20"
+                android:paddingBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat3"
-                tools:listitem="@layout/item_plan_time" />
+                app:layout_constraintTop_toBottomOf="@id/title_move_timetable"
+                >
 
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/SemiBoldFont.14"
+                <Spinner
+                    android:background="@drawable/time_solid_beige_top_radius_20"
+                    android:id="@+id/spinner_plan_time_track_semester"
+                    style="SemiBoldFont.12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#B3B3B3"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="6dp"
+                    android:paddingStart="34dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="34dp"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView4"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatImageView4"
+                    />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/time_solid_beige_radius_without_top_right_20"
+                    app:layout_constraintEnd_toEndOf="@+id/appCompatImageView4"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_plan_time_track_semester"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/linearLayoutCompat3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:visibleIf="@{vm.planTimeStatus}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/BoldFont.14"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="7dp"
+                            android:text="분류"
+                            android:textColor="@color/black" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/MediumFont.13"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="7dp"
+                            android:text="교과목"
+                            android:textColor="@color/gray" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/MediumFont.13"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="7dp"
+                            android:text="학점"
+                            android:textColor="@color/gray" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat3"
+                        tools:listitem="@layout/item_plan_time" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SemiBoldFont.14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text=""
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayoutCompat3"
+                        app:visibleIf="@{!vm.planTimeStatus}" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/time_store_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text=""
-                android:textColor="@color/white"
+                android:background="@drawable/time_store_button"
+                android:layout_marginTop="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayoutCompat3"
-                app:visibleIf="@{!vm.planTimeStatus}" />
+                app:layout_constraintTop_toBottomOf="@id/appCompatImageView4" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/time_store_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/time_store_button"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appCompatImageView4" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
