@@ -57,10 +57,6 @@ class CareerEditVolunteerViewModel : ViewModel() {
         return !title.value.isNullOrBlank() || !hour.value.isNullOrBlank() || !startDate.value.isNullOrBlank() || !endDate.value.isNullOrBlank()
     }
 
-    private fun isDateValid(date: String?): Boolean {
-        return date.isNullOrBlank() || date.length == 8
-    }
-
     private val careerApiService = ApiClient.createService<CareerApi>()
 
     private val _volunteerDetailInfo: MutableLiveData<CareerDetailResponse?> = MutableLiveData()

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -60,7 +61,6 @@ class CertificateFragment : Fragment() {
                 false  // 그 외의 경우 이벤트 소비하지 않음
             }
         }
-
         _binding!!.ivCareerCertificateBack.setOnClickListener {
             navigate(R.id.action_fragment_certificate_to_fragment_career)
         }
@@ -69,6 +69,13 @@ class CertificateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //뒤로가기 버튼 눌렀을 때
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                navigate(R.id.action_fragment_certificate_to_fragment_career)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         //자격증 목록 api 연결
         viewModel.getCertificateInfo()
     }

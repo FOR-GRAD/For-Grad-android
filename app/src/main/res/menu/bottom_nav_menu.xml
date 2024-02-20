@@ -8,22 +8,22 @@
 
     <item
         android:id="@+id/fragment_career"
-        android:icon="@drawable/selector_bottom_career"
+        android:icon="@drawable/ic_career_28"
         android:title="커리어" />
 
     <item
         android:id="@+id/fragment_home"
-        android:icon="@drawable/selector_bottom_home"
+        android:icon="@drawable/ic_home_28"
         android:title="홈" />
 
     <item
         android:id="@+id/fragment_board"
-        android:icon="@drawable/selector_bottom_board"
+        android:icon="@drawable/ic_board_28"
         android:title="게시판" />
 
     <item
         android:id="@+id/fragment_setting"
-        android:icon="@drawable/selector_bottom_setting"
+        android:icon="@drawable/ic_setting_28"
         android:title="설정" />
 
 </menu>
