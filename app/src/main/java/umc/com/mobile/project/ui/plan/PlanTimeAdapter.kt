@@ -31,6 +31,7 @@ class PlanTimeAdapter(private var addnewtime: List<Any> = ArrayList()): ListAdap
 
     fun updateTimeList(addnewtime: ArrayList<TimeInfoResponse>) {
         submitList(addnewtime)
+	    notifyDataSetChanged()
     }
 
     class UpTimeResultDiffCallback : DiffUtil.ItemCallback<TimeInfoResponse>() {

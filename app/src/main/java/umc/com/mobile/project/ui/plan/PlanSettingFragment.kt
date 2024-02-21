@@ -29,11 +29,8 @@ class PlanSettingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // PlanTimeTabMainBinding을 인플레이트하여 루트 뷰를 가져옴
         _binding = PlanTimeTabMainBinding.inflate(inflater, container, false)
         val view = binding.root
-
-
 
         // 탭 레이아웃 및 뷰페이저 초기화
         initTabLayout()
@@ -44,8 +41,6 @@ class PlanSettingFragment : Fragment() {
         }
 
         return view
-
-
     }
 
 
@@ -53,10 +48,8 @@ class PlanSettingFragment : Fragment() {
 
         val tabTitle = arrayOf("시간표", "자격증", "자유")
 
-
         viewPager = binding.viewPagerTimeTabMain
         tabLayout = binding.tabLayoutPlanTime
-
 
         val adapter = PlanVPAdapter(this)
 
@@ -72,7 +65,6 @@ class PlanSettingFragment : Fragment() {
     }
 
     private fun initViewPager() {
-
         binding.viewPagerTimeTabMain.isUserInputEnabled = false
     }
 

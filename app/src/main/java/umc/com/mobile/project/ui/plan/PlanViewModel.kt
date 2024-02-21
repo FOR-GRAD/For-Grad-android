@@ -177,7 +177,6 @@
         val addTimeResponse: MutableLiveData<AddTimeResponse?> = _addTimeResponse
 
         fun addTime(request: AddTimeRequest) {
-
             planApiService.addTime(request).enqueue(object : Callback<AddTimeResponse> {
                 override fun onResponse(call: Call<AddTimeResponse>, response: Response<AddTimeResponse>) {
                     if (response.isSuccessful) {
@@ -200,7 +199,6 @@
         }
         fun sendAddTimeRequest() {
             val currentSelectedSubjects = _selectedTimeResults.value ?: return
-
 
             val grade = _grade.value
             val semester = _semester.value
@@ -477,7 +475,9 @@
         }
 
 
-
+	    /**
+	     * 시간표 조회하기
+	     */
         fun getTimeInfo(grade:Int, semester:Int) {
             planApiService.getUptime(grade,semester).enqueue(object : Callback<UpTimeResponse> {
                 override fun onResponse(
@@ -494,7 +494,6 @@
                             _selectedTimeResults.value = itemList
 
                             Log.d("PlanUpTime1", "TimeInfoResponse: $timeList")
-
                             Log.d("PlanUpTime", "${response.body()}")
                         } else {
                             Log.d("PlanUpTime", "${response.body()}")

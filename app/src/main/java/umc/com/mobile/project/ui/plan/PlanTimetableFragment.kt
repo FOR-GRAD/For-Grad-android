@@ -62,57 +62,41 @@ class PlanTimetableFragment : Fragment() {
                         viewModel.setGradeAndSemester(1, 1)
                         viewModel.getTimeInfo(1, 1)
                         Log.d("selected Item",selectedItem)
-
-
                     }
 
                     "1학년 2학기" -> {
                         viewModel.setGradeAndSemester(1, 2)
                         viewModel.getTimeInfo(1, 2)
-
-
                     }
 
                     "2학년 1학기" -> {
                         viewModel.setGradeAndSemester(2, 1)
                         viewModel.getTimeInfo(2, 1)
-
-
                     }
 
                     "2학년 2학기" -> {
                         viewModel.setGradeAndSemester(2, 2)
                         viewModel.getTimeInfo(2, 2)
-
-
                     }
 
                     "3학년 1학기" -> {
                         viewModel.setGradeAndSemester(3, 1)
                         viewModel.getTimeInfo(3, 1)
-
-
                     }
 
                     "3학년 2학기" -> {
                         viewModel.setGradeAndSemester(3, 2)
-//                        viewModel.getTimeInfo(3, 2)
-
-
+                        viewModel.getTimeInfo(3, 2)
                     }
 
                     "4학년 1학기" -> {
                         viewModel.setGradeAndSemester(4, 1)
-//                        viewModel.getTimeInfo(4, 1)
-
-
+                        viewModel.getTimeInfo(4, 1)
                     }
 
                     "4학년 2학기" -> {
                         viewModel.setGradeAndSemester(4, 2)
-//                        viewModel.getTimeInfo(4, 2)
-
-
+                        viewModel.getTimeInfo(4, 2)
                     }
 
                 }
