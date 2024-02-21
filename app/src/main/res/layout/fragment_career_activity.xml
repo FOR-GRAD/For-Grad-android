@@ -81,6 +81,7 @@
                     android:background="@drawable/bg_solid_white_radius_16_5"
                     android:gravity="top"
                     android:hint="@string/career_edit_search_hint"
+                    android:imeOptions="actionSearch"
                     android:paddingStart="18dp"
                     android:paddingTop="14dp"
                     android:paddingBottom="10dp"
