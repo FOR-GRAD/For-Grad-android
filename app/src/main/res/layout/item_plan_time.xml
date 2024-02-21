@@ -48,16 +48,5 @@
         android:paddingBottom="7dp"
         android:text="학점"
         android:textColor="@color/black" />
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/delete_time_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        style="@style/MediumFont.13"
-        android:layout_weight="1"
-        android:text="삭제"
-        android:gravity="center"
-        android:paddingTop="12dp"
-        android:paddingBottom="7dp"
-        />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
