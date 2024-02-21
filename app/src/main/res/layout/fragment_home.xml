@@ -96,7 +96,21 @@
                         android:src="@{vm.userProfile}" />
 
                 </androidx.cardview.widget.CardView>
+<!--
 
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/ic_two_circle_arrows"
+                    app:layout_constraintBottom_toBottomOf="@+id/cv_home_profile"
+                    app:layout_constraintEnd_toEndOf="@+id/cv_home_profile"
+                    app:layout_constraintStart_toStartOf="@+id/cv_home_profile"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_home_name" />
+
+-->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_name_stdId"
                     style="@style/BoldFont.16"
