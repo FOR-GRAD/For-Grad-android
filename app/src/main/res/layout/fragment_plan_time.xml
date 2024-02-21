@@ -12,6 +12,8 @@
 
     <!-- Column Headers -->
     <TextView
+        style="@style/MediumFont.13"
+        android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -20,6 +22,8 @@
         app:layout_columnWeight="1" />
 
     <TextView
+        style="@style/MediumFont.13"
+        android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -28,6 +32,8 @@
         app:layout_columnWeight="1" />
 
     <TextView
+        style="@style/MediumFont.13"
+        android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"

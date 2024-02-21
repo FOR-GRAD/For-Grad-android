@@ -41,6 +41,10 @@ class HomeFragment : Fragment() {
 		setupRecyclerView() // recyclerView 연결
 		setupHomeInfoRetrofit() // 홈 화면 ui 연결
 
+		binding.cvHomeProfile.setOnClickListener {
+			binding.ivHomeProfile.setImageResource(R.drawable.ic_user_profile)
+		}
+
 		return binding.root
 	}
 
