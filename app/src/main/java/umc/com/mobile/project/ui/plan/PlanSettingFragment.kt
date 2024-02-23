@@ -11,6 +11,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import umc.com.mobile.project.databinding.PlanTimeTabMainBinding
+import umc.com.mobile.project.ui.plan.adapter.PlanVPAdapter
+import umc.com.mobile.project.ui.plan.viewmodel.PlanViewModel
 
 class PlanSettingFragment : Fragment() {
     private var _binding: PlanTimeTabMainBinding? = null

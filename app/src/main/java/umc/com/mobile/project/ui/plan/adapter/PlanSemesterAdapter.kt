@@ -1,6 +1,5 @@
-package umc.com.mobile.project.ui.plan
+package umc.com.mobile.project.ui.plan.adapter
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,12 +17,12 @@ class PlanSemesterAdapter(semesterList: List<semesterResult?>, private val onIte
         return semesterList.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanSemesterAdapter.NonSubjectViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NonSubjectViewHolder {
         val itemBinding = ItemChooseSemesterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NonSubjectViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: PlanSemesterAdapter.NonSubjectViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NonSubjectViewHolder, position: Int) {
         val semesterInfo = semesterList[position]
         if (semesterInfo != null) {
             holder.itemBinding.planTimeSemesterItem.text = semesterInfo.hakkiText

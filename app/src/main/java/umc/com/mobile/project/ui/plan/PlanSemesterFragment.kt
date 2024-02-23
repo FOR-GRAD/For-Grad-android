@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.databinding.SemesterChooseBinding
 
 import umc.com.mobile.project.R
+import umc.com.mobile.project.ui.plan.adapter.PlanSemesterAdapter
+import umc.com.mobile.project.ui.plan.viewmodel.PlanViewModel
 
 
 class PlanSemesterFragment : Fragment() {

@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="umc.com.mobile.project.ui.plan.PlanViewModel" />
+            type="umc.com.mobile.project.ui.plan.viewmodel.PlanViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

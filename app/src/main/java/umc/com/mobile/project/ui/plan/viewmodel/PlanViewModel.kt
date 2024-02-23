@@ -1,4 +1,4 @@
-    package umc.com.mobile.project.ui.plan
+    package umc.com.mobile.project.ui.plan.viewmodel
 
 
     import android.util.Log

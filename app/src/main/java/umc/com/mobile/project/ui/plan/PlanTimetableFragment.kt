@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.PlanTimeMainBinding
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
+import umc.com.mobile.project.ui.plan.adapter.PlanTimeAdapter
+import umc.com.mobile.project.ui.plan.viewmodel.PlanViewModel
 
 
 class PlanTimetableFragment : Fragment() {

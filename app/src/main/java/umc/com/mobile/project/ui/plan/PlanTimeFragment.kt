@@ -1,18 +1,18 @@
 package umc.com.mobile.project.ui.plan
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
 import umc.com.mobile.project.data.model.plan.TimeInfoResponse
 import umc.com.mobile.project.databinding.PlanSubjectListBinding
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
+import umc.com.mobile.project.ui.plan.adapter.PlanRecyclerAdapter
+import umc.com.mobile.project.ui.plan.viewmodel.PlanViewModel
 
 
 class PlanTimeFragment : Fragment() {

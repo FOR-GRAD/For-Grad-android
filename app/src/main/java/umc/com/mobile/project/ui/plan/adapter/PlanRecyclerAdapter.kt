@@ -1,10 +1,8 @@
-package umc.com.mobile.project.ui.plan
+package umc.com.mobile.project.ui.plan.adapter
 
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import umc.com.mobile.project.data.model.plan.TimeInfoResponse
 import umc.com.mobile.project.data.model.plan.TimeResult
 import umc.com.mobile.project.databinding.ItemTimeSubjectBinding
 

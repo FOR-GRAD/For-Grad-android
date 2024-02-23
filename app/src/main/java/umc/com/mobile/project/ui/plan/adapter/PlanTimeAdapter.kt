@@ -1,4 +1,4 @@
-package umc.com.mobile.project.ui.plan
+package umc.com.mobile.project.ui.plan.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import umc.com.mobile.project.data.model.plan.TimeInfoResponse
 import umc.com.mobile.project.databinding.ItemPlanTimeBinding
 
-class PlanTimeAdapter(private var addnewtime: List<Any> = ArrayList()): ListAdapter<TimeInfoResponse, PlanTimeAdapter.ViewHolder>(UpTimeResultDiffCallback()) {
+class PlanTimeAdapter(private var addnewtime: List<Any> = ArrayList()): ListAdapter<TimeInfoResponse, PlanTimeAdapter.ViewHolder>(
+	UpTimeResultDiffCallback()
+) {
 
     class ViewHolder(private val binding: ItemPlanTimeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TimeInfoResponse) {

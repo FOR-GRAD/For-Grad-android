@@ -1,4 +1,4 @@
-package umc.com.mobile.project.ui.plan
+package umc.com.mobile.project.ui.plan.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
