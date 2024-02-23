@@ -1,4 +1,4 @@
-package umc.com.mobile.project.data.model.plan
+package umc.com.mobile.project.data.model.plan.timetable
 
 data class AddTimeResponse(
     val isSuccess: Boolean,

@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
-import umc.com.mobile.project.data.model.plan.TrackResult
+import umc.com.mobile.project.data.model.plan.timetable.TrackResult
 import umc.com.mobile.project.databinding.PlanTimeChooseTrackBinding
 import umc.com.mobile.project.ui.plan.adapter.PlanTrackAdapter
 import umc.com.mobile.project.ui.plan.viewmodel.PlanViewModel

@@ -3,7 +3,7 @@ package umc.com.mobile.project.ui.plan.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import umc.com.mobile.project.data.model.plan.TrackResult
+import umc.com.mobile.project.data.model.plan.timetable.TrackResult
 import umc.com.mobile.project.databinding.ItemChooseTrackBinding
 
 class PlanTrackAdapter(trackList: List<TrackResult?>, private val onItemClick: (TrackResult) -> Unit) : RecyclerView.Adapter<PlanTrackAdapter.NonSubjectViewHolder>() {

@@ -1,6 +1,4 @@
-package umc.com.mobile.project.data.model.plan
-
-import java.time.LocalDate
+package umc.com.mobile.project.data.model.plan.license
 
 
 data class SaveInfo(

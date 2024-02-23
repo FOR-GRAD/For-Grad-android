@@ -3,12 +3,12 @@ package umc.com.mobile.project.ui.plan.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import umc.com.mobile.project.data.model.plan.TimeResult
+import umc.com.mobile.project.data.model.plan.timetable.TimeResult
 import umc.com.mobile.project.databinding.ItemTimeSubjectBinding
 
 class PlanRecyclerAdapter(
-    private var timeList: List<TimeResult?>,
-    private val onAddButtonClicked: ((TimeResult?) -> Unit)? = null
+	private var timeList: List<TimeResult?>,
+	private val onAddButtonClicked: ((TimeResult?) -> Unit)? = null
 ) : RecyclerView.Adapter<PlanRecyclerAdapter.NonSubjectViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NonSubjectViewHolder {

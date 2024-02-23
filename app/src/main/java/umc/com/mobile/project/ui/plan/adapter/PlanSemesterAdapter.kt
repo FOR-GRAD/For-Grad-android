@@ -3,7 +3,7 @@ package umc.com.mobile.project.ui.plan.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import umc.com.mobile.project.data.model.plan.semesterResult
+import umc.com.mobile.project.data.model.plan.timetable.semesterResult
 import umc.com.mobile.project.databinding.ItemChooseSemesterBinding
 
 class PlanSemesterAdapter(semesterList: List<semesterResult?>, private val onItemClick: (semesterResult) -> Unit): RecyclerView.Adapter<PlanSemesterAdapter.NonSubjectViewHolder>() {
