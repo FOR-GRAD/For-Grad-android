@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
 		setupHomeInfoRetrofit() // 홈 화면 ui 연결
 
 		binding.cvHomeProfile.setOnClickListener {
-			binding.ivHomeProfile.setImageResource(R.drawable.ic_user_profile)
+//			binding.ivHomeProfile.setImageResource(R.drawable.ic_user_profile)
 		}
 
 		return binding.root
