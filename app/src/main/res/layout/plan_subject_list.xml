@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="umc.com.mobile.project.ui.plan.PlanViewModel" />
+            type="umc.com.mobile.project.ui.plan.viewmodel.PlanViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +35,7 @@
                     style="@style/MediumFont.13"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginStart="35dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/rectangle_4343"
                     android:gravity="center"

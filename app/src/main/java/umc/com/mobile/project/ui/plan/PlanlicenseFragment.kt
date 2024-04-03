@@ -1,7 +1,7 @@
 package umc.com.mobile.project.ui.plan
 
 import android.content.res.ColorStateList
-import umc.com.mobile.project.data.model.plan.SaveInfo
+import umc.com.mobile.project.data.model.plan.license.SaveInfo
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,10 +11,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import umc.com.mobile.project.R
-import umc.com.mobile.project.data.model.plan.CertificateLicenseRequest
+import umc.com.mobile.project.data.model.plan.license.CertificateLicenseRequest
 import umc.com.mobile.project.databinding.FragmentPlanlicenseBinding
+import umc.com.mobile.project.ui.plan.viewmodel.PlanViewModel
 
 class PlanlicenseFragment : Fragment() {
     private var _binding: FragmentPlanlicenseBinding? = null

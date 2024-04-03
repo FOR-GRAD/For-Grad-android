@@ -1,4 +1,4 @@
-package umc.com.mobile.project.data.model
+package umc.com.mobile.project.data.model.plan.license
 
 data class DeleteLicense(
     val isSuccess: Boolean,

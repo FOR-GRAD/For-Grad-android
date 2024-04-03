@@ -6,74 +6,92 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.PATCH
 import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.PUT
 import retrofit2.http.Query
-import umc.com.mobile.project.data.model.DeleteLicense
-import umc.com.mobile.project.data.model.plan.AddTimeRequest
-import umc.com.mobile.project.data.model.plan.AddTimeResponse
-import umc.com.mobile.project.data.model.plan.BringlicenseResponse
-import umc.com.mobile.project.data.model.plan.CertificateLicenseRequest
-import umc.com.mobile.project.data.model.plan.CertificateResponse
-import umc.com.mobile.project.data.model.plan.ListTimeResponse
-import umc.com.mobile.project.data.model.plan.PlanFreeRequest
-import umc.com.mobile.project.data.model.plan.PlanFreeResponse
-import umc.com.mobile.project.data.model.plan.PlanTrackResponse
-import umc.com.mobile.project.data.model.plan.SaveInfo
-import umc.com.mobile.project.data.model.plan.SemesterTimeResponse
-import umc.com.mobile.project.data.model.plan.UPlicenseResponse
-import umc.com.mobile.project.data.model.plan.EditMemoRequest
-import umc.com.mobile.project.data.model.plan.UpTimeResponse
+import umc.com.mobile.project.data.model.plan.license.DeleteLicense
+import umc.com.mobile.project.data.model.plan.timetable.request.AddTimeRequest
+import umc.com.mobile.project.data.model.plan.timetable.AddTimeResponse
+import umc.com.mobile.project.data.model.plan.license.BringlicenseResponse
+import umc.com.mobile.project.data.model.plan.license.CertificateLicenseRequest
+import umc.com.mobile.project.data.model.plan.license.CertificateResponse
+import umc.com.mobile.project.data.model.plan.timetable.DeleteTimeTableResponse
+import umc.com.mobile.project.data.model.plan.freememo.PlanFreeRequest
+import umc.com.mobile.project.data.model.plan.freememo.PlanFreeResponse
+import umc.com.mobile.project.data.model.plan.timetable.PlanTrackResponse
+import umc.com.mobile.project.data.model.plan.license.SaveInfo
+import umc.com.mobile.project.data.model.plan.license.UPlicenseResponse
+import umc.com.mobile.project.data.model.plan.freememo.EditMemoRequest
+import umc.com.mobile.project.data.model.plan.timetable.request.PutTimeTableRequest
+import umc.com.mobile.project.data.model.plan.timetable.PutTimeTableResponse
+import umc.com.mobile.project.data.model.plan.timetable.SearchSemesterResponse
+import umc.com.mobile.project.data.model.plan.timetable.SearchSubjectResponse
+import umc.com.mobile.project.data.model.plan.timetable.TimeTableResponse
 
 
 interface PlanApi {
-    @GET("plans/certifications")
-    fun getUPlicense(): Call<UPlicenseResponse>
+	/**
+	 * 시간표
+	 */
+	@POST("/plans/timetable")
+	fun addTime(@Body addTimeRequest: AddTimeRequest): Call<AddTimeResponse>
 
+	@GET("/plans/timetable")
+	fun getUptime(
+		@Query("grade") grade: Int,
+		@Query("semester") semester: Int
+	): Call<TimeTableResponse>
 
-    @POST("plans/certifications")
-    fun saveLicense(@Body request: List<SaveInfo>): Call<BringlicenseResponse>
+	@PUT("/plans/timetable")
+	fun putTimeTable(
+		@Body request: PutTimeTableRequest
+	): Call<PutTimeTableResponse>
 
+	@DELETE("/plans/timetable")
+	fun deleteTimeTable(
+		@Query("grade") grade: Int,
+		@Query("semester") semester: Int,
+		@Query("subjectId") subjectId: Int
+	): Call<DeleteTimeTableResponse>
 
+	/**
+	 * 시간표 검색
+	 */
+	@GET("/plans/timetable/searchSubject")
+	fun getListTime(
+		@Query("hakki") hakki: String,
+		@Query("track") track: String
+	): Call<SearchSubjectResponse>
 
+	@GET("/plans/timetable/searchTrack")
+	fun getTrackInfo(@Query("hakki") hakki: String): Call<PlanTrackResponse>
 
-    @GET("/plans/timetable/searchSubject")
-    fun getListTime(@Query("hakki") hakki:String, @Query("track") track : String) : Call<ListTimeResponse>
+	@GET("/plans/timetable/searchHakki")
+	fun getSemesterInfo(): Call<SearchSemesterResponse>
 
-    @GET("/plans/timetable/searchTrack")
-    fun getTrackInfo(@Query("hakki") hakki: String) : Call<PlanTrackResponse>
+	/**
+	 * 자유 메모
+	 */
+	@GET("/plans/memo")
+	fun getFreeInfo(): Call<PlanFreeResponse>
 
-    @GET("/plans/timetable/searchHakki")
-    fun getSemesterInfo():Call<SemesterTimeResponse>
+	@POST("/plans/memo")
+	fun postFreeMemo(@Body request: PlanFreeRequest): Call<PlanFreeResponse>
 
-    @POST("/plans/timetable")
-    fun addTime(@Body addTimeRequest: AddTimeRequest): Call<AddTimeResponse>
+	@PATCH("/plans/memo")
+	fun editMemo(@Body editMemoRequest: EditMemoRequest): Call<PlanFreeResponse>
 
-    @GET("/plans/memo")
-    fun getFreeInfo() : Call<PlanFreeResponse>
+	/**
+	 * 자격증
+	 */
+	@GET("plans/certifications")
+	fun getUPlicense(): Call<UPlicenseResponse>
 
-    @POST("/plans/memo")
-    fun postFreeMemo(@Body request: PlanFreeRequest): Call<PlanFreeResponse>
+	@POST("plans/certifications")
+	fun saveLicense(@Body request: List<SaveInfo>): Call<BringlicenseResponse>
 
-    @GET("/plans/timetable")
-    fun getUptime(@Query("grade") grade:Int, @Query("semester") semester : Int):Call<UpTimeResponse>
+	@PATCH("/plans/certifications")
+	fun certificateLicense(@Body request: List<CertificateLicenseRequest>): Call<CertificateResponse>
 
-    @PATCH("/plans/memo")
-    fun editMemo(@Body editMemoRequest: EditMemoRequest) : Call<PlanFreeResponse>
-
-    @PATCH("/plans/certifications")
-    fun certificateLicense(@Body request: List<CertificateLicenseRequest>) : Call<CertificateResponse>
-
-    @DELETE("/plans/certifications")
-    fun deleteLicense(@Query("certificateId") certificateId: Long): Call<DeleteLicense>
-
-
-
-
-
-
-
-
-
-
-
+	@DELETE("/plans/certifications")
+	fun deleteLicense(@Query("certificateId") certificateId: Long): Call<DeleteLicense>
 }

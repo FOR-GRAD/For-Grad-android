@@ -5,15 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
-import umc.com.mobile.project.data.model.plan.TrackResult
+import umc.com.mobile.project.data.model.plan.timetable.TrackResult
 import umc.com.mobile.project.databinding.PlanTimeChooseTrackBinding
-import umc.com.mobile.project.ui.plan.PlanSettingFragment
-import umc.com.mobile.project.ui.plan.PlanTrackAdapter
-import umc.com.mobile.project.ui.plan.PlanViewModel
+import umc.com.mobile.project.ui.plan.adapter.PlanTrackAdapter
+import umc.com.mobile.project.ui.plan.viewmodel.PlanViewModel
 
 class PlanTrackFragment : Fragment() {
     private var _binding: PlanTimeChooseTrackBinding? = null

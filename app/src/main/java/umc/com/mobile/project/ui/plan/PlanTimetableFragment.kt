@@ -10,10 +10,13 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import umc.com.mobile.project.R
 import umc.com.mobile.project.databinding.PlanTimeMainBinding
 import umc.com.mobile.project.ui.common.NavigationUtil.navigate
+import umc.com.mobile.project.ui.plan.adapter.PlanTimeAdapter
+import umc.com.mobile.project.ui.plan.viewmodel.PlanViewModel
 
 
 class PlanTimetableFragment : Fragment() {
@@ -29,6 +32,7 @@ class PlanTimetableFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = PlanTimeMainBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -36,7 +40,6 @@ class PlanTimetableFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         observeSelectedTimeResults()
-
 
         val spinner = binding.spinnerPlanTimeTrackSemester
         val adapter = ArrayAdapter.createFromResource(
@@ -46,8 +49,6 @@ class PlanTimetableFragment : Fragment() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
-
-        // 선택한 항목 리스너 추가 (필요한 경우)
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -100,8 +101,6 @@ class PlanTimetableFragment : Fragment() {
                     }
 
                 }
-
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -109,21 +108,16 @@ class PlanTimetableFragment : Fragment() {
             }
         }
         binding.timeStoreButton.setOnClickListener {
-            // grade와 semester가 선택되었는지 확인
             val grade = viewModel.grade.value
             val semester = viewModel.semester.value
 
             if (grade == null || semester == null) {
-                // 학년 또는 학기가 선택되지 않았다면 토스트 메시지 표시
                 Toast.makeText(context, "학년과 학기를 선택해주세요.", Toast.LENGTH_SHORT).show()
             } else {
-                // 선택된 경우에만 서버로 데이터 전송 처리
                 viewModel.sendAddTimeRequest()
                 viewModel.getTimeInfo(grade, semester)
             }
         }
-
-
 
         binding.titleMoveTimetable.setOnClickListener {
             navigate(R.id.action_planTimetableFragment_to_planSettingFragment)
@@ -132,20 +126,14 @@ class PlanTimetableFragment : Fragment() {
 
     }
 
-
-
-
     private fun observeSelectedTimeResults() {
         viewModel.selectedTimeResults.observe(viewLifecycleOwner) { selectedTimeResults ->
             (binding.recyclerView.adapter as PlanTimeAdapter).updateTimeList(selectedTimeResults)
         }
     }
 
-    // 추가하기 버튼으로 시간표에 과목 업데이트
     private fun setupRecyclerView() {
-        // 초기 데이터 리스트를 비어 있는 리스트로 설정합니다.
-        // 데이터가 준비되면, 나중에 observeSelectedTimeResults 함수 내에서 submitList를 통해 업데이트합니다.
-        adapter = PlanTimeAdapter(emptyList())
+        adapter = PlanTimeAdapter(viewModel)
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
     }
